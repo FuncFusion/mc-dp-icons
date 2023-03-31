@@ -37,7 +37,7 @@ SuperAnt_#7967 - Made the extension, gave ideas for icons
 
 bth123#0123 - Made all the icons and illustrations
 
-amandin#5551 - Helped with publishing the extension, gave ideas for icons, also included this extension in his [amazing extension collection](https://github.com/amawdiin/dpc-ext-pack)
+amandin#5551 - Helped with publishing the extension, gave ideas for icons, also included this extension in his [amazing extension collection](https://marketplace.visualstudio.com/items?itemName=amandin.dpc-pack)
 
 ![Creators](./images/creators.png)
 

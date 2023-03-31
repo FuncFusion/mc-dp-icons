@@ -1,21 +1,47 @@
 {
   "name": "mc-dp-icons",
-  "displayName": "MC Datapack Icon Theme",
-  "description": "This extension adds new icons specifically for data pack folders and files.",
-  "version": "0.0.1",
+  "displayName": "Datapack Icons",
+  "description": "A minimialistic, minecraft-style icon theme, designed specifically for datapack devs.",
+  "version": "1.0.0",
+  "publisher": "SuperAnt",
+  "author": {
+    "name": "SuperAnt_"
+  },
+  "icon": "./images/logo128.png",
+  "galleryBanner": {
+    "color": "#313338",
+    "theme": "dark"
+  },
+  "license": "GNU AFFERO GENERAL PUBLIC LICENSE",
   "engines": {
     "vscode": "^1.76.0"
   },
+  "keywords": [
+    "minecraft",
+    "datapack",
+    "icons",
+    "theme",
+    "mc",
+    "dp",
+    "command",
+    "block",
+    "mcfunction",
+    "mcf"
+  ],
   "categories": [
-    "Other"
+    "Themes",
+    "Visualization"
   ],
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "mc-dp-icons.helloWorld",
-      "title": "Hello World"
-    }]
+    "iconThemes": [
+      {
+        "id": "mc-dp-icons",
+        "label": "MC Datapack Icon Theme",
+        "path": "./fileicons/mc-dp-icon-theme.json"
+      }
+    ]
   },
   "scripts": {
     "lint": "eslint .",

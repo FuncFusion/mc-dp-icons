@@ -1,65 +1,44 @@
-# mc-dp-icons README
+# Datapack Icons -
 
-This is the README for your extension "mc-dp-icons". After writing up a brief description, we recommend including the following sections.
+is a minimialistic, minecraft-styled icon theme, designed specifically for datapack devs. Looking through [Microsoft behavior packs documentation](https://learn.microsoft.com/en-us/minecraft/creator/documents/behaviorpack#building-the-behavior-pack), we took inspiration from those icons, and decided to implement them in VS Code. 
 
-## Features
+## Icons
+![Icons](./images/Icons.png)
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## Why did we choose *this* icon for *that*?
 
-For example if there is an image subfolder under your extension project workspace:
+- Chest can contain things, such as `folder`
+- Shulker represents that `data`pack can be carried between the worlds
+- Advancement icon for `advancements`
+- **Chat** bubble for `chat_type`
+- Sword can deal damage that is associated with red color, that's why it's for `damage_type`
+- You can go in the nether portal to go to the other `dimension` or `dimension_type`
+- `functions` contain commands, such as command block
+- An iconic item, such as diamond pickaxe, can represent `item_modifiers`
+- You can get some valuable **loot** from `loot_tables`, such as emerald
+- Observer checks things, `predicates` also can check for something
+- We use `recipes` in the crafting table
+- Name **tag** can represent `tags`
+- When we think of a minecraft world, we usually think of lots of grass blocks, so it represents `worldgen`
+- `tick functions` run every tick, as well as repeating command block
+- Next to repeating command blocks, we usually put chain command blocks, such as `normal functions` are usually run by tick functions
+- Impulse command block runs the command only one time after we activate it, like a `load function` which we activate with /reload
+- **Structure** block represents `structure files`
+- We write something on paper scrolls, as well as in `most of the file formats`
+- Curly brackets are basically essential in `.json` files
+- `Markdown` files usually contain some information, and letter **i** usually represents info
+- `pack.mcmeta` is used like a document for datapacks to be used by minecraft, so it has shulker icon on it
+- Painting contains an image, as well as `.png` files
 
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
+- Ender chest is like a space storage, so it can represent the `namespace`, but unfortunately there is no feature in icon themes that can change icons for any folder within data folder yet, so this icon is unused
 ---
+## Creators
+SuperAnt_#7967 - Made the extension, gave ideas for icons
 
-## Working with Markdown
+bth123#0123 - Made all the icons and illustrations
 
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
+amandin#5551 - Helped with publishing the extension, gave ideas for icons, also included this extension in his [amazing extension collection](https://github.com/amawdiin/dpc-ext-pack)
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+![Creators](./images/creators.png)
 
 **Enjoy!**

@@ -7,7 +7,7 @@
   "author": {
     "name": "SuperAnt_"
   },
-  "icon": "https://github.com/SuperAnt220/mc-dp-icons/blob/main/images/logo.png",
+  "icon": "images/logo.png",
   "galleryBanner": {
     "color": "#313338",
     "theme": "dark"
@@ -32,6 +32,11 @@
     "Themes",
     "Visualization"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SuperAnt220/mc-dp-icons"
+  },
+  "homepage": "https://github.com/SuperAnt220/mc-dp-icons",
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {

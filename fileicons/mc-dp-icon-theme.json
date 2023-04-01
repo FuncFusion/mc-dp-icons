@@ -60,11 +60,15 @@
         "tick.mcfunction": "mcf_tick",
         "main.mcfunction": "mcf_tick",
         "loop.mcfunction": "mcf_tick",
+        "everytick.mcfunction": "mcf_tick",
+        "gametick.mcfunction": "mcf_tick",
         "load.mcfunction": "mcf_load",
         "setup.mcfunction": "mcf_load",
         "init.mcfunction": "mcf_load",
         "onload.mcfunction": "mcf_load",
         "reload.mcfunction": "mcf_load",
         "startup.mcfunction": "mcf_load",
+        "start.mcfunction": "mcf_load",
+        "initial.mcfunction": "mcf_load"
       }
   }

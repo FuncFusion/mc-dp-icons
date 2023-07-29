@@ -55,6 +55,10 @@
     "nbt": "nbt",
     "md": "md",
     "png": "png",
+    "jpg": "png",
+    "jpeg": "png",
+    "webp": "png",
+    "gif": "png",
   },
   "fileNames": {
     "pack.mcmeta": "pack_mcmeta",

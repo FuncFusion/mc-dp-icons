@@ -62,6 +62,6 @@ bth123 - Made all the icons and illustrations
 
 amandin - Our PR-manager, gave ideas for icons, included this extension in his [amazing extension collection](https://marketplace.visualstudio.com/items?itemName=amandin.dpc-pack), and made us a [promotion video](https://www.youtube.com/watch?v=my2vfqsRKgE) 
 
-![Creators](./images/Creators.png)
+![Creators](./images/creators.png)
 
 **Enjoy!**

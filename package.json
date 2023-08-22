@@ -2,7 +2,7 @@
   "name": "mc-dp-icons",
   "displayName": "Datapack Icons",
   "description": "A minimialistic, minecraft-style icon theme, designed specifically for datapack devs.",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "publisher": "SuperAnt",
   "author": {
     "name": "SuperAnt_"
@@ -14,7 +14,7 @@
   },
   "license": "GNU AFFERO GENERAL PUBLIC LICENSE",
   "engines": {
-    "vscode": "^1.76.0"
+    "vscode": "^1.5.1"
   },
   "keywords": [
     "minecraft",
@@ -39,6 +39,7 @@
   "homepage": "https://github.com/SuperAnt220/mc-dp-icons",
   "activationEvents": [],
   "main": "./extension.js",
+  "browser": "./extension.js",
   "contributes": {
     "iconThemes": [
       {
@@ -54,7 +55,7 @@
     "test": "node ./test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.76.0",
+    "@types/vscode": "^1.5.1",
     "@types/glob": "^8.1.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",

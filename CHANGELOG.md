@@ -1,6 +1,7 @@
 # Change Log
 
 All notable changes to the "mc-dp-icons" extension will be documented in this file.
+## [2.0.1] - fix readme (2023-08-22)
 
 ## [2.0.0] - Resourcepack Update (2023-08-22)
 #### The total of icons now is 56, 50 of them are in use

@@ -1,4 +1,5 @@
 node_modules
+.vscode/
 .vscode-test/
 .vscode-test-web/
 *.vsix

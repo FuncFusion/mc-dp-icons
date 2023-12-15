@@ -1,138 +1,234 @@
 {
-    "iconDefinitions": {
-      "mcf": {"iconPath": "./imgs/cb_chain.svg"},
-      "mcf_tick": {"iconPath": "./imgs/cb_repeat.svg"},
-      "mcf_load": {"iconPath": "./imgs/cb.svg"},
-      "json": {"iconPath": "./imgs/json.svg"},
-      "nbt": {"iconPath": "./imgs/structure_block.svg"},
-      "folder": {"iconPath": "./imgs/chest.svg"},
-      "folder_open": {"iconPath": "./imgs/chest_open.svg"},
-      "data": {"iconPath": "./imgs/shulker.svg"},
-      "data_open": {"iconPath": "./imgs/shulker_open.svg"},
-      "functions_open": {"iconPath": "./imgs/functions.svg"},
-      "loot_tables_open": {"iconPath": "./imgs/loot_tables.svg"},
-      "dimension_open": {"iconPath": "./imgs/dimension.svg"},
-      "dimension_type_open": {"iconPath": "./imgs/dimension_type.svg"},
-      "recipes_open": {"iconPath": "./imgs/recipes.svg"},
-      "damage_type_open": {"iconPath": "./imgs/damage_type.svg"},
-      "structures_open": {"iconPath": "./imgs/structures.svg"},
-      "advancements_open": {"iconPath": "./imgs/advancements.svg"},
-      "tags_open": {"iconPath": "./imgs/tags.svg"},
-      "worldgen_open": {"iconPath": "./imgs/worldgen.svg"},
-      "predicates_open": {"iconPath": "./imgs/predicates.svg"},
-      "chat_type_open": {"iconPath": "./imgs/chat_type.svg"},
-      "item_modifiers_open": {"iconPath": "./imgs/item_modifiers.svg"},
-      "trim_pattern_open": {"iconPath": "./imgs/trim_pattern.svg"},
-      "trim_material_open": {"iconPath": "./imgs/trim_material.svg"},
-      "png": {"iconPath": "./imgs/painting.svg"},
-      "pack_mcmeta": {"iconPath": "./imgs/pack_mcmeta.svg"},
-      "md": {"iconPath": "./imgs/md.svg"},
-      "txt": {"iconPath": "./imgs/txt.svg"},
-      "misc": {"iconPath": "./imgs/misc.svg"},
-      "license": {"iconPath": "./imgs/license.svg"},
-      "copyright": {"iconPath": "./imgs/copyright.svg"},
-
-      "assets": {"iconPath": "./imgs/assets.svg"},
-      "assets_open": {"iconPath": "./imgs/assets_open.svg"},
-      "particles_open": {"iconPath": "./imgs/particles.svg"},
-      "shaders_open": {"iconPath": "./imgs/shaders.svg"},
-      "textures_open": {"iconPath": "./imgs/textures.svg"},
-      "font_open": {"iconPath": "./imgs/font.svg"},
-      "models_open": {"iconPath": "./imgs/models.svg"},
-      "blockstates_open": {"iconPath": "./imgs/blockstates.svg"},
-      "lang_open": {"iconPath": "./imgs/lang.svg"},
-      "texts_open": {"iconPath": "./imgs/texts.svg"},
-      "sounds_open": {"iconPath": "./imgs/sounds.svg"},
-      "atlases_open": {"iconPath": "./imgs/atlases.svg"},
-      "sounds.json": {"iconPath": "./imgs/sounds.json.svg"},
-      "vsh": {"iconPath": "./imgs/vsh.svg"},
-      "fsh": {"iconPath": "./imgs/fsh.svg"},
-      "glsl": {"iconPath": "./imgs/glsl.svg"},
-      "ogg": {"iconPath": "./imgs/ogg.svg"},
-      
-      "beet": {"iconPath": "./imgs/beet.svg"},
-      "bolt": {"iconPath": "./imgs/bolt.svg"},
+  "iconDefinitions": {
+    "mcf": {
+      "iconPath": "./imgs/cb_chain.svg"
     },
-    "file": "misc",
-    "folder": "folder",
-    "folderExpanded": "folder_open",
-    "folderNames": {
-        "data": "data",
-        "assets": "assets"
-      },
-      "folderNamesExpanded": {
-        "data": "data_open",
-        "functions": "functions_open",
-        "loot_tables": "loot_tables_open",
-        "dimension": "dimension_open",
-        "dimension_type": "dimension_type_open",
-        "recipes": "recipes_open",
-        "damage_type": "damage_type_open",
-        "structures": "structures_open",
-        "advancements": "advancements_open",
-        "tags": "tags_open",
-        "worldgen": "worldgen_open",
-        "predicates": "predicates_open",
-        "chat_type": "chat_type_open",
-        "item_modifiers": "item_modifiers_open",
-        "trim_pattern": "trim_pattern_open",
-        "trim_material": "trim_material_open",
-
-        "assets": "assets_open",
-        "particles": "particles_open",
-        "shaders": "shaders_open",
-        "textures": "textures_open",
-        "font": "font_open",
-        "models": "models_open",
-        "blockstates": "blockstates_open",
-        "lang": "lang_open",
-        "texts": "texts_open",
-        "sounds": "sounds_open",
-        "atlases": "atlases_open"
-      },
-      "fileExtensions": {
-        "mcfunction": "mcf",
-        "json": "json",
-        "nbt": "nbt",
-        "md": "md",
-        "txt": "txt",
-        "png": "png",
-        "webp": "png",
-        "jpg": "png",
-        "jpeg": "png",
-        "svg": "png",
-        "vsh": "vsh",
-        "fsh": "fsh",
-        "glsl": "glsl",
-        "ogg": "ogg",
-        "mp3": "ogg",
-        "bolt": "bolt"
-      },
-      "fileNames": {
-        "pack.mcmeta": "pack_mcmeta",
-        "tick.mcfunction": "mcf_tick",
-        "main.mcfunction": "mcf_tick",
-        "loop.mcfunction": "mcf_tick",
-        "everytick.mcfunction": "mcf_tick",
-        "gametick.mcfunction": "mcf_tick",
-        "load.mcfunction": "mcf_load",
-        "setup.mcfunction": "mcf_load",
-        "init.mcfunction": "mcf_load",
-        "onload.mcfunction": "mcf_load",
-        "reload.mcfunction": "mcf_load",
-        "startup.mcfunction": "mcf_load",
-        "start.mcfunction": "mcf_load",
-        "initial.mcfunction": "mcf_load",
-        "sounds.json": "sounds.json",
-        "LICENSE": "license",
-        "LICENSE.txt": "license",
-        "LICENSE.md": "license",
-        "COPYRIGHT": "copyright",
-        "COPYRIGHT.txt": "copyright",
-        "COPYRIGHT.md": "copyright",
-
-        "beet.json": "beet",
-        "beet.yaml": "beet",
-        "beet.yml": "beet"
-      }
+    "mcf_tick": {
+      "iconPath": "./imgs/cb_repeat.svg"
+    },
+    "mcf_load": {
+      "iconPath": "./imgs/cb.svg"
+    },
+    "json": {
+      "iconPath": "./imgs/json.svg"
+    },
+    "nbt": {
+      "iconPath": "./imgs/structure_block.svg"
+    },
+    "folder": {
+      "iconPath": "./imgs/chest.svg"
+    },
+    "folder_open": {
+      "iconPath": "./imgs/chest_open.svg"
+    },
+    "data": {
+      "iconPath": "./imgs/shulker.svg"
+    },
+    "data_open": {
+      "iconPath": "./imgs/shulker_open.svg"
+    },
+    "functions_open": {
+      "iconPath": "./imgs/functions.svg"
+    },
+    "loot_tables_open": {
+      "iconPath": "./imgs/loot_tables.svg"
+    },
+    "dimension_open": {
+      "iconPath": "./imgs/dimension.svg"
+    },
+    "dimension_type_open": {
+      "iconPath": "./imgs/dimension_type.svg"
+    },
+    "recipes_open": {
+      "iconPath": "./imgs/recipes.svg"
+    },
+    "damage_type_open": {
+      "iconPath": "./imgs/damage_type.svg"
+    },
+    "structures_open": {
+      "iconPath": "./imgs/structures.svg"
+    },
+    "advancements_open": {
+      "iconPath": "./imgs/advancements.svg"
+    },
+    "tags_open": {
+      "iconPath": "./imgs/tags.svg"
+    },
+    "worldgen_open": {
+      "iconPath": "./imgs/worldgen.svg"
+    },
+    "predicates_open": {
+      "iconPath": "./imgs/predicates.svg"
+    },
+    "chat_type_open": {
+      "iconPath": "./imgs/chat_type.svg"
+    },
+    "item_modifiers_open": {
+      "iconPath": "./imgs/item_modifiers.svg"
+    },
+    "trim_pattern_open": {
+      "iconPath": "./imgs/trim_pattern.svg"
+    },
+    "trim_material_open": {
+      "iconPath": "./imgs/trim_material.svg"
+    },
+    "png": {
+      "iconPath": "./imgs/painting.svg"
+    },
+    "pack_mcmeta": {
+      "iconPath": "./imgs/pack_mcmeta.svg"
+    },
+    "md": {
+      "iconPath": "./imgs/md.svg"
+    },
+    "txt": {
+      "iconPath": "./imgs/txt.svg"
+    },
+    "misc": {
+      "iconPath": "./imgs/misc.svg"
+    },
+    "license": {
+      "iconPath": "./imgs/license.svg"
+    },
+    "copyright": {
+      "iconPath": "./imgs/copyright.svg"
+    },
+    "assets": {
+      "iconPath": "./imgs/assets.svg"
+    },
+    "assets_open": {
+      "iconPath": "./imgs/assets_open.svg"
+    },
+    "particles_open": {
+      "iconPath": "./imgs/particles.svg"
+    },
+    "shaders_open": {
+      "iconPath": "./imgs/shaders.svg"
+    },
+    "textures_open": {
+      "iconPath": "./imgs/textures.svg"
+    },
+    "font_open": {
+      "iconPath": "./imgs/font.svg"
+    },
+    "models_open": {
+      "iconPath": "./imgs/models.svg"
+    },
+    "blockstates_open": {
+      "iconPath": "./imgs/blockstates.svg"
+    },
+    "lang_open": {
+      "iconPath": "./imgs/lang.svg"
+    },
+    "texts_open": {
+      "iconPath": "./imgs/texts.svg"
+    },
+    "sounds_open": {
+      "iconPath": "./imgs/sounds.svg"
+    },
+    "atlases_open": {
+      "iconPath": "./imgs/atlases.svg"
+    },
+    "sounds.json": {
+      "iconPath": "./imgs/sounds.json.svg"
+    },
+    "vsh": {
+      "iconPath": "./imgs/vsh.svg"
+    },
+    "fsh": {
+      "iconPath": "./imgs/fsh.svg"
+    },
+    "glsl": {
+      "iconPath": "./imgs/glsl.svg"
+    },
+    "ogg": {
+      "iconPath": "./imgs/ogg.svg"
+    },
+    "beet": {
+      "iconPath": "./imgs/beet.svg"
+    },
+    "bolt": {
+      "iconPath": "./imgs/bolt.svg"
+    }
+  },
+  "file": "misc",
+  "folder": "folder",
+  "folderExpanded": "folder_open",
+  "folderNames": {
+    "data": "data",
+    "assets": "assets"
+  },
+  "folderNamesExpanded": {
+    "data": "data_open",
+    "functions": "functions_open",
+    "loot_tables": "loot_tables_open",
+    "dimension": "dimension_open",
+    "dimension_type": "dimension_type_open",
+    "recipes": "recipes_open",
+    "damage_type": "damage_type_open",
+    "structures": "structures_open",
+    "advancements": "advancements_open",
+    "tags": "tags_open",
+    "worldgen": "worldgen_open",
+    "predicates": "predicates_open",
+    "chat_type": "chat_type_open",
+    "item_modifiers": "item_modifiers_open",
+    "trim_pattern": "trim_pattern_open",
+    "trim_material": "trim_material_open",
+    "assets": "assets_open",
+    "particles": "particles_open",
+    "shaders": "shaders_open",
+    "textures": "textures_open",
+    "font": "font_open",
+    "models": "models_open",
+    "blockstates": "blockstates_open",
+    "lang": "lang_open",
+    "texts": "texts_open",
+    "sounds": "sounds_open",
+    "atlases": "atlases_open"
+  },
+  "fileExtensions": {
+    "mcfunction": "mcf",
+    "json": "json",
+    "nbt": "nbt",
+    "md": "md",
+    "txt": "txt",
+    "png": "png",
+    "webp": "png",
+    "jpg": "png",
+    "jpeg": "png",
+    "svg": "png",
+    "vsh": "vsh",
+    "fsh": "fsh",
+    "glsl": "glsl",
+    "ogg": "ogg",
+    "mp3": "ogg",
+    "bolt": "bolt"
+  },
+  "fileNames": {
+    "pack.mcmeta": "pack_mcmeta",
+    "tick.mcfunction": "mcf_tick",
+    "main.mcfunction": "mcf_tick",
+    "loop.mcfunction": "mcf_tick",
+    "everytick.mcfunction": "mcf_tick",
+    "gametick.mcfunction": "mcf_tick",
+    "load.mcfunction": "mcf_load",
+    "setup.mcfunction": "mcf_load",
+    "init.mcfunction": "mcf_load",
+    "onload.mcfunction": "mcf_load",
+    "reload.mcfunction": "mcf_load",
+    "startup.mcfunction": "mcf_load",
+    "start.mcfunction": "mcf_load",
+    "initial.mcfunction": "mcf_load",
+    "sounds.json": "sounds.json",
+    "LICENSE": "license",
+    "LICENSE.txt": "license",
+    "LICENSE.md": "license",
+    "COPYRIGHT": "copyright",
+    "COPYRIGHT.txt": "copyright",
+    "COPYRIGHT.md": "copyright",
+    "beet.json": "beet",
+    "beet.yaml": "beet",
+    "beet.yml": "beet"
   }
+}

@@ -4,6 +4,7 @@ import * as vscode from 'vscode';
 import { workspace } from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
+import util from 'util';
 import { spec } from 'node:test/reporters';
 
 let defaultIconTheme: string | undefined;
@@ -35,18 +36,12 @@ export function activate(context: vscode.ExtensionContext) {
 		checkPackMcmeta();
 		vscode.window.showInformationMessage('Hello World from Datapack Icons!');
 	});
-	// commands that test specific icon changes
-	let specificIconChange = vscode.commands.registerCommand('mc-dp-icons.specificIconChange', () => {
-		specificIconChangeTest();
-		vscode.window.showInformationMessage('mcfunction to misc specific change');
-	});
 	let specificIconChange2 = vscode.commands.registerCommand('mc-dp-icons.specificIconChange2', () => {
 		specificIconChangeTest2();
-		vscode.window.showInformationMessage('reverts first specific change');
+		vscode.window.showInformationMessage('Change tick.mcfunction icons');
 	});
 
 	context.subscriptions.push(disposable);
-	context.subscriptions.push(specificIconChange);
 	context.subscriptions.push(specificIconChange2);
 }
 
@@ -79,41 +74,73 @@ function checkPackMcmeta() {
 	}
 }
 
-function specificIconChangeTest() {
-	// Get the absolute path to mc-dp-icon-theme.json
-	const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
-	console.log(themePath);
-	
-	  // Read the contents of mc-dp-icon-theme.json
-	  const themeContent = fs.readFileSync(themePath, 'utf8');
-	
-	  // Parse the JSON content into a JavaScript object
-	  const themeObject = JSON.parse(themeContent);
-	
-	  // Modify the desired JSON object property
-	  themeObject.iconDefinitions.mcf.iconPath = './imgs/misc.svg';
-	
-	  // Convert the JavaScript object back into a JSON string
-	  const updatedThemeContent = JSON.stringify(themeObject, null, 2);
-	
-	  // Write the updated JSON string back to mc-dp-icon-theme.json
-	  fs.writeFileSync(themePath, updatedThemeContent, 'utf8');
-	}
-	function specificIconChangeTest2() {
-		// Get the absolute path to mc-dp-icon-theme.json
-		const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
-		console.log(themePath);
-		  // Read the contents of mc-dp-icon-theme.json
-		  const themeContent = fs.readFileSync(themePath, 'utf8');
-		  // Parse the JSON content into a JavaScript object
-		  const themeObject = JSON.parse(themeContent);
-		  // Modify themcfunction icon from cb_chain to misc
-		  themeObject.iconDefinitions.mcf.iconPath = './imgs/cb_chain.svg';
-		  // Convert the JavaScript object back into a JSON string
-		  const updatedThemeContent = JSON.stringify(themeObject, null, 2);
-		  // Write the updated JSON string back to mc-dp-icon-theme.json
-		  fs.writeFileSync(themePath, updatedThemeContent, 'utf8');
-		}
+async function specificIconChangeTest2() {
+    // Get the absolute path to mc-dp-icon-theme.json
+    const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
+    console.log(themePath);
+    let tick_function_names = await findReference();
+    // Parse content of mc-dp-icon-theme.json
+    const themeContent = fs.readFileSync(themePath, 'utf8');
+    const themeObject = JSON.parse(themeContent);
+    // Modify themcfunction icon from cb_chain to misc
+    tick_function_names.forEach((function_name:string) => {
+        themeObject.fileNames[function_name] = "mcf_tick";
+		console.log('changed ' + function_name);
+    });
+    // themeObject.fileNames.mcf.iconPath = './imgs/cb_chain.svg';
+    // Convert the JavaScript object back into a JSON string and write it back into file 
+    const updatedThemeContent = JSON.stringify(themeObject, null, 2);
+    fs.writeFileSync(themePath, updatedThemeContent, 'utf8');
+}
+
+// WATCH MY 9MM GO BANG BADADADANG
+// WATCH MY 9MM GO BANG BADADADANG
+// WATCH MY 9MM GO BANG BADADADANG
+// WATCH MY 9MM GO BANG BADADADANG
+// WATCH MY 9MM GO BANG BADADADANG
+// WATCH MY 9MM GO BANG BADADADANG
+// WATCH MY 9MM GO BANG BADADADANG
+// WATCH MY 9MM GO BANG BADADADANG
+
+// Convert fs.readFile and fs.writeFile into Promise version to use with async/await
+const readFile = util.promisify(fs.readFile);
+
+function removeFirstPart(input: string): string {return input.split(':')[1]; }
+
+async function processFile(file: vscode.Uri) {
+	const tickJsonPath = file.fsPath;
+    try {
+		const data = await readFile(tickJsonPath, 'utf8');
+        const tickJson = JSON.parse(data);
+		
+        if (tickJson.values && tickJson.values.length > 0) {
+			let values = tickJson.values;
+			values = values.map(removeFirstPart);
+			values = values.map((value: string) => value += ".mcfunction");
+			console.log("values array: " + values);
+			return values;
+        } else {
+			console.log('No values found');
+            return [];
+        }
+    } catch (err) {
+		console.error(`Failed to read file: ${err}`);
+        return [];
+    }
+}
+
+async function findReference() {
+	const files = await vscode.workspace.findFiles('**/tick.json', '**/node_modules/**');
+    if (files.length > 0) {
+		for (const file of files) {
+			let values = await processFile(file);
+			console.log("values array: " + values);
+            return values;
+        }
+    } else {
+		console.log('tick.json not found');
+    }
+}
 
 // This method is called when your extension is deactivated
 export function deactivate() {}

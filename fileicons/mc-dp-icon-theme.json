@@ -229,11 +229,6 @@
     "COPYRIGHT.md": "copyright",
     "beet.json": "beet",
     "beet.yaml": "beet",
-    "beet.yml": "beet",
-    "code:tick.mcfunction": "mcf_tick",
-    "code:rand_pos.mcfunction": "mcf_tick",
-    "code:no.mcfunction": "mcf_tick",
-    "rand_pos.mcfunction": "mcf_tick",
-    "no.mcfunction": "mcf_tick"
+    "beet.yml": "beet"
   }
 }

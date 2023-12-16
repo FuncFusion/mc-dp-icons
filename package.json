@@ -61,6 +61,12 @@
           "title": "Enable pack.mcmeta check",
           "default": true,
           "description": "Enable detecting pack.mcmeta in the workspace to set the theme to dp icons. If there is no pack.mcmeta in the workspace, Icon theme will change to default used."
+        },
+        "mc-dp-icons.enableLoadTickAutoChange": {
+          "type": "boolean",
+          "title": "Enable automatic change of load and tick icons",
+          "default": true,
+          "description": "Enable changing icons of load and tick functions based on values provided in tick.json and load.json files.\nIf this is not enabled, load and tick icons will be set by their names, hardcoded in the icon theme."
         }
       }
     },

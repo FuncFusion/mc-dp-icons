@@ -6,6 +6,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import util from 'util';
 import { spec } from 'node:test/reporters';
+import { endianness } from 'os';
 
 let defaultIconTheme: string | undefined;
 // This method is called when your extension is activated
@@ -17,8 +18,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.workspace.onDidChangeWorkspaceFolders(checkPackMcmeta),
     vscode.workspace.onDidRenameFiles(checkPackMcmeta),
     vscode.workspace.onDidDeleteFiles(checkPackMcmeta),
-    vscode.workspace.onDidCreateFiles(checkPackMcmeta),
-	vscode.workspace.onDidChangeConfiguration(checkPackMcmeta)
+    vscode.workspace.onDidCreateFiles(checkPackMcmeta)
   );
   // Get the default icon theme
   defaultIconTheme = vscode.workspace.getConfiguration('workbench').get<string>('iconTheme');
@@ -36,12 +36,19 @@ export function activate(context: vscode.ExtensionContext) {
 		checkPackMcmeta();
 		vscode.window.showInformationMessage('Hello World from Datapack Icons!');
 	});
+
+  
+  let specificIconChange = vscode.commands.registerCommand('mc-dp-icons.specificIconChange', () => {
+		specificIconChangeTest();
+		vscode.window.showInformationMessage('Change load.mcfunction icons');
+	});
 	let specificIconChange2 = vscode.commands.registerCommand('mc-dp-icons.specificIconChange2', () => {
 		specificIconChangeTest2();
 		vscode.window.showInformationMessage('Change tick.mcfunction icons');
 	});
 
 	context.subscriptions.push(disposable);
+	context.subscriptions.push(specificIconChange);
 	context.subscriptions.push(specificIconChange2);
 }
 
@@ -74,11 +81,35 @@ function checkPackMcmeta() {
 	}
 }
 
+async function specificIconChangeTest() {
+  const enableLoadTickChange = workspace.getConfiguration().get<boolean>('mc-dp-icons.enableLoadTickAutoChange');
+  if (enableLoadTickChange) {
+  // Get the absolute path to mc-dp-icon-theme.json
+  const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
+  console.log(themePath);
+  let load_function_names = await findReferenceLoad();
+  // Parse content of mc-dp-icon-theme.json
+  const themeContent = fs.readFileSync(themePath, 'utf8');
+  const themeObject = JSON.parse(themeContent);
+  // Modify themcfunction icon from cb_chain to misc
+  load_function_names.forEach((function_name:string) => {
+      themeObject.fileNames[function_name] = "mcf_load";
+  console.log('changed ' + function_name);
+  });
+  // themeObject.fileNames.mcf.iconPath = './imgs/cb_chain.svg';
+  // Convert the JavaScript object back into a JSON string and write it back into file 
+  const updatedThemeContent = JSON.stringify(themeObject, null, 2);
+  fs.writeFileSync(themePath, updatedThemeContent, 'utf8');
+  }
+}
+
 async function specificIconChangeTest2() {
+  const enableLoadTickChange = workspace.getConfiguration().get<boolean>('mc-dp-icons.enableLoadTickAutoChange');
+  if (enableLoadTickChange) {
     // Get the absolute path to mc-dp-icon-theme.json
     const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
     console.log(themePath);
-    let tick_function_names = await findReference();
+    let tick_function_names = await findReferenceTick();
     // Parse content of mc-dp-icon-theme.json
     const themeContent = fs.readFileSync(themePath, 'utf8');
     const themeObject = JSON.parse(themeContent);
@@ -91,16 +122,8 @@ async function specificIconChangeTest2() {
     // Convert the JavaScript object back into a JSON string and write it back into file 
     const updatedThemeContent = JSON.stringify(themeObject, null, 2);
     fs.writeFileSync(themePath, updatedThemeContent, 'utf8');
+  }
 }
-
-// WATCH MY 9MM GO BANG BADADADANG
-// WATCH MY 9MM GO BANG BADADADANG
-// WATCH MY 9MM GO BANG BADADADANG
-// WATCH MY 9MM GO BANG BADADADANG
-// WATCH MY 9MM GO BANG BADADADANG
-// WATCH MY 9MM GO BANG BADADADANG
-// WATCH MY 9MM GO BANG BADADADANG
-// WATCH MY 9MM GO BANG BADADADANG
 
 // Convert fs.readFile and fs.writeFile into Promise version to use with async/await
 const readFile = util.promisify(fs.readFile);
@@ -129,7 +152,7 @@ async function processFile(file: vscode.Uri) {
     }
 }
 
-async function findReference() {
+async function findReferenceTick() {
 	const files = await vscode.workspace.findFiles('**/tick.json', '**/node_modules/**');
     if (files.length > 0) {
 		for (const file of files) {
@@ -139,6 +162,19 @@ async function findReference() {
         }
     } else {
 		console.log('tick.json not found');
+    }
+}
+
+async function findReferenceLoad() {
+	const files = await vscode.workspace.findFiles('**/load.json', '**/node_modules/**');
+    if (files.length > 0) {
+		for (const file of files) {
+			let values = await processFile(file);
+			console.log("values array: " + values);
+            return values;
+        }
+    } else {
+		console.log('load.json not found');
     }
 }
 

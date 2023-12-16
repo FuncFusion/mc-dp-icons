@@ -2,7 +2,7 @@
   "name": "mc-dp-icons",
   "displayName": "Datapack Icons",
   "description": "A minimialistic, minecraft-style icon theme, designed specifically for datapack devs.",
-  "version": "2.0.5",
+  "version": "2.0.9",
   "publisher": "SuperAnt",
   "author": {
     "name": "SuperAnt_"
@@ -60,7 +60,13 @@
           "type": "boolean",
           "title": "Enable pack.mcmeta check",
           "default": true,
-          "description": "Enable detecting pack.mcmeta in the workspace to set the theme to dp icons. If there is no pack.mcmeta in the workspace, Icon theme will change to default used."
+          "description": "Enable detecting pack.mcmeta in the workspace to set the theme to dp icons. If there is no pack.mcmeta in the workspace, Icon theme will change to default used.\nThe check happens every time on extension startup, on changing workspace folder, on renaming, creating and deleting files."
+        },
+        "mc-dp-icons.setDefaultIconTheme": {
+          "type": "string",
+          "title": "Set what icon theme will be set if pack.mcmeta check fails",
+          "default": "",
+          "description": "This works only if \"Enable pack.mcmeta check\" is set to true.\nPut an id of an icon theme you want to be set when there is no pack.mcmeta in the workspace.\nIf blank, extension will remember the icon theme you launched the workspace with."
         },
         "mc-dp-icons.enableLoadTickAutoChange": {
           "type": "boolean",

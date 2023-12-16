@@ -41,9 +41,10 @@ function activate(context) {
     console.log('Extension "mc-dp-icons" is now active!');
     // Register the event listeners
     context.subscriptions.push(vscode.workspace.onDidChangeWorkspaceFolders(checkPackMcmeta), vscode.workspace.onDidRenameFiles(checkPackMcmeta), vscode.workspace.onDidDeleteFiles(checkPackMcmeta), vscode.workspace.onDidCreateFiles(checkPackMcmeta));
-    // Get the default icon theme
-    defaultIconTheme = vscode.workspace.getConfiguration('workbench').get('iconTheme');
-    console.log(defaultIconTheme);
+    // Get the default icon theme on configuration change
+    context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(getDefaltIconTheme));
+    // Get default Icon theme on startup
+    getDefaltIconTheme();
     // Check for pack.mcmeta on startup
     checkPackMcmeta();
     // The command has been defined in the package.json file
@@ -68,6 +69,20 @@ function activate(context) {
     context.subscriptions.push(specificIconChange2);
 }
 exports.activate = activate;
+function getDefaltIconTheme() {
+    let confDefaultIconTheme = vscode_1.workspace.getConfiguration().get('mc-dp-icons.setDefaultIconTheme');
+    if (confDefaultIconTheme === "") {
+        let gettingDefaultIconTheme = vscode.workspace.getConfiguration('workbench').get('iconTheme');
+        if (gettingDefaultIconTheme !== "mc-dp-icons") {
+            defaultIconTheme = gettingDefaultIconTheme;
+        }
+    }
+    else {
+        defaultIconTheme = confDefaultIconTheme;
+    }
+    console.log('default icon theme is ' + defaultIconTheme);
+    vscode.window.showInformationMessage('default icon theme is ' + defaultIconTheme);
+}
 function checkPackMcmeta() {
     const enableCheck = vscode_1.workspace.getConfiguration().get('mc-dp-icons.enablePackMcmetaCheck');
     if (enableCheck) {

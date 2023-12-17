@@ -56,16 +56,16 @@ function activate(context) {
         checkPackMcmeta();
         vscode.window.showInformationMessage('Hello World from Datapack Icons!');
     });
-    let specificIconChange = vscode.commands.registerCommand('mc-dp-icons.specificIconChange', () => {
-        specificIconChangeTest();
-        vscode.window.showInformationMessage('Change load.mcfunction icons');
-    });
+    // let specificIconChange = vscode.commands.registerCommand('mc-dp-icons.specificIconChange', () => {
+    // 	specificIconChangeTest();
+    // 	vscode.window.showInformationMessage('Change load.mcfunction icons');
+    // });
     let specificIconChange2 = vscode.commands.registerCommand('mc-dp-icons.specificIconChange2', () => {
         specificIconChangeTest2();
         vscode.window.showInformationMessage('Change tick.mcfunction icons');
     });
     context.subscriptions.push(disposable);
-    context.subscriptions.push(specificIconChange);
+    // context.subscriptions.push(specificIconChange);
     context.subscriptions.push(specificIconChange2);
 }
 exports.activate = activate;
@@ -111,43 +111,46 @@ function checkPackMcmeta() {
         });
     }
 }
-async function specificIconChangeTest() {
-    const enableLoadTickChange = vscode_1.workspace.getConfiguration().get('mc-dp-icons.enableLoadTickAutoChange');
-    if (enableLoadTickChange) {
-        // Get the absolute path to mc-dp-icon-theme.json
-        const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
-        console.log(themePath);
-        let load_function_names = await findReferenceLoad();
-        // Parse content of mc-dp-icon-theme.json
-        const themeContent = fs.readFileSync(themePath, 'utf8');
-        const themeObject = JSON.parse(themeContent);
-        // Modify themcfunction icon from cb_chain to misc
-        load_function_names.forEach((function_name) => {
-            themeObject.fileNames[function_name] = "mcf_load";
-            console.log('changed ' + function_name);
-        });
-        // themeObject.fileNames.mcf.iconPath = './imgs/cb_chain.svg';
-        // Convert the JavaScript object back into a JSON string and write it back into file 
-        const updatedThemeContent = JSON.stringify(themeObject, null, 2);
-        fs.writeFileSync(themePath, updatedThemeContent, 'utf8');
-    }
-}
+// async function specificIconChangeTest() {
+//   const enableLoadTickChange = workspace.getConfiguration().get<boolean>('mc-dp-icons.enableLoadTickAutoChange');
+//   if (enableLoadTickChange) {
+//   // Get the absolute path to mc-dp-icon-theme.json
+//   const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
+//   console.log(themePath);
+//   let load_function_names = await findReferenceLoad();
+//   // Parse content of mc-dp-icon-theme.json
+//   const themeContent = fs.readFileSync(themePath, 'utf8');
+//   const themeObject = JSON.parse(themeContent);
+//   // Modify themcfunction icon from cb_chain to misc
+//   load_function_names.forEach((function_name:string) => {
+//       themeObject.fileNames[function_name] = "mcf_load";
+//   console.log('changed ' + function_name);
+//   });
+//   // themeObject.fileNames.mcf.iconPath = './imgs/cb_chain.svg';
+//   // Convert the JavaScript object back into a JSON string and write it back into file 
+//   const updatedThemeContent = JSON.stringify(themeObject, null, 2);
+//   fs.writeFileSync(themePath, updatedThemeContent, 'utf8');
+//   }
+// }
 async function specificIconChangeTest2() {
     const enableLoadTickChange = vscode_1.workspace.getConfiguration().get('mc-dp-icons.enableLoadTickAutoChange');
     if (enableLoadTickChange) {
         // Get the absolute path to mc-dp-icon-theme.json
         const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
         console.log(themePath);
-        let tick_function_names = await findReferenceTick();
+        let [loadValues, tickValues] = await findReference() || [];
         // Parse content of mc-dp-icon-theme.json
         const themeContent = fs.readFileSync(themePath, 'utf8');
         const themeObject = JSON.parse(themeContent);
-        // Modify themcfunction icon from cb_chain to misc
-        tick_function_names.forEach((function_name) => {
+        // Modify the mcfunction icon from cb_chain to misc
+        tickValues.forEach((function_name) => {
             themeObject.fileNames[function_name] = "mcf_tick";
             console.log('changed ' + function_name);
         });
-        // themeObject.fileNames.mcf.iconPath = './imgs/cb_chain.svg';
+        loadValues.forEach((function_name) => {
+            themeObject.fileNames[function_name] = "mcf_load";
+            console.log('changed ' + function_name);
+        });
         // Convert the JavaScript object back into a JSON string and write it back into file 
         const updatedThemeContent = JSON.stringify(themeObject, null, 2);
         fs.writeFileSync(themePath, updatedThemeContent, 'utf8');
@@ -156,6 +159,23 @@ async function specificIconChangeTest2() {
 // Convert fs.readFile and fs.writeFile into Promise version to use with async/await
 const readFile = util_1.default.promisify(fs.readFile);
 function removeFirstPart(input) { return input.split(':')[1]; }
+async function findReference() {
+    const tickReference = await vscode.workspace.findFiles('**/tick.json', '**/node_modules/**');
+    const loadReference = await vscode.workspace.findFiles('**/load.json', '**/node_modules/**');
+    if (tickReference.length > 0 && loadReference.length > 0) {
+        for (const [i, tickFile] of tickReference.entries()) {
+            let loadFile = loadReference[i];
+            let tickValues = await processFile(tickFile);
+            let loadValues = await processFile(loadFile);
+            console.log("load values: " + loadValues);
+            console.log("tick values: " + tickValues);
+            return [loadValues, tickValues];
+        }
+    }
+    else {
+        console.log('tick.json or load.json not found');
+    }
+}
 async function processFile(file) {
     const tickJsonPath = file.fsPath;
     try {
@@ -178,32 +198,31 @@ async function processFile(file) {
         return [];
     }
 }
-async function findReferenceTick() {
-    const files = await vscode.workspace.findFiles('**/tick.json', '**/node_modules/**');
-    if (files.length > 0) {
-        for (const file of files) {
-            let values = await processFile(file);
-            console.log("values array: " + values);
-            return values;
-        }
-    }
-    else {
-        console.log('tick.json not found');
-    }
-}
-async function findReferenceLoad() {
-    const files = await vscode.workspace.findFiles('**/load.json', '**/node_modules/**');
-    if (files.length > 0) {
-        for (const file of files) {
-            let values = await processFile(file);
-            console.log("values array: " + values);
-            return values;
-        }
-    }
-    else {
-        console.log('load.json not found');
-    }
-}
+// async function findReferenceTick() {
+// 	const tickReference = await vscode.workspace.findFiles('**/tick.json', '**/node_modules/**');
+// 	const loadReference = await vscode.workspace.findFiles('**/tick.json', '**/node_modules/**');
+//     if (files.length > 0) {
+// 		for (const file of files) {
+// 			let values = await processFile(file);
+// 			console.log("values array: " + values);
+//             return values;
+//         }
+//     } else {
+// 		console.log('tick.json not found');
+//     }
+// }
+// async function findReferenceLoad() {
+// 	const files = await vscode.workspace.findFiles('**/load.json', '**/node_modules/**');
+//     if (files.length > 0) {
+// 		for (const file of files) {
+// 			let values = await processFile(file);
+// 			console.log("values array: " + values);
+//             return values;
+//         }
+//     } else {
+// 		console.log('load.json not found');
+//     }
+// }
 // This method is called when your extension is deactivated
 function deactivate() { }
 exports.deactivate = deactivate;

@@ -169,5 +169,6 @@ async function processFile(file: vscode.Uri) {
     }
 }
 
+
 // This method is called when your extension is deactivated
 export function deactivate() {}

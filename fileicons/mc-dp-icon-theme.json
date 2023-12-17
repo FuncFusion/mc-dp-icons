@@ -245,7 +245,14 @@
     },
     "pdf": {
       "iconPath": "./imgs/pdf.svg"
+    },
+    "namespace_open": {
+      "iconPath": "./imgs/namespace_open"
+    }, 
+    "namespace_closed": {
+      "iconPath": "./imgs/namespace"
     }
+
   },
   "file": "misc",
   "folder": "folder",
@@ -255,6 +262,7 @@
     "assets": "assets"
   },
   "folderNamesExpanded": {
+    "" : "namespace_open",
     "data": "data_open",
     "functions": "functions_open",
     "loot_tables": "loot_tables_open",

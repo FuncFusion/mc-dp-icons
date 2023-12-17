@@ -140,7 +140,7 @@ async function findReference() {
       let loadValues = await processFile(loadFile);
       console.log("load values: " + loadValues);
       console.log("tick values: " + tickValues);
-      return [loadValues, tickValues]
+      return [loadValues, tickValues];
     }
   } else {
     console.log('tick.json or load.json not found');

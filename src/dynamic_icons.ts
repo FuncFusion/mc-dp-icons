@@ -91,9 +91,6 @@ async function dynamicLoadTickChange() {
         console.log('deleted ' + key);
       }
     }
-    for (let key in themeObject.folderNamesExpanded) {
-        if (themeObject.folderNamesExpanded[key] === )
-    }
   
     // Convert the JavaScript object back into a JSON string and write it back into file 
     const updatedThemeContent = JSON.stringify(themeObject, null, 2);

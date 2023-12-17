@@ -149,6 +149,87 @@
     },
     "bolt": {
       "iconPath": "./imgs/bolt.svg"
+    },
+    "dot_vscode": {
+      "iconPath": "./imgs/dot_vscode.svg"
+    },
+    "vsc": {
+      "iconPath": "./imgs/vsc.svg"
+    },
+    "vscodeignore": {
+      "iconPath": "./imgs/vscodeignore.svg"
+    },
+    "python": {
+      "iconPath": "./imgs/python.svg"
+    },
+    "pycd": {
+      "iconPath": "./imgs/python_compiled.svg"
+    },
+    "pycache": {
+      "iconPath": "./imgs/pycache.svg"
+    },
+    "c": {
+      "iconPath": "./imgs/c.svg"
+    },
+    "cpp": {
+      "iconPath": "./imgs/cpp.svg"
+    },
+    "cs": {
+      "iconPath": "./imgs/cs.svg"
+    },
+    "html": {
+      "iconPath": "./imgs/html.svg"
+    },
+    "css": {
+      "iconPath": "./imgs/css.svg"
+    },
+    "mojo": {
+      "iconPath": "./imgs/mojo.svg"
+    },
+    "js": {
+      "iconPath": "./imgs/js2.svg"
+    },
+    "ts": {
+      "iconPath": "./imgs/ts.svg"
+    },
+    "re": {
+      "iconPath": "./imgs/re.svg"
+    },
+    "java": {
+      "iconPath": "./imgs/java.svg"
+    },
+    "r": {
+      "iconPath": "./imgs/r.svg"
+    },
+    "git": {
+      "iconPath": "./imgs/git.svg"
+    },
+    "gitignore": {
+      "iconPath": "./imgs/gitignore.svg"
+    },
+    "go": {
+      "iconPath": "./imgs/go.svg"
+    },
+    "kotlin": {
+      "iconPath": "./imgs/kotlin.svg"
+    },
+    "exe": {
+      "iconPath": "./imgs/exe.svg"
+    },
+    "shell": {
+      "iconPath": "./imgs/shell.svg"
+    },
+    "android": {
+      "iconPath": "./imgs/android.svg"
+    },
+    "xyml": {
+      "iconPath": "./imgs/xyml.svg"
+    },
+    "archive": {
+      "iconPath": "./imgs/archive.svg"
+    },
+    "jar": {
+      "iconPath": "./imgs/jar.svg"
     }
   },
   "file": "misc",
@@ -185,7 +266,9 @@
     "lang": "lang_open",
     "texts": "texts_open",
     "sounds": "sounds_open",
-    "atlases": "atlases_open"
+    "atlases": "atlases_open",
+    ".vscode": "dot_vscode",
+    "__pycache__": "pycache"
   },
   "fileExtensions": {
     "mcfunction": "mcf",
@@ -203,7 +286,46 @@
     "glsl": "glsl",
     "ogg": "ogg",
     "mp3": "ogg",
-    "bolt": "bolt"
+    "bolt": "bolt",
+    "vsix": "vsc",
+    "vscodeignore": "vscodeignore",
+    "py": "python",
+    "pyc": "pycd",
+    "pyd": "pycd",
+    "c": "c",
+    "h": "c",
+    "cpp": "cpp",
+    "c++": "cpp",
+    "cs": "cs",
+    "html": "html",
+    "css": "css",
+    "mojo": "mojo",
+    "�": "mojo",
+    "js": "js",
+    "ts": "ts",
+    "re": "re",
+    "java": "java",
+    "r": "r",
+    "gitignore": "gitignore",
+    "gitattributes": "git",
+    "go": "go",
+    "kt": "kotlin",
+    "exe": "exe",
+    "app": "exe",
+    "bat": "shell",
+    "cmd": "shell",
+    "sh": "shell",
+    "ps1": "shell",
+    "apk": "android",
+    "smali": "android",
+    "dex": "android",
+    "yml": "xyml",
+    "yaml": "xyml",
+    "xml": "xyml",
+    "zip": "archive",
+    "rar": "archive",
+    "7z": "archive",
+    "jar": "jar"
   },
   "fileNames": {
     "pack.mcmeta": "pack_mcmeta",
@@ -230,8 +352,7 @@
     "beet.json": "beet",
     "beet.yaml": "beet",
     "beet.yml": "beet",
-    "rand_pos.mcfunction": "mcf_tick",
-    "no.mcfunction": "mcf_tick",
-    "yes.mcfunction": "mcf_load"
+    "a.mcfunction": "mcf_load",
+    "function.mcfunction": "mcf_load"
   }
 }

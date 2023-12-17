@@ -230,6 +230,12 @@
     },
     "jar": {
       "iconPath": "./imgs/jar.svg"
+    },
+    "sublime": {
+      "iconPath": "./imgs/sublime.svg"
+    },
+    "sublime_package": {
+      "iconPath": "./imgs/sublime_package.svg"
     }
   },
   "file": "misc",
@@ -325,7 +331,15 @@
     "zip": "archive",
     "rar": "archive",
     "7z": "archive",
-    "jar": "jar"
+    "jar": "jar",
+    "sublime-project": "sublime",
+    "sublime-workspace": "sublime",
+    "sublime-settings": "sublime",
+    "sublime-keymap": "sublime",
+    "sublime-build": "sublime",
+    "sublime-macro": "sublime",
+    "sublime-snippet": "sublime",
+    "sublime-package": "sublime_package"
   },
   "fileNames": {
     "pack.mcmeta": "pack_mcmeta",

@@ -236,6 +236,15 @@
     },
     "sublime_package": {
       "iconPath": "./imgs/sublime_package.svg"
+    },
+    "ruby": {
+      "iconPath": "./imgs/ruby.svg"
+    },
+    "rust": {
+      "iconPath": "./imgs/rust.svg"
+    },
+    "pdf": {
+      "iconPath": "./imgs/pdf.svg"
     }
   },
   "file": "misc",
@@ -339,7 +348,10 @@
     "sublime-build": "sublime",
     "sublime-macro": "sublime",
     "sublime-snippet": "sublime",
-    "sublime-package": "sublime_package"
+    "sublime-package": "sublime_package",
+    "ru": "ruby",
+    "rs": "rust",
+    "pdf": "pdf"
   },
   "fileNames": {
     "pack.mcmeta": "pack_mcmeta",
@@ -353,7 +365,7 @@
     "beet.json": "beet",
     "beet.yaml": "beet",
     "beet.yml": "beet",
-    "no.mcfunction": "mcf_tick",
-    "load.mcfunction": "mcf_load"
+    "a.mcfunction": "mcf_load",
+    "function.mcfunction": "mcf_load"
   }
 }

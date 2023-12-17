@@ -76,7 +76,7 @@
         }
       }
     },
-    "commands":[
+    "commands": [
       {
         "title": "Hello world dp icons",
         "command": "mc-dp-icons.helloWorld"

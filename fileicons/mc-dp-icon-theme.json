@@ -248,11 +248,43 @@
     },
     "namespace_open": {
       "iconPath": "./imgs/namespace_open"
-    }, 
+    },
     "namespace_closed": {
       "iconPath": "./imgs/namespace"
+    },
+    "jmc": {
+      "iconPath": "./imgs/jmc.svg"
+    },
+    "hjmc": {
+      "iconPath": "./imgs/hjmc.svg"
+    },
+    "log": {
+      "iconPath": "./imgs/log.svg"
+    },
+    "database": {
+      "iconPath": "./imgs/database.svg"
+    },
+    "php": {
+      "iconPath": "./imgs/php.svg"
+    },
+    "lua": {
+      "iconPath": "./imgs/lua.svg"
+    },
+    "doc": {
+      "iconPath": "./imgs/doc.svg"
+    },
+    "excel": {
+      "iconPath": "./imgs/excel.svg"
+    },
+    "ttf": {
+      "iconPath": "./imgs/ttf.svg"
+    },
+    "swift": {
+      "iconPath": "./imgs/swift.svg"
+    },
+    "autohotkey": {
+      "iconPath": "./imgs/autohotkey.svg"
     }
-
   },
   "file": "misc",
   "folder": "folder",
@@ -262,7 +294,7 @@
     "assets": "assets"
   },
   "folderNamesExpanded": {
-    "" : "namespace_open",
+    "": "namespace_open",
     "data": "data_open",
     "functions": "functions_open",
     "loot_tables": "loot_tables_open",
@@ -359,7 +391,37 @@
     "sublime-package": "sublime_package",
     "ru": "ruby",
     "rs": "rust",
-    "pdf": "pdf"
+    "pdf": "pdf",
+    "rtf": "pdf",
+    "jmc": "jmc",
+    "hjmc": "hjmc",
+    "log": "log",
+    "db": "database",
+    "pdb": "database",
+    "sql": "database",
+    "db3": "database",
+    "psql": "database",
+    "sqlite": "database",
+    "sqlite3": "database",
+    "mdb": "database",
+    "pgsql": "database",
+    "accdb": "database",
+    "php": "php",
+    "lua": "lua",
+    "doc": "doc",
+    "docx": "doc",
+    "odt": "doc",
+    "dot": "doc",
+    "xlsx": "excel",
+    "xls": "excel",
+    "xlsb": "excel",
+    "xlsm": "excel",
+    "xlw": "excel",
+    "ttf": "ttf",
+    "otf": "ttf",
+    "woff": "ttf",
+    "swift": "swift",
+    "ahk": "autohotkey"
   },
   "fileNames": {
     "pack.mcmeta": "pack_mcmeta",

@@ -16,11 +16,13 @@ export function activate(context: vscode.ExtensionContext) {
 
   // Register the event listeners
   context.subscriptions.push(
-    vscode.workspace.onDidChangeWorkspaceFolders(checkPackMcmeta),
-    vscode.workspace.onDidRenameFiles(checkPackMcmeta),
-    vscode.workspace.onDidDeleteFiles(checkPackMcmeta),
-    vscode.workspace.onDidCreateFiles(checkPackMcmeta)
+    vscode.workspace.onDidChangeWorkspaceFolders(()=>{dynamicIconsUpdate(); checkPackMcmeta();}),
+    vscode.workspace.onDidRenameFiles(()=>{dynamicIconsUpdate(); checkPackMcmeta();}),
+    vscode.workspace.onDidDeleteFiles(()=>{dynamicIconsUpdate(); checkPackMcmeta();}),
+    vscode.workspace.onDidCreateFiles(()=>{dynamicIconsUpdate(); checkPackMcmeta();}),
+    vscode.workspace.onDidChangeTextDocument(dynamicIconsUpdate)
   );
+  
   // Get the default icon theme on configuration change
   context.subscriptions.push(
     vscode.workspace.onDidChangeConfiguration(getDefaltIconTheme)
@@ -30,6 +32,10 @@ export function activate(context: vscode.ExtensionContext) {
   
   // Check for pack.mcmeta on startup
   checkPackMcmeta();
+
+  // Change load and tick mcfunction icons
+  deleteTempIconDefinitions();
+  dynamicLoadTickChange();
 
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
@@ -41,19 +47,14 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.window.showInformationMessage('Hello World from Datapack Icons!');
 	});
 
-  
-  // let specificIconChange = vscode.commands.registerCommand('mc-dp-icons.specificIconChange', () => {
-	// 	specificIconChangeTest();
-	// 	vscode.window.showInformationMessage('Change load.mcfunction icons');
+
+	// let dynamicLoadTickChangeCommand = vscode.commands.registerCommand('mc-dp-icons.dynamicLoadTickChange', () => {
+	// 	dynamicLoadTickChange();
+	// 	vscode.window.showInformationMessage('Change tick and load functions icons');
 	// });
-	let specificIconChange2 = vscode.commands.registerCommand('mc-dp-icons.specificIconChange2', () => {
-		specificIconChangeTest2();
-		vscode.window.showInformationMessage('Change tick.mcfunction icons');
-	});
 
 	context.subscriptions.push(disposable);
-	// context.subscriptions.push(specificIconChange);
-	context.subscriptions.push(specificIconChange2);
+	// context.subscriptions.push(dynamicLoadTickChangeCommand);
 }
 
 function getDefaltIconTheme() {
@@ -99,9 +100,12 @@ function checkPackMcmeta() {
 	}
 }
 
-async function specificIconChangeTest2() {
-  const enableLoadTickChange = workspace.getConfiguration().get<boolean>('mc-dp-icons.enableLoadTickAutoChange');
+async function dynamicLoadTickChange() {
+  // const enableLoadTickChange = workspace.getConfiguration().get<boolean>('mc-dp-icons.enableLoadTickAutoChange');
+  console.log('dynamic load tick function RAN ong');
+  const enableLoadTickChange = true;
   if (enableLoadTickChange) {
+    console.log('load tick change is enabled!');
     // Get the absolute path to mc-dp-icon-theme.json
     const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
     console.log(themePath);
@@ -121,6 +125,8 @@ async function specificIconChangeTest2() {
     // Convert the JavaScript object back into a JSON string and write it back into file 
     const updatedThemeContent = JSON.stringify(themeObject, null, 2);
     fs.writeFileSync(themePath, updatedThemeContent, 'utf8');
+  } else { 
+    console.log('load tick change is not enabled.');
   }
 }
 
@@ -169,6 +175,29 @@ async function processFile(file: vscode.Uri) {
     }
 }
 
+async function deleteTempIconDefinitions() {
+  // Get the absolute path to mc-dp-icon-theme.json
+  const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
+  // Parse content of mc-dp-icon-theme.json
+  const themeContent = fs.readFileSync(themePath, 'utf8');
+  const themeObject = JSON.parse(themeContent);
+
+  for (let key in themeObject.fileNames) {
+    if (themeObject.fileNames[key] === "mcf_tick" || themeObject.fileNames[key] === "mcf_load") {
+      delete themeObject.fileNames[key];
+      console.log('deleted ' + key);
+    }
+  }
+
+  // Convert the JavaScript object back into a JSON string and write it back into file 
+  const updatedThemeContent = JSON.stringify(themeObject, null, 2);
+  fs.writeFileSync(themePath, updatedThemeContent, 'utf8');
+}
+
+function dynamicIconsUpdate() {
+  deleteTempIconDefinitions();
+  dynamicLoadTickChange();
+}
 
 // This method is called when your extension is deactivated
 export function deactivate() {}

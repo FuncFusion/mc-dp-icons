@@ -35,13 +35,18 @@ function activate(context) {
     console.log('Extension "mc-dp-icons" is now active!');
     // Register the event listeners
     context.subscriptions.push(vscode.workspace.onDidChangeWorkspaceFolders(() => { DynamicIcons.update(); LocalIcons.checkPackMcmeta(); }), vscode.workspace.onDidRenameFiles(() => { DynamicIcons.update(); LocalIcons.checkPackMcmeta(); }), vscode.workspace.onDidDeleteFiles(() => { DynamicIcons.update(); LocalIcons.checkPackMcmeta(); }), vscode.workspace.onDidCreateFiles(() => { DynamicIcons.update(); LocalIcons.checkPackMcmeta(); }), vscode.workspace.onDidChangeTextDocument(DynamicIcons.update));
+    context.subscriptions.push(vscode.workspace.onDidChangeWorkspaceFolders(() => { DynamicIcons.update(); LocalIcons.checkPackMcmeta(); }), vscode.workspace.onDidRenameFiles(() => { DynamicIcons.update(); LocalIcons.checkPackMcmeta(); }), vscode.workspace.onDidDeleteFiles(() => { DynamicIcons.update(); LocalIcons.checkPackMcmeta(); }), vscode.workspace.onDidCreateFiles(() => { DynamicIcons.update(); LocalIcons.checkPackMcmeta(); }), vscode.workspace.onDidChangeTextDocument(DynamicIcons.update));
     // Get the default icon theme on configuration change
+    context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(LocalIcons.getDefaltIconTheme));
     context.subscriptions.push(vscode.workspace.onDidChangeConfiguration(LocalIcons.getDefaltIconTheme));
     // Get default Icon theme on startup
     LocalIcons.getDefaltIconTheme();
+    LocalIcons.getDefaltIconTheme();
     // Check for pack.mcmeta on startup
     LocalIcons.checkPackMcmeta();
+    LocalIcons.checkPackMcmeta();
     // Change load and tick mcfunction icons
+    DynamicIcons.update();
     DynamicIcons.update();
     // The command has been defined in the package.json file
     // Now provide the implementation of the command with registerCommand
@@ -49,6 +54,7 @@ function activate(context) {
     let disposable = vscode.commands.registerCommand('mc-dp-icons.helloWorld', () => {
         // The code you place here will be executed every time your command is executed
         // Display a message box to the user
+        LocalIcons.checkPackMcmeta();
         LocalIcons.checkPackMcmeta();
         vscode.window.showInformationMessage('Hello World from Datapack Icons!');
     });

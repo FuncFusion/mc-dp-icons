@@ -5,8 +5,9 @@ import util from 'util';
 import { workspace } from 'vscode';
 
 async function namespaceIcon() {
-		const enableNamespaceIcons = workspace.getConfiguration().get<boolean>('mc-dp-icons.enableLoadTickAutoChange');
+		const enableNamespaceIcons = workspace.getConfiguration().get<boolean>('mc-dp-icons.enableNamespaceIcons');
 		if (enableNamespaceIcons) { 
+				console.log('starting namespaceIcon func');
 				const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
 				let namespaceNames: string[] = getNamespaceNames() || [];
 				const themeContent = fs.readFileSync(themePath, "utf-8");
@@ -105,6 +106,7 @@ async function deleteTempIconDefinitions() {
 }
 
 function getNamespaceNames(): string[] {
+	console.log('starting getNamespaceNames func');
 	// const workspaceFolders = vscode.workspace.workspaceFolders;
 	let packMcmetaPaths = findPackMcmetaInFolders();
 	packMcmetaPaths = packMcmetaPaths.map((packPath) => {

@@ -33,8 +33,9 @@ const fs = __importStar(require("fs"));
 const util_1 = __importDefault(require("util"));
 const vscode_1 = require("vscode");
 async function namespaceIcon() {
-    const enableNamespaceIcons = vscode_1.workspace.getConfiguration().get('mc-dp-icons.enableLoadTickAutoChange');
+    const enableNamespaceIcons = vscode_1.workspace.getConfiguration().get('mc-dp-icons.enableNamespaceIcons');
     if (enableNamespaceIcons) {
+        console.log('starting namespaceIcon func');
         const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
         let namespaceNames = getNamespaceNames() || [];
         const themeContent = fs.readFileSync(themePath, "utf-8");
@@ -100,7 +101,6 @@ async function deleteTempIconDefinitions() {
             delete themeObject.folderNamesExpanded[key];
         }
     }
-    // folderNames && folderNamesExpanded put namespace thingy in there. "foldername" : "namespace | namespace_open"
     // Convert the JavaScript object back into a JSON string and write it back into file 
     const updatedThemeContent = JSON.stringify(themeObject, null, 2);
     fs.writeFileSync(themePath, updatedThemeContent, 'utf8');
@@ -127,6 +127,7 @@ async function processFile(file) {
     }
 }
 function getNamespaceNames() {
+    console.log('starting getNamespaceNames func');
     // const workspaceFolders = vscode.workspace.workspaceFolders;
     let packMcmetaPaths = findPackMcmetaInFolders();
     packMcmetaPaths = packMcmetaPaths.map((packPath) => {

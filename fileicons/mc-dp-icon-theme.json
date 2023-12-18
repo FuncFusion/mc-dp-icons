@@ -291,10 +291,7 @@
   "folderExpanded": "folder_open",
   "folderNames": {
     "data": "data",
-    "assets": "assets",
-    "code": "namespace",
-    "minecraft": "namespace",
-    "vdv_raycast": "namespace"
+    "assets": "assets"
   },
   "folderNamesExpanded": {
     "": "namespace_open",
@@ -326,10 +323,7 @@
     "sounds": "sounds_open",
     "atlases": "atlases_open",
     ".vscode": "dot_vscode",
-    "__pycache__": "pycache",
-    "code": "namespace_open",
-    "minecraft": "namespace_open",
-    "vdv_raycast": "namespace_open"
+    "__pycache__": "pycache"
   },
   "fileExtensions": {
     "mcfunction": "mcf",
@@ -441,7 +435,7 @@
     "beet.json": "beet",
     "beet.yaml": "beet",
     "beet.yml": "beet",
-    "tick.mcfunction": "mcf_tick",
-    "load.mcfunction": "mcf_load"
+    "function.mcfunction": "mcf_tick",
+    "a.mcfunction": "mcf_load"
   }
 }

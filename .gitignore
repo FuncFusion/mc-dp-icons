@@ -3,7 +3,4 @@ node_modules
 .vscode-test/
 .vscode-test-web/
 *.vsix
-out/extension.js
-out/dynamic_icons.js
-out/theme_change.js
-
+out/*

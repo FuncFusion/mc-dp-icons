@@ -247,22 +247,23 @@
       "iconPath": "./imgs/pdf.svg"
     },
     "namespace_open": {
-      "iconPath": "./imgs/namespace_open"
-    }, 
-    "namespace_closed": {
-      "iconPath": "./imgs/namespace"
+      "iconPath": "./imgs/folder_namespace_opened.svg"
+    },
+    "namespace": {
+      "iconPath": "./imgs/folder_namespace.svg"
     }
-
   },
   "file": "misc",
   "folder": "folder",
   "folderExpanded": "folder_open",
   "folderNames": {
     "data": "data",
-    "assets": "assets"
+    "assets": "assets",
+    "code": "namespace",
+    "minecraft": "namespace",
+    "vdv_raycast": "namespace"
   },
   "folderNamesExpanded": {
-    "" : "namespace_open",
     "data": "data_open",
     "functions": "functions_open",
     "loot_tables": "loot_tables_open",
@@ -291,7 +292,10 @@
     "sounds": "sounds_open",
     "atlases": "atlases_open",
     ".vscode": "dot_vscode",
-    "__pycache__": "pycache"
+    "__pycache__": "pycache",
+    "code": "namespace_open",
+    "minecraft": "namespace_open",
+    "vdv_raycast": "namespace_open"
   },
   "fileExtensions": {
     "mcfunction": "mcf",
@@ -373,7 +377,7 @@
     "beet.json": "beet",
     "beet.yaml": "beet",
     "beet.yml": "beet",
-    "a.mcfunction": "mcf_load",
-    "function.mcfunction": "mcf_load"
+    "tick.mcfunction": "mcf_tick",
+    "load.mcfunction": "mcf_load"
   }
 }

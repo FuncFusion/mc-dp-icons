@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import * as LocalIcons from './local_icons';
+import * as LocalIcons from './theme_change';
 import * as DynamicIcons from './dynamic_icons';
 
 

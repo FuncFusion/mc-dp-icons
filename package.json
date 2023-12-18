@@ -56,6 +56,12 @@
     "configuration": {
       "type": "object",
       "properties": {
+        "mc-dp-icons.enableNamespaceIcons" : {
+          "type": "boolean",
+          "title": "Change namespace's icon to an ender chest.",
+          "default":true,
+          "description": "If enabled folders within \"data\" folder will be seen as ender chests"
+        },
         "mc-dp-icons.enablePackMcmetaCheck": {
           "type": "boolean",
           "title": "Enable pack.mcmeta check",

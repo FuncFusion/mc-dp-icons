@@ -42,7 +42,7 @@ async function loadTickChange() {
 		loadValues.forEach((function_name:string) => {
 			themeObject.fileNames[function_name] = "mcf_load";
 		});
-				const updatedThemeContent = JSON.stringify(themeObject, null, 2);
+		const updatedThemeContent = JSON.stringify(themeObject, null, 2);
 		fs.writeFileSync(themePath, updatedThemeContent, 'utf8');
 	}
 }

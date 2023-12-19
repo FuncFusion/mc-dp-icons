@@ -2,7 +2,6 @@ import * as vscode from 'vscode';
 import * as ThemeChange from './theme_change';
 import * as DynamicIcons from './dynamic_icons';
 
-// This function is called when the extension is activated
 export function activate(context: vscode.ExtensionContext) {
 	// console.log('Extension "mc-dp-icons" is now active!');
 

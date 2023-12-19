@@ -49,7 +49,6 @@ function checkPackMcmeta() {
             .findFiles('**/pack.mcmeta', '**/node_modules/**')
             .then((files) => {
             if (files.length > 0) {
-                console.log('pack.mcmeta is found');
                 // Set the icon theme to the Datapack Icons theme
                 vscode.workspace.getConfiguration('workbench')
                     .update('iconTheme', 'mc-dp-icons', vscode.ConfigurationTarget.Workspace);

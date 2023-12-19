@@ -8,7 +8,7 @@ import * as DynamicIcons from './dynamic_icons';
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	console.log('Extension "mc-dp-icons" is now active!');
+	// console.log('Extension "mc-dp-icons" is now active!');
 
   // Register the event listeners
   context.subscriptions.push(

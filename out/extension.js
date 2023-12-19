@@ -32,7 +32,7 @@ const DynamicIcons = __importStar(require("./dynamic_icons"));
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 function activate(context) {
-    console.log('Extension "mc-dp-icons" is now active!');
+    // console.log('Extension "mc-dp-icons" is now active!');
     // Register the event listeners
     context.subscriptions.push(vscode.workspace.onDidChangeWorkspaceFolders(() => { DynamicIcons.update(); ThemeChange.checkPackMcmeta(); }), vscode.workspace.onDidRenameFiles(() => { DynamicIcons.update(); ThemeChange.checkPackMcmeta(); }), vscode.workspace.onDidDeleteFiles(() => { DynamicIcons.update(); ThemeChange.checkPackMcmeta(); }), vscode.workspace.onDidCreateFiles(() => { DynamicIcons.update(); ThemeChange.checkPackMcmeta(); }), vscode.workspace.onDidChangeTextDocument(DynamicIcons.update), vscode.workspace.onDidChangeConfiguration(() => { DynamicIcons.update(); ThemeChange.getDefaultIconTheme(); }));
     // Get default Icon theme on startup

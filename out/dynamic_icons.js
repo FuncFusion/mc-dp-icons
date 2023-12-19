@@ -26,7 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.update = exports.findPackMcmetaInFolders = void 0;
+exports.update = void 0;
 const vscode = __importStar(require("vscode"));
 const path = __importStar(require("path"));
 const fs = __importStar(require("fs"));
@@ -35,7 +35,6 @@ const vscode_1 = require("vscode");
 async function namespaceIcon() {
     const enableNamespaceIcons = vscode_1.workspace.getConfiguration().get('mc-dp-icons.enableNamespaceIcons');
     if (enableNamespaceIcons) {
-        console.log('starting namespaceIcon func');
         const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
         let namespaceNames = getNamespaceNames() || [];
         const themeContent = fs.readFileSync(themePath, "utf-8");
@@ -127,83 +126,49 @@ async function processFile(file) {
     }
 }
 function getNamespaceNames() {
-    console.log('starting getNamespaceNames func');
-    // const workspaceFolders = vscode.workspace.workspaceFolders;
-    let packMcmetaPaths = findPackMcmetaInFolders();
-    packMcmetaPaths = packMcmetaPaths.map((packPath) => {
-        packPath = packPath.replace("pack.mcmeta", "");
-        return packPath;
-    });
+    let packMcmetaPaths = findPackMcmetaInFolders().map((packPath) => packPath.replace("pack.mcmeta", ""));
     const folderNames = [];
+    const getDirectories = (path) => {
+        if (fs.existsSync(path)) {
+            fs.readdirSync(path)
+                .filter((file) => fs.statSync(`${path}/${file}`).isDirectory())
+                .forEach((file) => folderNames.push(file));
+        }
+    };
     if (packMcmetaPaths) {
         packMcmetaPaths.forEach((packPath) => {
-            ;
-            const dataFolderPath = packPath + "data";
-            const assetsFolderPath = packPath + "assets";
-            const dataFolderExist = fs.existsSync(dataFolderPath);
-            const assetsFolderExist = fs.existsSync(assetsFolderPath);
             try {
-                if (dataFolderExist) {
-                    const dataFiles = fs.readdirSync(dataFolderPath);
-                    dataFiles.forEach((file) => {
-                        const filePath = `${dataFolderPath}/${file}`;
-                        const isDirectory = fs.statSync(filePath).isDirectory();
-                        if (isDirectory) {
-                            folderNames.push(file);
-                        }
-                    });
-                }
-                if (assetsFolderExist) {
-                    const assetsFiles = fs.readdirSync(assetsFolderPath);
-                    assetsFiles.forEach((file) => {
-                        const filePath = `${assetsFolderPath}/${file}`;
-                        const isDirectory = fs.statSync(filePath).isDirectory();
-                        if (isDirectory) {
-                            folderNames.push(file);
-                        }
-                    });
-                }
+                getDirectories(packPath + "data");
+                getDirectories(packPath + "assets");
             }
             catch (error) {
-                console.error(`Error reading folder: ${dataFolderPath}`, error);
+                console.error(`Error reading folder: ${packPath}data`, error);
             }
         });
     }
     return folderNames;
 }
-function findPackMcmetaInFolders() {
-    const workspaceFolders = vscode.workspace.workspaceFolders;
+function findPackMcmetaInFolders(directory) {
     const packMcmetaPaths = [];
-    if (workspaceFolders) {
-        workspaceFolders.forEach((folder) => {
-            const folderPath = folder.uri.fsPath;
-            const packMcmetaPath = findPackMcmeta(folderPath);
-            if (packMcmetaPath) {
-                packMcmetaPaths.push(packMcmetaPath);
+    const directories = directory ? [directory] : vscode.workspace.workspaceFolders?.map(folder => folder.uri.fsPath) || [];
+    directories.forEach((directory) => {
+        const files = fs.readdirSync(directory);
+        for (const file of files) {
+            const filePath = `${directory}/${file}`;
+            if (fs.statSync(filePath).isDirectory()) {
+                const packMcmetaPath = findPackMcmetaInFolders(filePath);
+                if (packMcmetaPath) {
+                    packMcmetaPaths.push(...packMcmetaPath);
+                }
             }
-        });
-    }
+            else {
+                if (file === 'pack.mcmeta') {
+                    packMcmetaPaths.push(filePath);
+                }
+            }
+        }
+    });
     return packMcmetaPaths;
-}
-exports.findPackMcmetaInFolders = findPackMcmetaInFolders;
-function findPackMcmeta(directory) {
-    const files = fs.readdirSync(directory);
-    for (const file of files) {
-        const filePath = `${directory}/${file}`;
-        const isDirectory = fs.statSync(filePath).isDirectory();
-        if (isDirectory) {
-            const packMcmetaPath = findPackMcmeta(filePath);
-            if (packMcmetaPath) {
-                return packMcmetaPath;
-            }
-        }
-        else {
-            if (file === 'pack.mcmeta') {
-                return filePath;
-            }
-        }
-    }
-    return undefined;
 }
 function update() {
     deleteTempIconDefinitions();

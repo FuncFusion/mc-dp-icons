@@ -4,17 +4,31 @@ import * as fs from 'fs';
 import util from 'util';
 import { workspace } from 'vscode';
 
+// This function is called in extension.ts
+export function update() {
+	deleteTempIconDefinitions();
+	loadTickChange();
+	namespaceIcon();
+}
+
 async function namespaceIcon() {
+	// Get the configuration if the user wants the namespace folders to get the ender chest icon
 	const enableNamespaceIcons = workspace.getConfiguration().get<boolean>('mc-dp-icons.enableNamespaceIcons');
+	// If the configuration is true, then start set icons for namespace folders
 	if (enableNamespaceIcons) {
+		// Get the absolute path to mc-dp-icon-theme.json
 		const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
+		// Call the function that gets all folders directly within "data" and "assets" if there is pack.mcmeta in the same directory
 		let namespaceNames: string[] = getNamespaceNames() || [];
+		// Read and parse mc-dp-icon-theme.json
 		const themeContent = fs.readFileSync(themePath, "utf-8");
 		const themeObject = JSON.parse(themeContent);
+		// For each folder in namespaceNames, set its icon to ender chest and opened ender chest for closed and opened variants
 		namespaceNames.forEach((namespace: string) => {
 			themeObject.folderNames[namespace] = "namespace";
 			themeObject.folderNamesExpanded[namespace] = "namespace_open";
 		});
+		// Update and save the mc-dp-icon-theme.json
 		const updatedThemeContent = JSON.stringify(themeObject, null, 2);
 		fs.writeFileSync(themePath, updatedThemeContent, 'utf-8');
 	} 
@@ -154,8 +168,3 @@ function findPackMcmetaInFolders(directory?: string): string[] {
 
 
 
-export function update() {
-	deleteTempIconDefinitions();
-	loadTickChange();
-	namespaceIcon();
-}

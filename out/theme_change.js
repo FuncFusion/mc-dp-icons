@@ -28,8 +28,13 @@ const vscode = __importStar(require("vscode"));
 const vscode_1 = require("vscode");
 let defaultIconTheme;
 function getDefaultIconTheme() {
+<<<<<<< HEAD
     let configIconTheme = vscode_1.workspace.getConfiguration().get('mc-dp-icons.setDefaultIconTheme');
     if (configIconTheme === "") {
+=======
+    let confDefaultIconTheme = vscode_1.workspace.getConfiguration().get('mc-dp-icons.setDefaultIconTheme');
+    if (confDefaultIconTheme === "") {
+>>>>>>> a8867975833c2f3b7ff65308ebf9bda16a9da17a
         let currentIconTheme = vscode.workspace.getConfiguration('workbench').get('iconTheme');
         if (currentIconTheme !== "mc-dp-icons") {
             defaultIconTheme = currentIconTheme;
@@ -52,9 +57,17 @@ function checkPackMcmeta() {
                 vscode.workspace.getConfiguration('workbench')
                     .update('iconTheme', 'mc-dp-icons', vscode.ConfigurationTarget.Workspace);
             }
+<<<<<<< HEAD
             else if (defaultIconTheme) {
                 vscode.workspace.getConfiguration('workbench')
                     .update('iconTheme', defaultIconTheme, vscode.ConfigurationTarget.Workspace);
+=======
+            else {
+                if (defaultIconTheme) {
+                    vscode.workspace.getConfiguration('workbench')
+                        .update('iconTheme', defaultIconTheme, vscode.ConfigurationTarget.Workspace);
+                }
+>>>>>>> a8867975833c2f3b7ff65308ebf9bda16a9da17a
             }
         });
     }

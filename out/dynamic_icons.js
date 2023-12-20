@@ -134,53 +134,57 @@ async function convertMcfunctionIdToFilename(file) {
 }
 // :return: An array of namespace names in a pack
 function getNamespaceNames() {
-    let packMcmetaPaths = findPackMcmetaInFolders().map((packPath) => packPath.replace("pack.mcmeta", ""));
+    let mcmetaPaths = findMcmetaInWorkspace().map((packPath) => packPath.replace("pack.mcmeta", ""));
     const folderNames = [];
     // :return: array of names of every folder inside given directory
     const getDirectories = (path) => {
-        if (fs.existsSync(path)) {
-            fs.readdirSync(path)
-                .filter((file) => fs.statSync(`${path}/${file}`).isDirectory())
-                .forEach((file) => folderNames.push(file));
+        if (!fs.existsSync(path)) {
+            return [];
         }
+        fs.readdirSync(path)
+            .filter((file) => fs.statSync(`${path}/${file}`).isDirectory())
+            .forEach((file) => folderNames.push(file));
     };
-    if (packMcmetaPaths) {
-        packMcmetaPaths.forEach((packPath) => {
-            try {
-                getDirectories(packPath + "data");
-                getDirectories(packPath + "assets");
-            }
-            catch (error) {
-                console.error(`Error reading folder: ${packPath}data`, error);
-            }
-        });
+    if (!mcmetaPaths) {
+        return [];
     }
+    ;
+    mcmetaPaths.forEach((packPath) => {
+        try {
+            getDirectories(packPath + "data");
+            getDirectories(packPath + "assets");
+        }
+        catch (error) {
+            console.error(`Error reading folder: ${packPath}data`, error);
+        }
+    });
     return folderNames;
 }
 /*
 :arg directory: Path of a folder that function will search in
 :return: An array of paths leading to pack.mcmeta
 */
-function findPackMcmetaInFolders(directory) {
-    const packMcmetaPaths = [];
-    const directories = directory ? [directory] : vscode.workspace.workspaceFolders?.map(folder => folder.uri.fsPath) || [];
-    directories.forEach((directory) => {
-        const files = fs.readdirSync(directory);
-        for (const file of files) {
-            const filePath = `${directory}/${file}`;
-            if (fs.statSync(filePath).isDirectory()) {
-                const packMcmetaPath = findPackMcmetaInFolders(filePath);
-                if (packMcmetaPath) {
-                    packMcmetaPaths.push(...packMcmetaPath);
-                }
-            }
-            else {
-                if (file === 'pack.mcmeta') {
-                    packMcmetaPaths.push(filePath);
-                }
-            }
+function findMcmetaInWorkspace() {
+    let mcmetaPaths = [];
+    const directories = vscode.workspace.workspaceFolders?.map(folder => folder.uri.fsPath) || [];
+    directories.forEach(directory => {
+        mcmetaPaths = mcmetaPaths.concat(findMcmetaInDirectory(directory));
+    });
+    console.log('brbr ' + mcmetaPaths);
+    return mcmetaPaths;
+}
+function findMcmetaInDirectory(directory) {
+    const files = fs.readdirSync(directory);
+    let mcmetaPaths = [];
+    files.forEach(file => {
+        const filePath = `${directory}/${file}`;
+        if (fs.statSync(filePath).isDirectory()) {
+            mcmetaPaths = mcmetaPaths.concat(findMcmetaInDirectory(filePath));
+        }
+        else if (file === 'pack.mcmeta') {
+            mcmetaPaths.push(filePath);
         }
     });
-    return packMcmetaPaths;
+    return mcmetaPaths;
 }
 //# sourceMappingURL=dynamic_icons.js.map

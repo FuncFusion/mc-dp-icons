@@ -153,12 +153,12 @@ function findMcmetaInDirectory(directory: string): string[] {
 	const files = fs.readdirSync(directory);
 	let mcmetaPaths: string[] = [];
 
-	files.forEach(file => {
-		const filePath = `${directory}/${file}`;
+	files.forEach(fileName => {
+		const filePath = `${directory}/${fileName}`;
 
 		if (fs.statSync(filePath).isDirectory()) {
 			mcmetaPaths = mcmetaPaths.concat(findMcmetaInDirectory(filePath));
-		} else if (file === 'pack.mcmeta') {
+		} else if (fileName === 'pack.mcmeta') {
 			mcmetaPaths.push(filePath);
 		}
 	});

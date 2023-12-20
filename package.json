@@ -80,7 +80,7 @@
             "type": "string",
             "title": "What icon theme will be set if pack.mcmeta check fails",
             "default": "",
-            "markdownDescription": "**This works only if \"Enable pack.mcmeta check\" is enabled**.\nPut an id of an icon theme you want to be set when there is no `pack.mcmeta` in the workspace.\nIf blank, the extension will remember the icon theme you launched the workspace with."
+            "markdownDescription": "**This works only if `#mc-dp-icons.enablePackMcmetaCheck#` is enabled**.\nPut an id of an icon theme you want to be set when there is no `pack.mcmeta` in the workspace.\nIf blank, the extension will remember the icon theme you launched the workspace with."
           }
         }
       },
@@ -101,7 +101,7 @@
             "items": {
               "type": "string"
             },
-            "markdownDescription": "**Only works if \"Dynamic icons for tick and load functions\" is NOT enabled**. Put here all names of function files (without `.mcfunction`) you'd like to have a repeating command block icon."
+            "markdownDescription": "**Only works if `#mc-dp-icons.enableLoadTickAutoChange#` is NOT enabled**. Put here all the names of function files (without `.mcfunction`) you'd like to have a repeating command block icon."
           },
           "mc-dp-icons.functionNamesForLoad": {
             "title": "Load function names",
@@ -109,7 +109,7 @@
             "items": {
               "type": "string"
             },
-            "markdownDescription": "**Only works if \"Dynamic icons for tick and load functions\" is NOT enabled**. Put here all names of function files (without `.mcfunction`) you'd like to have an impulse command block icon."
+            "markdownDescription": "**Only works if `#mc-dp-icons.enableLoadTickAutoChange#` is NOT enabled**. Put here all the names of function files (without `.mcfunction`) you'd like to have an impulse command block icon."
           }
         }
       },

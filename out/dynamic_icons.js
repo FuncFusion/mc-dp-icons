@@ -70,16 +70,14 @@ async function loadTickChange() {
     const customLoadNames = vscode_1.workspace.getConfiguration().get('mc-dp-icons.functionNamesForLoad');
     const customTickNames = vscode_1.workspace.getConfiguration().get('mc-dp-icons.functionNamesForTick');
     if (!enableDynamicLoadTickChange && customLoadNames !== undefined || customTickNames !== undefined) {
-        const loadNames = customLoadNames?.split(',').map(item => item.trim());
-        const tickNames = customTickNames?.split(',').map(item => item.trim());
-        const hasCommonName = loadNames?.some(item => tickNames?.includes(item));
+        const hasCommonName = customLoadNames?.some(item => customTickNames?.includes(item));
         if (hasCommonName) {
             vscode.window.showWarningMessage('You have same names in custom tick / load icons configuration');
         }
-        loadNames?.forEach((loadName) => {
+        customLoadNames?.forEach((loadName) => {
             changeThemeFilenames(loadName + ".mcfunction", "mcf_load");
         });
-        tickNames?.forEach((tickName) => {
+        customTickNames?.forEach((tickName) => {
             changeThemeFilenames(tickName + ".mcfunction", "mcf_tick");
         });
     }

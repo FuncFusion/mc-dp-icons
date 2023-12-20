@@ -40,20 +40,18 @@ async function loadTickChange() {
 			changeThemeFilenames(tickName, "mcf_tick");
 		});
 	} 
-	const customLoadNames = workspace.getConfiguration().get<string>('mc-dp-icons.functionNamesForLoad');
-	const customTickNames = workspace.getConfiguration().get<string>('mc-dp-icons.functionNamesForTick');
+	const customLoadNames = workspace.getConfiguration().get<Array<string>>('mc-dp-icons.functionNamesForLoad');
+	const customTickNames = workspace.getConfiguration().get<Array<string>>('mc-dp-icons.functionNamesForTick');
 
 	if (!enableDynamicLoadTickChange && customLoadNames !== undefined || customTickNames !== undefined) {
-		const loadNames = customLoadNames?.split(',').map(item => item.trim());
-		const tickNames = customTickNames?.split(',').map(item => item.trim());
-		const hasCommonName = loadNames?.some(item => tickNames?.includes(item));
+		const hasCommonName = customLoadNames?.some(item => customTickNames?.includes(item));
 		if (hasCommonName) {
 			vscode.window.showWarningMessage('You have same names in custom tick / load icons configuration');
 		}
-		loadNames?.forEach((loadName: string) => {
+		customLoadNames?.forEach((loadName: string) => {
 			changeThemeFilenames(loadName + ".mcfunction", "mcf_load");
 		});
-		tickNames?.forEach((tickName: string) => {
+		customTickNames?.forEach((tickName: string) => {
 			changeThemeFilenames(tickName + ".mcfunction", "mcf_tick");
 		});
 	}

@@ -317,9 +317,11 @@
     "data": "data",
     "assets": "assets",
     "src": "src",
-    "anotheraaa": "namespace",
+    "animated_java": "namespace",
+    "megalodon": "namespace",
+    "code": "namespace",
     "minecraft": "namespace",
-    "namespace": "namespace"
+    "vdv_raycast": "namespace"
   },
   "folderNamesExpanded": {
     "": "namespace_open",
@@ -354,9 +356,11 @@
     "__pycache__": "pycache",
     "datapacks": "datapacks_open",
     "src": "src_open",
-    "anotheraaa": "namespace_open",
+    "animated_java": "namespace_open",
+    "megalodon": "namespace_open",
+    "code": "namespace_open",
     "minecraft": "namespace_open",
-    "namespace": "namespace_open"
+    "vdv_raycast": "namespace_open"
   },
   "fileExtensions": {
     "mcfunction": "mcf",
@@ -476,7 +480,7 @@
     "beet.json": "beet",
     "beet.yaml": "beet",
     "beet.yml": "beet",
-    "no.mcfunction": "mcf_load",
-    "yes.mcfunction": "mcf_tick"
+    "yes.mcfunction": "mcf_load",
+    "load.mcfunction": "mcf_tick"
   }
 }

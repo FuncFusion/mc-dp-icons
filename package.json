@@ -76,24 +76,28 @@
         },
         "mc-dp-icons.enableLoadTickAutoChange": {
           "type": "boolean",
-          "title": "Enable automatic change of load and tick icons",
+          "title": "Will change icons for tick & load functions dynamically",
           "default": true,
           "description": "If enabled, load and tick functions will change their icons to repeating and chain command block accordingly, based on values provided in tick.json and load.json files found in the workspace.\nIf not enabled, load and tick icons will be set by their names, hardcoded in the icon theme."
+        },
+        "mc-dp-icons.functionNamesForTick": {
+          "title": "Tick function names",
+          "type": "string",
+          "default": "",
+          "description": "ONLY WORKS WHEN DYNAMIC TICK & LOAD ICONS ARE OFF! Whatever file names you put here, will have their icon changed to repeating command block. Make sure to separate names with comma, e.g. loop, tick, main, test"
+        },
+        "mc-dp-icons.functionNamesForLoad": {
+          "title": "Load function names",
+          "type": "string",
+          "default": "",
+          "description": "ONLY WORKS WHEN DYNAMIC TICK & LOAD ICONS ARE OFF! Whatever file names you put here, will have their icon changed to repeating command block. Make sure to separate names with comma, e.g. loop, tick, main, test"
         }
       }
     },
     "commands": [
       {
-        "title": "Hello world dp icons",
-        "command": "mc-dp-icons.helloWorld"
-      },
-      {
-        "title": "Specific Icon change test 1",
-        "command": "mc-dp-icons.specificIconChange"
-      },
-      {
-        "title": "Specific Icon change test 2",
-        "command": "mc-dp-icons.specificIconChange2"
+        "title": "Datapack Icons: Open extension settings",
+        "command": "mc-dp-icons.DpIconsOpenSettings"
       }
     ]
   },

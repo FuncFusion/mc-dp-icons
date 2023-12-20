@@ -16,35 +16,60 @@ async function namespaceIcon() {
 	const enableNamespaceIcons = workspace.getConfiguration().get<boolean>('mc-dp-icons.enableNamespaceIcons');
 	if (enableNamespaceIcons) {
 		const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
-				let namespaceNames: string[] = getNamespaceNames() || [];
-				const themeContent = fs.readFileSync(themePath, "utf-8");
+		let namespaceNames: string[] = getNamespaceNames() || [];
+		const themeContent = fs.readFileSync(themePath, "utf-8");
 		const themeObject = JSON.parse(themeContent);
-				namespaceNames.forEach((namespace: string) => {
+		namespaceNames.forEach((namespace: string) => {
 			themeObject.folderNames[namespace] = "namespace";
 			themeObject.folderNamesExpanded[namespace] = "namespace_open";
 		});
-				const updatedThemeContent = JSON.stringify(themeObject, null, 2);
+		const updatedThemeContent = JSON.stringify(themeObject, null, 2);
 		fs.writeFileSync(themePath, updatedThemeContent, 'utf-8');
 	} 
 }
 
 // Give icons to functions referenced in tick.json | load.json accordingly
 async function loadTickChange() {
-	const enableLoadTickChange = workspace.getConfiguration().get<boolean>('mc-dp-icons.enableLoadTickAutoChange');
-	if (enableLoadTickChange) {
-		const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
-		let [loadValues, tickValues] = await findReference() || [];
-		const themeContent = fs.readFileSync(themePath, 'utf8');
-		const themeObject = JSON.parse(themeContent);
-		tickValues.forEach((function_name:string) => {
-			themeObject.fileNames[function_name] = "mcf_tick";
+	const enableDynamicLoadTickChange = workspace.getConfiguration().get<boolean>('mc-dp-icons.enableLoadTickAutoChange');
+	if (enableDynamicLoadTickChange) {
+		let [loadNames, tickNames] = await findReference() || [];
+		loadNames.forEach((loadName: string) => {
+			changeThemeFilenames(loadName, "mcf_load");
 		});
-		loadValues.forEach((function_name:string) => {
-			themeObject.fileNames[function_name] = "mcf_load";
+		tickNames.forEach((tickName: string) => {
+			changeThemeFilenames(tickName, "mcf_tick");
 		});
-		const updatedThemeContent = JSON.stringify(themeObject, null, 2);
-		fs.writeFileSync(themePath, updatedThemeContent, 'utf8');
+	} 
+	const customLoadNames = workspace.getConfiguration().get<string>('mc-dp-icons.functionNamesForLoad');
+	const customTickNames = workspace.getConfiguration().get<string>('mc-dp-icons.functionNamesForTick');
+
+	if (!enableDynamicLoadTickChange && customLoadNames !== undefined || customTickNames !== undefined) {
+		const loadNames = customLoadNames?.split(',').map(item => item.trim());
+		const tickNames = customTickNames?.split(',').map(item => item.trim());
+		const hasCommonName = loadNames?.some(item => tickNames?.includes(item));
+		if (hasCommonName) {
+			vscode.window.showWarningMessage('You have same names in custom tick / load icons configuration');
+		}
+		loadNames?.forEach((loadName: string) => {
+			changeThemeFilenames(loadName + ".mcfunction", "mcf_load");
+		});
+		tickNames?.forEach((tickName: string) => {
+			changeThemeFilenames(tickName + ".mcfunction", "mcf_tick");
+		});
 	}
+}
+
+/* 
+:arg fileName: File for which you intend to modify the icon
+:arg iconName: Name of the new icon 
+*/
+async function changeThemeFilenames(fileName: string, iconName: string) {
+	const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
+	const themeContent = fs.readFileSync(themePath, 'utf8');
+	const themeObject = JSON.parse(themeContent);
+	themeObject.fileNames[fileName] = iconName;
+	const updatedThemeContent = JSON.stringify(themeObject, null, 2);
+	fs.writeFileSync(themePath, updatedThemeContent, 'utf8');
 }
 
 // Convert fs.readFile into Promise version to use with async/await
@@ -144,7 +169,6 @@ function findMcmetaInWorkspace(): string[] {
 		mcmetaPaths = mcmetaPaths.concat(findMcmetaInDirectory(directory));
 	});
 
-	console.log('brbr ' + mcmetaPaths);
 	return mcmetaPaths;
 }
 

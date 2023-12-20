@@ -28,18 +28,19 @@ const vscode = __importStar(require("vscode"));
 const vscode_1 = require("vscode");
 let defaultIconTheme;
 function getDefaultIconTheme() {
-    let confDefaultIconTheme = vscode_1.workspace.getConfiguration().get('mc-dp-icons.setDefaultIconTheme');
-    if (confDefaultIconTheme === "") {
+    let configIconTheme = vscode_1.workspace.getConfiguration().get('mc-dp-icons.setDefaultIconTheme');
+    if (configIconTheme === "") {
         let currentIconTheme = vscode.workspace.getConfiguration('workbench').get('iconTheme');
         if (currentIconTheme !== "mc-dp-icons") {
             defaultIconTheme = currentIconTheme;
         }
     }
     else {
-        defaultIconTheme = confDefaultIconTheme;
+        defaultIconTheme = configIconTheme;
     }
 }
 exports.getDefaultIconTheme = getDefaultIconTheme;
+// Updates the icon theme theme based on the existence of pack.mcmeta in the workspace
 function checkPackMcmeta() {
     const enableCheck = vscode_1.workspace.getConfiguration().get('mc-dp-icons.enablePackMcmetaCheck');
     if (enableCheck) {
@@ -51,11 +52,9 @@ function checkPackMcmeta() {
                 vscode.workspace.getConfiguration('workbench')
                     .update('iconTheme', 'mc-dp-icons', vscode.ConfigurationTarget.Workspace);
             }
-            else {
-                if (defaultIconTheme) {
-                    vscode.workspace.getConfiguration('workbench')
-                        .update('iconTheme', defaultIconTheme, vscode.ConfigurationTarget.Workspace);
-                }
+            else if (defaultIconTheme) {
+                vscode.workspace.getConfiguration('workbench')
+                    .update('iconTheme', defaultIconTheme, vscode.ConfigurationTarget.Workspace);
             }
         });
     }

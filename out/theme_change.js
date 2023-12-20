@@ -37,11 +37,9 @@ function getDefaultIconTheme() {
     }
     else {
         defaultIconTheme = configIconTheme;
-        defaultIconTheme = configIconTheme;
     }
 }
 exports.getDefaultIconTheme = getDefaultIconTheme;
-// Updates the icon theme theme based on the existence of pack.mcmeta in the workspace
 // Updates the icon theme theme based on the existence of pack.mcmeta in the workspace
 function checkPackMcmeta() {
     const enableCheck = vscode_1.workspace.getConfiguration().get('mc-dp-icons.enablePackMcmetaCheck');

@@ -53,47 +53,70 @@
         "_watch": true
       }
     ],
-    "configuration": {
-      "type": "object",
-      "properties": {
-        "mc-dp-icons.enableNamespaceIcons" : {
-          "type": "boolean",
-          "title": "Change namespace's icon to an ender chest.",
-          "default":true,
-          "description": "If enabled, namespace folders (folders directly within \"data\" and \"assets\") will change their icons to ender chests."
-        },
-        "mc-dp-icons.enablePackMcmetaCheck": {
-          "type": "boolean",
-          "title": "Enable pack.mcmeta check",
-          "default": true,
-          "description": "If enabled, the extension will check pack.mcmeta in the workspace to set the theme to dp icons. If there is no pack.mcmeta in the workspace,icon theme will change to default one used.\nThis check happens every time on extension startup, on changing workspace folder, on renaming, creating and deleting files."
-        },
-        "mc-dp-icons.setDefaultIconTheme": {
-          "type": "string",
-          "title": "Set what icon theme will be set if pack.mcmeta check fails",
-          "default": "",
-          "description": "This works only if \"Enable pack.mcmeta check\" is enabled.\nPut an id of an icon theme you want to be set when there is no pack.mcmeta in the workspace.\nIf blank, the extension will remember the icon theme you launched the workspace with."
-        },
-        "mc-dp-icons.enableLoadTickAutoChange": {
-          "type": "boolean",
-          "title": "Will change icons for tick & load functions dynamically",
-          "default": true,
-          "description": "If enabled, load and tick functions will change their icons to repeating and chain command block accordingly, based on values provided in tick.json and load.json files found in the workspace.\nIf not enabled, load and tick icons will be set by their names, hardcoded in the icon theme."
-        },
-        "mc-dp-icons.functionNamesForTick": {
-          "title": "Tick function names",
-          "type": "string",
-          "default": "",
-          "description": "ONLY WORKS WHEN DYNAMIC TICK & LOAD ICONS ARE OFF! Whatever file names you put here, will have their icon changed to repeating command block. Make sure to separate names with comma, e.g. loop, tick, main, test"
-        },
-        "mc-dp-icons.functionNamesForLoad": {
-          "title": "Load function names",
-          "type": "string",
-          "default": "",
-          "description": "ONLY WORKS WHEN DYNAMIC TICK & LOAD ICONS ARE OFF! Whatever file names you put here, will have their icon changed to repeating command block. Make sure to separate names with comma, e.g. loop, tick, main, test"
+    "configuration": [
+      {
+        "title": "Datapack Icons",
+        "order": 0,
+        "properties": {
+          "mc-dp-icons.enableNamespaceIcons" : {
+            "type": "boolean",
+            "title": "Changes namespace folders icons to an ender chest",
+            "default":true,
+            "markdownDescription": "If enabled, namespace folders (folders directly within `data` and `assets`) will change their icons to ender chests *(but only if there is `pack.mcmeta` in the same directory)*."
+          }
         }
+      },
+      {
+        "title": "Dynamic theme change",
+        "order": 1,
+        "properties": {
+          "mc-dp-icons.enablePackMcmetaCheck": {
+            "type": "boolean",
+            "title": "Enable pack.mcmeta check",
+            "default": true,
+            "markdownDescription": "If enabled, the extension will check for `pack.mcmeta` in the workspace to set the theme to `mc-dp-icons`. If there is no `pack.mcmeta` in the workspace, icon theme will change to default one used.\nThis check happens every time on extension startup, on changing workspace folder, on renaming, creating and deleting files."
+          },
+          "mc-dp-icons.setDefaultIconTheme": {
+            "type": "string",
+            "title": "What icon theme will be set if pack.mcmeta check fails",
+            "default": "",
+            "markdownDescription": "**This works only if \"Enable pack.mcmeta check\" is enabled**.\nPut an id of an icon theme you want to be set when there is no `pack.mcmeta` in the workspace.\nIf blank, the extension will remember the icon theme you launched the workspace with."
+          }
+        }
+      },
+      {
+        "id": "loadTick",
+        "title": "Dynamic load and tick functions",
+				"order": 2,
+        "properties": {
+					"mc-dp-icons.enableLoadTickAutoChange": {
+            "type": "boolean",
+            "title": "Dynamic icons for tick and load functions",
+            "default": true,
+            "markdownDescription": "If enabled, load and tick functions will change their icons to repeating and impulse command blocks accordingly, based on values provided in `tick.json` and `load.json` files found in the workspace.\n\nIf not enabled, load and tick icons will be set by their names, that are set by the user in the settings below."
+          },
+          "mc-dp-icons.functionNamesForTick": {
+            "title": "Tick function names",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "markdownDescription": "**Only works if \"Dynamic icons for tick and load functions\" is NOT enabled**. Put here all names of function files (without `.mcfunction`) you'd like to have a repeating command block icon."
+          },
+          "mc-dp-icons.functionNamesForLoad": {
+            "title": "Load function names",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "markdownDescription": "**Only works if \"Dynamic icons for tick and load functions\" is NOT enabled**. Put here all names of function files (without `.mcfunction`) you'd like to have an impulse command block icon."
+          }
+        }
+      },
+      {
+
       }
-    },
+    ],
     "commands": [
       {
         "title": "Datapack Icons: Open extension settings",

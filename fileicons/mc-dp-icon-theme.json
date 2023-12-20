@@ -222,8 +222,11 @@
     "android": {
       "iconPath": "./imgs/android.svg"
     },
-    "xyml": {
-      "iconPath": "./imgs/xyml.svg"
+    "xml": {
+      "iconPath": "./imgs/xml.svg"
+    },
+    "yaml": {
+      "iconPath": "./imgs/yaml.svg"
     },
     "archive": {
       "iconPath": "./imgs/archive.svg"
@@ -284,6 +287,27 @@
     },
     "autohotkey": {
       "iconPath": "./imgs/autohotkey.svg"
+    },
+    "arduino": {
+      "iconPath": "./imgs/arduino.svg"
+    },
+    "dart": {
+      "iconPath": "./imgs/dart.svg"
+    },
+    "datapacks_open": {
+      "iconPath": "./imgs/datapacks.svg"
+    },
+    "assembly": {
+      "iconPath": "./imgs/assembly.svg"
+    },
+    "bbmodel": {
+      "iconPath": "./imgs/bbmodel.svg"
+    },
+    "src": {
+      "iconPath": "./imgs/src.svg"
+    },
+    "src_open": {
+      "iconPath": "./imgs/src_open.svg"
     }
   },
   "file": "misc",
@@ -292,11 +316,10 @@
   "folderNames": {
     "data": "data",
     "assets": "assets",
-    "animated_java": "namespace",
-    "megalodon": "namespace",
-    "code": "namespace",
+    "src": "src",
+    "anotheraaa": "namespace",
     "minecraft": "namespace",
-    "vdv_raycast": "namespace"
+    "namespace": "namespace"
   },
   "folderNamesExpanded": {
     "": "namespace_open",
@@ -329,11 +352,11 @@
     "atlases": "atlases_open",
     ".vscode": "dot_vscode",
     "__pycache__": "pycache",
-    "animated_java": "namespace_open",
-    "megalodon": "namespace_open",
-    "code": "namespace_open",
+    "datapacks": "datapacks_open",
+    "src": "src_open",
+    "anotheraaa": "namespace_open",
     "minecraft": "namespace_open",
-    "vdv_raycast": "namespace_open"
+    "namespace": "namespace_open"
   },
   "fileExtensions": {
     "mcfunction": "mcf",
@@ -384,9 +407,9 @@
     "apk": "android",
     "smali": "android",
     "dex": "android",
-    "yml": "xyml",
-    "yaml": "xyml",
-    "xml": "xyml",
+    "yml": "yaml",
+    "yaml": "yaml",
+    "xml": "xml",
     "zip": "archive",
     "rar": "archive",
     "7z": "archive",
@@ -431,7 +454,15 @@
     "otf": "ttf",
     "woff": "ttf",
     "swift": "swift",
-    "ahk": "autohotkey"
+    "ahk": "autohotkey",
+    "ino": "arduino",
+    "dart": "dart",
+    "asm": "assembly",
+    "bbmodel": "bbmodel",
+    "obj": "bbmodel",
+    "gltf": "bbmodel",
+    "fbx": "bbmodel",
+    "dae": "bbmodel"
   },
   "fileNames": {
     "pack.mcmeta": "pack_mcmeta",
@@ -445,7 +476,7 @@
     "beet.json": "beet",
     "beet.yaml": "beet",
     "beet.yml": "beet",
-    "tick.mcfunction": "mcf_tick",
-    "load.mcfunction": "mcf_load"
+    "function.mcfunction": "mcf_tick",
+    "aaaa.mcfunction": "mcf_load"
   }
 }

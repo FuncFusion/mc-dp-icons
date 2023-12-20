@@ -28,38 +28,33 @@ const vscode = __importStar(require("vscode"));
 const vscode_1 = require("vscode");
 let defaultIconTheme;
 function getDefaultIconTheme() {
-    let confDefaultIconTheme = vscode_1.workspace.getConfiguration().get('mc-dp-icons.setDefaultIconTheme');
-    if (confDefaultIconTheme === "") {
-        let gettingDefaultIconTheme = vscode.workspace.getConfiguration('workbench').get('iconTheme');
-        if (gettingDefaultIconTheme !== "mc-dp-icons") {
-            defaultIconTheme = gettingDefaultIconTheme;
+    let configIconTheme = vscode_1.workspace.getConfiguration().get('mc-dp-icons.setDefaultIconTheme');
+    if (configIconTheme === "") {
+        let currentIconTheme = vscode.workspace.getConfiguration('workbench').get('iconTheme');
+        if (currentIconTheme !== "mc-dp-icons") {
+            defaultIconTheme = currentIconTheme;
         }
     }
     else {
-        defaultIconTheme = confDefaultIconTheme;
+        defaultIconTheme = configIconTheme;
     }
-    vscode.window.showInformationMessage('default icon theme is ' + defaultIconTheme);
 }
 exports.getDefaultIconTheme = getDefaultIconTheme;
+// Updates the icon theme theme based on the existence of pack.mcmeta in the workspace
 function checkPackMcmeta() {
     const enableCheck = vscode_1.workspace.getConfiguration().get('mc-dp-icons.enablePackMcmetaCheck');
     if (enableCheck) {
-        // Find the pack.mcmeta file in the workspace
         vscode.workspace
             .findFiles('**/pack.mcmeta', '**/node_modules/**')
             .then((files) => {
-            if (files.length > 0) {
-                // Set the icon theme to the Datapack Icons theme
+            const packMcmetaExists = files.length > 0;
+            if (packMcmetaExists) {
                 vscode.workspace.getConfiguration('workbench')
                     .update('iconTheme', 'mc-dp-icons', vscode.ConfigurationTarget.Workspace);
             }
-            else {
-                console.log('pack.mcmeta is not found');
-                // Reset the icon theme to the default one
-                if (defaultIconTheme) {
-                    vscode.workspace.getConfiguration('workbench')
-                        .update('iconTheme', defaultIconTheme, vscode.ConfigurationTarget.Workspace);
-                }
+            else if (defaultIconTheme) {
+                vscode.workspace.getConfiguration('workbench')
+                    .update('iconTheme', defaultIconTheme, vscode.ConfigurationTarget.Workspace);
             }
         });
     }

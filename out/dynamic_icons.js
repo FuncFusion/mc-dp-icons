@@ -32,6 +32,14 @@ const path = __importStar(require("path"));
 const fs = __importStar(require("fs"));
 const util_1 = __importDefault(require("util"));
 const vscode_1 = require("vscode");
+// This function is called in extension.ts
+function update() {
+    deleteTempIconDefinitions();
+    loadTickChange();
+    namespaceIcon();
+}
+exports.update = update;
+// Give namespaces an enderchest icon.
 async function namespaceIcon() {
     const enableNamespaceIcons = vscode_1.workspace.getConfiguration().get('mc-dp-icons.enableNamespaceIcons');
     if (enableNamespaceIcons) {
@@ -47,6 +55,7 @@ async function namespaceIcon() {
         fs.writeFileSync(themePath, updatedThemeContent, 'utf-8');
     }
 }
+// Give icons to functions referenced in tick.json | load.json accordingly
 async function loadTickChange() {
     const enableLoadTickChange = vscode_1.workspace.getConfiguration().get('mc-dp-icons.enableLoadTickAutoChange');
     if (enableLoadTickChange) {
@@ -60,22 +69,20 @@ async function loadTickChange() {
         loadValues.forEach((function_name) => {
             themeObject.fileNames[function_name] = "mcf_load";
         });
-        // Convert the JavaScript object back into a JSON string and write it back into file 
         const updatedThemeContent = JSON.stringify(themeObject, null, 2);
         fs.writeFileSync(themePath, updatedThemeContent, 'utf8');
     }
 }
-// Convert fs.readFile and fs.writeFile into Promise version to use with async/await
+// Convert fs.readFile into Promise version to use with async/await
 const readFile = util_1.default.promisify(fs.readFile);
-function removeFirstPart(input) { return input.split(':')[1]; }
 async function findReference() {
     const tickReference = await vscode.workspace.findFiles('**/tick.json', '**/node_modules/**');
     const loadReference = await vscode.workspace.findFiles('**/load.json', '**/node_modules/**');
     if (tickReference.length > 0 && loadReference.length > 0) {
         for (let [i, tickFile] of tickReference.entries()) {
             let loadFile = loadReference[i];
-            let tickValues = await processFile(tickFile);
-            let loadValues = await processFile(loadFile);
+            let tickValues = await convertMcfunctionIdToFilename(tickFile);
+            let loadValues = await convertMcfunctionIdToFilename(loadFile);
             return [loadValues, tickValues];
         }
     }
@@ -84,9 +91,7 @@ async function findReference() {
     }
 }
 async function deleteTempIconDefinitions() {
-    // Get the absolute path to mc-dp-icon-theme.json
     const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
-    // Parse content of mc-dp-icon-theme.json
     const themeContent = fs.readFileSync(themePath, 'utf8');
     const themeObject = JSON.parse(themeContent);
     for (let key in themeObject.fileNames) {
@@ -100,20 +105,22 @@ async function deleteTempIconDefinitions() {
             delete themeObject.folderNamesExpanded[key];
         }
     }
-    // Convert the JavaScript object back into a JSON string and write it back into file 
     const updatedThemeContent = JSON.stringify(themeObject, null, 2);
     fs.writeFileSync(themePath, updatedThemeContent, 'utf8');
 }
-async function processFile(file) {
+/*
+:arg file: tick.json | load.json file path
+:return: An array of tick & load MCfunctions file names
+*/
+async function convertMcfunctionIdToFilename(file) {
     const tickJsonPath = file.fsPath;
+    const removeNamespaceFromMCfunctionID = (input) => { return input.split(':')[1]; };
     try {
         const data = await readFile(tickJsonPath, 'utf8');
         const tickJson = JSON.parse(data);
-        if (tickJson.values && tickJson.values.length > 0) {
-            let values = tickJson.values;
-            values = values.map(removeFirstPart);
-            values = values.map((value) => value += ".mcfunction");
-            return values;
+        const isFunctionReferenced = tickJson.values?.length > 0;
+        if (isFunctionReferenced) {
+            return tickJson.values.map((value) => `${removeNamespaceFromMCfunctionID(value)}.mcfunction`);
         }
         else {
             console.log('No values found');
@@ -125,9 +132,11 @@ async function processFile(file) {
         return [];
     }
 }
+// :return: An array of namespace names in a pack
 function getNamespaceNames() {
     let packMcmetaPaths = findPackMcmetaInFolders().map((packPath) => packPath.replace("pack.mcmeta", ""));
     const folderNames = [];
+    // :return: array of names of every folder inside given directory
     const getDirectories = (path) => {
         if (fs.existsSync(path)) {
             fs.readdirSync(path)
@@ -148,6 +157,10 @@ function getNamespaceNames() {
     }
     return folderNames;
 }
+/*
+:arg directory: Path of a folder that function will search in
+:return: An array of paths leading to pack.mcmeta
+*/
 function findPackMcmetaInFolders(directory) {
     const packMcmetaPaths = [];
     const directories = directory ? [directory] : vscode.workspace.workspaceFolders?.map(folder => folder.uri.fsPath) || [];
@@ -170,10 +183,4 @@ function findPackMcmetaInFolders(directory) {
     });
     return packMcmetaPaths;
 }
-function update() {
-    deleteTempIconDefinitions();
-    loadTickChange();
-    namespaceIcon();
-}
-exports.update = update;
 //# sourceMappingURL=dynamic_icons.js.map

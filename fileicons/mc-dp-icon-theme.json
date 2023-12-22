@@ -316,12 +316,7 @@
   "folderNames": {
     "data": "data",
     "assets": "assets",
-    "src": "src",
-    "animated_java": "namespace",
-    "megalodon": "namespace",
-    "code": "namespace",
-    "minecraft": "namespace",
-    "vdv_raycast": "namespace"
+    "src": "src"
   },
   "folderNamesExpanded": {
     "": "namespace_open",
@@ -355,12 +350,7 @@
     ".vscode": "dot_vscode",
     "__pycache__": "pycache",
     "datapacks": "datapacks_open",
-    "src": "src_open",
-    "animated_java": "namespace_open",
-    "megalodon": "namespace_open",
-    "code": "namespace_open",
-    "minecraft": "namespace_open",
-    "vdv_raycast": "namespace_open"
+    "src": "src_open"
   },
   "fileExtensions": {
     "mcfunction": "mcf",
@@ -417,6 +407,7 @@
     "zip": "archive",
     "rar": "archive",
     "7z": "archive",
+    "tar": "archive",
     "jar": "jar",
     "sublime-project": "sublime",
     "sublime-workspace": "sublime",
@@ -426,7 +417,7 @@
     "sublime-macro": "sublime",
     "sublime-snippet": "sublime",
     "sublime-package": "sublime_package",
-    "ru": "ruby",
+    "rb": "ruby",
     "rs": "rust",
     "pdf": "pdf",
     "rtf": "pdf",
@@ -479,8 +470,6 @@
     "COPYRIGHT.md": "copyright",
     "beet.json": "beet",
     "beet.yaml": "beet",
-    "beet.yml": "beet",
-    "yes.mcfunction": "mcf_load",
-    "load.mcfunction": "mcf_tick"
+    "beet.yml": "beet"
   }
 }

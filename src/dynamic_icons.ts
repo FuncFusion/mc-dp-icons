@@ -38,10 +38,10 @@ async function loadTickChange() {
 	const enableDynamicLoadTickChange = workspace.getConfiguration().get<boolean>('mc-dp-icons.enableLoadTickAutoChange');
 	if (enableDynamicLoadTickChange) {
 		let [loadNames, tickNames] = await findReference() || [];
-		loadNames.forEach((loadName: string) => {
+		loadNames?.forEach((loadName: string) => {
 			modifyTheme(['fileNames', loadName], "mcf_load");
 		});
-		tickNames.forEach((tickName: string) => {
+		tickNames?.forEach((tickName: string) => {
 			modifyTheme(['fileNames', tickName], "mcf_load");
 		});
 	} 

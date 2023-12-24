@@ -37,22 +37,27 @@ function update() {
     deleteTempIconDefinitions();
     loadTickChange();
     namespaceIcon();
+    showExplorerArrows();
 }
 exports.update = update;
+async function showExplorerArrows() {
+    const confShowExplorerArrows = vscode_1.workspace.getConfiguration().get('mc-dp-icons.showExplorerArrows');
+    if (confShowExplorerArrows) {
+        modifyTheme('hidesExplorerArrows', false);
+    }
+    else {
+        modifyTheme('hidesExplorerArrows', true);
+    }
+}
 // Give namespaces an enderchest icon.
 async function namespaceIcon() {
     const enableNamespaceIcons = vscode_1.workspace.getConfiguration().get('mc-dp-icons.enableNamespaceIcons');
     if (enableNamespaceIcons) {
-        const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
         let namespaceNames = getNamespaceNames() || [];
-        const themeContent = fs.readFileSync(themePath, "utf-8");
-        const themeObject = JSON.parse(themeContent);
         namespaceNames.forEach((namespace) => {
-            themeObject.folderNames[namespace] = "namespace";
-            themeObject.folderNamesExpanded[namespace] = "namespace_open";
+            modifyTheme(['folderNames', namespace], 'namespace');
+            modifyTheme(['folderNamesExpanded', namespace], 'namespace_open');
         });
-        const updatedThemeContent = JSON.stringify(themeObject, null, 2);
-        fs.writeFileSync(themePath, updatedThemeContent, 'utf-8');
     }
 }
 // Give icons to functions referenced in tick.json | load.json accordingly
@@ -61,10 +66,10 @@ async function loadTickChange() {
     if (enableDynamicLoadTickChange) {
         let [loadNames, tickNames] = await findReference() || [];
         loadNames.forEach((loadName) => {
-            changeThemeFilenames(loadName, "mcf_load");
+            modifyTheme(['fileNames', loadName], "mcf_load");
         });
         tickNames.forEach((tickName) => {
-            changeThemeFilenames(tickName, "mcf_tick");
+            modifyTheme(['fileNames', tickName], "mcf_load");
         });
     }
     const customLoadNames = vscode_1.workspace.getConfiguration().get('mc-dp-icons.functionNamesForLoad');
@@ -75,24 +80,33 @@ async function loadTickChange() {
             vscode.window.showWarningMessage('You have same names in custom tick / load icons configuration');
         }
         customLoadNames?.forEach((loadName) => {
-            changeThemeFilenames(loadName + ".mcfunction", "mcf_load");
+            modifyTheme(['fileNames', loadName + ".mcfunction"], "mcf_load");
         });
         customTickNames?.forEach((tickName) => {
-            changeThemeFilenames(tickName + ".mcfunction", "mcf_tick");
+            modifyTheme(['fileNames', tickName + ".mcfunction"], "mcf_load");
         });
     }
 }
 /*
-:arg fileName: File for which you intend to modify the icon
-:arg iconName: Name of the new icon
+:arg keyName: Name of file / folder you intend to modify the icon of
+:arg value: Value assigned to keyName
 */
-async function changeThemeFilenames(fileName, iconName) {
+async function modifyTheme(keyName, value) {
     const themePath = path.join(__dirname, '..', 'fileicons', 'mc-dp-icon-theme.json');
-    const themeContent = fs.readFileSync(themePath, 'utf8');
-    const themeObject = JSON.parse(themeContent);
-    themeObject.fileNames[fileName] = iconName;
-    const updatedThemeContent = JSON.stringify(themeObject, null, 2);
-    fs.writeFileSync(themePath, updatedThemeContent, 'utf8');
+    let themeContent = fs.readFileSync(themePath, 'utf8');
+    let themeObject = JSON.parse(themeContent), current = themeObject;
+    if (Array.isArray(keyName)) {
+        for (let i = 0; i < keyName.length; i++) {
+            current[keyName[i]] = i === keyName.length - 1 ? value : current[keyName[i]] || {};
+            if (i !== keyName.length - 1) {
+                current = current[keyName[i]];
+            }
+        }
+    }
+    else {
+        current[keyName] = value;
+    }
+    fs.writeFileSync(themePath, JSON.stringify(themeObject, null, 2), 'utf8');
 }
 // Convert fs.readFile into Promise version to use with async/await
 const readFile = util_1.default.promisify(fs.readFile);

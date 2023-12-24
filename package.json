@@ -64,11 +64,11 @@
             "default": true,
             "markdownDescription": "If enabled, namespace folders (folders directly within `data` and `assets`) will change their icons to ender chests *(but only if there is `pack.mcmeta` in the same directory)*."
           },
-          "mc-dp-icons.showExplorerArrows": {
+          "mc-dp-icons.hideFolderArrows": {
             "type": "boolean",
-            "title": "show explorer arrows",
-            "default": true,
-            "markdownDescription": "if enabled will show arrows in explorer"
+            "title": "Hide folder arrows",
+            "default": false,
+            "markdownDescription": "if enabled, the extension will hide folder arrows in the explorer."
           }
         }
       },

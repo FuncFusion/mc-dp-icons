@@ -37,16 +37,16 @@ function update() {
     deleteTempIconDefinitions();
     loadTickChange();
     namespaceIcon();
-    showExplorerArrows();
+    hideFolderArrows();
 }
 exports.update = update;
-async function showExplorerArrows() {
-    const confShowExplorerArrows = vscode_1.workspace.getConfiguration().get('mc-dp-icons.showExplorerArrows');
-    if (confShowExplorerArrows) {
-        modifyTheme('hidesExplorerArrows', false);
+async function hideFolderArrows() {
+    const confHideFolderArrows = vscode_1.workspace.getConfiguration().get('mc-dp-icons.hideFolderArrows');
+    if (confHideFolderArrows) {
+        modifyTheme('hidesExplorerArrows', true);
     }
     else {
-        modifyTheme('hidesExplorerArrows', true);
+        modifyTheme('hidesExplorerArrows', false);
     }
 }
 // Give namespaces an enderchest icon.

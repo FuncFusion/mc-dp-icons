@@ -9,15 +9,15 @@ export function update() {
 	deleteTempIconDefinitions();
 	loadTickChange();
 	namespaceIcon();
-	showExplorerArrows();
+	hideFolderArrows();
 }
 
-async function showExplorerArrows() {
-	const confShowExplorerArrows = workspace.getConfiguration().get<boolean>('mc-dp-icons.showExplorerArrows');
-	if (confShowExplorerArrows) {
-		modifyTheme('hidesExplorerArrows', false);
-	} else {
+async function hideFolderArrows() {
+	const confHideFolderArrows = workspace.getConfiguration().get<boolean>('mc-dp-icons.hideFolderArrows');
+	if (confHideFolderArrows) {
 		modifyTheme('hidesExplorerArrows', true);
+	} else {
+		modifyTheme('hidesExplorerArrows', false);
 	}
 }
 

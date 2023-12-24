@@ -609,5 +609,6 @@
     "beet.json": "beet",
     "beet.yaml": "beet",
     "beet.yml": "beet"
-  }
+  },
+  "hidesExplorerArrows": false
 }

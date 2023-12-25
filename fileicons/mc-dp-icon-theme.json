@@ -12,6 +12,12 @@
     "json": {
       "iconPath": "./imgs/json.svg"
     },
+    "tick.json": {
+      "iconPath": "./imgs/tick.json.svg"
+    },
+    "load.json": {
+      "iconPath": "./imgs/load.json.svg"
+    },
     "nbt": {
       "iconPath": "./imgs/structure_block.svg"
     },
@@ -72,6 +78,9 @@
     "predicates_open": {
       "iconPath": "./imgs/predicates.svg"
     },
+    "predicate": {
+      "iconPath": "./imgs/predicate.svg"
+    },
     "chat_type_open": {
       "iconPath": "./imgs/chat_type.svg"
     },
@@ -81,11 +90,20 @@
     "item_modifiers_open": {
       "iconPath": "./imgs/item_modifiers.svg"
     },
+    "item_modifier": {
+      "iconPath": "./imgs/item_modifier.svg"
+    },
     "trim_pattern_open": {
       "iconPath": "./imgs/trim_pattern.svg"
     },
+    "trim_pattern": {
+      "iconPath": "./imgs/trim_pattern_file.svg"
+    },
     "trim_material_open": {
       "iconPath": "./imgs/trim_material.svg"
+    },
+    "trim_material": {
+      "iconPath": "./imgs/trim_material_file.svg"
     },
     "image": {
       "iconPath": "./imgs/painting.svg"
@@ -343,8 +361,7 @@
   "folderNames": {
     "data": "data",
     "assets": "assets",
-    "src": "src",
-    "minecraft": "namespace"
+    "src": "src"
   },
   "folderNamesExpanded": {
     "data": "data_open",
@@ -377,8 +394,7 @@
     ".vscode": "dot_vscode",
     "__pycache__": "pycache",
     "datapacks": "datapacks_open",
-    "src": "src_open",
-    "minecraft": "namespace_open"
+    "src": "src_open"
   },
   "fileExtensions": {
     "mcfunction": "mcf",
@@ -633,7 +649,11 @@
     "chat_type/json": "chat_type",
     "damage_type/json": "damage_type",
     "dimension/json": "dimension",
-    "dimension_type/json": "dimension_type"
+    "dimension_type/json": "dimension_type",
+    "item_modifiers/json": "item_modifier",
+    "predicates/json": "predicate",
+    "trim_material/json": "trim_material",
+    "trim_pattern/json": "trim_pattern"
   },
   "fileNames": {
     "pack.mcmeta": "pack_mcmeta",
@@ -646,7 +666,9 @@
     "COPYRIGHT.md": "copyright",
     "beet.json": "beet",
     "beet.yaml": "beet",
-    "beet.yml": "beet"
+    "beet.yml": "beet",
+    "functions/tick.json": "tick.json",
+    "functions/load.json": "load.json"
   },
   "hidesExplorerArrows": false
 }

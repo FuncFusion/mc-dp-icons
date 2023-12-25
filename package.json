@@ -62,13 +62,13 @@
             "type": "boolean",
             "title": "Changes namespace folders icons to an ender chest",
             "default": true,
-            "markdownDescription": "If enabled, namespace folders (folders directly within `data` and `assets`) will change their icons to ender chests *(but only if there is `pack.mcmeta` in the same directory)*."
+            "markdownDescription": "If enabled, namespace folders (folders directly within `data` and `assets`) will change their icons to ender chests *(but only if there is `pack.mcmeta` in the same directory)*.\n\n*Warning: this feature is not currently supported for web VS Code.*"
           },
           "mc-dp-icons.hideFolderArrows": {
             "type": "boolean",
             "title": "Hide folder arrows",
             "default": false,
-            "markdownDescription": "if enabled, the extension will hide folder arrows in the explorer."
+            "markdownDescription": "if enabled, the extension will hide folder arrows in the explorer.\n\n*Warning: this feature is not currently supported for web VS Code.*"
           }
         }
       },
@@ -99,7 +99,7 @@
             "type": "boolean",
             "title": "Dynamic icons for tick and load functions",
             "default": true,
-            "markdownDescription": "If enabled, load and tick functions will change their icons to repeating and impulse command blocks accordingly, based on values provided in `tick.json` and `load.json` files found in the workspace.\n\nIf not enabled, load and tick icons will be set by their names, that are set by the user in the settings below."
+            "markdownDescription": "If enabled, load and tick functions will change their icons to repeating and impulse command blocks accordingly, based on values provided in `tick.json` and `load.json` files found in the workspace.\n\nIf not enabled, load and tick icons will be set by their names, that are set by the user in the settings below.\n\n*Warning: this feature is not currently supported for web VS Code.*"
           },
           "mc-dp-icons.functionNamesForTick": {
             "title": "Tick function names",
@@ -107,7 +107,7 @@
             "items": {
               "type": "string"
             },
-            "markdownDescription": "**Only works if `#mc-dp-icons.enableLoadTickAutoChange#` is NOT enabled**. Put here all the names of function files (without `.mcfunction`) you'd like to have a repeating command block icon."
+            "markdownDescription": "**Only works if `#mc-dp-icons.enableLoadTickAutoChange#` is NOT enabled**. Put here all the names of function files (without `.mcfunction`) you'd like to have a repeating command block icon.\n\n*Warning: this feature is not currently supported for web VS Code.*"
           },
           "mc-dp-icons.functionNamesForLoad": {
             "title": "Load function names",
@@ -115,7 +115,7 @@
             "items": {
               "type": "string"
             },
-            "markdownDescription": "**Only works if `#mc-dp-icons.enableLoadTickAutoChange#` is NOT enabled**. Put here all the names of function files (without `.mcfunction`) you'd like to have an impulse command block icon."
+            "markdownDescription": "**Only works if `#mc-dp-icons.enableLoadTickAutoChange#` is NOT enabled**. Put here all the names of function files (without `.mcfunction`) you'd like to have an impulse command block icon.\n\n*Warning: this feature is not currently supported for web VS Code.*"
           }
         }
       },

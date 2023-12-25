@@ -65,10 +65,10 @@ async function loadTickChange() {
     const enableDynamicLoadTickChange = vscode_1.workspace.getConfiguration().get('mc-dp-icons.enableLoadTickAutoChange');
     if (enableDynamicLoadTickChange) {
         let [loadNames, tickNames] = await findReference() || [];
-        loadNames.forEach((loadName) => {
+        loadNames?.forEach((loadName) => {
             modifyTheme(['fileNames', loadName], "mcf_load");
         });
-        tickNames.forEach((tickName) => {
+        tickNames?.forEach((tickName) => {
             modifyTheme(['fileNames', tickName], "mcf_load");
         });
     }

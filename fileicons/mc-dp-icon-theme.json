@@ -36,14 +36,26 @@
     "dimension_open": {
       "iconPath": "./imgs/dimension.svg"
     },
+    "dimension": {
+      "iconPath": "./imgs/dimension_file.svg"
+    },
     "dimension_type_open": {
       "iconPath": "./imgs/dimension_type.svg"
+    },
+    "dimension_type": {
+      "iconPath": "./imgs/dimension_type_file.svg"
     },
     "recipes_open": {
       "iconPath": "./imgs/recipes.svg"
     },
+    "recipe": {
+      "iconPath": "./imgs/recipe.svg"
+    },
     "damage_type_open": {
       "iconPath": "./imgs/damage_type.svg"
+    },
+    "damage_type": {
+      "iconPath": "./imgs/damage_type_file.svg"
     },
     "structures_open": {
       "iconPath": "./imgs/structures.svg"
@@ -62,6 +74,9 @@
     },
     "chat_type_open": {
       "iconPath": "./imgs/chat_type.svg"
+    },
+    "chat_type": {
+      "iconPath": "./imgs/chat_type_file.svg"
     },
     "item_modifiers_open": {
       "iconPath": "./imgs/item_modifiers.svg"
@@ -102,6 +117,9 @@
     "particles_open": {
       "iconPath": "./imgs/particles.svg"
     },
+    "particle": {
+      "iconPath": "./imgs/particle.svg"
+    },
     "shaders_open": {
       "iconPath": "./imgs/shaders.svg"
     },
@@ -117,8 +135,14 @@
     "blockstates_open": {
       "iconPath": "./imgs/blockstates.svg"
     },
+    "blockstate": {
+      "iconPath": "./imgs/blockstate.svg"
+    },
     "lang_open": {
       "iconPath": "./imgs/lang.svg"
+    },
+    "lang": {
+      "iconPath": "./imgs/lang_file.svg"
     },
     "texts_open": {
       "iconPath": "./imgs/texts.svg"
@@ -128,6 +152,9 @@
     },
     "atlases_open": {
       "iconPath": "./imgs/atlases.svg"
+    },
+    "atlas": {
+      "iconPath": "./imgs/atlas.svg"
     },
     "sounds.json": {
       "iconPath": "./imgs/sounds.json.svg"
@@ -187,7 +214,7 @@
       "iconPath": "./imgs/mojo.svg"
     },
     "js": {
-      "iconPath": "./imgs/js2.svg"
+      "iconPath": "./imgs/js.svg"
     },
     "ts": {
       "iconPath": "./imgs/ts.svg"
@@ -316,10 +343,10 @@
   "folderNames": {
     "data": "data",
     "assets": "assets",
-    "src": "src"
+    "src": "src",
+    "minecraft": "namespace"
   },
   "folderNamesExpanded": {
-    "": "namespace_open",
     "data": "data_open",
     "functions": "functions_open",
     "loot_tables": "loot_tables_open",
@@ -350,7 +377,8 @@
     ".vscode": "dot_vscode",
     "__pycache__": "pycache",
     "datapacks": "datapacks_open",
-    "src": "src_open"
+    "src": "src_open",
+    "minecraft": "namespace_open"
   },
   "fileExtensions": {
     "mcfunction": "mcf",
@@ -595,7 +623,17 @@
     "pmx": "bbmodel",
     "skp": "bbmodel",
     "vox": "bbmodel",
-    "dae": "bbmodel"
+    "dae": "bbmodel",
+    "atlases/json": "atlas",
+    "blockstates/json": "blockstate",
+    "font/json": "ttf",
+    "lang/json": "lang",
+    "particles/json": "particle",
+    "recipes/json": "recipe",
+    "chat_type/json": "chat_type",
+    "damage_type/json": "damage_type",
+    "dimension/json": "dimension",
+    "dimension_type/json": "dimension_type"
   },
   "fileNames": {
     "pack.mcmeta": "pack_mcmeta",
@@ -608,7 +646,9 @@
     "COPYRIGHT.md": "copyright",
     "beet.json": "beet",
     "beet.yaml": "beet",
-    "beet.yml": "beet"
+    "beet.yml": "beet",
+    "main.mcfunction": "mcf_load",
+    "function.mcfunction": "mcf_load"
   },
   "hidesExplorerArrows": false
 }

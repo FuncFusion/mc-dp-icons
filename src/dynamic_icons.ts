@@ -57,7 +57,7 @@ async function loadTickChange() {
 			modifyTheme(['fileNames', loadName + ".mcfunction"], "mcf_load");
 		});
 		customTickNames?.forEach((tickName: string) => {
-			modifyTheme(['fileNames', tickName + ".mcfunction"], "mcf_load");
+			modifyTheme(['fileNames', tickName + ".mcfunction"], "mcf_tick");
 		});
 	}
 }

@@ -43,7 +43,7 @@
     "onStartupFinished"
   ],
   "main": "./out/extension.js",
-  "browser": "./out/extension.js",
+  "browser": "./dist/web_extension.js",
   "contributes": {
     "iconThemes": [
       {
@@ -129,7 +129,10 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+    "vscode:prepublish": "npm run package",
+    "webpack": "webpack --mode development",
+    "webpack-dev": "webpack --mode development --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
@@ -147,7 +150,10 @@
     "@vscode/test-electron": "^2.3.8",
     "@vscode/test-web": "^0.0.49",
     "eslint": "^8.54.0",
-    "typescript": "^5.3.2"
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.3.2",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
   },
   "dependencies": {
     "lodash": "^4.17.21"

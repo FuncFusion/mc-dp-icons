@@ -646,9 +646,7 @@
     "COPYRIGHT.md": "copyright",
     "beet.json": "beet",
     "beet.yaml": "beet",
-    "beet.yml": "beet",
-    "main.mcfunction": "mcf_load",
-    "function.mcfunction": "mcf_load"
+    "beet.yml": "beet"
   },
   "hidesExplorerArrows": false
 }

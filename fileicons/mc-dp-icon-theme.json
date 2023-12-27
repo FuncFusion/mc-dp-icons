@@ -361,7 +361,10 @@
   "folderNames": {
     "data": "data",
     "assets": "assets",
-    "src": "src"
+    "src": "src",
+    "minecraft": "namespace",
+    "namespace": "namespace",
+    "aaaa": "namespace"
   },
   "folderNamesExpanded": {
     "data": "data_open",
@@ -394,7 +397,10 @@
     ".vscode": "dot_vscode",
     "__pycache__": "pycache",
     "datapacks": "datapacks_open",
-    "src": "src_open"
+    "src": "src_open",
+    "minecraft": "namespace_open",
+    "namespace": "namespace_open",
+    "aaaa": "namespace_open"
   },
   "fileExtensions": {
     "mcfunction": "mcf",
@@ -510,10 +516,12 @@
     "tsx": "re",
     "java": "java",
     "jsp": "java",
+    "class": "java",
     "r": "r",
     "rmd": "r",
     "gitignore": "gitignore",
     "gitattributes": "git",
+    "git": "git",
     "go": "go",
     "kt": "kotlin",
     "kts": "kotlin",
@@ -532,6 +540,12 @@
     "fish": "shell",
     "exp": "shell",
     "nu": "shell",
+    "ps1": "shell",
+    "psm1": "shell",
+    "psd1": "shell",
+    "ps1xml": "shell",
+    "psc1": "shell",
+    "pssc": "shell",
     "apk": "android",
     "smali": "android",
     "dex": "android",

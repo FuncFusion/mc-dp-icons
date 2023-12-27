@@ -64,7 +64,6 @@ async function namespaceIcon() {
 async function loadTickChange() {
     const enableDynamicLoadTickChange = vscode_1.workspace.getConfiguration().get('mc-dp-icons.enableLoadTickAutoChange');
     if (enableDynamicLoadTickChange) {
-        console.log('i hate typescript ' + enableDynamicLoadTickChange);
         let [loadNames, tickNames] = await findReference() || [];
         loadNames?.forEach((loadName) => {
             modifyTheme(['fileNames', loadName], "mcf_load");
@@ -73,8 +72,7 @@ async function loadTickChange() {
             modifyTheme(['fileNames', tickName], "mcf_tick");
         });
     }
-    if (!enableDynamicLoadTickChange) {
-        console.log('i hate typescript ' + enableDynamicLoadTickChange);
+    else {
         const customLoadNames = vscode_1.workspace.getConfiguration().get('mc-dp-icons.functionNamesForLoad');
         const customTickNames = vscode_1.workspace.getConfiguration().get('mc-dp-icons.functionNamesForTick');
         const hasCommonName = customLoadNames?.some(item => customTickNames?.includes(item));

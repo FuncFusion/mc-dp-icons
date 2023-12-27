@@ -11,7 +11,11 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.workspace.onDidRenameFiles(()=>{DynamicIcons.update(); ThemeChange.checkPackMcmeta();}),
 		vscode.workspace.onDidDeleteFiles(()=>{DynamicIcons.update(); ThemeChange.checkPackMcmeta();}),
 		vscode.workspace.onDidCreateFiles(()=>{DynamicIcons.update(); ThemeChange.checkPackMcmeta();}),
-		vscode.workspace.onDidSaveTextDocument(DynamicIcons.update),
+		vscode.workspace.onDidSaveTextDocument((textDocument) => {
+			if (textDocument.fileName === 'tick.json' || textDocument.fileName === 'load.json') {
+				DynamicIcons.update();
+			}
+		}),
 		vscode.workspace.onDidChangeConfiguration(()=>{DynamicIcons.update(); ThemeChange.getDefaultIconTheme();})
 	);
 

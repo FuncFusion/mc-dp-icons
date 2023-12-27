@@ -30,7 +30,11 @@ const DynamicIcons = __importStar(require("./dynamic_icons"));
 function activate(context) {
     // console.log('Extension "mc-dp-icons" is now active!');
     // Register the event listeners
-    context.subscriptions.push(vscode.workspace.onDidChangeWorkspaceFolders(() => { DynamicIcons.update(); ThemeChange.checkPackMcmeta(); }), vscode.workspace.onDidRenameFiles(() => { DynamicIcons.update(); ThemeChange.checkPackMcmeta(); }), vscode.workspace.onDidDeleteFiles(() => { DynamicIcons.update(); ThemeChange.checkPackMcmeta(); }), vscode.workspace.onDidCreateFiles(() => { DynamicIcons.update(); ThemeChange.checkPackMcmeta(); }), vscode.workspace.onDidSaveTextDocument(DynamicIcons.update), vscode.workspace.onDidChangeConfiguration(() => { DynamicIcons.update(); ThemeChange.getDefaultIconTheme(); }));
+    context.subscriptions.push(vscode.workspace.onDidChangeWorkspaceFolders(() => { DynamicIcons.update(); ThemeChange.checkPackMcmeta(); }), vscode.workspace.onDidRenameFiles(() => { DynamicIcons.update(); ThemeChange.checkPackMcmeta(); }), vscode.workspace.onDidDeleteFiles(() => { DynamicIcons.update(); ThemeChange.checkPackMcmeta(); }), vscode.workspace.onDidCreateFiles(() => { DynamicIcons.update(); ThemeChange.checkPackMcmeta(); }), vscode.workspace.onDidSaveTextDocument((textDocument) => {
+        if (textDocument.fileName === 'tick.json' || textDocument.fileName === 'load.json') {
+            DynamicIcons.update();
+        }
+    }), vscode.workspace.onDidChangeConfiguration(() => { DynamicIcons.update(); ThemeChange.getDefaultIconTheme(); }));
     // Calling these functions on startup
     ThemeChange.getDefaultIconTheme();
     ThemeChange.checkPackMcmeta();

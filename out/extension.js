@@ -40,7 +40,7 @@ function activate(context) {
     ThemeChange.checkPackMcmeta();
     DynamicIcons.update();
     let DpIconsOpenSettings = vscode.commands.registerCommand('mc-dp-icons.DpIconsOpenSettings', () => {
-        vscode.commands.executeCommand('workbench.action.openSettings', 'mc-dp-icons');
+        vscode.commands.executeCommand('workbench.action.openSettings', ' @ext:superant.mc-dp-icons');
     });
     context.subscriptions.push(DpIconsOpenSettings);
 }

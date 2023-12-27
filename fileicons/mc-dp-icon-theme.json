@@ -361,7 +361,10 @@
   "folderNames": {
     "data": "data",
     "assets": "assets",
-    "src": "src"
+    "src": "src",
+    "minecraft": "namespace",
+    "namespace": "namespace",
+    "aaaa": "namespace"
   },
   "folderNamesExpanded": {
     "data": "data_open",

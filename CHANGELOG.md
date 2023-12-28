@@ -14,7 +14,7 @@ All notable changes to the "mc-dp-icons" extension will be documented in this fi
 - `tick` and `load` functions icons will now be able to change their icons to repeating and impulse command blocks accordingly, based on the values provided in `tick.json` and `load.json` files found in the workspace. This feature can be toggled to assign the icons not by the `tick.json` and `load.json` files, but by the functions names, which can be specified in the settings.
 - Webpack support, which makes `pack.mcmeta` detect feature be available in VS Code Web. Other features are currently not supported.
 
-[^1]: json files in the subfolders of these folders do not currently change have these icons. This feature may be added in the future.
+[^1]: json files in the subfolders of these folders do not currently have these icons. This feature may be added in the future.
 ### Changed
 - Converted the language of the extension from javascript to typescript
 - `recipes` icon was changed to a better one

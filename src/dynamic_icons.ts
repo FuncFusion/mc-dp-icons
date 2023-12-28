@@ -37,7 +37,6 @@ async function namespaceIcon() {
 async function loadTickChange() {
 	const enableDynamicLoadTickChange = workspace.getConfiguration().get<boolean>('mc-dp-icons.enableLoadTickAutoChange');
 	if (enableDynamicLoadTickChange) {
-		console.log('i hate typescript ' + enableDynamicLoadTickChange);
 		let [loadNames, tickNames] = await findReference() || [];
 		loadNames?.forEach((loadName: string) => {
 			modifyTheme(['fileNames', loadName], "mcf_load");
@@ -45,10 +44,7 @@ async function loadTickChange() {
 		tickNames?.forEach((tickName: string) => {
 			modifyTheme(['fileNames', tickName], "mcf_tick");
 		});
-	} 
-
-	if (!enableDynamicLoadTickChange) {
-		console.log('i hate typescript ' + enableDynamicLoadTickChange);
+	} else {
 		const customLoadNames = workspace.getConfiguration().get<Array<string>>('mc-dp-icons.functionNamesForLoad');
 		const customTickNames = workspace.getConfiguration().get<Array<string>>('mc-dp-icons.functionNamesForTick');
 

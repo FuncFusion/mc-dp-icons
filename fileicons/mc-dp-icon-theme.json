@@ -672,6 +672,8 @@
     "COPYRIGHT": "copyright",
     "COPYRIGHT.txt": "copyright",
     "COPYRIGHT.md": "copyright",
+    "functions/tick.json": "tick.json",
+    "functions/load.json": "load.json",
     "beet.json": "beet",
     "beet.yaml": "beet",
     "beet.yml": "beet"

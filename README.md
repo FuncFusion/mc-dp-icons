@@ -19,17 +19,22 @@ Datapack Icons is a fancy, minecraft-styled icon theme, designed specifically fo
 ![Icons](assets/3.0/IconsProgramming.png)
 
 ## Dynamic Icons
+### Namespace Icons
+Namespace icons are no longer unused! The extension will find any folders directly within `data` and `assets` folders and assign ender chest icon to the names of these folders, but only if there's `pack.mcmeta` in the same directory. That also means that if there will be a folder in any location with the same name as one of the namespace folders in the same workspace, that folder will also recieve ender chest icon, so this feature can be turned off in the settings.
+![Icons](assets/3.0/NamespaceIcons.gif)
+
 ### pack.mcmeta detect
  Extension will look for `pack.mcmeta` in the workspace, and if it finds it, changes the icon theme from current to dp-icons. If not, the theme will change to a default one - either it will be the theme workspace was launched with, or defined in the settings.
+![Icons](assets/3.0/PackMcmetaCheck.gif)
+
 
 ### Icons for `load` and `tick` functions
 `tick` and `load` functions icons will change their icons to repeating and impulse command blocks accordingly, based on the values provided in `tick.json` and `load.json` files found in the workspace. This feature can be toggled to assign the icons not by the `tick.json` and `load.json` files, but by the functions names, which can be specified in the settings.
-
-### Namespace Icons
-Namespace icons are no longer unused! The extension will find any folders directly within `data` and `assets` folders and assign ender chest icon to the names of these folders, but only if there's `pack.mcmeta` in the same directory. That also means that if there will be a folder in any location with the same name as one of the namespace folders in the same workspace, that folder will also recieve ender chest icon, so this feature can be turned off in the settings.
+![Icons](assets/3.0/LoadTickFunctions.gif)
 
 ### Hide folder arrows
 If you don't like these arrows near the folder icons, you can hide them by enabling this setting!
+![Icons](assets/3.0/HideFolderArrows.gif)
 
 ## Why did we choose *this* icon for *that*?
 ### Datapacks
@@ -92,6 +97,6 @@ Most of the programming icons don't need an explanations, but there are a few ex
 
 [amandin](https://github.com/amawdiin) - Our PR-manager, gave ideas for icons, coded most of the dynamic icons features, included this extension in his [amazing extension collection](https://marketplace.visualstudio.com/items?itemName=amandin.dpc-pack)
 
-![Creators](assets/2.0/creators.png)
+![Creators](assets/3.0/Creators.png)
 
 **Enjoy!**

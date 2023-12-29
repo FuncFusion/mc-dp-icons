@@ -16,7 +16,6 @@ export function activate(context: vscode.ExtensionContext) {
 			const fileName = path.basename(textDocument.fileName);
 			if (fileName === 'tick.json' || fileName === 'load.json') {
 				DynamicIcons.update();
-				vscode.window.showInformationMessage('AAA');
 			}
 		}),
 		vscode.workspace.onDidChangeConfiguration(()=>{DynamicIcons.update(); ThemeChange.getDefaultIconTheme();})

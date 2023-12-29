@@ -10,7 +10,8 @@
 </div>
 
 ---
-## <span style="color: red"> Programming update (3.0) is not released yet!  </span>
+$${\color{red}Programming update (3.0) is not released yet!}$$
+
 
 Datapack Icons is a fancy, minecraft-styled icon theme, designed specifically for datapack & resourcepack devs. Looking through [Microsoft's behavior packs documentation](https://learn.microsoft.com/en-us/minecraft/creator/documents/behaviorpack#building-the-behavior-pack), we took inspiration from those icons, and decided to implement them in VS Code. 
 
@@ -98,9 +99,9 @@ Most of the programming icons don't need an explanation, but there are a few exc
 ## Creators
 [SuperAnt_](## "super.ant_ on discord") - Came up with the initial idea, made the extension
 
-[bth123](https://github.com/bth123) - Made all the icons and illustrations, also made a [sublime port]() of this extension
+[bth123](https://github.com/bth123) - Made all the icons and illustrations, also made a [sublime port](https://github.com/bth123/mc-dp-icons-sublime) of this extension
 
-[amandin](https://github.com/amawdiin) - Our PR-manager, gave ideas for icons, coded most of the dynamic icons features, included this extension in his [amazing extension collection](https://marketplace.visualstudio.com/items?itemName=amandin.dpc-pack)
+[amandin](https://github.com/amawdiin) - Our PR-manager, coded most of the dynamic icons features, included this extension in his [amazing extension collection](https://marketplace.visualstudio.com/items?itemName=amandin.dpc-pack)
 
 ![Creators](assets/3.0/Creators.png)
 

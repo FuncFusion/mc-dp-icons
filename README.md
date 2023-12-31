@@ -10,8 +10,6 @@
 </div>
 
 ---
-$${\color{red}Programming-update-(3.0)-is-not-released yet!}$$
-
 Datapack Icons is a fancy, minecraft-styled icon theme, designed specifically for datapack & resourcepack devs. Looking through [Microsoft's behavior packs documentation](https://learn.microsoft.com/en-us/minecraft/creator/documents/behaviorpack#building-the-behavior-pack), we took inspiration from those icons, and decided to implement them in VS Code. 
 
 ## 3.0 Trailer

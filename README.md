@@ -10,10 +10,14 @@
 </div>
 
 ---
-$${\color{red}Programming update (3.0) is not released yet!}$$
-
+$${\color{red}Programming-update-(3.0)-is-not-released yet!}$$
 
 Datapack Icons is a fancy, minecraft-styled icon theme, designed specifically for datapack & resourcepack devs. Looking through [Microsoft's behavior packs documentation](https://learn.microsoft.com/en-us/minecraft/creator/documents/behaviorpack#building-the-behavior-pack), we took inspiration from those icons, and decided to implement them in VS Code. 
+
+## 3.0 Trailer
+Made by SuperAnt_: https://www.youtube.com/watch?v=eYAvg19stpU
+
+[![Trailer](https://img.youtube.com/vi/eYAvg19stpU/0.jpg)](https://www.youtube.com/watch?v=eYAvg19stpU)
 
 ## Icons
 ![Icons](assets/3.0/IconsDatapacks.png)
@@ -22,7 +26,7 @@ Datapack Icons is a fancy, minecraft-styled icon theme, designed specifically fo
 
 ## Dynamic Icons
 ### Namespace Icons
-Namespace icons are no longer unused! The extension will find any folders directly within `data` and `assets` folders and assign ender chest icon to the names of these folders, but only if there's `pack.mcmeta` in the same directory. That also means that if there will be a folder in any location with the same name as one of the namespace folders in the same workspace, that folder will also recieve ender chest icon, so this feature can be turned off in the settings.
+Namespace icons are no longer unused! The extension will find any folders directly within `data` and `assets` folders and assign an ender chest icon to the names of these folders, but only if there's `pack.mcmeta` in the same directory. That also means that if there will be a folder in any location with the same name as one of the namespace folders in the same workspace, that folder will also recieve ender chest icon, so this feature can be turned off in the settings.
 
 ![Icons](assets/3.0/NamespaceIcons.gif)
 
@@ -54,7 +58,7 @@ If you don't like these arrows near the folder icons, you can hide them by enabl
 - `functions` contain commands, such as command blocks
 - An iconic item, such as a diamond pickaxe, can represent `item_modifiers`
 - You can get some valuable **loot** from `loot_tables`, such as an emerald
-- Observer checks things, `predicates` also can check for something
+- Observer checks things, `predicates` can also check for something
 - We use `recipes` in the crafting table
 - Name **tag** can represent `tags`
 - diamond armor with a redstone trim is for `trim_material`

@@ -2,7 +2,7 @@
 
 All notable changes to the "mc-dp-icons" extension will be documented in this file.
 
-## [3.0.0] - Programming Update
+## [3.0.0] - Programming Update (2023-12-31)
 #### The total amount of icons now is 123, 118 of them are in use
 ### Added
 - 67 new icons, including:

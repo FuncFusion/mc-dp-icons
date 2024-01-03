@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as ThemeChange from './theme_change';
 import * as DynamicIcons from './dynamic_icons';
+const path = require('path');
 
 export function activate(context: vscode.ExtensionContext) {
 	// console.log('Extension "mc-dp-icons" is now active!');
@@ -12,7 +13,8 @@ export function activate(context: vscode.ExtensionContext) {
 		vscode.workspace.onDidDeleteFiles(()=>{DynamicIcons.update(); ThemeChange.checkPackMcmeta();}),
 		vscode.workspace.onDidCreateFiles(()=>{DynamicIcons.update(); ThemeChange.checkPackMcmeta();}),
 		vscode.workspace.onDidSaveTextDocument((textDocument) => {
-			if (textDocument.fileName === 'tick.json' || textDocument.fileName === 'load.json') {
+			const fileName = path.basename(textDocument.fileName);
+			if (fileName === 'tick.json' || fileName === 'load.json') {
 				DynamicIcons.update();
 			}
 		}),
@@ -25,7 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
 	DynamicIcons.update();
 
 	let DpIconsOpenSettings = vscode.commands.registerCommand('mc-dp-icons.DpIconsOpenSettings', () => {
-		vscode.commands.executeCommand('workbench.action.openSettings', ' @ext:superant.mc-dp-icons');
+		vscode.commands.executeCommand('workbench.action.openSettings', '@ext:superant.mc-dp-icons');
 	});
 
 	context.subscriptions.push(DpIconsOpenSettings);

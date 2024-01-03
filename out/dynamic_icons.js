@@ -64,7 +64,8 @@ async function namespaceIcon() {
 async function loadTickChange() {
     const enableDynamicLoadTickChange = vscode_1.workspace.getConfiguration().get('mc-dp-icons.enableLoadTickAutoChange');
     if (enableDynamicLoadTickChange) {
-        let [loadNames, tickNames] = await findReference() || [];
+        const [loadNames, tickNames] = await findReference() || [];
+        console.log('load and tick names: ' + loadNames, tickNames);
         loadNames?.forEach((loadName) => {
             modifyTheme(['fileNames', loadName], "mcf_load");
         });
@@ -113,13 +114,18 @@ const readFile = util_1.default.promisify(fs.readFile);
 async function findReference() {
     const tickReference = await vscode.workspace.findFiles('**/tick.json', '**/node_modules/**');
     const loadReference = await vscode.workspace.findFiles('**/load.json', '**/node_modules/**');
-    if (tickReference.length > 0 && loadReference.length > 0) {
-        for (let [i, tickFile] of tickReference.entries()) {
-            let loadFile = loadReference[i];
-            let tickValues = await convertMcfunctionIdToFilename(tickFile);
-            let loadValues = await convertMcfunctionIdToFilename(loadFile);
-            return [loadValues, tickValues];
+    if (tickReference?.length > 0 || loadReference?.length > 0) {
+        let loadNames = [];
+        let tickNames = [];
+        for (let i = 0; i < loadReference.length; i++) {
+            let loadValue = loadReference[i];
+            loadNames.push(await convertMcfunctionIdToFilename(loadValue));
         }
+        for (let i = 0; i < tickReference.length; i++) {
+            let tickValue = tickReference[i];
+            tickNames.push(await convertMcfunctionIdToFilename(tickValue));
+        }
+        return [loadNames, tickNames];
     }
     else {
         console.log('tick.json or load.json not found');

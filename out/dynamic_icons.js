@@ -65,7 +65,6 @@ async function loadTickChange() {
     const enableDynamicLoadTickChange = vscode_1.workspace.getConfiguration().get('mc-dp-icons.enableLoadTickAutoChange');
     if (enableDynamicLoadTickChange) {
         const [loadNames, tickNames] = await findReference() || [];
-        console.log('load and tick names: ' + loadNames, tickNames);
         loadNames?.forEach((loadName) => {
             modifyTheme(['fileNames', loadName], "mcf_load");
         });
@@ -109,8 +108,8 @@ async function modifyTheme(keyName, value) {
     }
     fs.writeFileSync(themePath, JSON.stringify(themeObject, null, 2), 'utf8');
 }
-// Convert fs.readFile into Promise version to use with async/await
 const readFile = util_1.default.promisify(fs.readFile);
+// Returns two arrays with mcfunction names of load and tick functions
 async function findReference() {
     const tickReference = await vscode.workspace.findFiles('**/tick.json', '**/node_modules/**');
     const loadReference = await vscode.workspace.findFiles('**/load.json', '**/node_modules/**');
@@ -118,12 +117,12 @@ async function findReference() {
         let loadNames = [];
         let tickNames = [];
         for (let i = 0; i < loadReference.length; i++) {
-            let loadValue = loadReference[i];
-            loadNames.push(await convertMcfunctionIdToFilename(loadValue));
+            let loadValue = await convertMcfunctionIdToFilename(loadReference[i]);
+            loadNames = [...loadNames, ...loadValue];
         }
         for (let i = 0; i < tickReference.length; i++) {
-            let tickValue = tickReference[i];
-            tickNames.push(await convertMcfunctionIdToFilename(tickValue));
+            let tickValue = await convertMcfunctionIdToFilename(tickReference[i]);
+            tickNames = [...tickNames, ...tickValue];
         }
         return [loadNames, tickNames];
     }

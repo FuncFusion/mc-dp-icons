@@ -38,7 +38,6 @@ async function loadTickChange() {
 	const enableDynamicLoadTickChange = workspace.getConfiguration().get<boolean>('mc-dp-icons.enableLoadTickAutoChange');
 	if (enableDynamicLoadTickChange) {
 		const [loadNames, tickNames] = await findReference() || [];
-		console.log('load and tick names: ' + loadNames, tickNames);
 		loadNames?.forEach((loadName: string) => {
 			modifyTheme(['fileNames', loadName], "mcf_load");
 		});
@@ -91,12 +90,12 @@ async function findReference() {
 		let loadNames: string[] = [];
 		let tickNames: string[] = [];
 		for (let i = 0; i < loadReference.length; i++) {
-			let loadValue = loadReference[i];
-			loadNames.push(await convertMcfunctionIdToFilename(loadValue));
+			let loadValue = await convertMcfunctionIdToFilename(loadReference[i]);
+			loadNames = [...loadNames, ...loadValue];
 		}
 		for (let i = 0; i < tickReference.length; i++) {
-			let tickValue = tickReference[i];
-			tickNames.push(await convertMcfunctionIdToFilename(tickValue));
+			let tickValue = await convertMcfunctionIdToFilename(tickReference[i]);
+			tickNames = [...tickNames, ...tickValue];
 		}
 		return [loadNames, tickNames];
 	} else {
@@ -127,7 +126,7 @@ async function deleteTempIconDefinitions() {
 :arg file: tick.json | load.json file path
 :return: An array of tick & load MCfunctions file names
 */
-async function convertMcfunctionIdToFilename(file: vscode.Uri) {
+async function convertMcfunctionIdToFilename(file: vscode.Uri): Promise<string[]> {
 	const tickJsonPath = file.fsPath;
 	const removeNamespaceFromMCfunctionID = (input: string) => { return input.split(':')[1]; };
 

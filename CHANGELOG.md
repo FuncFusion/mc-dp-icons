@@ -2,6 +2,10 @@
 
 All notable changes to the "mc-dp-icons" extension will be documented in this file.
 
+## [3.0.1] - Bug fix (2024-01-03)
+- Fixed a bug where if a user had only one tick.json/load.json file, but not both of them, dynamic functions' icon change wouldn't work
+- Changed the logo of the extension from christmas variant to a usual one
+
 ## [3.0.0] - Programming Update (2023-12-31)
 #### The total amount of icons now is 123, 118 of them are in use
 ### Added

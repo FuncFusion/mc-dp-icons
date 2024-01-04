@@ -2,12 +2,12 @@
   "name": "mc-dp-icons",
   "displayName": "Datapack Icons",
   "description": "A fancy, minecraft-styled icon theme, designed specifically for datapack devs.",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "publisher": "SuperAnt",
   "author": {
     "name": "SuperAnt_"
   },
-  "icon": "assets/3.0/logo_christmas.png",
+  "icon": "assets/2.0/logo.png",
   "galleryBanner": {
     "color": "#313338",
     "theme": "dark"

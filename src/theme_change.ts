@@ -26,9 +26,6 @@ export function checkPackMcmeta() {
 			if (packMcmetaExists) {
 				vscode.workspace.getConfiguration('workbench')
 					.update('iconTheme', 'mc-dp-icons', vscode.ConfigurationTarget.Workspace);
-			} else if (defaultIconTheme) {
-				vscode.workspace.getConfiguration('workbench')
-					.update('iconTheme', defaultIconTheme, vscode.ConfigurationTarget.Workspace);
 			}
 		});
 	}

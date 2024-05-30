@@ -27,6 +27,7 @@ exports.checkPackMcmeta = exports.getDefaultIconTheme = void 0;
 const vscode = __importStar(require("vscode"));
 const vscode_1 = require("vscode");
 let defaultIconTheme;
+let currentIconTheme;
 function getDefaultIconTheme() {
     let configIconTheme = vscode_1.workspace.getConfiguration().get('mc-dp-icons.setDefaultIconTheme');
     if (configIconTheme === "") {
@@ -52,7 +53,7 @@ function checkPackMcmeta() {
                 vscode.workspace.getConfiguration('workbench')
                     .update('iconTheme', 'mc-dp-icons', vscode.ConfigurationTarget.Workspace);
             }
-            else if (defaultIconTheme) {
+            else if (vscode.workspace.getConfiguration('workbench').get('iconTheme') === "mc-dp-icons") {
                 vscode.workspace.getConfiguration('workbench')
                     .update('iconTheme', defaultIconTheme, vscode.ConfigurationTarget.Workspace);
             }

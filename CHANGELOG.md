@@ -2,6 +2,15 @@
 
 All notable changes to the "mc-dp-icons" extension will be documented in this file.
 
+## [3.1.0] - 1.21 Update (2024-01-06)
+#### The total amount of icons now is 136, 128 of them are in use
+### Added
+- 10 new icons, including icons for new 1.21 datapack folders.
+- 1.21 renamed datapack folders (advancements -> advancement etc.) now are also supported.
+### Changed
+- 3 icons has changed their appearance: `.vscode` folder, `.vscodeignore` files and vscode files. Their old versions are still in the repo but are being unused.
+- Fixed a bug where `.vscode` folder will appear in unnecessary cases.
+
 ## [3.0.1] - Bug fix (2024-01-03)
 - Fixed a bug where if a user had only one tick.json/load.json file, but not both of them, dynamic functions' icon change wouldn't work
 - Changed the logo of the extension from christmas variant to a usual one

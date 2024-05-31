@@ -105,6 +105,33 @@
     "trim_material": {
       "iconPath": "./imgs/trim_material_file.svg"
     },
+    "banner_pattern_open": {
+      "iconPath": "./imgs/banner_pattern.svg"
+    },
+    "banner_pattern_json": {
+      "iconPath": "./imgs/banner_pattern_json.svg"
+    },
+    "enchantment_open": {
+      "iconPath": "./imgs/enchantment.svg"
+    },
+    "enchantment_json": {
+      "iconPath": "./imgs/enchantment_json.svg"
+    },
+    "jukebox_song_open": {
+      "iconPath": "./imgs/jukebox_song.svg"
+    },
+    "jukebox_song_json": {
+      "iconPath": "./imgs/jukebox_song_json.svg"
+    },
+    "painting_variant_open": {
+      "iconPath": "./imgs/painting_variant.svg"
+    },
+    "wolf_variant_open": {
+      "iconPath": "./imgs/wolf_variant.svg"
+    },
+    "wolf_variant_json": {
+      "iconPath": "./imgs/wolf_variant_json.svg"
+    },
     "image": {
       "iconPath": "./imgs/painting.svg"
     },
@@ -361,7 +388,9 @@
   "folderNames": {
     "data": "data",
     "assets": "assets",
-    "src": "src"
+    "src": "src",
+    "ant": "namespace",
+    "minecraft": "namespace"
   },
   "folderNamesExpanded": {
     "data": "data_open",
@@ -387,6 +416,12 @@
     "item_modifier": "item_modifiers_open",
     "trim_pattern": "trim_pattern_open",
     "trim_material": "trim_material_open",
+    "banner_pattern": "banner_pattern_open",
+    "enchantment": "enchantment_open",
+    "enchantment_provider": "enchantment_open",
+    "jukebox_song": "jukebox_song_open",
+    "painting_variant": "painting_variant_open",
+    "wolf_variant": "wolf_variant_open",
     "assets": "assets_open",
     "particles": "particles_open",
     "shaders": "shaders_open",
@@ -401,7 +436,9 @@
     ".vscode": "dot_vscode",
     "__pycache__": "pycache",
     "datapacks": "datapacks_open",
-    "src": "src_open"
+    "src": "src_open",
+    "ant": "namespace_open",
+    "minecraft": "namespace_open"
   },
   "fileExtensions": {
     "mcfunction": "mcf",
@@ -672,7 +709,13 @@
     "predicates/json": "predicate",
     "predicate/json": "predicate",
     "trim_material/json": "trim_material",
-    "trim_pattern/json": "trim_pattern"
+    "trim_pattern/json": "trim_pattern",
+    "banner_pattern/json": "banner_pattern_json",
+    "enchantment/json": "enchantment_json",
+    "enchantment_provider/json": "enchantment_json",
+    "jukebox_song/json": "jukebox_song_json",
+    "painting_variant/json": "image",
+    "wolf_variant/json": "wolf_variant_json"
   },
   "fileNames": {
     "pack.mcmeta": "pack_mcmeta",

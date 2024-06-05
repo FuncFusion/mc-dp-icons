@@ -3,14 +3,16 @@
 All notable changes to the "mc-dp-icons" extension will be documented in this file.
 
 ## [3.1.0] - 1.21 Update (2024-01-06)
-#### The total amount of icons now is 137, 128 of them are in use
+#### The total amount of icons now is 136, 127 of them are in use
 ### Added
 - 10 new icons, including icons for new 1.21 datapack folders.
 - 1.21 renamed datapack folders (advancements -> advancement etc.) now are also supported.
 ### Changed
-- 3 vscode icons has changed their appearance: `.vscode` folder, `.vscodeignore` files and vscode files. Their old versions are still in the repo but are being unused.
+- 3 vscode icons has changed their appearance: `.vscode` folder, `.vscodeignore` files and vscode files to match the style. Their old versions are still in the repo but are being unused.
 - License icon has been changed to a trial key.
 - Fixed a bug where `.vscode` folder will appear in unnecessary cases.
+### Deleted
+- Enchanted book icon, as it was unused and now replaced by a better enchanted book icon for `enchantment` in datapacks
 
 ## [3.0.1] - Bug fix (2024-01-03)
 - Fixed a bug where if a user had only one tick.json/load.json file, but not both of them, dynamic functions' icon change wouldn't work

@@ -18,9 +18,9 @@ Made by SuperAnt_: https://www.youtube.com/watch?v=eYAvg19stpU
 [![Trailer](https://img.youtube.com/vi/eYAvg19stpU/0.jpg)](https://www.youtube.com/watch?v=eYAvg19stpU)
 
 ## Icons
-![Icons](assets/3.0/IconsDatapacks.png)
+![Icons](assets/4.0/IconsDatapacks.png)
 ![Icons](assets/3.0/IconsResourcepacks.png)
-![Icons](assets/3.0/IconsProgramming.png)
+![Icons](assets/4.0/IconsProgramming.png)
 
 ## Dynamic Icons
 ### Namespace Icons
@@ -99,12 +99,14 @@ Most of the programming icons don't need an explanation, but there are a few exc
 
 ---
 ## Creators
+We are [FuncFusion](https://github.com/FuncFusion) - a small team of three:
+
 [SuperAnt_](## "super.ant_ on discord") - Came up with the initial idea, made the extension
 
 [bth123](https://github.com/bth123) - Made all the icons and illustrations, also made a [sublime port](https://github.com/bth123/mc-dp-icons-sublime) of this extension
 
-[amandin](https://github.com/amawdiin) - Our PR-manager, coded most of the dynamic icons features, included this extension in his [amazing extension collection](https://marketplace.visualstudio.com/items?itemName=amandin.dpc-pack)
+[amandin](https://github.com/amawdiin) - Coded most of the dynamic icons features, included this extension in his [amazing extension collection](https://marketplace.visualstudio.com/items?itemName=amandin.dpc-pack)
 
-![Creators](assets/3.0/Creators.png)
+![Creators](assets/4.0/Creators.png)
 
 **Enjoy!**

@@ -697,6 +697,7 @@
     "blockstates/json": "blockstate",
     "font/json": "ttf",
     "lang/json": "lang",
+    "lang": "lang",
     "particles/json": "particle",
     "recipes/json": "recipe",
     "recipe/json": "recipe",

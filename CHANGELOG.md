@@ -6,7 +6,7 @@ All notable changes to the "mc-dp-icons" extension will be documented in this fi
 #### The total amount of icons now is 136, 127 of them are in use
 ### Added
 - 10 new icons, including icons for new 1.21 datapack folders.
-- 1.21 renamed datapack folders (advancements -> advancement etc.) now are also supported.
+- 1.21 renamed datapack folders (advancements -> advancement etc.) are now also supported.
 ### Changed
 - 3 vscode icons has changed their appearance: `.vscode` folder, `.vscodeignore` files and vscode files to match the style. Their old versions are still in the repo but are being unused.
 - License icon has been changed to a trial key.

@@ -1,6 +1,9 @@
 # Change Log
 
 All notable changes to the "mc-dp-icons" extension will be documented in this file.
+## [3.1.1] - Minor fixes (2024-13-06)
+- Pack mcmeta check feature is now disabled by default.
+- [Issue 5](https://github.com/FuncFusion/mc-dp-icons/issues/5) regarding .JSX and .TSX files having incorrect icons fixed.
 
 ## [3.1.0] - 1.21 Update (2024-01-06)
 #### The total amount of icons now is 136, 127 of them are in use

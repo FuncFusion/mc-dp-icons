@@ -79,7 +79,7 @@
           "mc-dp-icons.enablePackMcmetaCheck": {
             "type": "boolean",
             "title": "Enable pack.mcmeta check",
-            "default": true,
+            "default": false,
             "markdownDescription": "If enabled, the extension will check for `pack.mcmeta` in the workspace to set the theme to `mc-dp-icons`. If there is no `pack.mcmeta` in the workspace, icon theme will change to default one used.\nThis check happens every time on extension startup, on changing workspace folder, on renaming, creating and deleting files."
           },
           "mc-dp-icons.setDefaultIconTheme": {

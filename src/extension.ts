@@ -18,11 +18,10 @@ export function activate(context: vscode.ExtensionContext) {
 				DynamicIcons.update();
 			}
 		}),
-		vscode.workspace.onDidChangeConfiguration(()=>{DynamicIcons.update(); ThemeChange.getDefaultIconTheme();})
+		vscode.workspace.onDidChangeConfiguration(()=> {DynamicIcons.update();})
 	);
 
 	// Calling these functions on startup
-	ThemeChange.getDefaultIconTheme();
 	ThemeChange.checkPackMcmeta();
 	DynamicIcons.update();
 

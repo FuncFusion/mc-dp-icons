@@ -380,6 +380,24 @@
     },
     "src_open": {
       "iconPath": "./imgs/src_open.svg"
+    },
+    "ajmeta": {
+      "iconPath": "./imgs/ajmeta.svg"
+    },
+    "svelte": {
+      "iconPath": "./imgs/svelte.svg"
+    },
+    "blocks_json": {
+      "iconPath": "./imgs/blocks_json.svg"
+    },
+    "entity": {
+      "iconPath": "./imgs/entity.svg"
+    },
+    "block": {
+      "iconPath": "./imgs/block.svg"
+    },
+    "ui_json": {
+      "iconPath": "./imgs/ui_json.svg"
     }
   },
   "file": "misc",
@@ -388,9 +406,7 @@
   "folderNames": {
     "data": "data",
     "assets": "assets",
-    "src": "src",
-    "ant": "namespace",
-    "minecraft": "namespace"
+    "src": "src"
   },
   "folderNamesExpanded": {
     "data": "data_open",
@@ -414,6 +430,7 @@
     "chat_type": "chat_type_open",
     "item_modifiers": "item_modifiers_open",
     "item_modifier": "item_modifiers_open",
+    "items": "item_modifiers_open",
     "trim_pattern": "trim_pattern_open",
     "trim_material": "trim_material_open",
     "banner_pattern": "banner_pattern_open",
@@ -437,8 +454,7 @@
     "__pycache__": "pycache",
     "datapacks": "datapacks_open",
     "src": "src_open",
-    "ant": "namespace_open",
-    "minecraft": "namespace_open"
+    "attachables": "trim_pattern_open"
   },
   "fileExtensions": {
     "mcfunction": "mcf",
@@ -448,6 +464,7 @@
     "jsonl": "json",
     "ndjson": "json",
     "nbt": "nbt",
+    "mcstructure": "nbt",
     "md": "md",
     "markdown": "md",
     "rst": "md",
@@ -529,6 +546,7 @@
     "vscodeignore": "vscodeignore",
     "py": "python",
     "pyw": "python",
+    "ipynb": "python",
     "pyc": "pycd",
     "pyd": "pycd",
     "whl": "pycd",
@@ -549,6 +567,7 @@
     "�": "mojo",
     "js": "js",
     "mjs": "js",
+    "cjs": "js",
     "ts": "ts",
     "re": "re",
     "jsx": "js",
@@ -693,6 +712,10 @@
     "skp": "bbmodel",
     "vox": "bbmodel",
     "dae": "bbmodel",
+    "ajmeta": "ajmeta",
+    "ajmodel": "ajmeta",
+    "ajblueprint": "ajmeta",
+    "svelte": "svelte",
     "atlases/json": "atlas",
     "blockstates/json": "blockstate",
     "font/json": "ttf",
@@ -716,11 +739,18 @@
     "enchantment_provider/json": "enchantment_json",
     "jukebox_song/json": "jukebox_song_json",
     "painting_variant/json": "image",
-    "wolf_variant/json": "wolf_variant_json"
+    "wolf_variant/json": "wolf_variant_json",
+    "entities/json": "entity",
+    "items/json": "item_modifier",
+    "blocks/json": "block",
+    "ui/json": "ui_json",
+    "attachables/json": "trim_pattern"
   },
   "fileNames": {
     "pack.mcmeta": "pack_mcmeta",
+    "manifest.json": "pack_mcmeta",
     "sounds.json": "sounds.json",
+    "blocks.json": "blocks_json",
     "LICENSE": "license",
     "LICENSE.txt": "license",
     "LICENSE.md": "license",

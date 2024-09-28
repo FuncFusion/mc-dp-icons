@@ -18,9 +18,9 @@ Made by SuperAnt_: https://www.youtube.com/watch?v=eYAvg19stpU
 [![Trailer](https://img.youtube.com/vi/eYAvg19stpU/0.jpg)](https://www.youtube.com/watch?v=eYAvg19stpU)
 
 ## Icons
-![Icons](assets/4.0/IconsDatapacks.png)
+![Icons](assets/3.1/IconsDatapacks.png)
 ![Icons](assets/3.0/IconsResourcepacks.png)
-![Icons](assets/4.0/IconsProgramming.png)
+![Icons](assets/3.1/IconsProgramming.png)
 
 ## Dynamic Icons
 ### Namespace Icons
@@ -107,6 +107,6 @@ We are [FuncFusion](https://github.com/FuncFusion) - a small team of three:
 
 [amandin](https://github.com/amawdiin) - Coded most of the dynamic icons features, included this extension in his [amazing extension collection](https://marketplace.visualstudio.com/items?itemName=amandin.dpc-pack)
 
-![Creators](assets/4.0/Creators.png)
+![Creators](assets/3.1/Creators.png)
 
 **Enjoy!**

@@ -93,16 +93,16 @@
     "item_modifier": {
       "iconPath": "./imgs/item_modifier.svg"
     },
-    "trim_pattern_open": {
+    "trim_pattern": {
       "iconPath": "./imgs/trim_pattern.svg"
     },
-    "trim_pattern": {
+    "trim_pattern_file": {
       "iconPath": "./imgs/trim_pattern_file.svg"
     },
-    "trim_material_open": {
+    "trim_material": {
       "iconPath": "./imgs/trim_material.svg"
     },
-    "trim_material": {
+    "trim_material_file": {
       "iconPath": "./imgs/trim_material_file.svg"
     },
     "banner_pattern_open": {
@@ -387,17 +387,92 @@
     "svelte": {
       "iconPath": "./imgs/svelte.svg"
     },
-    "blocks_json": {
-      "iconPath": "./imgs/blocks_json.svg"
+    "instrument": {
+      "iconPath": "./imgs/instrument.svg"
     },
-    "entity": {
-      "iconPath": "./imgs/entity.svg"
+    "instrument_file": {
+      "iconPath": "./imgs/instrument_file.svg"
     },
-    "block": {
-      "iconPath": "./imgs/block.svg"
+    "animations": {
+      "iconPath": "./imgs/animations.svg"
     },
-    "ui_json": {
-      "iconPath": "./imgs/ui_json.svg"
+    "animations_file": {
+      "iconPath": "./imgs/animations_file.svg"
+    },
+    "attachables": {
+      "iconPath": "./imgs/attachables.svg"
+    },
+    "attachables_file": {
+      "iconPath": "./imgs/attachables_file.svg"
+    },
+    "block_culling": {
+      "iconPath": "./imgs/block_culling.svg"
+    },
+    "block_culling_file": {
+      "iconPath": "./imgs/block_culling_file.svg"
+    },
+    "blocks": {
+      "iconPath": "./imgs/blocks.svg"
+    },
+    "blocks_file": {
+      "iconPath": "./imgs/blocks_file.svg"
+    },
+    "blocks.json": {
+      "iconPath": "./imgs/blocks.json.svg"
+    },
+    "cameras": {
+      "iconPath": "./imgs/cameras.svg"
+    },
+    "cameras_file": {
+      "iconPath": "./imgs/cameras_file.svg"
+    },
+    "entities": {
+      "iconPath": "./imgs/entities.svg"
+    },
+    "entities_file": {
+      "iconPath": "./imgs/entities_file.svg"
+    },
+    "equipment": {
+      "iconPath": "./imgs/equipment.svg"
+    },
+    "equipment_file": {
+      "iconPath": "./imgs/equipment_file.svg"
+    },
+    "features": {
+      "iconPath": "./imgs/features.svg"
+    },
+    "features_file": {
+      "iconPath": "./imgs/features_file.svg"
+    },
+    "fogs": {
+      "iconPath": "./imgs/fogs.svg"
+    },
+    "fogs_file": {
+      "iconPath": "./imgs/fogs_file.svg"
+    },
+    "items": {
+      "iconPath": "./imgs/items.svg"
+    },
+    "items_file": {
+      "iconPath": "./imgs/items_file.svg"
+    },
+    "spawn_rules": {
+      "iconPath": "./imgs/spawn_rules.svg"
+    },
+    "spawn_rules_file": {
+      "iconPath": "./imgs/spawn_rules_file.svg"
+    },
+    "trading": {
+      "iconPath": "./imgs/trading.svg"
+    },
+    "trading_file": {
+      "iconPath": "./imgs/trading_file.svg"
+    },
+    "ui": {
+      "iconPath": "./imgs/ui.svg"
+    },
+    "ui_file": {
+      "iconPath": "./imgs/ui_file.svg"
     }
   },
   "file": "misc",
@@ -406,7 +481,9 @@
   "folderNames": {
     "data": "data",
     "assets": "assets",
-    "src": "src"
+    "src": "src",
+    "any_namespace": "namespace",
+    "minecraft": "namespace"
   },
   "folderNamesExpanded": {
     "data": "data_open",
@@ -430,9 +507,8 @@
     "chat_type": "chat_type_open",
     "item_modifiers": "item_modifiers_open",
     "item_modifier": "item_modifiers_open",
-    "items": "item_modifiers_open",
-    "trim_pattern": "trim_pattern_open",
-    "trim_material": "trim_material_open",
+    "trim_pattern": "trim_pattern",
+    "trim_material": "trim_material",
     "banner_pattern": "banner_pattern_open",
     "enchantment": "enchantment_open",
     "enchantment_provider": "enchantment_open",
@@ -454,7 +530,24 @@
     "__pycache__": "pycache",
     "datapacks": "datapacks_open",
     "src": "src_open",
-    "attachables": "trim_pattern_open"
+    "instrument": "instrument",
+    "animations": "animations",
+    "animation_controllers": "animations",
+    "attachables": "attachables",
+    "block_culling": "block_culling",
+    "blocks": "blocks",
+    "cameras": "cameras",
+    "entities": "entities",
+    "entity": "entities",
+    "equipment": "equipment",
+    "features": "features",
+    "feature_rules": "features",
+    "dialogue": "chat_type_open",
+    "fogs": "fogs",
+    "items": "items",
+    "spawn_rules": "spawn_rules",
+    "trading": "trading",
+    "ui": "ui"
   },
   "fileExtensions": {
     "mcfunction": "mcf",
@@ -536,6 +629,7 @@
     "wma": "ogg",
     "aiff": "ogg",
     "wav": "ogg",
+    "fsb": "ogg",
     "bolt": "bolt",
     "vsix": "vsc",
     "vsixmanifest": "vsc",
@@ -732,25 +826,39 @@
     "item_modifier/json": "item_modifier",
     "predicates/json": "predicate",
     "predicate/json": "predicate",
-    "trim_material/json": "trim_material",
-    "trim_pattern/json": "trim_pattern",
+    "trim_material/json": "trim_material_file",
+    "trim_pattern/json": "trim_pattern_file",
     "banner_pattern/json": "banner_pattern_json",
     "enchantment/json": "enchantment_json",
     "enchantment_provider/json": "enchantment_json",
     "jukebox_song/json": "jukebox_song_json",
     "painting_variant/json": "image",
     "wolf_variant/json": "wolf_variant_json",
-    "entities/json": "entity",
-    "items/json": "item_modifier",
-    "blocks/json": "block",
-    "ui/json": "ui_json",
-    "attachables/json": "trim_pattern"
+    "instrument/json": "instrument_file",
+    "animations/json": "animations_file",
+    "animation_controllers/json": "animations_file",
+    "attachables/json": "attachables_file",
+    "block_culling/json": "block_culling_file",
+    "blocks/json": "blocks_file",
+    "presets/json": "cameras_file",
+    "entities/json": "entities_file",
+    "entity/json": "entities_file",
+    "equipment/json": "equipment_file",
+    "features/json": "features_file",
+    "feature_rules/json": "features_file",
+    "fogs/json": "fogs_file",
+    "items/json": "items_file",
+    "spawn_rules/json": "spawn_rules_file",
+    "trading/json": "trading_file",
+    "ui/json": "ui_file",
+    "models/json": "bbmodel",
+    "mcmeta": "animations_file"
   },
   "fileNames": {
     "pack.mcmeta": "pack_mcmeta",
     "manifest.json": "pack_mcmeta",
     "sounds.json": "sounds.json",
-    "blocks.json": "blocks_json",
+    "blocks.json": "blocks.json",
     "LICENSE": "license",
     "LICENSE.txt": "license",
     "LICENSE.md": "license",

@@ -57,7 +57,7 @@ async function subfolderIcon() {
 	Object.entries(subfolders).forEach(([key, value]) => {
 		value.forEach((fileName: string) => {
 			const fileIcon = subfolderNames[key];
-			fileName = fileName.replace("\\", "/");
+			fileName = fileName.replace(/\\/g, "/");
 			modifyTheme(["fileNames", fileName], fileIcon);
 			console.log(`"${fileName}": "${fileIcon}"`);
 		});

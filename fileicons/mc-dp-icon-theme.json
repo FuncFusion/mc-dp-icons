@@ -485,8 +485,7 @@
     "any_namespace": "namespace",
     "minecraft": "namespace",
     "global": "namespace",
-    "ml_cam": "namespace",
-    "ml_ces": "namespace"
+    "ml_cam": "namespace"
   },
   "folderNamesExpanded": {
     "data": "data_open",
@@ -553,8 +552,7 @@
     "ui": "ui",
     "global": "namespace_open",
     "minecraft": "namespace_open",
-    "ml_cam": "namespace_open",
-    "ml_ces": "namespace_open"
+    "ml_cam": "namespace_open"
   },
   "fileExtensions": {
     "mcfunction": "mcf",
@@ -881,12 +879,8 @@
     "beet.yml": "beet",
     "display/datapack.json": "pack_mcmeta",
     "display/root.json": "pack_mcmeta",
-    "player/attack.json": "pack_mcmeta",
-    "player/init.json": "pack_mcmeta",
-    "player/interact.json": "pack_mcmeta",
-    "player/kill.json": "pack_mcmeta",
-    "player/look_at.json": "pack_mcmeta",
-    "player/look_away.json": "pack_mcmeta",
+    "display/sub/sub/test.json": "pack_mcmeta",
+    "sub/sub/sub/test.json": "pack_mcmeta",
     "system/load.mcfunction": "mcf_load",
     "system/tick.mcfunction": "mcf_tick"
   },

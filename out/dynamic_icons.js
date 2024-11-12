@@ -281,7 +281,11 @@ function getFilesInDirectory(directory) {
                 searchSubdirectory(fullPath, filePath);
             }
             else {
-                files.push(filePath); // Add relative path for the file
+                const pathSegments = filePath.split(path.sep);
+                const shortenedPath = pathSegments.length > 2
+                    ? pathSegments.slice(-2).join(path.sep)
+                    : filePath;
+                files.push(shortenedPath.replace(/\\/g, "/"));
             }
         });
     }

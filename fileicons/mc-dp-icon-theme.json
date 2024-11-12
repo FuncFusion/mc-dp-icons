@@ -484,7 +484,6 @@
     "src": "src",
     "any_namespace": "namespace",
     "minecraft": "namespace",
-    "global": "namespace",
     "ml_cam": "namespace"
   },
   "folderNamesExpanded": {
@@ -550,8 +549,6 @@
     "spawn_rules": "spawn_rules",
     "trading": "trading",
     "ui": "ui",
-    "global": "namespace_open",
-    "minecraft": "namespace_open",
     "ml_cam": "namespace_open"
   },
   "fileExtensions": {
@@ -877,12 +874,8 @@
     "beet.json": "beet",
     "beet.yaml": "beet",
     "beet.yml": "beet",
-    "display/datapack.json": "pack_mcmeta",
-    "display/root.json": "pack_mcmeta",
-    "display/sub/sub/test.json": "pack_mcmeta",
-    "sub/sub/sub/test.json": "pack_mcmeta",
-    "system/load.mcfunction": "mcf_load",
-    "system/tick.mcfunction": "mcf_tick"
+    "display/test.json": "pack_mcmeta",
+    "sub/test.json": "pack_mcmeta"
   },
   "hidesExplorerArrows": false
 }

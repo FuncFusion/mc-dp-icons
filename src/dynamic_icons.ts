@@ -304,6 +304,7 @@ async function subfolderReference(): Promise<{ [key: string]: string[] }> {
 }
 
 // Helper function to retrieve all files in a directory and its subdirectories
+
 function getFilesInDirectory(directory: string): string[] {
 	const files: string[] = [];
 
@@ -317,7 +318,13 @@ function getFilesInDirectory(directory: string): string[] {
 			if (entry.isDirectory()) {
 				searchSubdirectory(fullPath, filePath);
 			} else {
-				files.push(filePath); // Add relative path for the file
+				const pathSegments = filePath.split(path.sep);
+				const shortenedPath =
+					pathSegments.length > 2
+						? pathSegments.slice(-2).join(path.sep)
+						: filePath;
+
+				files.push(shortenedPath.replace(/\\/g, "/"));
 			}
 		});
 	}

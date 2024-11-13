@@ -5,8 +5,8 @@ import util from "util";
 import { workspace } from "vscode";
 
 const subfolderNames: Record<string, string> = {
-	advancements: "pack_mcmeta",
-	advancement: "pack_mcmeta",
+	advancements: "pack.mcmeta",
+	advancement: "pack.mcmeta",
 };
 
 // This function is called in extension.ts

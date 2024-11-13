@@ -1,13 +1,13 @@
 {
   "iconDefinitions": {
     "mcf": {
-      "iconPath": "./imgs/cb_chain.svg"
+      "iconPath": "./imgs/mcf.svg"
     },
     "mcf_tick": {
-      "iconPath": "./imgs/cb_repeat.svg"
+      "iconPath": "./imgs/mcf_tick.svg"
     },
     "mcf_load": {
-      "iconPath": "./imgs/cb.svg"
+      "iconPath": "./imgs/mcf_load.svg"
     },
     "json": {
       "iconPath": "./imgs/json.svg"
@@ -18,80 +18,80 @@
     "load.json": {
       "iconPath": "./imgs/load.json.svg"
     },
-    "nbt": {
-      "iconPath": "./imgs/structure_block.svg"
+    "structure_file": {
+      "iconPath": "./imgs/structure_file.svg"
     },
     "folder": {
-      "iconPath": "./imgs/chest.svg"
+      "iconPath": "./imgs/folder.svg"
     },
     "folder_open": {
-      "iconPath": "./imgs/chest_open.svg"
+      "iconPath": "./imgs/folder_open.svg"
     },
     "data": {
-      "iconPath": "./imgs/shulker.svg"
+      "iconPath": "./imgs/data.svg"
     },
     "data_open": {
-      "iconPath": "./imgs/shulker_open.svg"
+      "iconPath": "./imgs/data_open.svg"
     },
-    "functions_open": {
-      "iconPath": "./imgs/functions.svg"
+    "function": {
+      "iconPath": "./imgs/function.svg"
     },
-    "loot_tables_open": {
-      "iconPath": "./imgs/loot_tables.svg"
-    },
-    "dimension_open": {
-      "iconPath": "./imgs/dimension.svg"
+    "loot_table": {
+      "iconPath": "./imgs/loot_table.svg"
     },
     "dimension": {
+      "iconPath": "./imgs/dimension.svg"
+    },
+    "dimension_file": {
       "iconPath": "./imgs/dimension_file.svg"
     },
-    "dimension_type_open": {
+    "dimension_type": {
       "iconPath": "./imgs/dimension_type.svg"
     },
-    "dimension_type": {
+    "dimension_type_file": {
       "iconPath": "./imgs/dimension_type_file.svg"
-    },
-    "recipes_open": {
-      "iconPath": "./imgs/recipes.svg"
     },
     "recipe": {
       "iconPath": "./imgs/recipe.svg"
     },
-    "damage_type_open": {
-      "iconPath": "./imgs/damage_type.svg"
+    "recipe_file": {
+      "iconPath": "./imgs/recipe_file.svg"
     },
     "damage_type": {
+      "iconPath": "./imgs/damage_type.svg"
+    },
+    "damage_type_file": {
       "iconPath": "./imgs/damage_type_file.svg"
     },
-    "structures_open": {
-      "iconPath": "./imgs/structures.svg"
+    "structure": {
+      "iconPath": "./imgs/structure.svg"
     },
-    "advancements_open": {
-      "iconPath": "./imgs/advancements.svg"
+    "advancement": {
+      "iconPath": "./imgs/advancement.svg"
     },
-    "tags_open": {
+    "tags": {
       "iconPath": "./imgs/tags.svg"
     },
-    "worldgen_open": {
+    "worldgen": {
       "iconPath": "./imgs/worldgen.svg"
-    },
-    "predicates_open": {
-      "iconPath": "./imgs/predicates.svg"
     },
     "predicate": {
       "iconPath": "./imgs/predicate.svg"
     },
-    "chat_type_open": {
-      "iconPath": "./imgs/chat_type.svg"
+    "predicate_file": {
+      "iconPath": "./imgs/predicate_file.svg"
     },
     "chat_type": {
-      "iconPath": "./imgs/chat_type_file.svg"
+      "iconPath": "./imgs/chat_type.svg"
     },
-    "item_modifiers_open": {
-      "iconPath": "./imgs/item_modifiers.svg"
+    "chat_type_file": {
+      "iconPath": "./imgs/chat_type_file.svg"
     },
     "item_modifier": {
       "iconPath": "./imgs/item_modifier.svg"
+    },
+    "item_modifier_file": {
+      "iconPath": "./imgs/item_modifier_file.svg"
     },
     "trim_pattern": {
       "iconPath": "./imgs/trim_pattern.svg"
@@ -105,38 +105,38 @@
     "trim_material_file": {
       "iconPath": "./imgs/trim_material_file.svg"
     },
-    "banner_pattern_open": {
+    "banner_pattern": {
       "iconPath": "./imgs/banner_pattern.svg"
     },
-    "banner_pattern_json": {
-      "iconPath": "./imgs/banner_pattern_json.svg"
+    "banner_pattern_file": {
+      "iconPath": "./imgs/banner_pattern_file.svg"
     },
-    "enchantment_open": {
+    "enchantment": {
       "iconPath": "./imgs/enchantment.svg"
     },
-    "enchantment_json": {
-      "iconPath": "./imgs/enchantment_json.svg"
+    "enchantment_file": {
+      "iconPath": "./imgs/enchantment_file.svg"
     },
-    "jukebox_song_open": {
+    "jukebox_song": {
       "iconPath": "./imgs/jukebox_song.svg"
     },
-    "jukebox_song_json": {
-      "iconPath": "./imgs/jukebox_song_json.svg"
+    "jukebox_song_file": {
+      "iconPath": "./imgs/jukebox_song_file.svg"
     },
-    "painting_variant_open": {
+    "painting_variant": {
       "iconPath": "./imgs/painting_variant.svg"
     },
-    "wolf_variant_open": {
+    "wolf_variant": {
       "iconPath": "./imgs/wolf_variant.svg"
     },
-    "wolf_variant_json": {
-      "iconPath": "./imgs/wolf_variant_json.svg"
+    "wolf_variant_file": {
+      "iconPath": "./imgs/wolf_variant_file.svg"
     },
     "image": {
       "iconPath": "./imgs/painting.svg"
     },
-    "pack_mcmeta": {
-      "iconPath": "./imgs/pack_mcmeta.svg"
+    "pack.mcmeta": {
+      "iconPath": "./imgs/pack.mcmeta.svg"
     },
     "md": {
       "iconPath": "./imgs/md.svg"
@@ -159,47 +159,47 @@
     "assets_open": {
       "iconPath": "./imgs/assets_open.svg"
     },
-    "particles_open": {
+    "particles": {
       "iconPath": "./imgs/particles.svg"
     },
-    "particle": {
-      "iconPath": "./imgs/particle.svg"
+    "particles_file": {
+      "iconPath": "./imgs/particles_file.svg"
     },
-    "shaders_open": {
+    "shaders": {
       "iconPath": "./imgs/shaders.svg"
     },
-    "textures_open": {
+    "textures": {
       "iconPath": "./imgs/textures.svg"
     },
-    "font_open": {
+    "font": {
       "iconPath": "./imgs/font.svg"
     },
-    "models_open": {
+    "models": {
       "iconPath": "./imgs/models.svg"
     },
-    "blockstates_open": {
+    "blockstates": {
       "iconPath": "./imgs/blockstates.svg"
     },
-    "blockstate": {
-      "iconPath": "./imgs/blockstate.svg"
-    },
-    "lang_open": {
-      "iconPath": "./imgs/lang.svg"
+    "blockstates_file": {
+      "iconPath": "./imgs/blockstates_file.svg"
     },
     "lang": {
+      "iconPath": "./imgs/lang.svg"
+    },
+    "lang_file": {
       "iconPath": "./imgs/lang_file.svg"
     },
-    "texts_open": {
+    "texts": {
       "iconPath": "./imgs/texts.svg"
     },
-    "sounds_open": {
+    "sounds": {
       "iconPath": "./imgs/sounds.svg"
     },
-    "atlases_open": {
+    "atlases": {
       "iconPath": "./imgs/atlases.svg"
     },
-    "atlas": {
-      "iconPath": "./imgs/atlas.svg"
+    "atlases_file": {
+      "iconPath": "./imgs/atlases_file.svg"
     },
     "sounds.json": {
       "iconPath": "./imgs/sounds.json.svg"
@@ -322,10 +322,10 @@
       "iconPath": "./imgs/pdf.svg"
     },
     "namespace_open": {
-      "iconPath": "./imgs/folder_namespace_opened.svg"
+      "iconPath": "./imgs/namespace_open.svg"
     },
     "namespace": {
-      "iconPath": "./imgs/folder_namespace.svg"
+      "iconPath": "./imgs/namespace.svg"
     },
     "jmc": {
       "iconPath": "./imgs/jmc.svg"
@@ -372,8 +372,8 @@
     "assembly": {
       "iconPath": "./imgs/assembly.svg"
     },
-    "bbmodel": {
-      "iconPath": "./imgs/bbmodel.svg"
+    "models_file": {
+      "iconPath": "./imgs/models_file.svg"
     },
     "src": {
       "iconPath": "./imgs/src.svg"
@@ -481,52 +481,49 @@
   "folderNames": {
     "data": "data",
     "assets": "assets",
-    "src": "src",
-    "any_namespace": "namespace",
-    "minecraft": "namespace",
-    "ml_cam": "namespace"
+    "src": "src"
   },
   "folderNamesExpanded": {
     "data": "data_open",
-    "functions": "functions_open",
-    "function": "functions_open",
-    "loot_tables": "loot_tables_open",
-    "loot_table": "loot_tables_open",
-    "dimension": "dimension_open",
-    "dimension_type": "dimension_type_open",
-    "recipes": "recipes_open",
-    "recipe": "recipes_open",
-    "damage_type": "damage_type_open",
-    "structures": "structures_open",
-    "structure": "structures_open",
-    "advancements": "advancements_open",
-    "advancement": "advancements_open",
-    "tags": "tags_open",
-    "worldgen": "worldgen_open",
-    "predicates": "predicates_open",
-    "predicate": "predicates_open",
-    "chat_type": "chat_type_open",
-    "item_modifiers": "item_modifiers_open",
-    "item_modifier": "item_modifiers_open",
+    "functions": "function",
+    "function": "function",
+    "loot_tables": "loot_table",
+    "loot_table": "loot_table",
+    "dimension": "dimension",
+    "dimension_type": "dimension_type",
+    "recipes": "recipe",
+    "recipe": "recipe",
+    "damage_type": "damage_type",
+    "structures": "structure",
+    "structure": "structure",
+    "advancements": "advancement",
+    "advancement": "advancement",
+    "tags": "tags",
+    "worldgen": "worldgen",
+    "predicates": "predicate",
+    "predicate": "predicate",
+    "chat_type": "chat_type",
+    "item_modifiers": "item_modifier",
+    "item_modifier": "item_modifier",
     "trim_pattern": "trim_pattern",
     "trim_material": "trim_material",
-    "banner_pattern": "banner_pattern_open",
-    "enchantment": "enchantment_open",
-    "enchantment_provider": "enchantment_open",
-    "jukebox_song": "jukebox_song_open",
-    "painting_variant": "painting_variant_open",
-    "wolf_variant": "wolf_variant_open",
+    "banner_pattern": "banner_pattern",
+    "enchantment": "enchantment",
+    "enchantment_provider": "enchantment",
+    "jukebox_song": "jukebox_song",
+    "painting_variant": "painting_variant",
+    "wolf_variant": "wolf_variant",
     "assets": "assets_open",
-    "particles": "particles_open",
-    "shaders": "shaders_open",
-    "textures": "textures_open",
-    "font": "font_open",
-    "models": "models_open",
-    "blockstates": "blockstates_open",
-    "lang": "lang_open",
-    "texts": "texts_open",
-    "sounds": "sounds_open",
-    "atlases": "atlases_open",
+    "particles": "particles",
+    "shaders": "shaders",
+    "textures": "textures",
+    "font": "font",
+    "models": "models",
+    "blockstates": "blockstates",
+    "lang": "lang",
+    "texts": "texts",
+    "sounds": "sounds",
+    "atlases": "atlases",
     ".vscode": "dot_vscode",
     "__pycache__": "pycache",
     "datapacks": "datapacks_open",
@@ -548,8 +545,7 @@
     "items": "items",
     "spawn_rules": "spawn_rules",
     "trading": "trading",
-    "ui": "ui",
-    "ml_cam": "namespace_open"
+    "ui": "ui"
   },
   "fileExtensions": {
     "mcfunction": "mcf",
@@ -558,8 +554,8 @@
     "json5": "json",
     "jsonl": "json",
     "ndjson": "json",
-    "nbt": "nbt",
-    "mcstructure": "nbt",
+    "nbt": "structure_file",
+    "mcstructure": "structure_file",
     "md": "md",
     "markdown": "md",
     "rst": "md",
@@ -794,55 +790,55 @@
     "s": "assembly",
     "mitigus": "assembly",
     "wasm": "assembly",
-    "bbmodel": "bbmodel",
-    "obj": "bbmodel",
-    "gltf": "bbmodel",
-    "fbx": "bbmodel",
-    "stl": "bbmodel",
-    "stp": "bbmodel",
-    "blend": "bbmodel",
-    "dxf": "bbmodel",
-    "mesh": "bbmodel",
-    "mqo": "bbmodel",
-    "pmx": "bbmodel",
-    "skp": "bbmodel",
-    "vox": "bbmodel",
-    "dae": "bbmodel",
+    "bbmodel": "models_file",
+    "obj": "models_file",
+    "gltf": "models_file",
+    "fbx": "models_file",
+    "stl": "models_file",
+    "stp": "models_file",
+    "blend": "models_file",
+    "dxf": "models_file",
+    "mesh": "models_file",
+    "mqo": "models_file",
+    "pmx": "models_file",
+    "skp": "models_file",
+    "vox": "models_file",
+    "dae": "models_file",
     "ajmeta": "ajmeta",
     "ajmodel": "ajmeta",
     "ajblueprint": "ajmeta",
     "svelte": "svelte",
-    "atlases/json": "atlas",
-    "blockstates/json": "blockstate",
+    "atlases/json": "atlases_file",
+    "blockstates/json": "blockstates_file",
     "font/json": "ttf",
-    "lang/json": "lang",
-    "lang": "lang",
-    "particles/json": "particle",
-    "recipes/json": "recipe",
-    "recipe/json": "recipe",
-    "chat_type/json": "chat_type",
-    "damage_type/json": "damage_type",
-    "dimension/json": "dimension",
-    "dimension_type/json": "dimension_type",
-    "item_modifiers/json": "item_modifier",
-    "item_modifier/json": "item_modifier",
-    "predicates/json": "predicate",
-    "predicate/json": "predicate",
+    "lang/json": "lang_file",
+    "lang": "lang_file",
+    "particles/json": "particle_file",
+    "recipes/json": "recipe_file",
+    "recipe/json": "recipe_file",
+    "chat_type/json": "chat_type_file",
+    "damage_type/json": "damage_type_file",
+    "dimension/json": "dimension_file",
+    "dimension_type/json": "dimension_type_file",
+    "item_modifiers/json": "item_modifier_file",
+    "item_modifier/json": "item_modifier_file",
+    "predicates/json": "predicate_file",
+    "predicate/json": "predicate_file",
     "trim_material/json": "trim_material_file",
     "trim_pattern/json": "trim_pattern_file",
-    "banner_pattern/json": "banner_pattern_json",
-    "enchantment/json": "enchantment_json",
-    "enchantment_provider/json": "enchantment_json",
-    "jukebox_song/json": "jukebox_song_json",
+    "banner_pattern/json": "banner_pattern_file",
+    "enchantment/json": "enchantment_file",
+    "enchantment_provider/json": "enchantment_file",
+    "jukebox_song/json": "jukebox_song_file",
     "painting_variant/json": "image",
-    "wolf_variant/json": "wolf_variant_json",
+    "wolf_variant/json": "wolf_variant_file",
     "instrument/json": "instrument_file",
     "animations/json": "animations_file",
     "animation_controllers/json": "animations_file",
     "attachables/json": "attachables_file",
     "block_culling/json": "block_culling_file",
     "blocks/json": "blocks_file",
-    "presets/json": "cameras_file",
+    "cameras/json": "cameras_file",
     "entities/json": "entities_file",
     "entity/json": "entities_file",
     "equipment/json": "equipment_file",
@@ -853,14 +849,17 @@
     "spawn_rules/json": "spawn_rules_file",
     "trading/json": "trading_file",
     "ui/json": "ui_file",
-    "models/json": "bbmodel",
+    "models/json": "models_file",
     "mcmeta": "animations_file"
   },
   "fileNames": {
-    "pack.mcmeta": "pack_mcmeta",
-    "manifest.json": "pack_mcmeta",
+    "pack.mcmeta": "pack.mcmeta",
+    "manifest.json": "pack.mcmeta",
     "sounds.json": "sounds.json",
+    "atlases/blocks.json": "atlases_file",
     "blocks.json": "blocks.json",
+    "language.json": "lang_file",
+    "textures/terrain_texture.json": "atlas",
     "LICENSE": "license",
     "LICENSE.txt": "license",
     "LICENSE.md": "license",
@@ -873,9 +872,7 @@
     "function/load.json": "load.json",
     "beet.json": "beet",
     "beet.yaml": "beet",
-    "beet.yml": "beet",
-    "display/test.json": "pack_mcmeta",
-    "sub/test.json": "pack_mcmeta"
+    "beet.yml": "beet"
   },
   "hidesExplorerArrows": false
 }

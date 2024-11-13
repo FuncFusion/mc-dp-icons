@@ -33,8 +33,8 @@ const fs = __importStar(require("fs"));
 const util_1 = __importDefault(require("util"));
 const vscode_1 = require("vscode");
 const subfolderNames = {
-    advancements: "pack_mcmeta",
-    advancement: "pack_mcmeta",
+    advancements: "pack.mcmeta",
+    advancement: "pack.mcmeta",
 };
 // This function is called in extension.ts
 function update() {

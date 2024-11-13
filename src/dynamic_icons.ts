@@ -4,7 +4,7 @@ import * as fs from "fs";
 import util from "util";
 import { workspace } from "vscode";
 
-const subfolderNames: Record<string, string> = {
+const subfolderIconMap: Record<string, string> = {
 	advancement: "advancement_file",
 	advancements: "advancement_file",
 	banner_pattern: "banner_pattern_file",
@@ -28,19 +28,19 @@ const subfolderNames: Record<string, string> = {
 	trim_material: "trim_material_file",
 	trim_pattern: "trim_pattern_file",
 	wolf_variant: "wolf_variant_file",
-	worldgen: "worldgen_file"
+	worldgen: "worldgen_file",
 };
 
 // This function is called in extension.ts
 export function update() {
-	deleteTempIconDefinitions();
-	loadTickChange();
-	namespaceIcon();
-	subfolderIcon();
-	hideFolderArrows();
+	resetIconDefinitions();
+	updateLoadTickIcons();
+	setNamespaceIcons();
+	setSubFolderIcons();
+	applyFolderArrowsSettings();
 }
 
-async function deleteTempIconDefinitions() {
+async function resetIconDefinitions() {
 	const themePath = path.join(
 		__dirname,
 		"..",
@@ -58,7 +58,7 @@ async function deleteTempIconDefinitions() {
 }
 
 // Set icons for functions referenced in tick.json | load.json accordingly
-async function loadTickChange() {
+async function updateLoadTickIcons() {
 	const enableDynamicLoadTickChange = workspace
 		.getConfiguration()
 		.get<boolean>("mc-dp-icons.enableLoadTickAutoChange");
@@ -96,7 +96,7 @@ async function loadTickChange() {
 }
 
 // Use enderchest icon for namespaces
-async function namespaceIcon() {
+async function setNamespaceIcons() {
 	const enableNamespaceIcons = workspace
 		.getConfiguration()
 		.get<boolean>("mc-dp-icons.enableNamespaceIcons");
@@ -115,7 +115,7 @@ async function namespaceIcon() {
 }
 
 // Change icons of files in subfolders
-async function subfolderIcon() {
+async function setSubFolderIcons() {
 	const subfolderIconEnabled = workspace
 		.getConfiguration()
 		.get<boolean>("mc-dp-icons.enableSubfolderIcons");
@@ -126,15 +126,13 @@ async function subfolderIcon() {
 
 	Object.entries(subfolders).forEach(([key, value]) => {
 		value.forEach((fileName: string) => {
-			const fileIcon = subfolderNames[key];
-			fileName = fileName.replace(/\\/g, "/");
+			const fileIcon = subfolderIconMap[key];
 			setThemeValue(["fileNames", fileName], fileIcon);
-			console.log(`"${fileName}": "${fileIcon}"`);
 		});
 	});
 }
 
-async function hideFolderArrows() {
+async function applyFolderArrowsSettings() {
 	const confHideFolderArrows = workspace
 		.getConfiguration()
 		.get<boolean>("mc-dp-icons.hideFolderArrows");
@@ -205,7 +203,6 @@ async function getTickLoadNames(): Promise<[string[], string[]]> {
 		}
 		return [loadNames, tickNames];
 	} else {
-		console.log("tick.json or load.json not found");
 		return [[], []];
 	}
 }
@@ -284,11 +281,17 @@ async function subfolderReference(): Promise<{ [key: string]: string[] }> {
 
 			entries.forEach((entry) => {
 				const properDirectory =
-					entry.isDirectory() && entry.name in subfolderNames;
+					entry.isDirectory() && entry.name in subfolderIconMap;
 
 				if (properDirectory) {
 					const subfolderPath = path.join(namespaceFolderPath, entry.name);
-					subfolders[entry.name] = getFilesInDirectory(subfolderPath);
+					const files = getFilesInDirectory(subfolderPath);
+
+					if (subfolders[entry.name]) {
+						subfolders[entry.name].push(...files);
+					} else {
+						subfolders[entry.name] = files;
+					}
 				}
 			});
 		}
@@ -304,34 +307,25 @@ async function subfolderReference(): Promise<{ [key: string]: string[] }> {
  */
 function getFilesInDirectory(directory: string): string[] {
 	const files: string[] = [];
-
-	const searchSubdirectory = (
-		currentPath: string,
-		relativePath: string = "",
-	) => {
-		const entries = fs.readdirSync(currentPath, { withFileTypes: true });
-
+	const collectFiles = (dir: string, relativePath = "") => {
+		const entries = fs.readdirSync(dir, { withFileTypes: true });
 		entries.forEach((entry) => {
-			const fullPath = path.join(currentPath, entry.name);
-			const filePath = path.join(relativePath, entry.name);
+			const fullPath = path.join(dir, entry.name);
+			const newPath = path.join(relativePath, entry.name);
 
 			if (entry.isDirectory()) {
-				searchSubdirectory(fullPath, filePath);
-			} else {
-				const pathSegments = filePath.split(path.sep);
+				collectFiles(fullPath, newPath);
+			} else if (newPath.split(path.sep).length > 1) {
+				const shortenedPath =
+					newPath.split(path.sep).length > 2
+						? newPath.split(path.sep).slice(-2).join(path.sep)
+						: newPath;
 
-				if (pathSegments.length > 1) {
-					const shortenedPath =
-						pathSegments.length > 2 // condition
-							? pathSegments.slice(-2).join(path.sep) // if condition true
-							: filePath; // if condition false
-
-					files.push(shortenedPath.replace(/\\/g, "/"));
-				}
+				files.push(shortenedPath.replace(/\\/g, "/"));
 			}
 		});
 	};
-	searchSubdirectory(directory);
+	collectFiles(directory);
 	return files;
 }
 

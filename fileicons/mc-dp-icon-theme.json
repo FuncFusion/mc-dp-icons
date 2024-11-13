@@ -490,7 +490,10 @@
   "folderNames": {
     "data": "data",
     "assets": "assets",
-    "src": "src"
+    "src": "src",
+    "ant": "namespace",
+    "namespace": "namespace",
+    "namespace2": "namespace"
   },
   "folderNamesExpanded": {
     "data": "data_open",
@@ -555,7 +558,10 @@
     "spawn_rules": "spawn_rules",
     "trading": "trading",
     "ui": "ui",
-    "post_effect": "shaders"
+    "post_effect": "shaders",
+    "ant": "namespace_open",
+    "namespace": "namespace_open",
+    "namespace2": "namespace_open"
   },
   "fileExtensions": {
     "mcfunction": "mcf",
@@ -891,7 +897,11 @@
     "function/load.json": "load.json",
     "beet.json": "beet",
     "beet.yaml": "beet",
-    "beet.yml": "beet"
+    "beet.yml": "beet",
+    "sub2/adv2.json": "advancement_file",
+    "sub/adv.json": "advancement_file",
+    "sub22/adv.json": "advancement_file",
+    "ubbuu/pattern.json": "banner_pattern_file"
   },
-  "hidesExplorerArrows": false
+  "hidesExplorerArrows": true
 }

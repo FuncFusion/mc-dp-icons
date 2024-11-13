@@ -5,8 +5,30 @@ import util from "util";
 import { workspace } from "vscode";
 
 const subfolderNames: Record<string, string> = {
-	advancements: "pack.mcmeta",
-	advancement: "pack.mcmeta",
+	advancement: "advancement_file",
+	advancements: "advancement_file",
+	banner_pattern: "banner_pattern_file",
+	damage_type: "damage_type_file",
+	dimension: "dimension_file",
+	dimension_type: "dimension_type_file",
+	enchantment: "enchantment_file",
+	enchantment_provider: "enchantment_file",
+	item_modifier: "item_modifier_file",
+	item_modifiers: "item_modifier_file",
+	instrument: "instrument_file",
+	jukebox_song: "jukebox_song_file",
+	loot_table: "loot_table_file",
+	loot_tables: "loot_table_file",
+	painting_variant: "image",
+	predicate: "predicate_file",
+	predicates: "predicate_file",
+	recipe: "recipe_file",
+	recipes: "recipe_file",
+	tags: "tags_file",
+	trim_material: "trim_material_file",
+	trim_pattern: "trim_pattern_file",
+	wolf_variant: "wolf_variant_file",
+	worldgen: "worldgen_file"
 };
 
 // This function is called in extension.ts

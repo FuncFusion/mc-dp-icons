@@ -473,6 +473,15 @@
     },
     "ui_file": {
       "iconPath": "./imgs/ui_file.svg"
+    },
+    "advancement_file": {
+      "iconPath": "./imgs/advancement_file.svg"
+    },
+    "loot_table_file": {
+      "iconPath": "./imgs/loot_table_file.svg"
+    },
+    "worldgen_file": {
+      "iconPath": "./imgs/worldgen_file.svg"
     }
   },
   "file": "misc",
@@ -545,7 +554,8 @@
     "items": "items",
     "spawn_rules": "spawn_rules",
     "trading": "trading",
-    "ui": "ui"
+    "ui": "ui",
+    "post_effect": "shaders"
   },
   "fileExtensions": {
     "mcfunction": "mcf",
@@ -718,6 +728,12 @@
     "txz": "archive",
     "tgz": "archive",
     "zst": "archive",
+    "mcworld": "archive",
+    "mcproject": "archive",
+    "mcpack": "archive",
+    "mctemplate": "archive",
+    "mcaddon": "archive",
+    "mceditoraddon": "archive",
     "jar": "jar",
     "sublime-project": "sublime",
     "sublime-workspace": "sublime",
@@ -850,7 +866,9 @@
     "trading/json": "trading_file",
     "ui/json": "ui_file",
     "models/json": "models_file",
-    "mcmeta": "animations_file"
+    "mcmeta": "animations_file",
+    "advancement/json": "advancement_file",
+    "advancements/json": "advancement_file"
   },
   "fileNames": {
     "pack.mcmeta": "pack.mcmeta",
@@ -860,6 +878,7 @@
     "blocks.json": "blocks.json",
     "language.json": "lang_file",
     "textures/terrain_texture.json": "atlas",
+    "textures/flipbook_textures.json": "animations_file",
     "LICENSE": "license",
     "LICENSE.txt": "license",
     "LICENSE.md": "license",

@@ -482,6 +482,24 @@
     },
     "worldgen_file": {
       "iconPath": "./imgs/worldgen_file.svg"
+    },
+    "tags_file": {
+      "iconPath": "./imgs/tags_file.svg"
+    },
+    "trial_spawner": {
+      "iconPath": "./imgs/trial_spawner.svg"
+    },
+    "trial_spawner_file": {
+      "iconPath": "./imgs/trial_spawner_file.svg"
+    },
+    "shaders_file": {
+      "iconPath": "./imgs/shaders_file.svg"
+    },
+    "render_controllers": {
+      "iconPath": "./imgs/render_controllers.svg"
+    },
+    "render_controllers_file": {
+      "iconPath": "./imgs/render_controllers_file.svg"
     }
   },
   "file": "misc",
@@ -490,10 +508,7 @@
   "folderNames": {
     "data": "data",
     "assets": "assets",
-    "src": "src",
-    "ant": "namespace",
-    "namespace": "namespace",
-    "namespace2": "namespace"
+    "src": "src"
   },
   "folderNamesExpanded": {
     "data": "data_open",
@@ -559,9 +574,8 @@
     "trading": "trading",
     "ui": "ui",
     "post_effect": "shaders",
-    "ant": "namespace_open",
-    "namespace": "namespace_open",
-    "namespace2": "namespace_open"
+    "trial_spawner": "trial_spawner",
+    "render_controllers": "render_controllers"
   },
   "fileExtensions": {
     "mcfunction": "mcf",
@@ -874,7 +888,11 @@
     "models/json": "models_file",
     "mcmeta": "animations_file",
     "advancement/json": "advancement_file",
-    "advancements/json": "advancement_file"
+    "advancements/json": "advancement_file",
+    "trial_spawner/json": "trial_spawner_file",
+    "post_effect/json": "shaders_file",
+    "shaders/json": "shaders_file",
+    "render_controllers/render_controllers.json": "render_controllers_file"
   },
   "fileNames": {
     "pack.mcmeta": "pack.mcmeta",
@@ -897,11 +915,7 @@
     "function/load.json": "load.json",
     "beet.json": "beet",
     "beet.yaml": "beet",
-    "beet.yml": "beet",
-    "sub2/adv2.json": "advancement_file",
-    "sub/adv.json": "advancement_file",
-    "sub22/adv.json": "advancement_file",
-    "ubbuu/pattern.json": "banner_pattern_file"
+    "beet.yml": "beet"
   },
-  "hidesExplorerArrows": true
+  "hidesExplorerArrows": false
 }

@@ -33,6 +33,7 @@ const fs = __importStar(require("fs"));
 const util_1 = __importDefault(require("util"));
 const vscode_1 = require("vscode");
 const subfolderIconMap = {
+    // Datapacks
     advancement: "advancement_file",
     advancements: "advancement_file",
     banner_pattern: "banner_pattern_file",
@@ -53,10 +54,31 @@ const subfolderIconMap = {
     recipe: "recipe_file",
     recipes: "recipe_file",
     tags: "tags_file",
+    trial_spawner: "trial_spawner_file",
     trim_material: "trim_material_file",
     trim_pattern: "trim_pattern_file",
     wolf_variant: "wolf_variant_file",
     worldgen: "worldgen_file",
+    // Resourcepacks
+    font: "ttf",
+    models: "models_file",
+    post_effect: "shaders_file",
+    shaders: "shaders_file",
+    // Bedrock behavior packs
+    animation_controllers: "animations_file",
+    animations: "animations_file",
+    blocks: "blocks_file",
+    cameras: "cameras_file",
+    entities: "entities_file",
+    features: "features_file",
+    feature_rules: "features_file",
+    dialogue: "chat_type_file",
+    trading: "trading_file",
+    // Bedrock resource packs
+    attachables: "attachables_file",
+    entity: "entities_file",
+    fogs: "fogs_file",
+    ui: "ui_file"
 };
 // This function is called in extension.ts
 function update() {

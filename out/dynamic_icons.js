@@ -84,10 +84,10 @@ const subfolderIconMap = {
 // This function is called in extension.ts
 function update() {
     resetIconDefinitions();
+    applyFolderArrowsSettings();
     updateLoadTickIcons();
     setNamespaceIcons();
     setSubFolderIcons();
-    applyFolderArrowsSettings();
 }
 exports.update = update;
 async function resetIconDefinitions() {

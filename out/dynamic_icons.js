@@ -32,6 +32,7 @@ const path = __importStar(require("path"));
 const fs = __importStar(require("fs"));
 const util_1 = __importDefault(require("util"));
 const vscode_1 = require("vscode");
+const lodash_1 = require("lodash");
 const subfolderIconMap = {
     // Datapacks
     advancement: "advancement_file",
@@ -78,7 +79,7 @@ const subfolderIconMap = {
     attachables: "attachables_file",
     entity: "entities_file",
     fogs: "fogs_file",
-    ui: "ui_file"
+    ui: "ui_file",
 };
 // This function is called in extension.ts
 function update() {
@@ -92,14 +93,11 @@ exports.update = update;
 async function resetIconDefinitions() {
     const themePath = path.join(__dirname, "..", "fileicons", "mc-dp-icon-theme.json");
     const defaultThemePath = path.join(__dirname, "..", "fileicons", "mc-dp-icon-theme-default.json");
-    const defaultThemeContent = fs.readFileSync(defaultThemePath, "utf8");
-    fs.writeFileSync(themePath, defaultThemeContent, "utf8");
+    fs.copyFileSync(defaultThemePath, themePath);
 }
 // Set icons for functions referenced in tick.json | load.json accordingly
 async function updateLoadTickIcons() {
-    const enableDynamicLoadTickChange = vscode_1.workspace
-        .getConfiguration()
-        .get("mc-dp-icons.enableLoadTickAutoChange");
+    const enableDynamicLoadTickChange = getConfig("enableLoadTickAutoChange");
     if (enableDynamicLoadTickChange) {
         const [loadNames, tickNames] = (await getTickLoadNames()) || [];
         loadNames?.forEach((loadName) => {
@@ -110,12 +108,8 @@ async function updateLoadTickIcons() {
         });
     }
     else {
-        const customLoadNames = vscode_1.workspace
-            .getConfiguration()
-            .get("mc-dp-icons.functionNamesForLoad");
-        const customTickNames = vscode_1.workspace
-            .getConfiguration()
-            .get("mc-dp-icons.functionNamesForTick");
+        const customLoadNames = getConfig("functionNamesForLoad");
+        const customTickNames = getConfig("functionNamesForTick");
         const hasCommonName = customLoadNames?.some((item) => customTickNames?.includes(item));
         if (hasCommonName) {
             vscode.window.showWarningMessage("You have same names in custom tick / load icons configuration");
@@ -130,37 +124,40 @@ async function updateLoadTickIcons() {
 }
 // Use enderchest icon for namespaces
 async function setNamespaceIcons() {
-    const enableNamespaceIcons = vscode_1.workspace
-        .getConfiguration()
-        .get("mc-dp-icons.enableNamespaceIcons");
+    const enableNamespaceIcons = getConfig("enableNamespaceIcons");
     if (!enableNamespaceIcons)
         return;
     let namespacePaths = getNamespacePaths() || [];
-    const namespaceNames = namespacePaths.map((fullPath) => path.basename(fullPath));
-    namespaceNames.forEach((namespace) => {
-        setThemeValue(["folderNames", namespace], "namespace");
-        setThemeValue(["folderNamesExpanded", namespace], "namespace_open");
+    const namespaceNames = namespacePaths.map((fullPath) => {
+        const pathSegments = fullPath.split(path.sep);
+        return path.join(...pathSegments.slice(-1)).replace(/\\/g, "/");
     });
+    const folderNamesIconsMap = {};
+    const folderNamesExpandedIconsMap = {};
+    namespaceNames.forEach((namespace) => {
+        folderNamesIconsMap[namespace] = "namespace";
+        folderNamesExpandedIconsMap[namespace] = "namespace_open";
+    });
+    setThemeValue("folderNames", folderNamesIconsMap);
+    setThemeValue("folderNamesExpanded", folderNamesExpandedIconsMap);
 }
 // Change icons of files in subfolders
 async function setSubFolderIcons() {
-    const subfolderIconEnabled = vscode_1.workspace
-        .getConfiguration()
-        .get("mc-dp-icons.enableSubfolderIcons");
+    const subfolderIconEnabled = getConfig("enableSubfolderIcons");
     if (!subfolderIconEnabled)
         return;
-    const subfolders = (await subfolderReference()) || {};
-    Object.entries(subfolders).forEach(([key, value]) => {
+    const subfolderToFilesMap = (await subfolderReference()) || {};
+    const subfolderFilesToIconsMap = {};
+    Object.entries(subfolderToFilesMap).forEach(([key, value]) => {
         value.forEach((fileName) => {
             const fileIcon = subfolderIconMap[key];
-            setThemeValue(["fileNames", fileName], fileIcon);
+            subfolderFilesToIconsMap[fileName] = fileIcon;
         });
     });
+    setThemeValue("fileNames", subfolderFilesToIconsMap);
 }
 async function applyFolderArrowsSettings() {
-    const confHideFolderArrows = vscode_1.workspace
-        .getConfiguration()
-        .get("mc-dp-icons.hideFolderArrows");
+    const confHideFolderArrows = getConfig("hideFolderArrows");
     if (confHideFolderArrows) {
         setThemeValue("hidesExplorerArrows", true);
     }
@@ -178,11 +175,22 @@ async function setThemeValue(keyName, value) {
     let themeContent = fs.readFileSync(themePath, "utf8");
     let themeObject = JSON.parse(themeContent);
     let currentKey = themeObject;
+    const setValue = (key, value) => {
+        if ((0, lodash_1.isObject)(value)) {
+            currentKey[key] = {
+                ...currentKey[key],
+                ...value,
+            };
+        }
+        else {
+            currentKey[key] = value;
+        }
+    };
     if (Array.isArray(keyName)) {
         const lastKey = keyName[keyName.length - 1];
         keyName.forEach((key) => {
             if (key === lastKey) {
-                currentKey[key] = value;
+                setValue(key, value);
             }
             else {
                 currentKey[key] || {};
@@ -191,7 +199,7 @@ async function setThemeValue(keyName, value) {
         });
     }
     else {
-        currentKey[keyName] = value;
+        setValue(keyName, value);
     }
     fs.writeFileSync(themePath, JSON.stringify(themeObject, null, 2), "utf8");
 }
@@ -275,6 +283,7 @@ function getNamespacePaths() {
 async function subfolderReference() {
     const subfolders = {};
     const namespacePaths = getNamespacePaths();
+    let filesAmount = 0;
     namespacePaths.forEach((namespacePath) => {
         const namespaceFolderPath = path.join(namespacePath);
         if (fs.existsSync(namespaceFolderPath)) {
@@ -286,6 +295,7 @@ async function subfolderReference() {
                 if (properDirectory) {
                     const subfolderPath = path.join(namespaceFolderPath, entry.name);
                     const files = getFilesInDirectory(subfolderPath);
+                    filesAmount += files.length;
                     if (subfolders[entry.name]) {
                         subfolders[entry.name].push(...files);
                     }
@@ -296,6 +306,9 @@ async function subfolderReference() {
             });
         }
     });
+    if (filesAmount >= 2000) {
+        vscode.window.showWarningMessage("Too many files in subsubfolders (Over 2000). Subsubfolder icons feature might not work properly.");
+    }
     return subfolders;
 }
 /**
@@ -310,10 +323,11 @@ function getFilesInDirectory(directory) {
         entries.forEach((entry) => {
             const fullPath = path.join(dir, entry.name);
             const newPath = path.join(relativePath, entry.name);
+            const fileInSubfolder = newPath.split(path.sep).length > 1 && newPath.endsWith(".json");
             if (entry.isDirectory()) {
                 collectFiles(fullPath, newPath);
             }
-            else if (newPath.split(path.sep).length > 1) {
+            else if (fileInSubfolder) {
                 const shortenedPath = newPath.split(path.sep).length > 2
                     ? newPath.split(path.sep).slice(-2).join(path.sep)
                     : newPath;
@@ -351,5 +365,8 @@ function findMcmetaInDirectory(directory) {
         }
     });
     return mcmetaPaths;
+}
+function getConfig(name) {
+    return vscode_1.workspace.getConfiguration().get(`mc-dp-icons.${name}`);
 }
 //# sourceMappingURL=dynamic_icons.js.map

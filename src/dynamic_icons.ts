@@ -3,6 +3,8 @@ import * as path from "path";
 import * as fs from "fs";
 import util from "util";
 import { workspace } from "vscode";
+import { json } from "stream/consumers";
+import { isObject } from "lodash";
 
 const subfolderIconMap: Record<string, string> = {
 	// Datapacks
@@ -50,16 +52,16 @@ const subfolderIconMap: Record<string, string> = {
 	attachables: "attachables_file",
 	entity: "entities_file",
 	fogs: "fogs_file",
-	ui: "ui_file"
+	ui: "ui_file",
 };
 
 // This function is called in extension.ts
 export function update() {
 	resetIconDefinitions();
+	applyFolderArrowsSettings();
 	updateLoadTickIcons();
 	setNamespaceIcons();
 	setSubFolderIcons();
-	applyFolderArrowsSettings();
 }
 
 async function resetIconDefinitions() {
@@ -75,15 +77,12 @@ async function resetIconDefinitions() {
 		"fileicons",
 		"mc-dp-icon-theme-default.json",
 	);
-	const defaultThemeContent = fs.readFileSync(defaultThemePath, "utf8");
-	fs.writeFileSync(themePath, defaultThemeContent, "utf8");
+	fs.copyFileSync(defaultThemePath, themePath);
 }
 
 // Set icons for functions referenced in tick.json | load.json accordingly
 async function updateLoadTickIcons() {
-	const enableDynamicLoadTickChange = workspace
-		.getConfiguration()
-		.get<boolean>("mc-dp-icons.enableLoadTickAutoChange");
+	const enableDynamicLoadTickChange = getConfig("enableLoadTickAutoChange");
 	if (enableDynamicLoadTickChange) {
 		const [loadNames, tickNames] = (await getTickLoadNames()) || [];
 		loadNames?.forEach((loadName: string) => {
@@ -93,13 +92,8 @@ async function updateLoadTickIcons() {
 			setThemeValue(["fileNames", tickName], "mcf_tick");
 		});
 	} else {
-		const customLoadNames = workspace
-			.getConfiguration()
-			.get<Array<string>>("mc-dp-icons.functionNamesForLoad");
-		const customTickNames = workspace
-			.getConfiguration()
-			.get<Array<string>>("mc-dp-icons.functionNamesForTick");
-
+		const customLoadNames = getConfig("functionNamesForLoad");
+		const customTickNames = getConfig("functionNamesForTick");
 		const hasCommonName = customLoadNames?.some((item: string) =>
 			customTickNames?.includes(item),
 		);
@@ -119,45 +113,44 @@ async function updateLoadTickIcons() {
 
 // Use enderchest icon for namespaces
 async function setNamespaceIcons() {
-	const enableNamespaceIcons = workspace
-		.getConfiguration()
-		.get<boolean>("mc-dp-icons.enableNamespaceIcons");
+	const enableNamespaceIcons = getConfig("enableNamespaceIcons");
 
 	if (!enableNamespaceIcons) return;
 
 	let namespacePaths: string[] = getNamespacePaths() || [];
-	const namespaceNames = namespacePaths.map((fullPath) =>
-		path.basename(fullPath),
-	);
+	const namespaceNames = namespacePaths.map((fullPath) => {
+		const pathSegments = fullPath.split(path.sep);
+		return path.join(...pathSegments.slice(-1)).replace(/\\/g, "/");
+	});
+	const folderNamesIconsMap: Record<string, string> = {};
+	const folderNamesExpandedIconsMap: Record<string, string> = {};
 
 	namespaceNames.forEach((namespace: string) => {
-		setThemeValue(["folderNames", namespace], "namespace");
-		setThemeValue(["folderNamesExpanded", namespace], "namespace_open");
+		folderNamesIconsMap[namespace] = "namespace";
+		folderNamesExpandedIconsMap[namespace] = "namespace_open";
 	});
+	setThemeValue("folderNames", folderNamesIconsMap);
+	setThemeValue("folderNamesExpanded", folderNamesExpandedIconsMap);
 }
 
 // Change icons of files in subfolders
 async function setSubFolderIcons() {
-	const subfolderIconEnabled = workspace
-		.getConfiguration()
-		.get<boolean>("mc-dp-icons.enableSubfolderIcons");
-
+	const subfolderIconEnabled = getConfig("enableSubfolderIcons");
 	if (!subfolderIconEnabled) return;
+	const subfolderToFilesMap = (await subfolderReference()) || {};
+	const subfolderFilesToIconsMap: Record<string, string> = {};
 
-	const subfolders = (await subfolderReference()) || {};
-
-	Object.entries(subfolders).forEach(([key, value]) => {
+	Object.entries(subfolderToFilesMap).forEach(([key, value]) => {
 		value.forEach((fileName: string) => {
 			const fileIcon = subfolderIconMap[key];
-			setThemeValue(["fileNames", fileName], fileIcon);
+			subfolderFilesToIconsMap[fileName] = fileIcon;
 		});
 	});
+	setThemeValue("fileNames", subfolderFilesToIconsMap);
 }
 
 async function applyFolderArrowsSettings() {
-	const confHideFolderArrows = workspace
-		.getConfiguration()
-		.get<boolean>("mc-dp-icons.hideFolderArrows");
+	const confHideFolderArrows = getConfig("hideFolderArrows");
 	if (confHideFolderArrows) {
 		setThemeValue("hidesExplorerArrows", true);
 	} else {
@@ -180,20 +173,30 @@ async function setThemeValue(keyName: string | string[], value: any) {
 	let themeContent = fs.readFileSync(themePath, "utf8");
 	let themeObject = JSON.parse(themeContent);
 	let currentKey = themeObject;
+	const setValue = (key: string, value: any) => {
+		if (isObject(value)) {
+			currentKey[key] = {
+				...currentKey[key],
+				...value,
+			};
+		} else {
+			currentKey[key] = value;
+		}
+	};
 
 	if (Array.isArray(keyName)) {
 		const lastKey = keyName[keyName.length - 1];
 
 		keyName.forEach((key) => {
 			if (key === lastKey) {
-				currentKey[key] = value;
+				setValue(key, value);
 			} else {
 				currentKey[key] || {};
 				currentKey = currentKey[key];
 			}
 		});
 	} else {
-		currentKey[keyName] = value;
+		setValue(keyName, value);
 	}
 	fs.writeFileSync(themePath, JSON.stringify(themeObject, null, 2), "utf8");
 }
@@ -292,6 +295,7 @@ function getNamespacePaths(): string[] {
 async function subfolderReference(): Promise<{ [key: string]: string[] }> {
 	const subfolders: { [key: string]: string[] } = {};
 	const namespacePaths = getNamespacePaths();
+	let filesAmount = 0;
 
 	namespacePaths.forEach((namespacePath) => {
 		const namespaceFolderPath = path.join(namespacePath);
@@ -300,7 +304,6 @@ async function subfolderReference(): Promise<{ [key: string]: string[] }> {
 			const entries = fs.readdirSync(namespaceFolderPath, {
 				withFileTypes: true,
 			});
-
 			entries.forEach((entry) => {
 				const properDirectory =
 					entry.isDirectory() && entry.name in subfolderIconMap;
@@ -308,6 +311,7 @@ async function subfolderReference(): Promise<{ [key: string]: string[] }> {
 				if (properDirectory) {
 					const subfolderPath = path.join(namespaceFolderPath, entry.name);
 					const files = getFilesInDirectory(subfolderPath);
+					filesAmount += files.length;
 
 					if (subfolders[entry.name]) {
 						subfolders[entry.name].push(...files);
@@ -318,7 +322,11 @@ async function subfolderReference(): Promise<{ [key: string]: string[] }> {
 			});
 		}
 	});
-
+	if (filesAmount >= 2000) {
+		vscode.window.showWarningMessage(
+			"Too many files in subsubfolders (Over 2000). Subsubfolder icons feature might not work properly.",
+		);
+	}
 	return subfolders;
 }
 
@@ -334,10 +342,12 @@ function getFilesInDirectory(directory: string): string[] {
 		entries.forEach((entry) => {
 			const fullPath = path.join(dir, entry.name);
 			const newPath = path.join(relativePath, entry.name);
+			const fileInSubfolder =
+				newPath.split(path.sep).length > 1 && newPath.endsWith(".json");
 
 			if (entry.isDirectory()) {
 				collectFiles(fullPath, newPath);
-			} else if (newPath.split(path.sep).length > 1) {
+			} else if (fileInSubfolder) {
 				const shortenedPath =
 					newPath.split(path.sep).length > 2
 						? newPath.split(path.sep).slice(-2).join(path.sep)
@@ -384,4 +394,8 @@ function findMcmetaInDirectory(directory: string): string[] {
 	});
 
 	return mcmetaPaths;
+}
+
+function getConfig(name: string): any {
+	return workspace.getConfiguration().get(`mc-dp-icons.${name}`);
 }

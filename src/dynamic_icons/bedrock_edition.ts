@@ -3,10 +3,10 @@ import * as path from "path";
 import * as fs from "fs";
 import {
   setThemeValue,
-  readFile,
   getFilesInDirectory,
   warnAboutTooManyFiles,
   getConfig,
+  namespacedToFileName,
 } from "./main";
 import { workspace } from "vscode";
 
@@ -91,32 +91,6 @@ async function getTickNames(): Promise<string[]> {
     }
     return tickNames;
   } else {
-    return [];
-  }
-}
-
-/**
- * Convert function id inside function tag file to filename
- * @param file - Function tag file
- */
-async function namespacedToFileName(file: vscode.Uri): Promise<string[]> {
-  const filePath = file.fsPath;
-  const removeNamespace = (input: string) => {
-    return input.split(":")[1];
-  };
-
-  try {
-    const fileContent = await readFile(filePath, "utf8");
-    const fileObject = JSON.parse(fileContent);
-    const functionNotReferenced = fileObject.values?.length == 0;
-
-    if (functionNotReferenced) return [];
-
-    return fileObject.values.map(
-      (value: string) => `${removeNamespace(value)}.mcfunction`,
-    );
-  } catch (err) {
-    console.error(`Failed to read file: ${err}`);
     return [];
   }
 }

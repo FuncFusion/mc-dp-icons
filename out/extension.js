@@ -26,23 +26,37 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.activate = void 0;
 const vscode = __importStar(require("vscode"));
 const ThemeChange = __importStar(require("./theme_change"));
-const DynamicIcons = __importStar(require("./dynamic_icons"));
-const path = require('path');
+const DynamicIcons = __importStar(require("./dynamic_icons/main"));
+const path = __importStar(require("path"));
 function activate(context) {
-    // console.log('Extension "mc-dp-icons" is now active!');
-    // Register the event listeners
-    context.subscriptions.push(vscode.workspace.onDidChangeWorkspaceFolders(() => { DynamicIcons.update(); ThemeChange.checkPackMcmeta(); }), vscode.workspace.onDidRenameFiles(() => { DynamicIcons.update(); ThemeChange.checkPackMcmeta(); }), vscode.workspace.onDidDeleteFiles(() => { DynamicIcons.update(); ThemeChange.checkPackMcmeta(); }), vscode.workspace.onDidCreateFiles(() => { DynamicIcons.update(); ThemeChange.checkPackMcmeta(); }), vscode.workspace.onDidSaveTextDocument((textDocument) => {
-        const fileName = path.basename(textDocument.fileName);
-        if (fileName === 'tick.json' || fileName === 'load.json') {
+    // Register listeners
+    const handleFileChange = (fileName) => {
+        if (["tick.json", "load.json", "pack.mcmeta"].includes(fileName)) {
             DynamicIcons.update();
+            ThemeChange.checkPackMcmeta();
         }
-    }), vscode.workspace.onDidChangeConfiguration(() => { DynamicIcons.update(); ThemeChange.getDefaultIconTheme(); }));
+    };
+    context.subscriptions.push(vscode.workspace.onDidChangeWorkspaceFolders(() => {
+        handleFileChange("");
+    }), vscode.workspace.onDidRenameFiles((event) => {
+        handleFileChange(path.basename(event.files[0].newUri.fsPath));
+        handleFileChange(path.basename(event.files[0].oldUri.fsPath));
+    }), vscode.workspace.onDidDeleteFiles((event) => {
+        handleFileChange(path.basename(event.files[0].fsPath));
+    }), vscode.workspace.onDidCreateFiles((event) => {
+        handleFileChange(path.basename(event.files[0].fsPath));
+    }), vscode.workspace.onDidSaveTextDocument((document) => {
+        handleFileChange(path.basename(document.fileName));
+    }), vscode.workspace.onDidChangeConfiguration(() => {
+        DynamicIcons.update();
+        ThemeChange.getDefaultIconTheme();
+    }));
     // Calling these functions on startup
     ThemeChange.getDefaultIconTheme();
     ThemeChange.checkPackMcmeta();
     DynamicIcons.update();
-    let DpIconsOpenSettings = vscode.commands.registerCommand('mc-dp-icons.DpIconsOpenSettings', () => {
-        vscode.commands.executeCommand('workbench.action.openSettings', '@ext:superant.mc-dp-icons');
+    let DpIconsOpenSettings = vscode.commands.registerCommand("mc-dp-icons.DpIconsOpenSettings", () => {
+        vscode.commands.executeCommand("workbench.action.openSettings", "@ext:superant.mc-dp-icons");
     });
     context.subscriptions.push(DpIconsOpenSettings);
 }

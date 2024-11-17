@@ -84,10 +84,10 @@ const subfolderIconMap = {
 // This function is called in extension.ts
 function update() {
     resetIconDefinitions();
+    applyFolderArrowsSettings();
     updateLoadTickIcons();
     setNamespaceIcons();
     setSubFolderIcons();
-    applyFolderArrowsSettings();
 }
 exports.update = update;
 async function resetIconDefinitions() {
@@ -306,9 +306,8 @@ async function subfolderReference() {
             });
         }
     });
-    if (filesAmount >= 2000) {
-        vscode.window.showWarningMessage("Too many files in subsubfolders (Over 2000). Subsubfolder icons feature might not work properly.");
-    }
+    if (filesAmount >= 2000)
+        warnAboutTooManyFiles();
     return subfolders;
 }
 /**
@@ -366,7 +365,22 @@ function findMcmetaInDirectory(directory) {
     });
     return mcmetaPaths;
 }
+function warnAboutTooManyFiles() {
+    const warningMessage = `Too many files in subsubfolders (Over 2000). Subsubfolder icons feature might not work properly. Would you like to disable this feature?`;
+    vscode.window
+        .showWarningMessage(warningMessage, { modal: false }, "Disable Subfolder Icons")
+        .then((selection) => {
+        if (selection === "Disable Subfolder Icons") {
+            changeConfig("enableSubfolderIcons", false);
+        }
+    });
+}
 function getConfig(name) {
     return vscode_1.workspace.getConfiguration().get(`mc-dp-icons.${name}`);
+}
+function changeConfig(name, value) {
+    return vscode_1.workspace
+        .getConfiguration()
+        .update(`mc-dp-icons.${name}`, value, vscode.ConfigurationTarget.Global);
 }
 //# sourceMappingURL=dynamic_icons.js.map

@@ -500,6 +500,9 @@
     },
     "render_controllers_file": {
       "iconPath": "./imgs/render_controllers_file.svg"
+    },
+    "biomes_client.json": {
+      "iconPath": "./imgs/biomes_client.json.svg"
     }
   },
   "file": "misc",
@@ -897,10 +900,18 @@
   },
   "fileNames": {
     "pack.mcmeta": "pack.mcmeta",
-    "manifest.json": "pack.mcmeta",
     "sounds.json": "sounds.json",
     "atlases/blocks.json": "atlases_file",
+    "function/tick.json": "tick.json",
+    "functions/tick.json": "tags_file",
+    "function/load.json": "load.json",
+    "functions/load.json": "load.json",
+    "beet.json": "beet",
+    "beet.yaml": "beet",
+    "beet.yml": "beet",
+    "manifest.json": "pack.mcmeta",
     "blocks.json": "blocks.json",
+    "biomes_client.json": "biomes_client.json",
     "language.json": "lang_file",
     "textures/terrain_texture.json": "atlas",
     "textures/flipbook_textures.json": "animations_file",
@@ -909,27 +920,6 @@
     "LICENSE.md": "license",
     "COPYRIGHT": "copyright",
     "COPYRIGHT.txt": "copyright",
-    "COPYRIGHT.md": "copyright",
-    "functions/tick.json": "tick.json",
-    "function/tick.json": "tick.json",
-    "functions/load.json": "load.json",
-    "function/load.json": "load.json",
-    "beet.json": "beet",
-    "beet.yaml": "beet",
-    "beet.yml": "beet",
-    "subfolder/test.json": "blocks_file",
-    "nm/block_x_mud_soil_x_singleblock.json": "features_file",
-    "nm/patch_surface_x_mud_soil_x_ore.json": "features_file",
-    "nm/pond_x_mud_soil_x_vegetation.json": "features_file",
-    "nicos_mobs/nicothekid_crop_collector_trades.json": "trading_file",
-    "nicos_mobs/nicothekid_end_collector_trades.json": "trading_file",
-    "nicos_mobs/nicothekid_item_collector_trades.json": "trading_file",
-    "nicos_mobs/nicothekid_minerals_collector_trades.json": "trading_file",
-    "nicos_mobs/nicothekid_nether_collector_trades.json": "trading_file",
-    "nicos_mobs/nicothekid_oceanic_collector_trades.json": "trading_file",
-    "nicos_mobs/nicothekid_plant_collector_trades.json": "trading_file",
-    "nicos_mobs/nicothekid_stone_collector_trades.json": "trading_file",
-    "nicos_mobs/nicothekid_wild_collector_trades.json": "trading_file"
+    "COPYRIGHT.md": "copyright"
   },
-  "hidesExplorerArrows": true
-}
+  "hidesExplorerArrows": false

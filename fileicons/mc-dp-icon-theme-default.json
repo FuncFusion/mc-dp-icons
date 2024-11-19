@@ -578,7 +578,7 @@
     "blocks.json": "blocks.json",
     "biomes_client.json": "biomes_client.json",
     "language.json": "lang_file",
-    "textures/terrain_texture.json": "atlas",
+    "textures/terrain_texture.json": "atlases_file",
     "textures/flipbook_textures.json": "animations_file",
 
     "LICENSE": "license",

@@ -97,8 +97,8 @@ export function getFilesInDirectory(directory: string): string[] {
       const validSubfolderFile =
         newPath.split(path.sep).length > 1 &&
         newPath.endsWith(".json") &&
-        !newPath.includes("functions") &&
-        !newPath.includes("function");
+        !newPath.includes("load.json") &&
+        !newPath.includes("tick.json");
       const fileInSubfolder = validSubfolderFile;
 
       if (entry.isDirectory()) {
@@ -159,7 +159,7 @@ export async function namespacedToFileName(
       (value: string) => `${removeNamespace(value)}.mcfunction`,
     );
   } catch (err) {
-    console.error(`Failed to read file: ${err}`);
+    console.error(`Failed to read tick.json || load.json: ${err}`);
     return [];
   }
 }

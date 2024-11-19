@@ -97,7 +97,8 @@ export function getFilesInDirectory(directory: string): string[] {
       const validSubfolderFile =
         newPath.split(path.sep).length > 1 &&
         newPath.endsWith(".json") &&
-        (!newPath.includes("functions") || !newPath.includes("function"));
+        !newPath.includes("functions") &&
+        !newPath.includes("function");
       const fileInSubfolder = validSubfolderFile;
 
       if (entry.isDirectory()) {

@@ -5,16 +5,19 @@ import * as path from "path";
 
 export function activate(context: vscode.ExtensionContext) {
   // Register listeners
+  const runUpdates = () => {
+    DynamicIcons.update();
+    ThemeChange.checkPackMcmeta();
+  };
   const handleFileChange = (fileName: string) => {
-    if (["tick.json", "load.json", "pack.mcmeta"].includes(fileName)) {
-      DynamicIcons.update();
-      ThemeChange.checkPackMcmeta();
+    if (fileName.endsWith(".mcmeta") || fileName.endsWith(".json")) {
+      runUpdates();
     }
   };
 
   context.subscriptions.push(
     vscode.workspace.onDidChangeWorkspaceFolders(() => {
-      handleFileChange("");
+      runUpdates();
     }),
     vscode.workspace.onDidRenameFiles((event) => {
       handleFileChange(path.basename(event.files[0].newUri.fsPath));
@@ -30,8 +33,7 @@ export function activate(context: vscode.ExtensionContext) {
       handleFileChange(path.basename(document.fileName));
     }),
     vscode.workspace.onDidChangeConfiguration(() => {
-      DynamicIcons.update();
-      ThemeChange.getDefaultIconTheme();
+      runUpdates();
     }),
   );
 

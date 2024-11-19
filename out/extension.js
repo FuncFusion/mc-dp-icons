@@ -30,14 +30,17 @@ const DynamicIcons = __importStar(require("./dynamic_icons/main"));
 const path = __importStar(require("path"));
 function activate(context) {
     // Register listeners
+    const runUpdates = () => {
+        DynamicIcons.update();
+        ThemeChange.checkPackMcmeta();
+    };
     const handleFileChange = (fileName) => {
-        if (["tick.json", "load.json", "pack.mcmeta"].includes(fileName)) {
-            DynamicIcons.update();
-            ThemeChange.checkPackMcmeta();
+        if (fileName.endsWith(".mcmeta") || fileName.endsWith(".json")) {
+            runUpdates();
         }
     };
     context.subscriptions.push(vscode.workspace.onDidChangeWorkspaceFolders(() => {
-        handleFileChange("");
+        runUpdates();
     }), vscode.workspace.onDidRenameFiles((event) => {
         handleFileChange(path.basename(event.files[0].newUri.fsPath));
         handleFileChange(path.basename(event.files[0].oldUri.fsPath));
@@ -48,8 +51,7 @@ function activate(context) {
     }), vscode.workspace.onDidSaveTextDocument((document) => {
         handleFileChange(path.basename(document.fileName));
     }), vscode.workspace.onDidChangeConfiguration(() => {
-        DynamicIcons.update();
-        ThemeChange.getDefaultIconTheme();
+        runUpdates();
     }));
     // Calling these functions on startup
     ThemeChange.getDefaultIconTheme();

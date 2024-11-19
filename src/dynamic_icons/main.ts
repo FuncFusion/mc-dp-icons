@@ -94,8 +94,11 @@ export function getFilesInDirectory(directory: string): string[] {
     entries.forEach((entry) => {
       const fullPath = path.join(dir, entry.name);
       const newPath = path.join(relativePath, entry.name);
-      const fileInSubfolder =
-        newPath.split(path.sep).length > 1 && newPath.endsWith(".json");
+      const validSubfolderFile =
+        newPath.split(path.sep).length > 1 &&
+        newPath.endsWith(".json") &&
+        (!newPath.includes("functions") || !newPath.includes("function"));
+      const fileInSubfolder = validSubfolderFile;
 
       if (entry.isDirectory()) {
         collectFiles(fullPath, newPath);
@@ -120,11 +123,14 @@ export function warnAboutTooManyFiles() {
     .showWarningMessage(
       warningMessage,
       { modal: false },
-      "Disable Subfolder Icons",
+      "Disable Globally",
+      "Disable in Workspace",
     )
     .then((selection) => {
-      if (selection === "Disable Subfolder Icons") {
-        changeConfig("enableSubfolderIcons", false);
+      if (selection === "Disable Globally") {
+        changeConfigGlobal("enableSubfolderIcons", false);
+      } else if (selection === "Disable in Workspace") {
+        changeConfigWorkspace("enableSubfolderIcons", false);
       }
     });
 }
@@ -161,8 +167,14 @@ export function getConfig(name: string): any {
   return workspace.getConfiguration().get(`mc-dp-icons.${name}`);
 }
 
-function changeConfig(name: string, value: any) {
+function changeConfigGlobal(name: string, value: any) {
   return workspace
     .getConfiguration()
     .update(`mc-dp-icons.${name}`, value, vscode.ConfigurationTarget.Global);
+}
+
+function changeConfigWorkspace(name: string, value: any) {
+  return workspace
+    .getConfiguration()
+    .update(`mc-dp-icons.${name}`, value, vscode.ConfigurationTarget.Workspace);
 }

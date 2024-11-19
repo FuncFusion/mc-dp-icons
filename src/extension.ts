@@ -19,7 +19,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.workspace.onDidChangeWorkspaceFolders(() => {
       runUpdates();
     }),
-    vscode.workspace.onDidRenameFiles((event) => {
+    vscode.workspace.onDidRenameFiles(() => {
       runUpdates();
     }),
     vscode.workspace.onDidDeleteFiles((event) => {

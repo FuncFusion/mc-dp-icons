@@ -42,8 +42,9 @@ function activate(context) {
     context.subscriptions.push(vscode.workspace.onDidChangeWorkspaceFolders(() => {
         runUpdates();
     }), vscode.workspace.onDidRenameFiles((event) => {
-        handleFileChange(path.basename(event.files[0].newUri.fsPath));
-        handleFileChange(path.basename(event.files[0].oldUri.fsPath));
+        // handleFileChange(path.basename(event.files[0].newUri.fsPath));
+        // handleFileChange(path.basename(event.files[0].oldUri.fsPath));
+        runUpdates();
     }), vscode.workspace.onDidDeleteFiles((event) => {
         handleFileChange(path.basename(event.files[0].fsPath));
     }), vscode.workspace.onDidCreateFiles((event) => {

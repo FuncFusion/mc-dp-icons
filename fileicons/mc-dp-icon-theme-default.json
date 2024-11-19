@@ -167,7 +167,10 @@
     "shaders_file": { "iconPath": "./imgs/shaders_file.svg" },
     "render_controllers": { "iconPath": "./imgs/render_controllers.svg" },
     "render_controllers_file": { "iconPath": "./imgs/render_controllers_file.svg" },
-    "biomes_client.json": { "iconPath": "./imgs/biomes_client.json.svg" }
+    "biomes_client.json": { "iconPath": "./imgs/biomes_client.json.svg" },
+    "splashes.json": { "iconPath": "./imgs/splashes.json.svg" },
+    "materials": { "iconPath": "./imgs/materials.svg" },
+    "materials_file": { "iconPath": "./imgs/materials_file.svg" }
   },
   "file": "misc",
   "folder": "folder",
@@ -242,7 +245,8 @@
     "ui": "ui",
     "post_effect": "shaders",
     "trial_spawner": "trial_spawner",
-    "render_controllers": "render_controllers"
+    "render_controllers": "render_controllers",
+    "materials": "materials"
   },
   "fileExtensions": {
     "mcfunction": "mcf",
@@ -516,7 +520,7 @@
     "font/json": "ttf",
     "lang/json": "lang_file",
     "lang": "lang_file",
-    "particles/json": "particle_file",
+    "particles/json": "particles_file",
     "recipes/json": "recipe_file",
     "recipe/json": "recipe_file",
     "chat_type/json": "chat_type_file",
@@ -560,11 +564,14 @@
     "post_effect/json": "shaders_file",
     "shaders/json": "shaders_file",
     "render_controllers/render_controllers.json": "render_controllers_file",
-    "fontdata": "ttf"
+    "fontdata": "ttf",
+    "loot_tables/json": "loot_table_file",
+    "material": "materials_file"
   },
   "fileNames": {
     "pack.mcmeta": "pack.mcmeta",
     "sounds.json": "sounds.json",
+    "splashes.txt": "splashes.json",
     "atlases/blocks.json": "atlases_file",
     "function/tick.json": "tick.json",
     "functions/tick.json": "tick.json",
@@ -577,6 +584,7 @@
     "manifest.json": "pack.mcmeta",
     "blocks.json": "blocks.json",
     "biomes_client.json": "biomes_client.json",
+    "splashes.json": "splashes.json",
     "language.json": "lang_file",
     "textures/terrain_texture.json": "atlases_file",
     "textures/flipbook_textures.json": "animations_file",

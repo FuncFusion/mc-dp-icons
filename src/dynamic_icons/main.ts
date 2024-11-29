@@ -7,12 +7,21 @@ import * as java from "./java_edition";
 import { workspace } from "vscode";
 import { isObject } from "lodash";
 
+const useChristmasIcons = true;
+// const useChristmasIcons = isChristmas() && getConfig("enableChristmasIcons");
 export const themePath = path.join(
   __dirname,
   "..",
   "..",
   "fileicons",
   "mc-dp-icon-theme.json",
+);
+const christmasThemePath = path.join(
+  __dirname,
+  "..",
+  "..",
+  "fileicons",
+  "mc-dp-icon-theme-xmas.json",
 );
 const defaultThemePath = path.join(
   __dirname,
@@ -31,7 +40,11 @@ export function update() {
 }
 
 async function resetIconDefinitions() {
-  fs.copyFileSync(defaultThemePath, themePath);
+  if (!useChristmasIcons) {
+    fs.copyFileSync(defaultThemePath, themePath);
+  } else {
+    fs.copyFileSync(christmasThemePath, themePath);
+  }
 }
 
 async function applyFolderArrowsSettings() {
@@ -178,4 +191,10 @@ function changeConfigWorkspace(name: string, value: any) {
   return workspace
     .getConfiguration()
     .update(`mc-dp-icons.${name}`, value, vscode.ConfigurationTarget.Workspace);
+}
+
+/** @returns True if current date is between 24 and 26 December inclusive */
+export function isChristmas() {
+  const now = new Date();
+  return now.getMonth() === 11 && now.getDate() >= 24 && now.getDate() <= 26;
 }

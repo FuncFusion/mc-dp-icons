@@ -67,6 +67,12 @@
             "default": true,
             "markdownDescription": "If enabled, namespace folders (folders directly within `data` and `assets`) will change their icons to ender chests. Works only if there is `pack.mcmeta` in the same directory.\n\n*Warning: this feature is not currently supported for VS Code web.*"
           },
+          "mc-dp-icons.enableChristmasIcons": {
+            "type": "boolean",
+            "title": "Enable christmas icons",
+            "default": true,
+            "markdownDescription": "If enabled, all folder icons will change icons to their christmas variant"
+          },
           "mc-dp-icons.enableSubfolderIcons": {
             "type": "boolean",
             "title": "Enable subfolder icons",

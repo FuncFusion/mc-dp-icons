@@ -5,6 +5,7 @@ import {
   setThemeValue,
   getFilesInDirectory,
   warnAboutTooManyFiles,
+  shouldUseChristmasIcons,
   getConfig,
   namespacedToFileName,
 } from "./main";
@@ -105,9 +106,17 @@ async function setNamespaceIcons() {
   const folderNamesIconsMap: Record<string, string> = {};
   const folderNamesExpandedIconsMap: Record<string, string> = {};
 
+  const namespaceIcon = shouldUseChristmasIcons
+    ? "namespace_xmas"
+    : "namespace";
+
+  const namespaceIconExpanded = shouldUseChristmasIcons
+    ? "namespace_open_xmas"
+    : "namespace_open";
+
   namespaceNames.forEach((namespace: string) => {
-    folderNamesIconsMap[namespace] = "namespace";
-    folderNamesExpandedIconsMap[namespace] = "namespace_open";
+    folderNamesIconsMap[namespace] = namespaceIcon;
+    folderNamesExpandedIconsMap[namespace] = namespaceIconExpanded;
   });
   setThemeValue("folderNames", folderNamesIconsMap);
   setThemeValue("folderNamesExpanded", folderNamesExpandedIconsMap);

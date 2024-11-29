@@ -7,7 +7,8 @@ import * as java from "./java_edition";
 import { workspace } from "vscode";
 import { isObject } from "lodash";
 
-const useChristmasIcons = isChristmas() && getConfig("enableChristmasIcons");
+export const shouldUseChristmasIcons =
+  isChristmas() && getConfig("enableChristmasIcons");
 
 export const themePath = path.join(
   __dirname,
@@ -40,7 +41,7 @@ export function update() {
 }
 
 async function resetIconDefinitions() {
-  if (!useChristmasIcons) {
+  if (!shouldUseChristmasIcons) {
     fs.copyFileSync(defaultThemePath, themePath);
   } else {
     fs.copyFileSync(christmasThemePath, themePath);

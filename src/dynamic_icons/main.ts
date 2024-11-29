@@ -7,8 +7,8 @@ import * as java from "./java_edition";
 import { workspace } from "vscode";
 import { isObject } from "lodash";
 
-const useChristmasIcons = true;
-// const useChristmasIcons = isChristmas() && getConfig("enableChristmasIcons");
+const useChristmasIcons = isChristmas() && getConfig("enableChristmasIcons");
+
 export const themePath = path.join(
   __dirname,
   "..",

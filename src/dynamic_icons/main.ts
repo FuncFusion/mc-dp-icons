@@ -10,19 +10,12 @@ import { isObject } from "lodash";
 export const shouldUseChristmasIcons =
   isChristmas() && getConfig("enableChristmasIcons");
 
-export const themePath = path.join(
+const themePath = path.join(
   __dirname,
   "..",
   "..",
   "fileicons",
   "mc-dp-icon-theme.json",
-);
-const christmasThemePath = path.join(
-  __dirname,
-  "..",
-  "..",
-  "fileicons",
-  "mc-dp-icon-theme-xmas.json",
 );
 const defaultThemePath = path.join(
   __dirname,
@@ -35,16 +28,30 @@ const defaultThemePath = path.join(
 // This function is called in extension.ts
 export function update() {
   resetIconDefinitions();
+  christmasIcons();
   applyFolderArrowsSettings();
   java.update();
   bedrock.update();
 }
 
 async function resetIconDefinitions() {
-  if (!shouldUseChristmasIcons) {
-    fs.copyFileSync(defaultThemePath, themePath);
-  } else {
-    fs.copyFileSync(christmasThemePath, themePath);
+  fs.copyFileSync(defaultThemePath, themePath);
+}
+
+async function christmasIcons() {
+  if (shouldUseChristmasIcons) {
+    let themeContent = fs.readFileSync(themePath, "utf8");
+    let themeObject = JSON.parse(themeContent);
+
+    themeObject.folder = "folder_xmas";
+    themeObject.folderExpanded = "folder_open_xmas";
+
+    for (let key in themeObject.folderNamesExpanded) {
+      if (key !== "src_open") {
+        themeObject.folderNamesExpanded[key] += "_xmas";
+      }
+    }
+    fs.writeFileSync(themePath, JSON.stringify(themeObject, null, 2), "utf8");
   }
 }
 

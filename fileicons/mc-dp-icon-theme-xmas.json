@@ -515,79 +515,79 @@
     }
   },
   "file": "misc",
-  "folder": "folder",
-  "folderExpanded": "folder_open",
+  "folder": "folder_xmas",
+  "folderExpanded": "folder_open_xmas",
   "folderNames": {
     "data": "data",
     "assets": "assets",
     "src": "src"
   },
   "folderNamesExpanded": {
-    "advancement": "advancement",
-    "advancements": "advancement",
-    "banner_pattern": "banner_pattern",
-    "chat_type": "chat_type",
-    "damage_type": "damage_type",
-    "data": "data_open",
-    "datapacks": "datapacks_open",
-    "dimension": "dimension",
-    "dimension_type": "dimension_type",
-    "enchantment": "enchantment",
-    "enchantment_provider": "enchantment",
-    "function": "function",
-    "functions": "function",
-    "instrument": "instrument",
-    "item_modifier": "item_modifier",
-    "item_modifiers": "item_modifier",
-    "jukebox_song": "jukebox_song",
-    "loot_table": "loot_table",
-    "loot_tables": "loot_table",
-    "painting_variant": "painting_variant",
-    "predicate": "predicate",
-    "predicates": "predicate",
-    "recipe": "recipe",
-    "recipes": "recipe",
-    "structure": "structure",
-    "structures": "structure",
-    "tags": "tags",
-    "trial_spawner": "trial_spawner",
-    "trim_material": "trim_material",
-    "trim_pattern": "trim_pattern",
-    "wolf_variant": "wolf_variant",
-    "worldgen": "worldgen",
-    "animations": "animations",
-    "assets": "assets_open",
-    "atlases": "atlases",
-    "blockstates": "blockstates",
-    "equipment": "equipment",
-    "font": "font",
-    "items": "items",
-    "lang": "lang",
-    "models": "models",
-    "particles": "particles",
-    "post_effect": "shaders",
-    "shaders": "shaders",
-    "sounds": "sounds",
-    "texts": "texts",
-    "textures": "textures",
-    "animation_controllers": "animations",
-    "blocks": "blocks",
-    "cameras": "cameras",
-    "dialogue": "chat_type_open",
-    "entities": "entities",
-    "feature_rules": "features",
-    "features": "features",
-    "spawn_rules": "spawn_rules",
-    "trading": "trading",
-    "attachables": "attachables",
-    "block_culling": "block_culling",
-    "entity": "entities",
-    "fogs": "fogs",
-    "materials": "materials",
-    "render_controllers": "render_controllers",
-    "ui": "ui",
+    "advancement": "advancement_xmas"
+    "advancements": "advancement_xmas"
+    "banner_pattern": "banner_pattern_xmas"
+    "chat_type": "chat_type_xmas"
+    "damage_type": "damage_type_xmas"
+    "data": "data_open_xmas"
+    "datapacks": "datapacks_open_xmas"
+    "dimension": "dimension_xmas"
+    "dimension_type": "dimension_type_xmas"
+    "enchantment": "enchantment_xmas"
+    "enchantment_provider": "enchantment_xmas"
+    "function": "function_xmas"
+    "functions": "function_xmas"
+    "instrument": "instrument_xmas"
+    "item_modifier": "item_modifier_xmas"
+    "item_modifiers": "item_modifier_xmas"
+    "jukebox_song": "jukebox_song_xmas"
+    "loot_table": "loot_table_xmas"
+    "loot_tables": "loot_table_xmas"
+    "painting_variant": "painting_variant_xmas"
+    "predicate": "predicate_xmas"
+    "predicates": "predicate_xmas"
+    "recipe": "recipe_xmas"
+    "recipes": "recipe_xmas"
+    "structure": "structure_xmas"
+    "structures": "structure_xmas"
+    "tags": "tags_xmas"
+    "trial_spawner": "trial_spawner_xmas"
+    "trim_material": "trim_material_xmas"
+    "trim_pattern": "trim_pattern_xmas"
+    "wolf_variant": "wolf_variant_xmas"
+    "worldgen": "worldgen_xmas"
+    "animations": "animations_xmas"
+    "assets": "assets_open_xmas"
+    "atlases": "atlases_xmas"
+    "blockstates": "blockstates_xmas"
+    "equipment": "equipment_xmas"
+    "font": "font_xmas"
+    "items": "items_xmas"
+    "lang": "lang_xmas"
+    "models": "models_xmas"
+    "particles": "particles_xmas"
+    "post_effect": "shaders_xmas"
+    "shaders": "shaders_xmas"
+    "sounds": "sounds_xmas"
+    "texts": "texts_xmas"
+    "textures": "textures_xmas"
+    "animation_controllers": "animations_xmas"
+    "blocks": "blocks_xmas"
+    "cameras": "cameras_xmas"
+    "dialogue": "chat_type_open_xmas"
+    "entities": "entities_xmas"
+    "feature_rules": "features_xmas"
+    "features": "features_xmas"
+    "spawn_rules": "spawn_rules_xmas"
+    "trading": "trading_xmas"
+    "attachables": "attachables_xmas"
+    "block_culling": "block_culling_xmas"
+    "entity": "entities_xmas"
+    "fogs": "fogs_xmas"
+    "materials": "materials_xmas"
+    "render_controllers": "render_controllers_xmas"
+    "ui": "ui_xmas"
     ".vscode": "dot_vscode",
-    "__pycache__": "pycache",
+    "__pycache__": "pycache_xmas"
     "src": "src_open"
   },
   "fileExtensions": {

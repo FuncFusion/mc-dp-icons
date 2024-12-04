@@ -106,13 +106,8 @@ async function setNamespaceIcons() {
   const folderNamesIconsMap: Record<string, string> = {};
   const folderNamesExpandedIconsMap: Record<string, string> = {};
 
-  const namespaceIcon = shouldUseChristmasIcons
-    ? "namespace_xmas"
-    : "namespace";
-
-  const namespaceIconExpanded = shouldUseChristmasIcons
-    ? "namespace_open_xmas"
-    : "namespace_open";
+  const namespaceIcon = "namespace";
+  const namespaceIconExpanded = "namespace_open";
 
   namespaceNames.forEach((namespace: string) => {
     folderNamesIconsMap[namespace] = namespaceIcon;

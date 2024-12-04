@@ -5,7 +5,6 @@ import {
   setThemeValue,
   getFilesInDirectory,
   warnAboutTooManyFiles,
-  shouldUseChristmasIcons,
   getConfig,
   namespacedToFileName,
 } from "./main";

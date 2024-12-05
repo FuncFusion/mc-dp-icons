@@ -38,9 +38,18 @@ export function update() {
 }
 
 async function resetIconDefinitions() {
-  const shouldUseChristmasIcons =
-    isChristmas() && getConfig("enableChristmasIcons");
-  if (!shouldUseChristmasIcons) {
+  const enableChristmasIcons = getConfig("enableChristmasIcons");
+  const shouldUseChristmasIcons = () => {
+    if (enableChristmasIcons === "always") {
+      return true;
+    } else if (enableChristmasIcons === "only on christmas") {
+      return isChristmas();
+    } else if (enableChristmasIcons === "disable") {
+      return false;
+    }
+  }
+
+  if (!shouldUseChristmasIcons()) {
     fs.copyFileSync(defaultThemePath, themePath);
   } else {
     fs.copyFileSync(christmasThemePath, themePath);

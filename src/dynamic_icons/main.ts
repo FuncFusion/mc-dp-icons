@@ -40,11 +40,11 @@ export function update() {
 async function resetIconDefinitions() {
   const enableChristmasIcons = getConfig("enableChristmasIcons");
   const shouldUseChristmasIcons = () => {
-    if (enableChristmasIcons === "always") {
+    if (enableChristmasIcons === "Always") {
       return true;
-    } else if (enableChristmasIcons === "only on christmas") {
+    } else if (enableChristmasIcons === "Only on Christmas") {
       return isChristmas();
-    } else if (enableChristmasIcons === "disable") {
+    } else if (enableChristmasIcons === "Disable") {
       return false;
     }
   }

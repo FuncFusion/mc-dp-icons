@@ -1,7 +1,7 @@
 {
   "iconDefinitions": {
     "advancement": {
-      "iconPath": "./imgs/advancement.svg"
+      "iconPath": "./imgs/advancement_xmas.svg"
     },
     "advancement_file": {
       "iconPath": "./imgs/advancement_file.svg"
@@ -10,7 +10,7 @@
       "iconPath": "./imgs/ajmeta.svg"
     },
     "banner_pattern": {
-      "iconPath": "./imgs/banner_pattern.svg"
+      "iconPath": "./imgs/banner_pattern_xmas.svg"
     },
     "banner_pattern_file": {
       "iconPath": "./imgs/banner_pattern_file.svg"
@@ -22,13 +22,13 @@
       "iconPath": "./imgs/bolt.svg"
     },
     "chat_type": {
-      "iconPath": "./imgs/chat_type.svg"
+      "iconPath": "./imgs/chat_type_xmas.svg"
     },
     "chat_type_file": {
       "iconPath": "./imgs/chat_type_file.svg"
     },
     "damage_type": {
-      "iconPath": "./imgs/damage_type.svg"
+      "iconPath": "./imgs/damage_type_xmas.svg"
     },
     "damage_type_file": {
       "iconPath": "./imgs/damage_type_file.svg"
@@ -40,34 +40,34 @@
       "iconPath": "./imgs/data_open.svg"
     },
     "datapacks_open": {
-      "iconPath": "./imgs/datapacks.svg"
+      "iconPath": "./imgs/datapacks_xmas.svg"
     },
     "dimension": {
-      "iconPath": "./imgs/dimension.svg"
+      "iconPath": "./imgs/dimension_xmas.svg"
     },
     "dimension_file": {
       "iconPath": "./imgs/dimension_file.svg"
     },
     "dimension_type": {
-      "iconPath": "./imgs/dimension_type.svg"
+      "iconPath": "./imgs/dimension_type_xmas.svg"
     },
     "dimension_type_file": {
       "iconPath": "./imgs/dimension_type_file.svg"
     },
     "enchantment": {
-      "iconPath": "./imgs/enchantment.svg"
+      "iconPath": "./imgs/enchantment_xmas.svg"
     },
     "enchantment_file": {
       "iconPath": "./imgs/enchantment_file.svg"
     },
     "folder": {
-      "iconPath": "./imgs/folder.svg"
+      "iconPath": "./imgs/folder_xmas.svg"
     },
     "folder_open": {
-      "iconPath": "./imgs/folder_open.svg"
+      "iconPath": "./imgs/folder_open_xmas.svg"
     },
     "function": {
-      "iconPath": "./imgs/function.svg"
+      "iconPath": "./imgs/function_xmas.svg"
     },
     "hjmc": {
       "iconPath": "./imgs/hjmc.svg"
@@ -76,13 +76,13 @@
       "iconPath": "./imgs/painting.svg"
     },
     "instrument": {
-      "iconPath": "./imgs/instrument.svg"
+      "iconPath": "./imgs/instrument_xmas.svg"
     },
     "instrument_file": {
       "iconPath": "./imgs/instrument_file.svg"
     },
     "item_modifier": {
-      "iconPath": "./imgs/item_modifier.svg"
+      "iconPath": "./imgs/item_modifier_xmas.svg"
     },
     "item_modifier_file": {
       "iconPath": "./imgs/item_modifier_file.svg"
@@ -94,7 +94,7 @@
       "iconPath": "./imgs/json.svg"
     },
     "jukebox_song": {
-      "iconPath": "./imgs/jukebox_song.svg"
+      "iconPath": "./imgs/jukebox_song_xmas.svg"
     },
     "jukebox_song_file": {
       "iconPath": "./imgs/jukebox_song_file.svg"
@@ -103,7 +103,7 @@
       "iconPath": "./imgs/load.json.svg"
     },
     "loot_table": {
-      "iconPath": "./imgs/loot_table.svg"
+      "iconPath": "./imgs/loot_table_xmas.svg"
     },
     "loot_table_file": {
       "iconPath": "./imgs/loot_table_file.svg"
@@ -121,37 +121,37 @@
       "iconPath": "./imgs/misc.svg"
     },
     "namespace": {
-      "iconPath": "./imgs/namespace.svg"
+      "iconPath": "./imgs/namespace_xmas.svg"
     },
     "namespace_open": {
-      "iconPath": "./imgs/namespace_open.svg"
+      "iconPath": "./imgs/namespace_open_xmas.svg"
     },
     "pack.mcmeta": {
       "iconPath": "./imgs/pack.mcmeta.svg"
     },
     "painting_variant": {
-      "iconPath": "./imgs/painting_variant.svg"
+      "iconPath": "./imgs/painting_variant_xmas.svg"
     },
     "predicate": {
-      "iconPath": "./imgs/predicate.svg"
+      "iconPath": "./imgs/predicate_xmas.svg"
     },
     "predicate_file": {
       "iconPath": "./imgs/predicate_file.svg"
     },
     "recipe": {
-      "iconPath": "./imgs/recipe.svg"
+      "iconPath": "./imgs/recipe_xmas.svg"
     },
     "recipe_file": {
       "iconPath": "./imgs/recipe_file.svg"
     },
     "structure": {
-      "iconPath": "./imgs/structure.svg"
+      "iconPath": "./imgs/structure_xmas.svg"
     },
     "structure_file": {
       "iconPath": "./imgs/structure_file.svg"
     },
     "tags": {
-      "iconPath": "./imgs/tags.svg"
+      "iconPath": "./imgs/tags_xmas.svg"
     },
     "tags_file": {
       "iconPath": "./imgs/tags_file.svg"
@@ -160,40 +160,34 @@
       "iconPath": "./imgs/tick.json.svg"
     },
     "trial_spawner": {
-      "iconPath": "./imgs/trial_spawner.svg"
+      "iconPath": "./imgs/trial_spawner_xmas.svg"
     },
     "trial_spawner_file": {
       "iconPath": "./imgs/trial_spawner_file.svg"
     },
     "trim_material": {
-      "iconPath": "./imgs/trim_material.svg"
+      "iconPath": "./imgs/trim_material_xmas.svg"
     },
     "trim_material_file": {
       "iconPath": "./imgs/trim_material_file.svg"
     },
     "trim_pattern": {
-      "iconPath": "./imgs/trim_pattern.svg"
+      "iconPath": "./imgs/trim_pattern_xmas.svg"
     },
     "trim_pattern_file": {
       "iconPath": "./imgs/trim_pattern_file.svg"
     },
     "wolf_variant": {
-      "iconPath": "./imgs/wolf_variant.svg"
+      "iconPath": "./imgs/wolf_variant_xmas.svg"
     },
     "wolf_variant_file": {
       "iconPath": "./imgs/wolf_variant_file.svg"
     },
     "worldgen": {
-      "iconPath": "./imgs/worldgen.svg"
+      "iconPath": "./imgs/worldgen_xmas.svg"
     },
     "worldgen_file": {
       "iconPath": "./imgs/worldgen_file.svg"
-    },
-    "animations": {
-      "iconPath": "./imgs/animations.svg"
-    },
-    "animations_file": {
-      "iconPath": "./imgs/animations_file.svg"
     },
     "assets": {
       "iconPath": "./imgs/assets.svg"
@@ -202,25 +196,25 @@
       "iconPath": "./imgs/assets_open.svg"
     },
     "atlases": {
-      "iconPath": "./imgs/atlases.svg"
+      "iconPath": "./imgs/atlases_xmas.svg"
     },
     "atlases_file": {
       "iconPath": "./imgs/atlases_file.svg"
     },
     "blockstates": {
-      "iconPath": "./imgs/blockstates.svg"
+      "iconPath": "./imgs/blockstates_xmas.svg"
     },
     "blockstates_file": {
       "iconPath": "./imgs/blockstates_file.svg"
     },
     "equipment": {
-      "iconPath": "./imgs/equipment.svg"
+      "iconPath": "./imgs/equipment_xmas.svg"
     },
     "equipment_file": {
       "iconPath": "./imgs/equipment_file.svg"
     },
     "font": {
-      "iconPath": "./imgs/font.svg"
+      "iconPath": "./imgs/font_xmas.svg"
     },
     "font_file": {
       "iconPath": "./imgs/font_file.svg"
@@ -232,19 +226,19 @@
       "iconPath": "./imgs/glsl.svg"
     },
     "items": {
-      "iconPath": "./imgs/items.svg"
+      "iconPath": "./imgs/items_xmas.svg"
     },
     "items_file": {
       "iconPath": "./imgs/items_file.svg"
     },
     "lang": {
-      "iconPath": "./imgs/lang.svg"
+      "iconPath": "./imgs/lang_xmas.svg"
     },
     "lang_file": {
       "iconPath": "./imgs/lang_file.svg"
     },
     "models": {
-      "iconPath": "./imgs/models.svg"
+      "iconPath": "./imgs/models_xmas.svg"
     },
     "models_file": {
       "iconPath": "./imgs/models_file.svg"
@@ -253,28 +247,28 @@
       "iconPath": "./imgs/ogg.svg"
     },
     "particles": {
-      "iconPath": "./imgs/particles.svg"
+      "iconPath": "./imgs/particles_xmas.svg"
     },
     "particles_file": {
       "iconPath": "./imgs/particles_file.svg"
     },
     "shaders": {
-      "iconPath": "./imgs/shaders.svg"
+      "iconPath": "./imgs/shaders_xmas.svg"
     },
     "shaders_file": {
       "iconPath": "./imgs/shaders_file.svg"
     },
     "sounds": {
-      "iconPath": "./imgs/sounds.svg"
+      "iconPath": "./imgs/sounds_xmas.svg"
     },
     "sounds.json": {
       "iconPath": "./imgs/sounds.json.svg"
     },
     "texts": {
-      "iconPath": "./imgs/texts.svg"
+      "iconPath": "./imgs/texts_xmas.svg"
     },
     "textures": {
-      "iconPath": "./imgs/textures.svg"
+      "iconPath": "./imgs/textures_xmas.svg"
     },
     "txt": {
       "iconPath": "./imgs/txt.svg"
@@ -283,43 +277,49 @@
       "iconPath": "./imgs/vsh.svg"
     },
     "blocks": {
-      "iconPath": "./imgs/blocks.svg"
+      "iconPath": "./imgs/blocks_xmas.svg"
     },
     "blocks_file": {
       "iconPath": "./imgs/blocks_file.svg"
     },
     "cameras": {
-      "iconPath": "./imgs/cameras.svg"
+      "iconPath": "./imgs/cameras_xmas.svg"
     },
     "cameras_file": {
       "iconPath": "./imgs/cameras_file.svg"
     },
     "entities": {
-      "iconPath": "./imgs/entities.svg"
+      "iconPath": "./imgs/entities_xmas.svg"
     },
     "entities_file": {
       "iconPath": "./imgs/entities_file.svg"
     },
     "features": {
-      "iconPath": "./imgs/features.svg"
+      "iconPath": "./imgs/features_xmas.svg"
     },
     "features_file": {
       "iconPath": "./imgs/features_file.svg"
     },
     "spawn_rules": {
-      "iconPath": "./imgs/spawn_rules.svg"
+      "iconPath": "./imgs/spawn_rules_xmas.svg"
     },
     "spawn_rules_file": {
       "iconPath": "./imgs/spawn_rules_file.svg"
     },
     "trading": {
-      "iconPath": "./imgs/trading.svg"
+      "iconPath": "./imgs/trading_xmas.svg"
     },
     "trading_file": {
       "iconPath": "./imgs/trading_file.svg"
     },
+    "animations": {
+      "iconPath": "./imgs/animations_xmas.svg"
+    },
+    "animations_file": {
+      "iconPath": "./imgs/animations_file.svg"
+    },
     "attachables": {
-      "iconPath": "./imgs/attachables.svg"
+      "iconPath": "./imgs/attachables_xmas.svg"
     },
     "attachables_file": {
       "iconPath": "./imgs/attachables_file.svg"
@@ -328,7 +328,7 @@
       "iconPath": "./imgs/biomes_client.json.svg"
     },
     "block_culling": {
-      "iconPath": "./imgs/block_culling.svg"
+      "iconPath": "./imgs/block_culling_xmas.svg"
     },
     "block_culling_file": {
       "iconPath": "./imgs/block_culling_file.svg"
@@ -337,19 +337,19 @@
       "iconPath": "./imgs/blocks.json.svg"
     },
     "fogs": {
-      "iconPath": "./imgs/fogs.svg"
+      "iconPath": "./imgs/fogs_xmas.svg"
     },
     "fogs_file": {
       "iconPath": "./imgs/fogs_file.svg"
     },
     "materials": {
-      "iconPath": "./imgs/materials.svg"
+      "iconPath": "./imgs/materials_xmas.svg"
     },
     "materials_file": {
       "iconPath": "./imgs/materials_file.svg"
     },
     "render_controllers": {
-      "iconPath": "./imgs/render_controllers.svg"
+      "iconPath": "./imgs/render_controllers_xmas.svg"
     },
     "render_controllers_file": {
       "iconPath": "./imgs/render_controllers_file.svg"
@@ -358,7 +358,7 @@
       "iconPath": "./imgs/splashes.json.svg"
     },
     "ui": {
-      "iconPath": "./imgs/ui.svg"
+      "iconPath": "./imgs/ui_xmas.svg"
     },
     "ui_file": {
       "iconPath": "./imgs/ui_file.svg"
@@ -403,7 +403,7 @@
       "iconPath": "./imgs/doc.svg"
     },
     "dot_vscode": {
-      "iconPath": "./imgs/dot_vscode.svg"
+      "iconPath": "./imgs/dot_vscode_xmas.svg"
     },
     "excel": {
       "iconPath": "./imgs/excel.svg"
@@ -457,7 +457,7 @@
       "iconPath": "./imgs/php.svg"
     },
     "pycache": {
-      "iconPath": "./imgs/pycache.svg"
+      "iconPath": "./imgs/pycache_xmas.svg"
     },
     "pycd": {
       "iconPath": "./imgs/python_compiled.svg"
@@ -520,9 +520,7 @@
   "folderNames": {
     "data": "data",
     "assets": "assets",
-    "src": "src",
-    "data/bmending": "namespace",
-    "data/minecraft": "namespace"
+    "src": "src"
   },
   "folderNamesExpanded": {
     "advancement": "advancement",
@@ -557,7 +555,6 @@
     "trim_pattern": "trim_pattern",
     "wolf_variant": "wolf_variant",
     "worldgen": "worldgen",
-    "animations": "animations",
     "assets": "assets_open",
     "atlases": "atlases",
     "blockstates": "blockstates",
@@ -572,6 +569,7 @@
     "sounds": "sounds",
     "texts": "texts",
     "textures": "textures",
+    "animations": "animations",
     "animation_controllers": "animations",
     "blocks": "blocks",
     "cameras": "cameras",
@@ -590,9 +588,7 @@
     "ui": "ui",
     ".vscode": "dot_vscode",
     "__pycache__": "pycache",
-    "src": "src_open",
-    "data/bmending": "namespace_open",
-    "data/minecraft": "namespace_open"
+    "src": "src_open"
   },
   "fileExtensions": {
     "advancement/json": "advancement_file",
@@ -674,63 +670,110 @@
     "material": "materials_file",
     "render_controllers/render_controllers.json": "render_controllers_file",
     "ui/json": "ui_file",
+    "aab": "android",
+    "aar": "android",
     "apk": "android",
+    "apks": "android",
+    "axml": "android",
+    "dalvik": "android",
     "dex": "android",
     "smali": "android",
     "7z": "archive",
+    "ace": "archive",
+    "arj": "archive",
     "br": "archive",
     "bz2": "archive",
     "bzip2": "archive",
+    "cab": "archive",
+    "iso": "archive",
     "gz": "archive",
     "gzip": "archive",
     "lz4": "archive",
     "lzma": "archive",
+    "pak": "archive",
     "rar": "archive",
+    "rpm": "archive",
+    "squashfs": "archive",
     "tar": "archive",
     "tgz": "archive",
     "txz": "archive",
     "tz": "archive",
+    "vhd": "archive",
     "xz": "archive",
     "zip": "archive",
     "zst": "archive",
     "ino": "arduino",
     "a51": "assembly",
+    "armasm": "assembly",
     "asm": "assembly",
+    "gas": "assembly",
+    "hla": "assembly",
+    "mips": "assembly",
     "mitigus": "assembly",
     "nasm": "assembly",
     "s": "assembly",
     "wasm": "assembly",
+    "yasm": "assembly",
     "ahk": "autohotkey",
     "c": "c",
     "h": "c",
     "i": "c",
+    "m": "c",
+    "objc": "c",
     "c++": "cpp",
     "cc": "cpp",
     "cpp": "cpp",
     "cxx": "cpp",
+    "hh": "cpp",
+    "hpp": "cpp",
+    "hxx": "cpp",
     "ii": "cpp",
+    "inl": "cpp",
+    "ipp": "cpp",
+    "tcc": "cpp",
+    "tpp": "cpp",
+    "vcxproj": "cpp",
     "cs": "cs",
     "csharp": "cs",
+    "csproj": "cs",
     "csx": "cs",
     "css": "css",
+    "less": "css",
+    "scss": "css",
     "dart": "dart",
     "accdb": "database",
     "db": "database",
     "db3": "database",
+    "dbf": "database",
+    "frm": "database",
+    "fdb": "database",
+    "gdb": "database",
     "mdb": "database",
+    "mongodb": "database",
+    "myd": "database",
+    "myi": "database",
+    "nsf": "database",
+    "odb": "database",
     "pdb": "database",
     "pgsql": "database",
     "pkb": "database",
     "pks": "database",
     "postgres": "database",
     "psql": "database",
+    "sdb": "database",
     "sql": "database",
     "sqlite": "database",
     "sqlite3": "database",
     "doc": "doc",
     "docx": "doc",
     "dot": "doc",
+    "fodt": "doc",
+    "ltx": "doc",
+    "odm": "doc",
     "odt": "doc",
+    "pages": "doc",
+    "wpd": "doc",
+    "wps": "doc",
     "csv": "excel",
     "ods": "excel",
     "psv": "excel",
@@ -741,8 +784,17 @@
     "xlsx": "excel",
     "xlw": "excel",
     "app": "exe",
+    "appx": "exe",
+    "bin": "exe",
+    "com": "exe",
+    "dll": "exe",
+    "dmg": "exe",
     "exe": "exe",
     "msi": "exe",
+    "out": "exe",
+    "run": "exe",
+    "sys": "exe",
+    "fp": "fsh",
     "frag": "fsh",
     "bmap": "font_file",
     "eot": "font_file",
@@ -760,48 +812,71 @@
     "git": "git",
     "gitattributes": "git",
     "gitignore": "gitignore",
+    "comp": "glsl",
+    "geom": "glsl",
     "hlsl": "glsl",
+    "tesc": "glsl",
+    "tese": "glsl",
     "wgsl": "glsl",
     "go": "go",
+    "hta": "html",
+    "htm": "html",
     "html": "html",
+    "htmls": "html",
+    "xht": "html",
+    "xhtml": "html",
     "afphoto": "image",
     "ami": "image",
     "apx": "image",
+    "art": "image",
     "ase": "image",
     "aseprite": "image",
     "avif": "image",
     "bmp": "image",
     "bpg": "image",
     "brk": "image",
+    "cd5": "image",
+    "cdr": "image",
+    "cgm": "image",
     "clip": "image",
     "cpt": "image",
     "cur": "image",
+    "dcm": "image",
     "dds": "image",
+    "djvu": "image",
     "dng": "image",
+    "ecw": "image",
     "eps": "image",
     "exr": "image",
+    "flif": "image",
     "fpx": "image",
     "gbr": "image",
     "gif": "image",
+    "hdr": "image",
     "heic": "image",
     "heif": "image",
     "icns": "image",
     "ico": "image",
+    "iff": "image",
     "img": "image",
     "jb2": "image",
     "jbig2": "image",
     "jfif": "image",
     "jng": "image",
+    "jp2": "image",
     "jpeg": "image",
     "jpg": "image",
     "jxr": "image",
     "kra": "image",
     "mdp": "image",
+    "mng": "image",
     "ora": "image",
     "pbm": "image",
+    "pcx": "image",
     "pdn": "image",
     "pgf": "image",
     "pgm": "image",
+    "pgx": "image",
     "pic": "image",
     "pnm": "image",
     "ppm": "image",
@@ -810,98 +885,202 @@
     "raw": "image",
     "reb": "image",
     "sai": "image",
+    "sid": "image",
     "svg": "image",
     "tga": "image",
     "tif": "image",
     "tiff": "image",
+    "wbmp": "image",
     "webp": "image",
+    "wmf": "image",
     "xcf": "image",
     "jar": "jar",
     "class": "java",
     "java": "java",
+    "jmod": "java",
     "jsp": "java",
+    "jws": "java",
     "cjs": "js",
+    "es6": "js",
+    "jake": "js",
     "js": "js",
+    "jsm": "js",
+    "jss": "js",
     "jsx": "js",
     "mjs": "js",
+    "pac": "js",
+    "har": "json",
+    "jsonld": "json",
+    "topojson": "json",
+    "webmanifest": "json",
     "json5": "json",
     "jsonc": "json",
     "jsonl": "json",
     "ndjson": "json",
     "kt": "kotlin",
     "kts": "kotlin",
+    "dmp": "log",
+    "dump": "log",
+    "err": "log",
     "log": "log",
     "lua": "lua",
+    "luac": "lua",
+    "luau": "lua",
+    "luc": "lua",
+    "markdn": "md",
     "markdown": "md",
     "md": "md",
+    "mdown": "md",
+    "mdtext": "md",
+    "mdtxt": "md",
+    "mdwn": "md",
+    "mdx": "md",
+    "mkd": "md",
+    "mkdn": "md",
     "rst": "md",
+    "3dm": "models_file",
+    "3ds": "models_file",
+    "3mf": "models_file",
     "blend": "models_file",
-    "dae": "models_file",
+    "c4d": "models_file",
+    "collada": "models_file",
     "dxf": "models_file",
     "fbx": "models_file",
+    "glb": "models_file",
     "gltf": "models_file",
+    "iges": "models_file",
+    "ipt": "models_file",
+    "ma": "models_file",
+    "max": "models_file",
+    "mb": "models_file",
     "mesh": "models_file",
     "mqo": "models_file",
     "obj": "models_file",
+    "ply": "models_file",
     "pmx": "models_file",
     "skp": "models_file",
+    "step": "models_file",
     "stl": "models_file",
     "stp": "models_file",
+    "usd": "models_file",
+    "usda": "models_file",
+    "usdc": "models_file",
+    "usdz": "models_file",
     "vox": "models_file",
+    "vrm": "models_file",
+    "wrl": "models_file",
+    "x3d": "models_file",
     "mojo": "mojo",
+    "mojom": "mojo",
     "�": "mojo",
+    "aac": "ogg",
+    "ac3": "ogg",
+    "aif": "ogg",
     "aiff": "ogg",
+    "amr": "ogg",
+    "ape": "ogg",
+    "au": "ogg",
+    "dts": "ogg",
     "flac": "ogg",
+    "gsm": "ogg",
     "m4a": "ogg",
+    "m4b": "ogg",
+    "m4p": "ogg",
+    "mid": "ogg",
+    "midi": "ogg",
+    "mka": "ogg",
     "mp3": "ogg",
+    "mpc": "ogg",
+    "oga": "ogg",
+    "opus": "ogg",
+    "ra": "ogg",
+    "spx": "ogg",
     "wav": "ogg",
     "wma": "ogg",
+    "wv": "ogg",
     "pdf": "pdf",
     "rtf": "pdf",
     "php": "php",
     "pyc": "pycd",
     "pyd": "pycd",
+    "pyo": "pycd",
     "whl": "pycd",
     "ipynb": "python",
     "py": "python",
+    "pyde": "python",
+    "pyi": "python",
+    "pyp": "python",
+    "pyt": "python",
     "pyw": "python",
     "r": "r",
+    "rda": "r",
+    "rdata": "r",
+    "rds": "r",
+    "rhistory": "r",
     "rmd": "r",
+    "rprofile": "r",
+    "rproj": "r",
     "re": "re",
+    "rei": "re",
     "erb": "ruby",
+    "gemspec": "ruby",
+    "jbuilder": "ruby",
+    "mspec": "ruby",
+    "podspec": "ruby",
+    "rabl": "ruby",
+    "rake": "ruby",
     "rb": "ruby",
+    "rbi": "ruby",
     "rbs": "ruby",
+    "rlib": "rust",
     "ron": "rust",
     "rs": "rust",
+    "ash": "shell",
     "awk": "shell",
     "bash": "shell",
     "bat": "shell",
+    "bsh": "shell",
     "cmd": "shell",
+    "command": "shell",
     "csh": "shell",
     "exp": "shell",
     "fish": "shell",
     "ksh": "shell",
+    "ksh93": "shell",
+    "mksh": "shell",
     "nu": "shell",
+    "pdksh": "shell",
     "ps1": "shell",
     "ps1xml": "shell",
     "psc1": "shell",
     "psd1": "shell",
     "psm1": "shell",
     "pssc": "shell",
+    "rbash": "shell",
+    "rc": "shell",
     "sh": "shell",
+    "tcl": "shell",
     "tcsh": "shell",
     "zsh": "shell",
     "sublime-build": "sublime",
     "sublime-keymap": "sublime",
     "sublime-macro": "sublime",
+    "sublime-package": "sublime_package",
     "sublime-project": "sublime",
     "sublime-settings": "sublime",
     "sublime-snippet": "sublime",
+    "sublime-syntax": "sublime",
     "sublime-workspace": "sublime",
-    "sublime-package": "sublime_package",
     "svelte": "svelte",
     "swift": "swift",
+    "swiftdeps": "swift",
+    "swiftdoc": "swift",
+    "swiftinterface": "swift",
+    "swiftmodule": "swift",
+    "swiftsourceinfo": "swift",
+    "cts": "ts",
     "ts": "ts",
+    "tsbuildinfo": "ts",
     "tsx": "ts",
     "code-profile": "vsc",
     "code-snippets": "vsc",
@@ -911,7 +1090,26 @@
     "vsixmanifest": "vsc",
     "vscodeignore": "vscodeignore",
     "vert": "vsh",
+    "admx": "xml",
+    "filters": "xml",
+    "ivy": "xml",
+    "jelly": "xml",
+    "mxml": "xml",
+    "nuspec": "xml",
+    "resx": "xml",
+    "rss": "xml",
+    "targets": "xml",
+    "tld": "xml",
+    "wsdl": "xml",
+    "xib": "xml",
+    "xlf": "xml",
+    "xliff": "xml",
+    "xmi": "xml",
     "xml": "xml",
+    "xsd": "xml",
+    "xsl": "xml",
+    "xslt": "xml",
+    "rviz": "yaml",
     "yaml": "yaml",
     "yml": "yaml"
   },
@@ -939,9 +1137,7 @@
     "COPYRIGHT.txt": "copyright",
     "LICENSE": "license",
     "LICENSE.md": "license",
-    "LICENSE.txt": "license",
-    "load.mcfunction": "mcf_load",
-    "loop.mcfunction": "mcf_tick"
+    "LICENSE.txt": "license"
   },
-  "hidesExplorerArrows": true
+  "hidesExplorerArrows": false
 }

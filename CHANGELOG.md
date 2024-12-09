@@ -1,7 +1,28 @@
 # Change Log
 
 All notable changes to the "mc-dp-icons" extension will be documented in this file.
-## [3.1.1] - Minor fixes (2024-13-06)
+## [4.0.0] - Bedrock Update (UNRELEASED)
+### The total amount of icons now is 235, 225 of them in use, and 54 of *them* are christmas variants
+### Added
+- New `Subfolder icons` system! Now all `.json` files within nested subfolders of datapack and resource pack directories will receive their unique icons (e.g., `data/namespace/item_modifier/some_other_folder/file.json` will display a diamond pickaxe icon instead of a generic `.json` icon), which solves this[^1]. Remember that same as all other dynamic icons features, this is a **workaround** due to VS Code's API limitations, so files with identical names and parent folder names may cause icon conflicts (e.g., both `data/namespace/item_modifier/some_other_folder/file.json` and `data/namespace/loot_table/some_other_folder/file.json` might show the diamond pickaxe icon, even though the latter should display an emerald icon). For large workspaces with a large amount of json files in subfolders (like a vanilla datapack), consider disabling this feature in settings to prevent lag.
+
+- Christmas icons! Similarly to minecraft, the icon theme will change all of the icons that have chests to their christmas variants during December 24-26. This feature can be disabled or enabled to work at any time in the settings.
+
+- 98 new icons, including:
+    - 29 icons for bedrock behaviour packs and resource packs (`entities`, `attachables`, `spawn_rules`, `render_controllers`, `biomes_client.json` etc.)
+    - 4 new 1.21 java datapack icons (`instrument`, `trial_spawner`) and resource pack icons (`equipment`, `items`)
+    - 9 new subfolder icons for java datapack and resource pack folders (`advancement`, `equipment`, `instrument`, `items`, `loot_table`, `shaders`, `tags`, `trial_spawner` and `worldgen` json files)
+    - 54 icons as christmas variants to all of the icons with a chest (excluding `src`)
+    - `.svelte` icon
+    - Armor stand icon for [Animated Java](https://animated-java.dev/) files (`.ajmeta`, `.ajblueprint`, `.ajmodel`)
+
+- 200+ more programming and general file extensions assigns for existing icons.
+### Changed
+- `css` icon updated to match the new Rebecca Purple logo
+- `tags` folder icon got a redesign to match the style more
+- `trim_material` and `trim_pattern` folder and file icons slightly changed to match the style more
+
+## [3.1.1] - Minor fixes (2024-06-13)
 - Pack mcmeta check feature is now disabled by default.
 - [Issue 5](https://github.com/FuncFusion/mc-dp-icons/issues/5) regarding .JSX and .TSX files having incorrect icons fixed.
 

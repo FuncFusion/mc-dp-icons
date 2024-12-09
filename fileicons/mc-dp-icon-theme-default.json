@@ -64,8 +64,6 @@
     "worldgen": {"iconPath": "./imgs/worldgen.svg"},
     "worldgen_file": {"iconPath": "./imgs/worldgen_file.svg"},
     
-    "animations": {"iconPath": "./imgs/animations.svg"},
-    "animations_file": {"iconPath": "./imgs/animations_file.svg"},
     "assets": {"iconPath": "./imgs/assets.svg"},
     "assets_open": {"iconPath": "./imgs/assets_open.svg"},
     "atlases": {"iconPath": "./imgs/atlases.svg"},
@@ -109,6 +107,8 @@
     "trading": {"iconPath": "./imgs/trading.svg"},
     "trading_file": {"iconPath": "./imgs/trading_file.svg"},
     
+    "animations": {"iconPath": "./imgs/animations.svg"},
+    "animations_file": {"iconPath": "./imgs/animations_file.svg"},
     "attachables": {"iconPath": "./imgs/attachables.svg"},
     "attachables_file": {"iconPath": "./imgs/attachables_file.svg"},
     "biomes_client.json": {"iconPath": "./imgs/biomes_client.json.svg"},
@@ -218,7 +218,6 @@
     "wolf_variant": "wolf_variant",
     "worldgen": "worldgen",
     
-    "animations": "animations",
     "assets": "assets_open",
     "atlases": "atlases",
     "blockstates": "blockstates",
@@ -234,6 +233,7 @@
     "texts": "texts",
     "textures": "textures",
     
+    "animations": "animations",
     "animation_controllers": "animations",
     "blocks": "blocks",
     "cameras": "cameras",

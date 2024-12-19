@@ -17,18 +17,20 @@ Made by SuperAnt_: https://www.youtube.com/watch?v=eYAvg19stpU
 
 [![Trailer](https://img.youtube.com/vi/eYAvg19stpU/0.jpg)](https://www.youtube.com/watch?v=eYAvg19stpU)
 
-<details open>
+<details>
 <summary><h2>Icons</h2></summary>
 
 ![Icons](assets/4.0/IconsDatapacks.png)
 ![Icons](assets/4.0/IconsResourcepacks.png)
 ![Icons](assets/4.0/IconsProgramming.png)
-![Icons](assets/4.0/IconsBehaviorpacks.png)
+![Icons](assets/4.0/IconsBehaviorPacks.png)
 ![Icons](assets/4.0/IconsBedrockResourcepacks.png)
 
 </details>
 
-## Dynamic Icons
+<details>
+<summary><h2>Dynamic Icons features</h2></summary>
+
 ### Namespace Icons
 Namespace icons are no longer unused! The extension will find any folders directly within `data` and `assets` folders and assign an ender chest icon to the names of these folders, but only if there's `pack.mcmeta` in the same directory. That also means that if there will be a folder in any location with the same name as one of the namespace folders in the same workspace, that folder will also recieve ender chest icon, so this feature can be turned off in the settings.
 
@@ -50,7 +52,11 @@ If you don't like these arrows near the folder icons, you can hide them by enabl
 
 ![Icons](assets/3.0/HideFolderArrows.gif)
 
-## Why did we choose *this* icon for *that*?
+</details>
+
+<details>
+<summary><h2>Why did we choose *this* icon for *that*?</h2></summary>
+
 ### Datapacks
 - Chest can contain things, such as `folder`
 - Shulker represents that `data`pack can be carried between the worlds
@@ -92,6 +98,17 @@ If you don't like these arrows near the folder icons, you can hide them by enabl
 - Note on a paper represents `sounds.json` as some sort of sound configuration file
 - Highlighted vertices on a triangle represent `Vertex SHader` files
 - RGB pixel represents `Fragment SHader` files
+### Behaviorpacks
+- "Play/pause" button is associated with `animations` or videos
+- Spyglass is probably the closest thing to `cameras` in minecraft
+- There are a lot of `features` in the game, tree is one of them
+- Most of the mobs spawn from eggs and a dragon egg is the most iconic, so it represents `spawn_rules`
+### Bedrock Resourcepacks
+- Armor can be an `attachable`
+- A hollow block represents `block_culling`
+- Transparent texture can be a `material`
+- `render_controllers` determine what renders on an entity, so hemlet on a zombie's head represents it
+- A slot is in the player's inventory, so it represents `ui`
 ### Programming
 Most of the programming icons don't need an explanation, but there are a few exceptions:
 - We write something on paper scrolls, as well as in `most of the file formats`
@@ -102,6 +119,8 @@ Most of the programming icons don't need an explanation, but there are a few exc
 - oak `log` :​P
 - Nautilus `shell` for shell and console files
 - Warped chest for `src` folder because it's the closest color to green
+
+</details>
 
 ---
 ## Creators

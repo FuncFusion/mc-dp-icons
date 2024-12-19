@@ -1,6 +1,6 @@
 
 
-![Title](assets/3.0/Title.png)
+![Title](assets/4.0/Title.png)
 <div align="center">
 
 [![Visual Studio Marketplace Version (including pre-releases)](https://img.shields.io/visual-studio-marketplace/v/SuperAnt.mc-dp-icons?style=for-the-badge&color=36a7dd)](https://marketplace.visualstudio.com/items?itemName=SuperAnt.mc-dp-icons)
@@ -55,7 +55,7 @@ If you don't like these arrows near the folder icons, you can hide them by enabl
 </details>
 
 <details>
-<summary><h2>Why did we choose *this* icon for *that*?</h2></summary>
+<summary><h2>Why did we choose <i>this</i> icon for <i>that</i>?</h2></summary>
 
 ### Datapacks
 - Chest can contain things, such as `folder`

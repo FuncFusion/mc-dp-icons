@@ -10,17 +10,23 @@
 </div>
 
 ---
-Datapack Icons is a fancy, minecraft-styled icon theme, designed specifically for datapack & resourcepack devs. Looking through [Microsoft's behavior packs documentation](https://learn.microsoft.com/en-us/minecraft/creator/documents/behaviorpack#building-the-behavior-pack), we took inspiration from those icons, and decided to implement them in VS Code. 
+Datapack Icons is a fancy, minecraft-styled icon theme designed specifically for datapack and resourcepack devs. Looking through [Microsoft's behavior packs documentation](https://learn.microsoft.com/en-us/minecraft/creator/documents/behaviorpack#building-the-behavior-pack), we took inspiration from those icons and decided to implement them in VS Code. 
 
 ## 3.0 Trailer
 Made by SuperAnt_: https://www.youtube.com/watch?v=eYAvg19stpU
 
 [![Trailer](https://img.youtube.com/vi/eYAvg19stpU/0.jpg)](https://www.youtube.com/watch?v=eYAvg19stpU)
 
-## Icons
-![Icons](assets/3.1/IconsDatapacks.png)
-![Icons](assets/3.0/IconsResourcepacks.png)
-![Icons](assets/3.1/IconsProgramming.png)
+<details open>
+<summary><h2>Icons</h2></summary>
+
+![Icons](assets/4.0/IconsDatapacks.png)
+![Icons](assets/4.0/IconsResourcepacks.png)
+![Icons](assets/4.0/IconsProgramming.png)
+![Icons](assets/4.0/IconsBehaviorpacks.png)
+![Icons](assets/4.0/IconsBedrockResourcepacks.png)
+
+</details>
 
 ## Dynamic Icons
 ### Namespace Icons

@@ -237,7 +237,7 @@
     "animation_controllers": "animations",
     "blocks": "blocks",
     "cameras": "cameras",
-    "dialogue": "chat_type_open",
+    "dialogue": "chat_type",
     "entities": "entities",
     "feature_rules": "features",
     "features": "features",
@@ -312,7 +312,7 @@
     "txt": "txt",
     "vsh": "vsh",
     
-    "animation_controllers/animation_controllers.json": "animations_file",
+    "animation_controllers/json": "animations_file",
     "animations/animation.json": "animations_file",
     "blocks/json": "blocks_file",
     "cameras/json": "cameras_file",
@@ -801,6 +801,7 @@
     "manifest.json": "pack.mcmeta",
     
     "biomes_client.json": "biomes_client.json", 
+    "client_biome.json": "biomes_client.json", 
     "blocks.json": "blocks.json",
     "splashes.json": "splashes.json",
     "textures/flipbook_textures.json": "animations_file",

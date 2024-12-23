@@ -520,13 +520,7 @@
   "folderNames": {
     "data": "data",
     "assets": "assets",
-    "src": "src",
-    "data/a": "namespace",
-    "data/aaaa": "namespace",
-    "data/name": "namespace",
-    "data/namespa": "namespace",
-    "data/namespace": "namespace",
-    "assets/minecraft": "namespace"
+    "src": "src"
   },
   "folderNamesExpanded": {
     "advancement": "advancement",
@@ -594,13 +588,7 @@
     "ui": "ui",
     ".vscode": "dot_vscode",
     "__pycache__": "pycache",
-    "src": "src_open",
-    "data/a": "namespace_open",
-    "data/aaaa": "namespace_open",
-    "data/name": "namespace_open",
-    "data/namespa": "namespace_open",
-    "data/namespace": "namespace_open",
-    "assets/minecraft": "namespace_open"
+    "src": "src_open"
   },
   "fileExtensions": {
     "advancement/json": "advancement_file",
@@ -1149,11 +1137,7 @@
     "COPYRIGHT.txt": "copyright",
     "LICENSE": "license",
     "LICENSE.md": "license",
-    "LICENSE.txt": "license",
-    "functionsa/load.json": "tags_file",
-    "functionsa/tag.json": "tags_file",
-    "functionsa/tick.json": "tags_file",
-    "presets/cameraa.json": "cameras_file"
+    "LICENSE.txt": "license"
   },
   "hidesExplorerArrows": false
 }

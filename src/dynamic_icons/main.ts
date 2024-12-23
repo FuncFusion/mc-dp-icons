@@ -119,8 +119,8 @@ export function getFilesInDirectory(directory: string): string[] {
       const validSubfolderFile =
         newPath.split(path.sep).length > 1 &&
         newPath.endsWith(".json") &&
-        !newPath.includes("minecraft/load.json") &&
-        !newPath.includes("minecraft/tick.json");
+        !newPath.includes("function/load.json") &&
+        !newPath.includes("function/tick.json");
       const fileInSubfolder = validSubfolderFile;
 
       if (entry.isDirectory()) {

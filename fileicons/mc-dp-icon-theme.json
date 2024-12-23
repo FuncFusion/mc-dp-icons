@@ -1162,7 +1162,7 @@
     "item/model.json": "models_file",
     "item/stick.json": "models_file",
     "item/wth.json": "models_file",
-    "bar/emerald.json": "loot_table_file",
+    "foo/bar/emerald.json": "loot_table_file",
     "entity_type/arrows.json": "tags_file",
     "biome/taiga.json": "worldgen_file",
     "sub/shad.json": "shaders_file",

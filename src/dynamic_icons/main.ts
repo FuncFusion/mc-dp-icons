@@ -111,16 +111,21 @@ export const readFile = util.promisify(fs.readFile);
  */
 export function getFilesInDirectory(directory: string): string[] {
   const files: string[] = [];
+  const excludedFiles = [
+    "function/load.json",
+    "function/tick.json",
+    "functions/load.json",
+    "functions/tick.json",
+  ];
   const collectFiles = (dir: string, relativePath = "") => {
     const entries = fs.readdirSync(dir, { withFileTypes: true });
     entries.forEach((entry) => {
       const fullPath = path.join(dir, entry.name);
-      const newPath = path.join(relativePath, entry.name);
+      const newPath = path.join(relativePath, entry.name).replace(/\\/g, "/");
       const validSubfolderFile =
-        newPath.split(path.sep).length > 1 &&
+        newPath.split("/").length > 1 &&
         newPath.endsWith(".json") &&
-        !newPath.includes("function/load.json") &&
-        !newPath.includes("function/tick.json");
+        !excludedFiles.some((file) => newPath.includes(file));
       const fileInSubfolder = validSubfolderFile;
 
       if (entry.isDirectory()) {

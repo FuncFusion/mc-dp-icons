@@ -38,7 +38,7 @@ const subfolderIconMap: Record<string, string> = {
   wolf_variant: "wolf_variant_file",
   worldgen: "worldgen_file",
   // Resourcepacks
-  font: "ttf",
+  font: "font_file",
   models: "models_file",
   post_effect: "shaders_file",
   shaders: "shaders_file",

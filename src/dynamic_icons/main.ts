@@ -135,6 +135,8 @@ export function getFilesInDirectory(directory: string): string[] {
           newPath.split("/").length > 2
             ? newPath.split("/").slice(-2).join("/")
             : newPath;
+
+        files.push(shortenedPath);
       }
     });
   };

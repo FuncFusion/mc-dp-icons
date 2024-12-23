@@ -47,7 +47,7 @@ async function resetIconDefinitions() {
     } else if (enableChristmasIcons === "Disable") {
       return false;
     }
-  }
+  };
 
   if (!shouldUseChristmasIcons()) {
     fs.copyFileSync(defaultThemePath, themePath);
@@ -119,8 +119,8 @@ export function getFilesInDirectory(directory: string): string[] {
       const validSubfolderFile =
         newPath.split(path.sep).length > 1 &&
         newPath.endsWith(".json") &&
-        !newPath.includes("load.json") &&
-        !newPath.includes("tick.json");
+        !newPath.includes("minecraft/load.json") &&
+        !newPath.includes("minecraft/tick.json");
       const fileInSubfolder = validSubfolderFile;
 
       if (entry.isDirectory()) {

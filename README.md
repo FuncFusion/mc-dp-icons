@@ -32,7 +32,7 @@ Made by SuperAnt_: https://www.youtube.com/watch?v=eYAvg19stpU
 <summary><h2>Dynamic Icons features</h2></summary>
 
 ### Namespace Icons
-Namespace icons are no longer unused! The extension will find any folders directly within `data` and `assets` folders and assign an ender chest icon to the names of these folders, but only if there's `pack.mcmeta` in the same directory. That also means that if there will be a folder in any location with the same name as one of the namespace folders in the same workspace, that folder will also recieve ender chest icon, so this feature can be turned off in the settings.
+Namespace folders (folders directly within `data` and `assets`) will change their icons to ender chests. Works only if there is `pack.mcmeta` in the same directory.
 
 ![Icons](assets/3.0/NamespaceIcons.gif)
 
@@ -46,6 +46,18 @@ Namespace icons are no longer unused! The extension will find any folders direct
 `tick` and `load` functions icons will change their icons to repeating and impulse command blocks accordingly, based on the values provided in `tick.json` and `load.json` files found in the workspace. This feature can be toggled to assign the icons not by the `tick.json` and `load.json` files, but by the functions names, which can be specified in the settings.
 
 ![Icons](assets/3.0/LoadTickFunctions.gif)
+
+
+### Subfolder icons
+Json files inside namespace subfolders will also change their icons (e.g. `data/namespace/item_modifier/some_folder/file.json` will change its icon to a diamond pickaxe when this is enabled). Not recommended for large workspaces. Works only if there is `pack.mcmeta` in the same directory.
+
+![Icons](assets/4.0/SubfolderIcons.gif)
+
+
+### Christmas icons
+Similarly to minecraft, extension will change all of the icons that have chests to their christmas variants during December 24-26. This feature can be disabled or enabled to work at any time in the settings.
+
+![Icons](assets/4.0/ChristmasIcons.png)
 
 ### Hide folder arrows
 If you don't like these arrows near the folder icons, you can hide them by enabling this setting!

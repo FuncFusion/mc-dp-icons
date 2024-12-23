@@ -33,6 +33,7 @@ function activate(context) {
     const runUpdates = () => {
         DynamicIcons.update();
         ThemeChange.checkPackMcmeta();
+        console.log("mc-dp-icons: Updating Dynamic icons");
     };
     const handleFileChange = (fileName) => {
         if (fileName.endsWith(".mcmeta") || fileName.endsWith(".json")) {
@@ -40,7 +41,6 @@ function activate(context) {
         }
     };
     context.subscriptions.push(vscode.workspace.onDidChangeWorkspaceFolders(() => {
-        console.log("Workspace folder change detected");
         runUpdates();
     }), vscode.workspace.onDidRenameFiles(() => {
         runUpdates();

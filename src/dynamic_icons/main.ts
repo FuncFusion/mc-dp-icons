@@ -5,7 +5,6 @@ import util from "util";
 import * as bedrock from "./bedrock_edition";
 import * as java from "./java_edition";
 import { workspace } from "vscode";
-import { isObject } from "lodash";
 
 export const themePath = path.join(
   __dirname,
@@ -73,6 +72,7 @@ async function applyFolderArrowsSettings() {
 export async function setThemeValue(keyName: string | string[], value: any) {
   let themeContent = fs.readFileSync(themePath, "utf8");
   let themeObject = JSON.parse(themeContent);
+  const isObject = (obj) => obj === Object(obj);
   let currentKey = themeObject;
   const setValue = (key: string, value: any) => {
     if (isObject(value)) {

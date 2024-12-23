@@ -8,6 +8,7 @@ export function activate(context: vscode.ExtensionContext) {
   const runUpdates = () => {
     DynamicIcons.update();
     ThemeChange.checkPackMcmeta();
+    console.log("mc-dp-icons: Updating Dynamic icons");
   };
   const handleFileChange = (fileName: string) => {
     if (fileName.endsWith(".mcmeta") || fileName.endsWith(".json")) {

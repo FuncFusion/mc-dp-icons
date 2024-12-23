@@ -132,11 +132,9 @@ export function getFilesInDirectory(directory: string): string[] {
         collectFiles(fullPath, newPath);
       } else if (fileInSubfolder) {
         const shortenedPath =
-          newPath.split(path.sep).length > 2
-            ? newPath.split(path.sep).slice(-2).join(path.sep)
+          newPath.split("/").length > 2
+            ? newPath.split("/").slice(-2).join("/")
             : newPath;
-
-        files.push(shortenedPath.replace(/\\/g, "/"));
       }
     });
   };

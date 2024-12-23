@@ -72,7 +72,7 @@ async function applyFolderArrowsSettings() {
 export async function setThemeValue(keyName: string | string[], value: any) {
   let themeContent = fs.readFileSync(themePath, "utf8");
   let themeObject = JSON.parse(themeContent);
-  const isObject = (obj) => obj === Object(obj);
+  const isObject = (obj: any) => obj === Object(obj);
   let currentKey = themeObject;
   const setValue = (key: string, value: any) => {
     if (isObject(value)) {

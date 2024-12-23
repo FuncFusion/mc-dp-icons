@@ -163,7 +163,6 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.202",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
     "@types/vscode": "^1.5.1",
@@ -180,7 +179,6 @@
     "path": "^0.12.7"
   },
   "dependencies": {
-    "lodash": "^4.17.21",
     "path": "^0.12.7"
   }
 }

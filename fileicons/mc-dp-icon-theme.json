@@ -594,13 +594,7 @@
     "ui": "ui",
     ".vscode": "dot_vscode",
     "__pycache__": "pycache",
-    "src": "src_open",
-    "data/namespace": "namespace_open",
-    "assets/namespac": "namespace_open",
-    "data/ant": "namespace_open",
-    "data/minecraft": "namespace_open",
-    "assets/mc": "namespace_open",
-    "assets/minecraft": "namespace_open"
+    "src": "src_open"
   },
   "fileExtensions": {
     "advancement/json": "advancement_file",
@@ -1149,24 +1143,7 @@
     "COPYRIGHT.txt": "copyright",
     "LICENSE": "license",
     "LICENSE.md": "license",
-    "LICENSE.txt": "license",
-    "brbr/bobo.json": "advancement_file",
-    "subfolder/file.json": "advancement_file",
-    "include/what.json": "font_file",
-    "sabasafolda/sabas.json": "font_file",
-    "folder/sticky.json": "models_file",
-    "sbsb/model_.json": "models_file",
-    "sbsb/stick.json": "models_file",
-    "sbsb/you_cant_be_serious.json": "models_file",
-    "item/iron_sword.json": "models_file",
-    "item/model.json": "models_file",
-    "item/stick.json": "models_file",
-    "item/wth.json": "models_file",
-    "bar/emerald.json": "loot_table_file",
-    "entity_type/arrows.json": "tags_file",
-    "biome/taiga.json": "worldgen_file",
-    "sub/shad.json": "shaders_file",
-    "subfolder/shader.json": "shaders_file"
+    "LICENSE.txt": "license"
   },
-  "hidesExplorerArrows": true
+  "hidesExplorerArrows": false
 }

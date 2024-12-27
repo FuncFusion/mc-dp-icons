@@ -1,0 +1,103 @@
+name: Icon Request
+description: Request new icons for file types
+title: "[Icon Request]: "
+labels: ["icon request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before creating a new icon request, please search existing issues to make sure a similar request doesn't already exist.
+        If you have multiple related file types, please combine them into one request.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: "🎨 Icon categories"
+      description: "Select all that apply"
+      multiple: true
+      options:
+        - Datapack
+        - Resourcepack
+        - Programming
+        - General
+        - Bedrock Behavior Pack
+        - Bedrock Resourcepack
+    validations:
+      required: true
+
+  - type: textarea
+    id: file-extensions
+    attributes:
+      label: "📁 File types"
+      description: "List all file extensions/specific file names/folder names that need icons"
+      placeholder: |
+        - LICENSE
+        - LICENSE.md
+        - LICENSE.txt
+        - maybe could also apply to:
+          - EULA files (EULA.txt, EULA.md, etc.)
+          - TERMS files (TERMS.txt, TERMS_OF_SERVICE.md, etc.)
+          - legal/ (folder with legal documents)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: usage
+    attributes:
+      label: "📊 Usage frequency"
+      options:
+        - High (Used very widely in the target area)
+        - Medium (Used occasionally)
+        - Low (Used in specific, not very popular areas)
+    validations:
+      required: true
+
+  - type: textarea
+    id: importance
+    attributes:
+      label: "Usage importance"
+      description: "Please explain why these file types are important and how they are used"
+      placeholder: "License files are crucial for any project as they define the terms under which the code or content can be used, modified, and distributed. Having a distinct icon helps quickly identify these important legal documents."
+    validations:
+      required: true
+
+  - type: textarea
+    id: icon-ideas
+    attributes:
+      label: "💡 Icon ideas and associations"
+      description: "Describe your ideas for the icon design and any relevant associations"
+      placeholder: |
+        - Certificate (misc icon paper with a small medal)
+        - Text file with green stamp in bottom right (green rectangle)
+        - License is associated with a key, so trial_key would fit
+        - Misc paper with a key drawn on it
+        - Misc paper with letter 'L'
+    validations:
+      required: true
+
+  - type: textarea
+    id: similar-icons
+    attributes:
+      label: "🔍 Similar existing icons"
+      description: "List any existing icons from our theme that could be used instead of creating a new one. Explain why they might or might not be sufficient."
+      placeholder: |
+        - .txt icon could work as it's a text document, but it's too generic
+        - .md icon is similar but doesn't convey the legal aspect
+    validations:
+      required: false
+
+  - type: textarea
+    id: references
+    attributes:
+      label: "🖼️ References (optional)"
+      description: "Add any helpful images, logos, or visual references that could help in designing the icon"
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: "ℹ️ Additional context"
+      description: "Add any other context about the icon request here"
+    validations:
+      required: false

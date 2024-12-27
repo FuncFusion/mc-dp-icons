@@ -1,0 +1,86 @@
+name: Bug Report
+description: Report issues with icons or extension features
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before creating a new bug report, please search existing issues to make sure a similar bug hasn't already been reported.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "🐛 Describe the bug"
+      description: "A clear and concise description of what the bug is"
+      placeholder: "Subfolder icons feature not working properly"
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: "👣 Steps to reproduce"
+      description: "Steps to reproduce the behavior"
+      placeholder: |
+        1. In an empty datapack create file `data/namespace/tags/subfolder/subfolder2/tag.json`
+        2. Enable `Subfolder icons` setting
+        3. File icon stays as default `.json` icon instead of changing to tag file icon
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: "✨ Expected behavior"
+      description: "A clear and concise description of what you expected to see"
+      placeholder: "The file should show the tag file icon since it's in a tags subfolder and the setting is enabled"
+    validations:
+      required: true
+
+  - type: textarea
+    id: files
+    attributes:
+      label: "📎 Files & Screenshots"
+      description: "If applicable, add screenshots or zip archives with relevant files to help explain/reproduce your problem (drag & drop here)"
+    validations:
+      required: false
+
+  - type: input
+    id: extension-version
+    attributes:
+      label: "📦 Extension version"
+      description: "Which version of the extension are you using?"
+    validations:
+      required: true
+
+  - type: input
+    id: vscode-version
+    attributes:
+      label: "💻 VS Code version"
+      description: "Which version of VS Code are you using?"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: "🖥️ Operating System"
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: "ℹ️ Additional context"
+      description: "Add any other context about the problem here (workspace settings, what have you tried to do, etc.)"
+      placeholder: |
+        - pack.mcmeta is present in the datapack
+        - I've tried reloading VS Code and reinstalling the extension
+    validations:
+      required: false

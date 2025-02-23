@@ -1,7 +1,12 @@
 # Change Log
 
 All notable changes to the "mc-dp-icons" extension will be documented in this file.
-## [4.0.0] - Bedrock Update (UNRELEASED)
+
+## [4.0.1] - Minor fixes (2025-02-23)
+- Fix json files inside `loot_table` folder not having the right icon.
+- [Issue 26](https://github.com/FuncFusion/mc-dp-icons/issues/26) regarding json files inside `items` folder in resource packs not having the right icon.
+
+## [4.0.0] - Bedrock Update (2024-12-24)
 ### The total amount of icons now is 235, 225 of them in use, and 54 of *them* are christmas variants
 ### Added
 - New `Subfolder icons` system! Now all `.json` files within nested subfolders of datapack and resource pack directories will receive their unique icons (e.g., `data/namespace/item_modifier/some_other_folder/file.json` will display a diamond pickaxe icon instead of a generic `.json` icon), which solves this[^1]. Remember that same as all other dynamic icons features, this is a **workaround** due to VS Code's API limitations, so files with identical names and parent folder names may cause icon conflicts (e.g., both `data/namespace/item_modifier/some_other_folder/file.json` and `data/namespace/loot_table/some_other_folder/file.json` might show the diamond pickaxe icon, even though the latter should display an emerald icon). For large workspaces with a large amount of json files in subfolders (like a vanilla datapack), consider disabling this feature in settings to prevent lag.

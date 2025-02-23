@@ -39,6 +39,7 @@ const subfolderIconMap: Record<string, string> = {
   worldgen: "worldgen_file",
   // Resourcepacks
   font: "font_file",
+  items: "items_file",
   models: "models_file",
   post_effect: "shaders_file",
   shaders: "shaders_file",

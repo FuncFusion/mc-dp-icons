@@ -277,6 +277,7 @@
     "jmc": "jmc",
     "json": "json",
     "jukebox_song/json": "jukebox_song_file",
+    "loot_table/json": "loot_table_file",
     "loot_tables/json": "loot_table_file",
     "mcfunction": "mcf",
     "mcmeta": "animations_file",

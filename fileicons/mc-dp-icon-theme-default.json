@@ -799,6 +799,7 @@
     "splashes.txt": "splashes.json",
 
     "languages.json": "lang_file",
+    "language_names.json": "lang_file",
     "manifest.json": "pack.mcmeta",
     
     "biomes_client.json": "biomes_client.json", 

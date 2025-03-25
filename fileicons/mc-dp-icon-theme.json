@@ -1,7 +1,7 @@
 {
   "iconDefinitions": {
     "advancement": {
-      "iconPath": "./imgs/advancement_xmas.svg"
+      "iconPath": "./imgs/advancement.svg"
     },
     "advancement_file": {
       "iconPath": "./imgs/advancement_file.svg"
@@ -10,7 +10,7 @@
       "iconPath": "./imgs/ajmeta.svg"
     },
     "banner_pattern": {
-      "iconPath": "./imgs/banner_pattern_xmas.svg"
+      "iconPath": "./imgs/banner_pattern.svg"
     },
     "banner_pattern_file": {
       "iconPath": "./imgs/banner_pattern_file.svg"
@@ -22,13 +22,13 @@
       "iconPath": "./imgs/bolt.svg"
     },
     "chat_type": {
-      "iconPath": "./imgs/chat_type_xmas.svg"
+      "iconPath": "./imgs/chat_type.svg"
     },
     "chat_type_file": {
       "iconPath": "./imgs/chat_type_file.svg"
     },
     "damage_type": {
-      "iconPath": "./imgs/damage_type_xmas.svg"
+      "iconPath": "./imgs/damage_type.svg"
     },
     "damage_type_file": {
       "iconPath": "./imgs/damage_type_file.svg"
@@ -40,34 +40,34 @@
       "iconPath": "./imgs/data_open.svg"
     },
     "datapacks_open": {
-      "iconPath": "./imgs/datapacks_xmas.svg"
+      "iconPath": "./imgs/datapacks.svg"
     },
     "dimension": {
-      "iconPath": "./imgs/dimension_xmas.svg"
+      "iconPath": "./imgs/dimension.svg"
     },
     "dimension_file": {
       "iconPath": "./imgs/dimension_file.svg"
     },
     "dimension_type": {
-      "iconPath": "./imgs/dimension_type_xmas.svg"
+      "iconPath": "./imgs/dimension_type.svg"
     },
     "dimension_type_file": {
       "iconPath": "./imgs/dimension_type_file.svg"
     },
     "enchantment": {
-      "iconPath": "./imgs/enchantment_xmas.svg"
+      "iconPath": "./imgs/enchantment.svg"
     },
     "enchantment_file": {
       "iconPath": "./imgs/enchantment_file.svg"
     },
     "folder": {
-      "iconPath": "./imgs/folder_xmas.svg"
+      "iconPath": "./imgs/folder.svg"
     },
     "folder_open": {
-      "iconPath": "./imgs/folder_open_xmas.svg"
+      "iconPath": "./imgs/folder_open.svg"
     },
     "function": {
-      "iconPath": "./imgs/function_xmas.svg"
+      "iconPath": "./imgs/function.svg"
     },
     "hjmc": {
       "iconPath": "./imgs/hjmc.svg"
@@ -76,13 +76,13 @@
       "iconPath": "./imgs/painting.svg"
     },
     "instrument": {
-      "iconPath": "./imgs/instrument_xmas.svg"
+      "iconPath": "./imgs/instrument.svg"
     },
     "instrument_file": {
       "iconPath": "./imgs/instrument_file.svg"
     },
     "item_modifier": {
-      "iconPath": "./imgs/item_modifier_xmas.svg"
+      "iconPath": "./imgs/item_modifier.svg"
     },
     "item_modifier_file": {
       "iconPath": "./imgs/item_modifier_file.svg"
@@ -94,7 +94,7 @@
       "iconPath": "./imgs/json.svg"
     },
     "jukebox_song": {
-      "iconPath": "./imgs/jukebox_song_xmas.svg"
+      "iconPath": "./imgs/jukebox_song.svg"
     },
     "jukebox_song_file": {
       "iconPath": "./imgs/jukebox_song_file.svg"
@@ -103,7 +103,7 @@
       "iconPath": "./imgs/load.json.svg"
     },
     "loot_table": {
-      "iconPath": "./imgs/loot_table_xmas.svg"
+      "iconPath": "./imgs/loot_table.svg"
     },
     "loot_table_file": {
       "iconPath": "./imgs/loot_table_file.svg"
@@ -121,37 +121,37 @@
       "iconPath": "./imgs/misc.svg"
     },
     "namespace": {
-      "iconPath": "./imgs/namespace_xmas.svg"
+      "iconPath": "./imgs/namespace.svg"
     },
     "namespace_open": {
-      "iconPath": "./imgs/namespace_open_xmas.svg"
+      "iconPath": "./imgs/namespace_open.svg"
     },
     "pack.mcmeta": {
       "iconPath": "./imgs/pack.mcmeta.svg"
     },
     "painting_variant": {
-      "iconPath": "./imgs/painting_variant_xmas.svg"
+      "iconPath": "./imgs/painting_variant.svg"
     },
     "predicate": {
-      "iconPath": "./imgs/predicate_xmas.svg"
+      "iconPath": "./imgs/predicate.svg"
     },
     "predicate_file": {
       "iconPath": "./imgs/predicate_file.svg"
     },
     "recipe": {
-      "iconPath": "./imgs/recipe_xmas.svg"
+      "iconPath": "./imgs/recipe.svg"
     },
     "recipe_file": {
       "iconPath": "./imgs/recipe_file.svg"
     },
     "structure": {
-      "iconPath": "./imgs/structure_xmas.svg"
+      "iconPath": "./imgs/structure.svg"
     },
     "structure_file": {
       "iconPath": "./imgs/structure_file.svg"
     },
     "tags": {
-      "iconPath": "./imgs/tags_xmas.svg"
+      "iconPath": "./imgs/tags.svg"
     },
     "tags_file": {
       "iconPath": "./imgs/tags_file.svg"
@@ -160,31 +160,31 @@
       "iconPath": "./imgs/tick.json.svg"
     },
     "trial_spawner": {
-      "iconPath": "./imgs/trial_spawner_xmas.svg"
+      "iconPath": "./imgs/trial_spawner.svg"
     },
     "trial_spawner_file": {
       "iconPath": "./imgs/trial_spawner_file.svg"
     },
     "trim_material": {
-      "iconPath": "./imgs/trim_material_xmas.svg"
+      "iconPath": "./imgs/trim_material.svg"
     },
     "trim_material_file": {
       "iconPath": "./imgs/trim_material_file.svg"
     },
     "trim_pattern": {
-      "iconPath": "./imgs/trim_pattern_xmas.svg"
+      "iconPath": "./imgs/trim_pattern.svg"
     },
     "trim_pattern_file": {
       "iconPath": "./imgs/trim_pattern_file.svg"
     },
     "wolf_variant": {
-      "iconPath": "./imgs/wolf_variant_xmas.svg"
+      "iconPath": "./imgs/wolf_variant.svg"
     },
     "wolf_variant_file": {
       "iconPath": "./imgs/wolf_variant_file.svg"
     },
     "worldgen": {
-      "iconPath": "./imgs/worldgen_xmas.svg"
+      "iconPath": "./imgs/worldgen.svg"
     },
     "worldgen_file": {
       "iconPath": "./imgs/worldgen_file.svg"
@@ -196,25 +196,25 @@
       "iconPath": "./imgs/assets_open.svg"
     },
     "atlases": {
-      "iconPath": "./imgs/atlases_xmas.svg"
+      "iconPath": "./imgs/atlases.svg"
     },
     "atlases_file": {
       "iconPath": "./imgs/atlases_file.svg"
     },
     "blockstates": {
-      "iconPath": "./imgs/blockstates_xmas.svg"
+      "iconPath": "./imgs/blockstates.svg"
     },
     "blockstates_file": {
       "iconPath": "./imgs/blockstates_file.svg"
     },
     "equipment": {
-      "iconPath": "./imgs/equipment_xmas.svg"
+      "iconPath": "./imgs/equipment.svg"
     },
     "equipment_file": {
       "iconPath": "./imgs/equipment_file.svg"
     },
     "font": {
-      "iconPath": "./imgs/font_xmas.svg"
+      "iconPath": "./imgs/font.svg"
     },
     "font_file": {
       "iconPath": "./imgs/font_file.svg"
@@ -226,19 +226,19 @@
       "iconPath": "./imgs/glsl.svg"
     },
     "items": {
-      "iconPath": "./imgs/items_xmas.svg"
+      "iconPath": "./imgs/items.svg"
     },
     "items_file": {
       "iconPath": "./imgs/items_file.svg"
     },
     "lang": {
-      "iconPath": "./imgs/lang_xmas.svg"
+      "iconPath": "./imgs/lang.svg"
     },
     "lang_file": {
       "iconPath": "./imgs/lang_file.svg"
     },
     "models": {
-      "iconPath": "./imgs/models_xmas.svg"
+      "iconPath": "./imgs/models.svg"
     },
     "models_file": {
       "iconPath": "./imgs/models_file.svg"
@@ -247,28 +247,28 @@
       "iconPath": "./imgs/ogg.svg"
     },
     "particles": {
-      "iconPath": "./imgs/particles_xmas.svg"
+      "iconPath": "./imgs/particles.svg"
     },
     "particles_file": {
       "iconPath": "./imgs/particles_file.svg"
     },
     "shaders": {
-      "iconPath": "./imgs/shaders_xmas.svg"
+      "iconPath": "./imgs/shaders.svg"
     },
     "shaders_file": {
       "iconPath": "./imgs/shaders_file.svg"
     },
     "sounds": {
-      "iconPath": "./imgs/sounds_xmas.svg"
+      "iconPath": "./imgs/sounds.svg"
     },
     "sounds.json": {
       "iconPath": "./imgs/sounds.json.svg"
     },
     "texts": {
-      "iconPath": "./imgs/texts_xmas.svg"
+      "iconPath": "./imgs/texts.svg"
     },
     "textures": {
-      "iconPath": "./imgs/textures_xmas.svg"
+      "iconPath": "./imgs/textures.svg"
     },
     "txt": {
       "iconPath": "./imgs/txt.svg"
@@ -277,49 +277,49 @@
       "iconPath": "./imgs/vsh.svg"
     },
     "blocks": {
-      "iconPath": "./imgs/blocks_xmas.svg"
+      "iconPath": "./imgs/blocks.svg"
     },
     "blocks_file": {
       "iconPath": "./imgs/blocks_file.svg"
     },
     "cameras": {
-      "iconPath": "./imgs/cameras_xmas.svg"
+      "iconPath": "./imgs/cameras.svg"
     },
     "cameras_file": {
       "iconPath": "./imgs/cameras_file.svg"
     },
     "entities": {
-      "iconPath": "./imgs/entities_xmas.svg"
+      "iconPath": "./imgs/entities.svg"
     },
     "entities_file": {
       "iconPath": "./imgs/entities_file.svg"
     },
     "features": {
-      "iconPath": "./imgs/features_xmas.svg"
+      "iconPath": "./imgs/features.svg"
     },
     "features_file": {
       "iconPath": "./imgs/features_file.svg"
     },
     "spawn_rules": {
-      "iconPath": "./imgs/spawn_rules_xmas.svg"
+      "iconPath": "./imgs/spawn_rules.svg"
     },
     "spawn_rules_file": {
       "iconPath": "./imgs/spawn_rules_file.svg"
     },
     "trading": {
-      "iconPath": "./imgs/trading_xmas.svg"
+      "iconPath": "./imgs/trading.svg"
     },
     "trading_file": {
       "iconPath": "./imgs/trading_file.svg"
     },
     "animations": {
-      "iconPath": "./imgs/animations_xmas.svg"
+      "iconPath": "./imgs/animations.svg"
     },
     "animations_file": {
       "iconPath": "./imgs/animations_file.svg"
     },
     "attachables": {
-      "iconPath": "./imgs/attachables_xmas.svg"
+      "iconPath": "./imgs/attachables.svg"
     },
     "attachables_file": {
       "iconPath": "./imgs/attachables_file.svg"
@@ -328,7 +328,7 @@
       "iconPath": "./imgs/biomes_client.json.svg"
     },
     "block_culling": {
-      "iconPath": "./imgs/block_culling_xmas.svg"
+      "iconPath": "./imgs/block_culling.svg"
     },
     "block_culling_file": {
       "iconPath": "./imgs/block_culling_file.svg"
@@ -337,19 +337,19 @@
       "iconPath": "./imgs/blocks.json.svg"
     },
     "fogs": {
-      "iconPath": "./imgs/fogs_xmas.svg"
+      "iconPath": "./imgs/fogs.svg"
     },
     "fogs_file": {
       "iconPath": "./imgs/fogs_file.svg"
     },
     "materials": {
-      "iconPath": "./imgs/materials_xmas.svg"
+      "iconPath": "./imgs/materials.svg"
     },
     "materials_file": {
       "iconPath": "./imgs/materials_file.svg"
     },
     "render_controllers": {
-      "iconPath": "./imgs/render_controllers_xmas.svg"
+      "iconPath": "./imgs/render_controllers.svg"
     },
     "render_controllers_file": {
       "iconPath": "./imgs/render_controllers_file.svg"
@@ -358,7 +358,7 @@
       "iconPath": "./imgs/splashes.json.svg"
     },
     "ui": {
-      "iconPath": "./imgs/ui_xmas.svg"
+      "iconPath": "./imgs/ui.svg"
     },
     "ui_file": {
       "iconPath": "./imgs/ui_file.svg"
@@ -403,7 +403,7 @@
       "iconPath": "./imgs/doc.svg"
     },
     "dot_vscode": {
-      "iconPath": "./imgs/dot_vscode_xmas.svg"
+      "iconPath": "./imgs/dot_vscode.svg"
     },
     "excel": {
       "iconPath": "./imgs/excel.svg"
@@ -457,7 +457,7 @@
       "iconPath": "./imgs/php.svg"
     },
     "pycache": {
-      "iconPath": "./imgs/pycache_xmas.svg"
+      "iconPath": "./imgs/pycache.svg"
     },
     "pycd": {
       "iconPath": "./imgs/python_compiled.svg"
@@ -520,13 +520,7 @@
   "folderNames": {
     "data": "data",
     "assets": "assets",
-    "src": "src",
-    "data/namespace": "namespace",
-    "assets/namespac": "namespace",
-    "data/ant": "namespace",
-    "data/minecraft": "namespace",
-    "assets/mc": "namespace",
-    "assets/minecraft": "namespace"
+    "src": "src"
   },
   "folderNamesExpanded": {
     "advancement": "advancement",
@@ -617,6 +611,7 @@
     "jmc": "jmc",
     "json": "json",
     "jukebox_song/json": "jukebox_song_file",
+    "loot_table/json": "loot_table_file",
     "loot_tables/json": "loot_table_file",
     "mcfunction": "mcf",
     "mcmeta": "animations_file",
@@ -1132,8 +1127,10 @@
     "sounds.json": "sounds.json",
     "splashes.txt": "splashes.json",
     "languages.json": "lang_file",
+    "language_names.json": "lang_file",
     "manifest.json": "pack.mcmeta",
     "biomes_client.json": "biomes_client.json",
+    "client_biome.json": "biomes_client.json",
     "blocks.json": "blocks.json",
     "splashes.json": "splashes.json",
     "textures/flipbook_textures.json": "animations_file",

@@ -142,7 +142,7 @@ We are [FuncFusion](https://github.com/FuncFusion) - a small team of three:
 
 [bth123](https://github.com/bth123) - Made all the icons and illustrations, also made a [sublime port](https://github.com/bth123/mc-dp-icons-sublime) of this extension
 
-[amandin](https://github.com/amawdiin) - Coded most of the dynamic icons features, included this extension in his [amazing extension collection](https://marketplace.visualstudio.com/items?itemName=amandin.dpc-pack)
+[amandin](https://github.com/amqndin) - Coded most of the dynamic icons features, included this extension in his [amazing extension collection](https://marketplace.visualstudio.com/items?itemName=amandin.dpc-pack)
 
 ![Creators](assets/3.1/Creators.png)
 

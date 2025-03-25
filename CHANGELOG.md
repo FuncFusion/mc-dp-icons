@@ -2,6 +2,10 @@
 
 All notable changes to the "mc-dp-icons" extension will be documented in this file.
 
+## [4.0.2] - Minor fixes (2025-03-25)
+- Update amandin's github link in README.md.
+- [Issue 28](https://github.com/FuncFusion/mc-dp-icons/issues/28) regarding `language_name.json` not having a lang icon.
+
 ## [4.0.1] - Minor fixes (2025-02-23)
 - Fix json files inside `loot_table` folder not having the right icon.
 - [Issue 26](https://github.com/FuncFusion/mc-dp-icons/issues/26) regarding json files inside `items` folder in resource packs not having the right icon.

@@ -64,7 +64,6 @@ function noJavaPacks(): boolean {
 // Set icons for functions referenced in tick.json | load.json accordingly
 export async function updateLoadTickIcons() {
   const enableDynamicLoadTickChange = getConfig("enableLoadTickAutoChange");
-  const enablePartialNameMatch = getConfig("enablePartialNameMatch");
   if (enableDynamicLoadTickChange) {
     const [loadNames, tickNames] = (await getTickLoadNames()) || [];
     loadNames?.forEach((loadName: string) => {
@@ -74,8 +73,9 @@ export async function updateLoadTickIcons() {
       setThemeValue(["fileNames", tickName], "mcf_tick");
     });
   } else {
-    const customLoadNames = getConfig("functionNamesForLoad");
-    const customTickNames = getConfig("functionNamesForTick");
+    const customLoadNames: string[] = getConfig("functionNamesForLoad");
+    const customTickNames: string[] = getConfig("functionNamesForTick");
+
     const hasCommonName = customLoadNames?.some((item: string) =>
       customTickNames?.includes(item),
     );
@@ -86,14 +86,18 @@ export async function updateLoadTickIcons() {
       );
     }
 
-    if (enablePartialNameMatch) {
+    const hasAsterisk = (array: string[])=>{return array.some(item => item.includes("*"))}
+
+    if (hasAsterisk(customLoadNames) || hasAsterisk(customTickNames)) {
       const [loadMatches, tickMatches] = await getPartialMatches(customLoadNames, customTickNames);
+
       loadMatches.forEach((loadName: string) => {
         setThemeValue(["fileNames", loadName], "mcf_load");
       });
       tickMatches.forEach((tickName: string) => {
         setThemeValue(["fileNames", tickName], "mcf_tick");
       });
+      return
     }
 
     customLoadNames?.forEach((loadName: string) => {
@@ -284,7 +288,7 @@ function findMcmetaInDirectory(directory: string): string[] {
 async function getPartialMatches(customLoadNames: string[], customTickNames: string[]): Promise<[string[], string[]]> {
   const processNames = async (names: string[]): Promise<string[]> => {
     const urisArrays = await Promise.all(
-      names.map((name) => vscode.workspace.findFiles(`**/*${name}*.mcfunction`))
+      names.map((name) => vscode.workspace.findFiles(`**/${name}.mcfunction`))
     );
     return urisArrays.flat().map((uri: vscode.Uri) => uri.fsPath.split("\\").pop() || "");
   };

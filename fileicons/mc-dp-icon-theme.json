@@ -1145,14 +1145,10 @@
     "LICENSE": "license",
     "LICENSE.md": "license",
     "LICENSE.txt": "license",
-    "tool_edit.mcfunction": "mcf_load",
-    "tool_add.mcfunction": "mcf_load",
-    "tool_remove.mcfunction": "mcf_load",
-    "block_edit.mcfunction": "mcf_tick",
-    "block_add.mcfunction": "mcf_tick",
-    "block_remove.mcfunction": "mcf_tick",
     "tool_.mcfunction": "mcf_load",
-    "block_.mcfunction": "mcf_tick"
+    "block_.mcfunction": "mcf_tick",
+    "internal/setup.mcfunction": "mcf_load",
+    "internal/tick.mcfunction": "mcf_tick"
   },
   "hidesExplorerArrows": false
 }

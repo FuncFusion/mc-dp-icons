@@ -48,7 +48,7 @@ const subfolderIconMap: Record<string, string> = {
 // This function is called in extension.ts
 export function update() {
   if (noJavaPacks()) return;
-  updateLoadTickIcons();
+  setTimeout(()=>{updateLoadTickIcons()}, 50);
   setNamespaceIcons();
   setSubFolderIcons();
 }
@@ -84,29 +84,31 @@ export async function updateLoadTickIcons() {
       vscode.window.showWarningMessage(
         "You have same names in custom tick / load icons configuration",
       );
+      return;
     }
 
     const hasAsterisk = (array: string[])=>{return array.some(item => item.includes("*"))}
 
     if (hasAsterisk(customLoadNames) || hasAsterisk(customTickNames)) {
       const [loadMatches, tickMatches] = await getPartialMatches(customLoadNames, customTickNames);
+      console.log("hehe" + loadMatches)
 
-      loadMatches.forEach((loadName: string) => {
+      loadMatches?.forEach((loadName: string) => {
         setThemeValue(["fileNames", loadName], "mcf_load");
       });
-      tickMatches.forEach((tickName: string) => {
+      tickMatches?.forEach((tickName: string) => {
         setThemeValue(["fileNames", tickName], "mcf_tick");
       });
-      return
+    } else {
+      customLoadNames?.forEach((loadName: string) => {
+        setThemeValue(["fileNames", loadName + ".mcfunction"], "mcf_load");
+      });
+      customTickNames?.forEach((tickName: string) => {
+        setThemeValue(["fileNames", tickName + ".mcfunction"], "mcf_tick");
+      });
     }
-
-    customLoadNames?.forEach((loadName: string) => {
-      setThemeValue(["fileNames", loadName + ".mcfunction"], "mcf_load");
-    });
-    customTickNames?.forEach((tickName: string) => {
-      setThemeValue(["fileNames", tickName + ".mcfunction"], "mcf_tick");
-    });
   }
+  return
 }
 
 // Use enderchest icon for namespaces

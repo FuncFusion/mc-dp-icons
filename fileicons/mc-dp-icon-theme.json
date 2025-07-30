@@ -520,9 +520,7 @@
   "folderNames": {
     "data": "data",
     "assets": "assets",
-    "src": "src",
-    "data/minecraft": "namespace",
-    "data/veinminer": "namespace"
+    "src": "src"
   },
   "folderNamesExpanded": {
     "advancement": "advancement",
@@ -590,9 +588,7 @@
     "ui": "ui",
     ".vscode": "dot_vscode",
     "__pycache__": "pycache",
-    "src": "src_open",
-    "data/minecraft": "namespace_open",
-    "data/veinminer": "namespace_open"
+    "src": "src_open"
   },
   "fileExtensions": {
     "advancement/json": "advancement_file",
@@ -1145,8 +1141,6 @@
     "LICENSE": "license",
     "LICENSE.md": "license",
     "LICENSE.txt": "license",
-    "tool_.mcfunction": "mcf_load",
-    "block_.mcfunction": "mcf_tick",
     "internal/setup.mcfunction": "mcf_load",
     "internal/tick.mcfunction": "mcf_tick"
   },

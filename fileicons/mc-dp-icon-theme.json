@@ -520,7 +520,9 @@
   "folderNames": {
     "data": "data",
     "assets": "assets",
-    "src": "src"
+    "src": "src",
+    "data/minecraft": "namespace",
+    "data/veinminer": "namespace"
   },
   "folderNamesExpanded": {
     "advancement": "advancement",
@@ -588,7 +590,9 @@
     "ui": "ui",
     ".vscode": "dot_vscode",
     "__pycache__": "pycache",
-    "src": "src_open"
+    "src": "src_open",
+    "data/minecraft": "namespace_open",
+    "data/veinminer": "namespace_open"
   },
   "fileExtensions": {
     "advancement/json": "advancement_file",
@@ -1140,7 +1144,15 @@
     "COPYRIGHT.txt": "copyright",
     "LICENSE": "license",
     "LICENSE.md": "license",
-    "LICENSE.txt": "license"
+    "LICENSE.txt": "license",
+    "tool_edit.mcfunction": "mcf_load",
+    "tool_add.mcfunction": "mcf_load",
+    "tool_remove.mcfunction": "mcf_load",
+    "block_edit.mcfunction": "mcf_tick",
+    "block_add.mcfunction": "mcf_tick",
+    "block_remove.mcfunction": "mcf_tick",
+    "tool_.mcfunction": "mcf_load",
+    "block_.mcfunction": "mcf_tick"
   },
   "hidesExplorerArrows": false
 }

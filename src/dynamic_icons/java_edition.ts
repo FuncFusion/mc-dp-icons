@@ -89,10 +89,10 @@ export async function updateLoadTickIcons() {
     if (enablePartialNameMatch) {
       const [loadMatches, tickMatches] = await getPartialMatches(customLoadNames, customTickNames);
       loadMatches.forEach((loadName: string) => {
-        setThemeValue(["fileNames", loadName + ".mcfunction"], "mcf_load");
+        setThemeValue(["fileNames", loadName], "mcf_load");
       });
       tickMatches.forEach((tickName: string) => {
-        setThemeValue(["fileNames", tickName + ".mcfunction"], "mcf_tick");
+        setThemeValue(["fileNames", tickName], "mcf_tick");
       });
     }
 

@@ -64,6 +64,7 @@ function noJavaPacks(): boolean {
 // Set icons for functions referenced in tick.json | load.json accordingly
 export async function updateLoadTickIcons() {
   const enableDynamicLoadTickChange = getConfig("enableLoadTickAutoChange");
+  const enablePartialNameMatch = getConfig("enablePartialNameMatch");
   if (enableDynamicLoadTickChange) {
     const [loadNames, tickNames] = (await getTickLoadNames()) || [];
     loadNames?.forEach((loadName: string) => {
@@ -78,11 +79,23 @@ export async function updateLoadTickIcons() {
     const hasCommonName = customLoadNames?.some((item: string) =>
       customTickNames?.includes(item),
     );
+
     if (hasCommonName) {
       vscode.window.showWarningMessage(
         "You have same names in custom tick / load icons configuration",
       );
     }
+
+    if (enablePartialNameMatch) {
+      const [loadMatches, tickMatches] = await getPartialMatches(customLoadNames, customTickNames);
+      loadMatches.forEach((loadName: string) => {
+        setThemeValue(["fileNames", loadName + ".mcfunction"], "mcf_load");
+      });
+      tickMatches.forEach((tickName: string) => {
+        setThemeValue(["fileNames", tickName + ".mcfunction"], "mcf_tick");
+      });
+    }
+
     customLoadNames?.forEach((loadName: string) => {
       setThemeValue(["fileNames", loadName + ".mcfunction"], "mcf_load");
     });

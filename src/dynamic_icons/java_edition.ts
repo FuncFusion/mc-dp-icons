@@ -264,3 +264,20 @@ function findMcmetaInDirectory(directory: string): string[] {
 
   return mcmetaPaths;
 }
+
+/**
+ * @returns two arrays with partially matched load and tick function names
+ */
+async function getPartialMatches(customLoadNames: string[], customTickNames: string[]): Promise<[string[], string[]]> {
+  const processNames = async (names: string[]): Promise<string[]> => {
+    const urisArrays = await Promise.all(
+      names.map((name) => vscode.workspace.findFiles(`**/*${name}*.mcfunction`))
+    );
+    return urisArrays.flat().map((uri: vscode.Uri) => uri.fsPath.split("\\").pop() || "");
+  };
+
+  const loadMatches = await processNames(customLoadNames);
+  const tickMatches = await processNames(customTickNames);
+
+  return [loadMatches, tickMatches];
+}

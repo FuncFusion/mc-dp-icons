@@ -120,6 +120,9 @@ export function getFilesInDirectory(directory: string): string[] {
   const collectFiles = (dir: string, relativePath = "") => {
     const entries = fs.readdirSync(dir, { withFileTypes: true });
     entries.forEach((entry) => {
+      if (entry.name.startsWith('.') || entry.name === 'node_modules') {
+        return;
+      }
       const fullPath = path.join(dir, entry.name);
       const newPath = path.join(relativePath, entry.name).replace(/\\/g, "/");
       const validSubfolderFile =

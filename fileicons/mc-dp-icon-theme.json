@@ -1140,9 +1140,7 @@
     "COPYRIGHT.txt": "copyright",
     "LICENSE": "license",
     "LICENSE.md": "license",
-    "LICENSE.txt": "license",
-    "internal/setup.mcfunction": "mcf_load",
-    "internal/tick.mcfunction": "mcf_tick"
+    "LICENSE.txt": "license"
   },
   "hidesExplorerArrows": false
 }

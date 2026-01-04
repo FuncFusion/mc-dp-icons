@@ -48,7 +48,10 @@ const subfolderIconMap: Record<string, string> = {
 // This function is called in extension.ts
 export function update() {
   if (noJavaPacks()) return;
-  setTimeout(()=>{updateLoadTickIcons()}, 50);
+  setTimeout(()=>{
+    updateLoadTickIcons();
+    setCrownedFunctions();
+  }, 50);
   setNamespaceIcons();
   setSubFolderIcons();
 }
@@ -87,11 +90,11 @@ export async function updateLoadTickIcons() {
       return;
     }
 
-    const hasAsterisk = (array: string[])=>{return array.some(item => item.includes("*"))}
+    const hasStar = (array: string[])=>{return array.some(item => item.includes("*"))}
 
-    if (hasAsterisk(customLoadNames) || hasAsterisk(customTickNames)) {
-      const [loadMatches, tickMatches] = await getPartialMatches(customLoadNames, customTickNames);
-      console.log("hehe" + loadMatches)
+    if (hasStar(customLoadNames) || hasStar(customTickNames)) {
+      const loadMatches = await getPartialMatches(customLoadNames);
+      const tickMatches = await getPartialMatches(customTickNames);
 
       loadMatches?.forEach((loadName: string) => {
         setThemeValue(["fileNames", loadName], "mcf_load");
@@ -111,7 +114,46 @@ export async function updateLoadTickIcons() {
   return
 }
 
-// Use enderchest icon for namespaces
+async function setCrownedFunctions() {
+  const crownedFunctions: string[] = getConfig("crownedFunctions");
+  const crownedTickFunctions: string[] = getConfig("crownedTickFunctions");
+  const crownedLoadFunctions: string[] = getConfig("crownedLoadFunctions");
+
+  const atLeastOneCrownedFunction = crownedFunctions.length || crownedTickFunctions.length || crownedLoadFunctions.length;
+
+  if (!atLeastOneCrownedFunction) return;
+
+  const hasStar = (array: string[])=>{return array.some(item => item.includes("*"))}
+
+  if (hasStar(crownedFunctions) || hasStar(crownedTickFunctions) || hasStar(crownedLoadFunctions)) {
+    const crownedMatches = await getPartialMatches(crownedFunctions);
+    const crownedLoadMatches = await getPartialMatches(crownedLoadFunctions);
+    const crownedTickMatches = await getPartialMatches(crownedTickFunctions);
+
+
+    crownedMatches?.forEach((crownedFunction: string) => {
+      console.log("crowned matches: " + crownedFunction)
+      setThemeValue(["fileNames", crownedFunction], "mcf_main");
+    });
+    crownedLoadMatches?.forEach((crownedFunction: string) => {
+      setThemeValue(["fileNames", crownedFunction], "mcf_main_load");
+    });
+    crownedTickMatches?.forEach((crownedFunction: string) => {
+      setThemeValue(["fileNames", crownedFunction], "mcf_main_tick");
+    });
+  } else {
+    crownedFunctions?.forEach((crownedFunction: string) => {
+      setThemeValue(["fileNames", crownedFunction + ".mcfunction"], "mcf_main");
+    });
+    crownedLoadFunctions?.forEach((crownedFunction: string) => {
+      setThemeValue(["fileNames", crownedFunction + ".mcfunction"], "mcf_main_load");
+    });
+    crownedTickFunctions?.forEach((crownedTickFunction: string) => {
+      setThemeValue(["fileNames", crownedTickFunction + ".mcfunction"], "mcf_main_tick");
+    });
+  }
+}
+
 async function setNamespaceIcons() {
   const enableNamespaceIcons = getConfig("enableNamespaceIcons");
 
@@ -287,16 +329,22 @@ function findMcmetaInDirectory(directory: string): string[] {
 /**
  * @returns two arrays with partially matched load and tick function names
  */
-async function getPartialMatches(customLoadNames: string[], customTickNames: string[]): Promise<[string[], string[]]> {
+async function getPartialMatches(customNames: string[]): Promise<string[]> {
   const processNames = async (names: string[]): Promise<string[]> => {
     const urisArrays = await Promise.all(
       names.map((name) => vscode.workspace.findFiles(`**/${name}.mcfunction`))
     );
-    return urisArrays.flat().map((uri: vscode.Uri) => uri.fsPath.split("\\").pop() || "");
+
+    const fileNames: string[] = urisArrays.flat().map((uri: vscode.Uri) => {
+        const normalizedPath: string = uri.fsPath.replaceAll("\\", "/");
+        
+        return normalizedPath.split("/").pop() || "";
+    });
+
+    return fileNames
   };
 
-  const loadMatches = await processNames(customLoadNames);
-  const tickMatches = await processNames(customTickNames);
+  const nameMatches = await processNames(customNames);
 
-  return [loadMatches, tickMatches];
+  return nameMatches;
 }

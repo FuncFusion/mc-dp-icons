@@ -111,6 +111,27 @@
             "title": "What icon theme will be set if pack.mcmeta check fails",
             "default": "",
             "markdownDescription": "**This works only if `#mc-dp-icons.enablePackMcmetaCheck#` is enabled**.\nPut an id of an icon theme you want to be set when there is no `pack.mcmeta` in the workspace.\nIf blank, the extension will remember the icon theme you launched the workspace with."
+          },
+          "mc-dp-icons.crownedFunctions": {
+            "title":"",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mc-dp-icons.crownedTickFunctions": {
+            "title":"",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mc-dp-icons.crownedLoadFunctions": {
+            "title":"",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },

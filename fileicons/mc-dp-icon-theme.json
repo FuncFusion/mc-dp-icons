@@ -486,6 +486,9 @@
     "configs": {
       "iconPath": "./imgs/configs.svg"
     },
+    "contributing": {
+      "iconPath": "./imgs/contributing.svg"
+    },
     "copyright": {
       "iconPath": "./imgs/copyright.svg"
     },
@@ -510,6 +513,9 @@
     "database": {
       "iconPath": "./imgs/database.svg"
     },
+    "databases": {
+      "iconPath": "./imgs/databases.svg"
+    },
     "dlang": {
       "iconPath": "./imgs/dlang.svg"
     },
@@ -519,11 +525,38 @@
     "docker": {
       "iconPath": "./imgs/docker.svg"
     },
+    "dot_cargo": {
+      "iconPath": "./imgs/dot_cargo.svg"
+    },
+    "dot_dart_tool": {
+      "iconPath": "./imgs/dot_dart_tool.svg"
+    },
+    "dot_docker": {
+      "iconPath": "./imgs/dot_docker.svg"
+    },
     "dot_git": {
       "iconPath": "./imgs/dot_git.svg"
     },
     "dot_godot": {
       "iconPath": "./imgs/dot_godot.svg"
+    },
+    "dot_gradle": {
+      "iconPath": "./imgs/dot_gradle.svg"
+    },
+    "dot_idea": {
+      "iconPath": "./imgs/dot_idea.svg"
+    },
+    "dot_julia": {
+      "iconPath": "./imgs/dot_julia.svg"
+    },
+    "dot_maven": {
+      "iconPath": "./imgs/dot_maven.svg"
+    },
+    "dot_terraform": {
+      "iconPath": "./imgs/dot_terraform.svg"
+    },
+    "dot_vim": {
+      "iconPath": "./imgs/dot_vim.svg"
     },
     "dot_vs": {
       "iconPath": "./imgs/dot_vs.svg"
@@ -542,6 +575,9 @@
     },
     "elm": {
       "iconPath": "./imgs/elm.svg"
+    },
+    "elm_stuff": {
+      "iconPath": "./imgs/elm_stuff.svg"
     },
     "erlang": {
       "iconPath": "./imgs/erlang.svg"
@@ -642,11 +678,17 @@
     "linux": {
       "iconPath": "./imgs/linux.svg"
     },
+    "linux_folder": {
+      "iconPath": "./imgs/linux_folder.svg"
+    },
     "lisp": {
       "iconPath": "./imgs/lisp.svg"
     },
     "log": {
       "iconPath": "./imgs/log.svg"
+    },
+    "logs": {
+      "iconPath": "./imgs/logs.svg"
     },
     "lua": {
       "iconPath": "./imgs/lua.svg"
@@ -669,8 +711,14 @@
     "neovim": {
       "iconPath": "./imgs/neovim.svg"
     },
+    "neovim_folder": {
+      "iconPath": "./imgs/neovim_folder.svg"
+    },
     "nim": {
       "iconPath": "./imgs/nim.svg"
+    },
+    "nim_folder": {
+      "iconPath": "./imgs/nim_folder.svg"
     },
     "node_modules": {
       "iconPath": "./imgs/node_modules.svg"
@@ -741,8 +789,14 @@
     "scala": {
       "iconPath": "./imgs/scala.svg"
     },
+    "scala_folder": {
+      "iconPath": "./imgs/scala_folder.svg"
+    },
     "shell": {
       "iconPath": "./imgs/shell.svg"
+    },
+    "shell_folder": {
+      "iconPath": "./imgs/shell_folder.svg"
     },
     "spwn": {
       "iconPath": "./imgs/spwn.svg"
@@ -777,6 +831,9 @@
     "todo": {
       "iconPath": "./imgs/todo.svg"
     },
+    "todo_folder": {
+      "iconPath": "./imgs/todo_folder.svg"
+    },
     "toml": {
       "iconPath": "./imgs/toml.svg"
     },
@@ -788,6 +845,9 @@
     },
     "typst": {
       "iconPath": "./imgs/typst.svg"
+    },
+    "typst_folder": {
+      "iconPath": "./imgs/typst_folder.svg"
     },
     "vim": {
       "iconPath": "./imgs/vim.svg"
@@ -821,6 +881,9 @@
     },
     "zig": {
       "iconPath": "./imgs/zig.svg"
+    },
+    "zig_folder": {
+      "iconPath": "./imgs/zig_folder.svg"
     }
   },
   "file": "misc",
@@ -932,10 +995,29 @@
     "scss": "csses",
     "styles": "csses",
     "stylesheets": "csses",
+    "database": "databases",
+    "db": "databases",
+    "migrations": "databases",
+    "seeds": "databases",
+    "sql": "databases",
+    ".cargo": "dot_cargo",
+    "crates": "dot_cargo",
+    ".dart_tool": "dot_dart_tool",
+    ".docker": "dot_docker",
     ".git": "dot_git",
     ".godot": "dot_godot",
+    "buildSrc": "dot_gradle",
+    ".gradle": "dot_gradle",
+    "gradle": "dot_gradle",
+    ".idea": "dot_idea",
+    ".julia": "dot_julia",
+    ".m2": "dot_maven",
+    ".mvn": "dot_maven",
+    ".terraform": "dot_terraform",
+    ".vim": "dot_vim",
     ".vs": "dot_vs",
     ".vscode": "dot_vscode",
+    "elm-stuff": "elm_stuff",
     "app": "executables",
     "bin": "executables",
     "build": "executables",
@@ -947,17 +1029,73 @@
     "fonts": "font",
     ".github": "github",
     "github": "github",
+    "alpine": "linux_folder",
+    "appimage": "linux_folder",
+    "archlinux": "linux_folder",
+    "centos": "linux_folder",
+    "deb": "linux_folder",
+    "debian": "linux_folder",
+    "fedora": "linux_folder",
+    "flatpak": "linux_folder",
+    "gentoo": "linux_folder",
+    "gnu": "linux_folder",
+    "grub": "linux_folder",
+    "init.d": "linux_folder",
+    "kali": "linux_folder",
+    "kalilinux": "linux_folder",
+    "linux": "linux_folder",
+    "nixos": "linux_folder",
+    "opensuse": "linux_folder",
+    "posix": "linux_folder",
+    "raspbian": "linux_folder",
+    "redhat": "linux_folder",
+    "rpm": "linux_folder",
+    "snap": "linux_folder",
+    "suse": "linux_folder",
+    "systemd": "linux_folder",
+    "ubuntu": "linux_folder",
+    "unix": "linux_folder",
+    "wsl": "linux_folder",
+    "logs": "logs",
     "images": "painting_variant",
     "sprites": "painting_variant",
     "mods": "jars",
     "plugins": "jars",
     "target": "jars",
+    "nim": "nim_folder",
+    "nimcache": "nim_folder",
+    "nvim": "neovim_folder",
     "node_modules": "node_modules",
     "__pycache__": "pycache",
+    ".bloop": "scala_folder",
+    ".metals": "scala_folder",
+    "bash": "shell_folder",
+    "cli": "shell_folder",
+    "cmd": "shell_folder",
+    "powershell": "shell_folder",
+    "pwsh": "shell_folder",
+    "sh": "shell_folder",
+    "shell": "shell_folder",
+    "shells": "shell_folder",
+    "terminal": "shell_folder",
+    "zsh": "shell_folder",
     "src": "src_open",
     "test": "test_environment",
     "tests": "test_environment",
     "__tests__": "test_environment",
+    "backlog": "todo_folder",
+    "kanban": "todo_folder",
+    "milestones": "todo_folder",
+    "planning": "todo_folder",
+    "plans": "todo_folder",
+    "roadmap": "todo_folder",
+    "tickets": "todo_folder",
+    "todo": "todo_folder",
+    "todos": "todo_folder",
+    "typst-packages": "typst_folder",
+    "zig": "zig_folder",
+    "zig-cache": "zig_folder",
+    "zig-out": "zig_folder",
     "data/ant": "namespace_open",
     "data/minecraft": "namespace_open"
   },
@@ -1719,12 +1857,19 @@
     ".mcattributes": "config",
     ".mcdefinitions": "config",
     "settings.json": "config",
+    "webpack.config.cjs": "config",
+    "webpack.config.js": "config",
+    "webpack.config.mjs": "config",
+    "webpack.config.ts": "config",
     "CHANGELOG": "timeline_file",
     "CHANGELOG.md": "timeline_file",
     "CHANGELOG.txt": "timeline_file",
     "CODE_OF_CONDUCT": "pdf",
     "CODE_OF_CONDUCT.md": "pdf",
     "CODE_OF_CONDUCT.txt": "pdf",
+    "CONTRIBUTING": "contributing",
+    "CONTRIBUTING.md": "contributing",
+    "CONTRIBUTING.txt": "contributing",
     "COPYRIGHT": "copyright",
     "COPYRIGHT.md": "copyright",
     "COPYRIGHT.txt": "copyright",

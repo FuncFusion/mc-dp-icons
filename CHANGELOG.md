@@ -17,7 +17,7 @@ All notable changes to the "mc-dp-icons" extension will be documented in this fi
 
 - Christmas icons! Similarly to minecraft, the icon theme will change all of the icons that have chests to their christmas variants during December 24-26. This feature can be disabled or enabled to work at any time in the settings.
 
-- 98 new icons, including:
+- 97 new icons, including:
     - 29 icons for bedrock behaviour packs and resource packs (`entities`, `attachables`, `spawn_rules`, `render_controllers`, `biomes_client.json` etc.)
     - 4 new 1.21 java datapack icons (`instrument`, `trial_spawner`) and resource pack icons (`equipment`, `items`)
     - 9 new subfolder icons for java datapack and resource pack folders (`advancement`, `equipment`, `instrument`, `items`, `loot_table`, `shaders`, `tags`, `trial_spawner` and `worldgen` json files)
@@ -38,7 +38,7 @@ All notable changes to the "mc-dp-icons" extension will be documented in this fi
 ## [3.1.0] - 1.21 Update (2024-01-06)
 #### The total amount of icons now is 136, 127 of them are in use
 ### Added
-- 10 new icons, including icons for new 1.21 datapack folders.
+- 9 new icons, including icons for new 1.21 datapack folders.
 - 1.21 renamed datapack folders (advancements -> advancement etc.) are now also supported.
 ### Changed
 - 3 vscode icons has changed their appearance: `.vscode` folder, `.vscodeignore` files and vscode files to match the style. Their old versions are still in the repo but are not being used.

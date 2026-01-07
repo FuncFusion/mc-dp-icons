@@ -892,9 +892,7 @@
   "folderNames": {
     "assets": "assets_folder_closed",
     "data": "data_folder_closed",
-    "src": "src_folder_closed",
-    "data/minecraft": "namespace_folder_closed",
-    "assets/namespace": "namespace_folder_closed"
+    "src": "src_folder_closed"
   },
   "folderNamesExpanded": {
     "advancement": "advancement_folder",
@@ -1095,9 +1093,7 @@
     ".vscode": "vscode_folder",
     "zig": "zig_folder",
     "zig-cache": "zig_folder",
-    "zig-out": "zig_folder",
-    "data/minecraft": "namespace_folder",
-    "assets/namespace": "namespace_folder"
+    "zig-out": "zig_folder"
   },
   "fileExtensions": {
     "advancement/json": "advancement_file",
@@ -1920,16 +1916,7 @@
     ".gvimrc": "vim_file",
     ".vimrc": "vim_file",
     "_gvimrc": "vim_file",
-    "_vimrc": "vim_file",
-    "foo/bar.json": "advancement_file",
-    "subfolder/file.json": "loot_table_file",
-    "function/tag.json": "tags_file",
-    "item/sssssstick.json": "models_file",
-    "item/sword.json": "models_file",
-    "shiny_ones/ruby_block.json": "blocks_file",
-    "folder/trade.json": "trading_file",
-    "func1.mcfunction": "mcf_tick_file",
-    "func.mcfunction": "mcf_load_file"
+    "_vimrc": "vim_file"
   },
   "hidesExplorerArrows": false
 }

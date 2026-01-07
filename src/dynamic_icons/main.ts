@@ -10,22 +10,22 @@ export const themePath = path.join(
   __dirname,
   "..",
   "..",
-  "fileicons",
-  "mc-dp-icon-theme.json",
+  "file_icon_themes",
+  "active.json",
 );
 const christmasThemePath = path.join(
   __dirname,
   "..",
   "..",
-  "fileicons",
-  "mc-dp-icon-theme-xmas.json",
+  "file_icon_themes",
+  "xmas.json",
 );
 const defaultThemePath = path.join(
   __dirname,
   "..",
   "..",
-  "fileicons",
-  "mc-dp-icon-theme-default.json",
+  "file_icon_themes",
+  "default.json",
 );
 
 // This function is called in extension.ts

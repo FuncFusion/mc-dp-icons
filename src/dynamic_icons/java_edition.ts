@@ -70,10 +70,10 @@ export async function updateLoadTickIcons() {
   if (enableDynamicLoadTickChange) {
     const [loadNames, tickNames] = (await getTickLoadNames()) || [];
     loadNames?.forEach((loadName: string) => {
-      setThemeValue(["fileNames", loadName], "mcf_load");
+      setThemeValue(["fileNames", loadName], "mcf_load_file");
     });
     tickNames?.forEach((tickName: string) => {
-      setThemeValue(["fileNames", tickName], "mcf_tick");
+      setThemeValue(["fileNames", tickName], "mcf_tick_file");
     });
   } else {
     const customLoadNames: string[] = getConfig("functionNamesForLoad");
@@ -97,17 +97,17 @@ export async function updateLoadTickIcons() {
       const tickMatches = await getPartialMatches(customTickNames);
 
       loadMatches?.forEach((loadName: string) => {
-        setThemeValue(["fileNames", loadName], "mcf_load");
+        setThemeValue(["fileNames", loadName], "mcf_load_file");
       });
       tickMatches?.forEach((tickName: string) => {
-        setThemeValue(["fileNames", tickName], "mcf_tick");
+        setThemeValue(["fileNames", tickName], "mcf_tick_file");
       });
     } else {
       customLoadNames?.forEach((loadName: string) => {
-        setThemeValue(["fileNames", loadName + ".mcfunction"], "mcf_load");
+        setThemeValue(["fileNames", loadName + ".mcfunction"], "mcf_load_file");
       });
       customTickNames?.forEach((tickName: string) => {
-        setThemeValue(["fileNames", tickName + ".mcfunction"], "mcf_tick");
+        setThemeValue(["fileNames", tickName + ".mcfunction"], "mcf_tick_file");
       });
     }
   }
@@ -133,23 +133,23 @@ async function setCrownedFunctions() {
 
     crownedMatches?.forEach((crownedFunction: string) => {
       console.log("crowned matches: " + crownedFunction)
-      setThemeValue(["fileNames", crownedFunction], "mcf_main");
+      setThemeValue(["fileNames", crownedFunction], "mcf_file_crowned");
     });
     crownedLoadMatches?.forEach((crownedFunction: string) => {
-      setThemeValue(["fileNames", crownedFunction], "mcf_main_load");
+      setThemeValue(["fileNames", crownedFunction], "mcf_load_file_crowned");
     });
     crownedTickMatches?.forEach((crownedFunction: string) => {
-      setThemeValue(["fileNames", crownedFunction], "mcf_main_tick");
+      setThemeValue(["fileNames", crownedFunction], "mcf_tick_file_crowned");
     });
   } else {
     crownedFunctions?.forEach((crownedFunction: string) => {
-      setThemeValue(["fileNames", crownedFunction + ".mcfunction"], "mcf_main");
+      setThemeValue(["fileNames", crownedFunction + ".mcfunction"], "mcf_file_crowned");
     });
     crownedLoadFunctions?.forEach((crownedFunction: string) => {
-      setThemeValue(["fileNames", crownedFunction + ".mcfunction"], "mcf_main_load");
+      setThemeValue(["fileNames", crownedFunction + ".mcfunction"], "mcf_load_file_crowned");
     });
     crownedTickFunctions?.forEach((crownedTickFunction: string) => {
-      setThemeValue(["fileNames", crownedTickFunction + ".mcfunction"], "mcf_main_tick");
+      setThemeValue(["fileNames", crownedTickFunction + ".mcfunction"], "mcf_tick_file_crowned");
     });
   }
 }
@@ -167,8 +167,8 @@ async function setNamespaceIcons() {
   const folderNamesIconsMap: Record<string, string> = {};
   const folderNamesExpandedIconsMap: Record<string, string> = {};
 
-  const namespaceIcon = "namespace";
-  const namespaceIconExpanded = "namespace_open";
+  const namespaceIcon = "namespace_folder_closed";
+  const namespaceIconExpanded = "namespace_folder";
 
   namespaceNames.forEach((namespace: string) => {
     folderNamesIconsMap[namespace] = namespaceIcon;

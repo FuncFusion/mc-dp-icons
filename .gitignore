@@ -5,3 +5,4 @@ node_modules
 *.vsix
 out
 todo.md
+file_icon_themes/*.py

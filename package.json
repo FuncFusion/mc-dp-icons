@@ -2,7 +2,7 @@
   "name": "mc-dp-icons",
   "displayName": "Datapack Icons",
   "description": "A fancy, minecraft-styled icon theme, designed specifically for datapack devs.",
-  "version": "4.0.2",
+  "version": "5.0.0",
   "publisher": "SuperAnt",
   "author": {
     "name": "FuncFusion"
@@ -12,7 +12,7 @@
     "color": "#313338",
     "theme": "dark"
   },
-  "license": "GNU AFFERO GENERAL PUBLIC LICENSE",
+  "license": "MIT",
   "engines": {
     "vscode": "^1.5.1"
   },
@@ -52,7 +52,7 @@
       {
         "id": "mc-dp-icons",
         "label": "Datapack Icons Theme",
-        "path": "./fileicons/mc-dp-icon-theme.json",
+        "path": "./file_icon_themes/active.json",
         "_watch": true
       }
     ],

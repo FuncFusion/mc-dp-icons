@@ -58,12 +58,12 @@ export async function updateTickIcons() {
   if (enableDynamicTickChange) {
     const tickNames = (await getTickNames()) || [];
     tickNames?.forEach((tickName: string) => {
-      setThemeValue(["fileNames", tickName], "mcf_tick");
+      setThemeValue(["fileNames", tickName], "mcf_tick_file");
     });
   } else {
     const customTickNames = getConfig("functionNamesForTick");
     customTickNames?.forEach((tickName: string) => {
-      setThemeValue(["fileNames", tickName + ".mcfunction"], "mcf_tick");
+      setThemeValue(["fileNames", tickName + ".mcfunction"], "mcf_tick_File");
     });
   }
 }

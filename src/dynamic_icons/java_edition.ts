@@ -53,6 +53,7 @@ export function update() {
     setCrownedFunctions();
   }, 50);
   setNamespaceIcons();
+  setOverlayIcons();
   setSubFolderIcons();
 }
 
@@ -162,7 +163,7 @@ async function setNamespaceIcons() {
   let namespacePaths: string[] = getNamespacePaths() || [];
   const namespaceNames = namespacePaths.map((fullPath) => {
     const pathSegments = fullPath.split(path.sep);
-    return path.join(...pathSegments.slice(-1)).replace(/\\/g, "/");
+    return path.join(...pathSegments.slice(-2)).replace(/\\/g, "/");
   });
   const folderNamesIconsMap: Record<string, string> = {};
   const folderNamesExpandedIconsMap: Record<string, string> = {};
@@ -174,6 +175,28 @@ async function setNamespaceIcons() {
     folderNamesIconsMap[namespace] = namespaceIcon;
     folderNamesExpandedIconsMap[namespace] = namespaceIconExpanded;
   });
+  setThemeValue("folderNames", folderNamesIconsMap);
+  setThemeValue("folderNamesExpanded", folderNamesExpandedIconsMap);
+}
+
+async function setOverlayIcons() {
+  const enableOverlayIcons = getConfig("enableOverlayIcons");
+
+  if (!enableOverlayIcons) return;
+
+  const overlayPaths: string[] = getOverlayPaths() || [];
+
+  const folderNamesIconsMap: Record<string, string> = {};
+  const folderNamesExpandedIconsMap: Record<string, string> = {};
+
+  const overlayIcon = "overlay_folder_closed";
+  const overlayIconExpanded = "overlay_folder";
+
+  overlayPaths.forEach((overlayPath: string) => {
+    folderNamesIconsMap[overlayPath] = overlayIcon;
+    folderNamesExpandedIconsMap[overlayPath] = overlayIconExpanded;
+  });
+
   setThemeValue("folderNames", folderNamesIconsMap);
   setThemeValue("folderNamesExpanded", folderNamesExpandedIconsMap);
 }
@@ -221,6 +244,37 @@ async function getTickLoadNames(): Promise<[string[], string[]]> {
   } else {
     return [[], []];
   }
+}
+
+/**
+ * @returns {Array} of overlay paths
+ */
+function getOverlayPaths(): string[] {
+  const packPaths = findMcmetaInWorkspace().map(p => p.replace("pack.mcmeta", ""));
+  const validOverlayPaths: string[] = [];
+
+  packPaths.forEach(packPath => {
+    if (!fs.existsSync(packPath)) return;
+
+    const itemsWithinPack = fs.readdirSync(packPath, { withFileTypes: true });
+
+    for (const item of itemsWithinPack) {
+      if (item.isDirectory()) {
+        const subDirPath = `${packPath}${item.name}`;
+        
+        const hasData = fs.existsSync(`${subDirPath}/data`);
+        const hasAssets = fs.existsSync(`${subDirPath}/assets`);
+
+        if (hasData !== hasAssets) {
+          const pathSegments = subDirPath.split(path.sep);
+          const validPath = path.join(...pathSegments.slice(-2)).replace(/\\/g, "/");
+          validOverlayPaths.push(validPath);
+        }
+      }
+    }
+  });
+
+  return validOverlayPaths;
 }
 
 /**

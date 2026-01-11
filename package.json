@@ -68,6 +68,13 @@
             "default": true,
             "markdownDescription": "If enabled, namespace folders (folders directly within `data` and `assets`) will change their icons to ender chests. Works only if there is `pack.mcmeta` in the same directory.\n\n*Warning: this feature is not currently supported for VS Code web.*"
           },
+          "mc-dp-icons.enableOverlayIcons": {
+            "type": "boolean",
+            "order": 0,
+            "title": "Changes overlay folders icons to glass chest",
+            "default": true,
+            "markdownDescription": "todo"
+          },
           "mc-dp-icons.enableSubfolderIcons": {
             "type": "boolean",
             "order": 0,

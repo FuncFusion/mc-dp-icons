@@ -1,4 +1,3 @@
-import * as vscode from "vscode";
 import * as path from "path";
 import * as fs from "fs";
 import {
@@ -6,7 +5,8 @@ import {
   getFilesInDirectory,
   warnAboutTooManyFiles,
   getConfig,
-  namespacedToFileName,
+  getReferencesFromFunctionTags,
+  getPartialMatches,
 } from "./main";
 import { workspace } from "vscode";
 
@@ -56,15 +56,32 @@ function noBedrockPacks(): boolean {
 export async function updateTickIcons() {
   const enableDynamicTickChange = getConfig("enableLoadTickAutoChange");
   if (enableDynamicTickChange) {
-    const tickNames = (await getTickNames()) || [];
+    const tickNames = await getReferencesFromFunctionTags("minecraft", "tick");
     tickNames?.forEach((tickName: string) => {
       setThemeValue(["fileNames", tickName], "mcf_tick_file");
     });
   } else {
     const customTickNames = getConfig("functionNamesForTick");
-    customTickNames?.forEach((tickName: string) => {
-      setThemeValue(["fileNames", tickName + ".mcfunction"], "mcf_tick_File");
+
+    if (!customTickNames) return;
+
+    const usesPartialMatch = (array: string[])=>{return array.some(item => item.includes("*"))}
+
+    const processList = async (list: string[]) => {
+      if (usesPartialMatch(list)) {
+        return await getPartialMatches(list);
+      }
+      return list.map(item => item + ".mcfunction");
+    };
+
+    const fileNamesIconMap: Record<string, string> = {};
+
+    const tickFunctions = await processList(customTickNames);
+
+    tickFunctions?.forEach((tickName: string) => {
+      fileNamesIconMap[tickName] = "mcf_tick_File";
     });
+    setThemeValue("fileNames", fileNamesIconMap);
   }
 }
 
@@ -82,26 +99,6 @@ async function setSubFolderIcons() {
     });
   });
   setThemeValue("fileNames", subfolderFilesToIconsMap);
-}
-
-/**
- * @returns Array of tick function names
- */
-async function getTickNames(): Promise<string[]> {
-  const tickReference = await vscode.workspace.findFiles(
-    "**/tick.json",
-    "**/node_modules/**",
-  );
-  if (tickReference?.length > 0) {
-    let tickNames: string[] = [];
-    for (let i = 0; i < tickReference.length; i++) {
-      let tickValue = await namespacedToFileName(tickReference[i]);
-      tickNames = [...tickNames, ...tickValue];
-    }
-    return tickNames;
-  } else {
-    return [];
-  }
 }
 
 /**

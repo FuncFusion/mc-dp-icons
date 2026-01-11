@@ -4,14 +4,26 @@ import * as DynamicIcons from "./dynamic_icons/main";
 import * as path from "path";
 
 export function activate(context: vscode.ExtensionContext) {
-  // Register listeners
+
+  let updateTimer: NodeJS.Timeout | undefined
+
   const runUpdates = () => {
-    DynamicIcons.update();
-    ThemeChange.checkPackMcmeta();
-    console.log("mc-dp-icons: Updating Dynamic icons");
-  };
+    if (updateTimer) {
+      clearTimeout(updateTimer)
+    }
+
+    updateTimer = setTimeout(() => {
+      DynamicIcons.update()
+      ThemeChange.checkPackMcmeta()
+      console.log("mc-dp-icons: Updating Dynamic icons")
+      updateTimer = undefined
+    }, 50)
+  }
+
   const handleFileChange = (fileName: string) => {
-    if (fileName.endsWith(".mcmeta") || fileName.endsWith(".json")) {
+    const validFile = (fileName === "pack.mcmeta" || fileName.endsWith(".json")) && fileName !== "settings.json";
+
+    if (validFile) {
       runUpdates();
     }
   };

@@ -6,7 +6,8 @@ import {
   getFilesInDirectory,
   warnAboutTooManyFiles,
   getConfig,
-  namespacedToFileName,
+  getReferencesFromFunctionTags,
+  getPartialMatches,
 } from "./main";
 import { workspace } from "vscode";
 
@@ -48,10 +49,8 @@ const subfolderIconMap: Record<string, string> = {
 // This function is called in extension.ts
 export function update() {
   if (noJavaPacks()) return;
-  setTimeout(()=>{
-    updateLoadTickIcons();
-    setCrownedFunctions();
-  }, 50);
+  updateLoadTickIcons();
+  setCrownedFunctions();
   setNamespaceIcons();
   setOverlayIcons();
   setSubFolderIcons();
@@ -65,94 +64,100 @@ function noJavaPacks(): boolean {
   return true;
 }
 
-// Set icons for functions referenced in tick.json | load.json accordingly
+// Set icons for functions referenced in tick.json & load.json accordingly
 export async function updateLoadTickIcons() {
   const enableDynamicLoadTickChange = getConfig("enableLoadTickAutoChange");
+  const fileNamesIconMap: Record<string, string> = {};
   if (enableDynamicLoadTickChange) {
-    const [loadNames, tickNames] = (await getTickLoadNames()) || [];
-    loadNames?.forEach((loadName: string) => {
-      setThemeValue(["fileNames", loadName], "mcf_load_file");
+    const loadNames = await getReferencesFromFunctionTags("minecraft", "load");
+    const tickNames = await getReferencesFromFunctionTags("minecraft", "tick");
+    
+    loadNames.forEach((loadName: string) => {
+      fileNamesIconMap[loadName] = "mcf_load_file";
     });
-    tickNames?.forEach((tickName: string) => {
-      setThemeValue(["fileNames", tickName], "mcf_tick_file");
+    tickNames.forEach((tickName: string) => {
+      fileNamesIconMap[tickName] = "mcf_tick_file";
     });
+    setThemeValue("fileNames", fileNamesIconMap);
   } else {
     const customLoadNames: string[] = getConfig("functionNamesForLoad");
     const customTickNames: string[] = getConfig("functionNamesForTick");
 
-    const hasCommonName = customLoadNames?.some((item: string) =>
-      customTickNames?.includes(item),
+    if (!(customLoadNames || customTickNames)) return;
+
+    const hasCommonName = customLoadNames.some((item: string) =>
+      customTickNames.includes(item),
     );
 
     if (hasCommonName) {
       vscode.window.showWarningMessage(
-        "You have same names in custom tick / load icons configuration",
+        "Naming Conflict: Tick and Load functions must be unique",
       );
       return;
     }
 
-    const hasStar = (array: string[])=>{return array.some(item => item.includes("*"))}
+    const usesPartialMatch = (array: string[])=>{return array.some(item => item.includes("*"))}
 
-    if (hasStar(customLoadNames) || hasStar(customTickNames)) {
-      const loadMatches = await getPartialMatches(customLoadNames);
-      const tickMatches = await getPartialMatches(customTickNames);
+    const processList = async (list: string[]) => {
+      if (usesPartialMatch(list)) {
+        return await getPartialMatches(list);
+      }
+      return list.map(item => item + ".mcfunction");
+    };
 
-      loadMatches?.forEach((loadName: string) => {
-        setThemeValue(["fileNames", loadName], "mcf_load_file");
-      });
-      tickMatches?.forEach((tickName: string) => {
-        setThemeValue(["fileNames", tickName], "mcf_tick_file");
-      });
-    } else {
-      customLoadNames?.forEach((loadName: string) => {
-        setThemeValue(["fileNames", loadName + ".mcfunction"], "mcf_load_file");
-      });
-      customTickNames?.forEach((tickName: string) => {
-        setThemeValue(["fileNames", tickName + ".mcfunction"], "mcf_tick_file");
-      });
-    }
+    const loadFunctions = await processList(customLoadNames);
+    const tickFunctions = await processList(customTickNames);
+
+    loadFunctions?.forEach((loadName: string) => {
+      fileNamesIconMap[loadName] = "mcf_load_file";
+    });
+    tickFunctions?.forEach((tickName: string) => {
+      fileNamesIconMap[tickName] = "mcf_tick_file";
+    });
+    setThemeValue("fileNames", fileNamesIconMap);
   }
   return
 }
 
 async function setCrownedFunctions() {
-  const crownedFunctions: string[] = getConfig("crownedFunctions");
-  const crownedTickFunctions: string[] = getConfig("crownedTickFunctions");
-  const crownedLoadFunctions: string[] = getConfig("crownedLoadFunctions");
+  let configCrownedFunctions: string[] = getConfig("crownedFunctions");
+  let configCrownedLoadFunctions: string[] = getConfig("crownedLoadFunctions");
+  let configCrownedTickFunctions: string[] = getConfig("crownedTickFunctions");
 
-  const atLeastOneCrownedFunction = crownedFunctions.length || crownedTickFunctions.length || crownedLoadFunctions.length;
+  const atLeastOneCrownedFunction = (
+    configCrownedFunctions.length ||
+    configCrownedTickFunctions.length ||
+    configCrownedLoadFunctions.length
+  )
 
   if (!atLeastOneCrownedFunction) return;
 
-  const hasStar = (array: string[])=>{return array.some(item => item.includes("*"))}
+  const usesPartialMatch = (array: string[])=>{return array.some(item => item.includes("*"))}
 
-  if (hasStar(crownedFunctions) || hasStar(crownedTickFunctions) || hasStar(crownedLoadFunctions)) {
-    const crownedMatches = await getPartialMatches(crownedFunctions);
-    const crownedLoadMatches = await getPartialMatches(crownedLoadFunctions);
-    const crownedTickMatches = await getPartialMatches(crownedTickFunctions);
+  const processList = async (list: string[]) => {
+    if (usesPartialMatch(list)) {
+      return await getPartialMatches(list);
+    }
+    return list.map(item => item + ".mcfunction");
+  };
 
+  const fileNamesIconMap: Record<string, string> = {};
 
-    crownedMatches?.forEach((crownedFunction: string) => {
-      console.log("crowned matches: " + crownedFunction)
-      setThemeValue(["fileNames", crownedFunction], "mcf_file_crowned");
-    });
-    crownedLoadMatches?.forEach((crownedFunction: string) => {
-      setThemeValue(["fileNames", crownedFunction], "mcf_load_file_crowned");
-    });
-    crownedTickMatches?.forEach((crownedFunction: string) => {
-      setThemeValue(["fileNames", crownedFunction], "mcf_tick_file_crowned");
-    });
-  } else {
-    crownedFunctions?.forEach((crownedFunction: string) => {
-      setThemeValue(["fileNames", crownedFunction + ".mcfunction"], "mcf_file_crowned");
-    });
-    crownedLoadFunctions?.forEach((crownedFunction: string) => {
-      setThemeValue(["fileNames", crownedFunction + ".mcfunction"], "mcf_load_file_crowned");
-    });
-    crownedTickFunctions?.forEach((crownedTickFunction: string) => {
-      setThemeValue(["fileNames", crownedTickFunction + ".mcfunction"], "mcf_tick_file_crowned");
-    });
-  }
+  const crownedFunctions = await processList(configCrownedFunctions);
+  const crownedLoadFunctions = await processList(configCrownedLoadFunctions);
+  const crownedTickFunctions = await processList(configCrownedTickFunctions);
+
+  crownedFunctions.forEach((crownedFunction: string) => {
+    fileNamesIconMap[crownedFunction] = "mcf_file_crowned";
+  });
+  crownedLoadFunctions.forEach((crownedFunction: string) => {
+    fileNamesIconMap[crownedFunction] = "mcf_load_file_crowned";
+  });
+  crownedTickFunctions.forEach((crownedTickFunction: string) => {
+    fileNamesIconMap[crownedTickFunction] = "mcf_tick_file_crowned";
+  });
+
+  setThemeValue("fileNames", fileNamesIconMap);
 }
 
 async function setNamespaceIcons() {
@@ -161,10 +166,12 @@ async function setNamespaceIcons() {
   if (!enableNamespaceIcons) return;
 
   let namespacePaths: string[] = getNamespacePaths() || [];
+
   const namespaceNames = namespacePaths.map((fullPath) => {
     const pathSegments = fullPath.split(path.sep);
     return path.join(...pathSegments.slice(-2)).replace(/\\/g, "/");
-  });
+  })
+
   const folderNamesIconsMap: Record<string, string> = {};
   const folderNamesExpandedIconsMap: Record<string, string> = {};
 
@@ -218,35 +225,6 @@ async function setSubFolderIcons() {
 }
 
 /**
- * @returns {Array} of load function names and {Array} of tick function names
- */
-async function getTickLoadNames(): Promise<[string[], string[]]> {
-  const tickReference = await vscode.workspace.findFiles(
-    "**/tick.json",
-    "**/node_modules/**",
-  );
-  const loadReference = await vscode.workspace.findFiles(
-    "**/load.json",
-    "**/node_modules/**",
-  );
-  if (tickReference?.length > 0 || loadReference?.length > 0) {
-    let loadNames: string[] = [];
-    let tickNames: string[] = [];
-    for (let i = 0; i < loadReference.length; i++) {
-      let loadValue = await namespacedToFileName(loadReference[i]);
-      loadNames = [...loadNames, ...loadValue];
-    }
-    for (let i = 0; i < tickReference.length; i++) {
-      let tickValue = await namespacedToFileName(tickReference[i]);
-      tickNames = [...tickNames, ...tickValue];
-    }
-    return [loadNames, tickNames];
-  } else {
-    return [[], []];
-  }
-}
-
-/**
  * @returns {Array} of overlay paths
  */
 function getOverlayPaths(): string[] {
@@ -285,6 +263,7 @@ function getNamespacePaths(): string[] {
     packPath.replace("pack.mcmeta", ""),
   );
   if (!packPaths) return [];
+
   const namespacePaths: string[] = [];
 
   /** @returns {Array} of paths for every subdirectory in specified path */
@@ -378,27 +357,4 @@ function findMcmetaInDirectory(directory: string): string[] {
   });
 
   return mcmetaPaths;
-}
-
-/**
- * @returns two arrays with partially matched load and tick function names
- */
-async function getPartialMatches(customNames: string[]): Promise<string[]> {
-  const processNames = async (names: string[]): Promise<string[]> => {
-    const urisArrays = await Promise.all(
-      names.map((name) => vscode.workspace.findFiles(`**/${name}.mcfunction`))
-    );
-
-    const fileNames: string[] = urisArrays.flat().map((uri: vscode.Uri) => {
-        const normalizedPath: string = uri.fsPath.replaceAll("\\", "/");
-        
-        return normalizedPath.split("/").pop() || "";
-    });
-
-    return fileNames
-  };
-
-  const nameMatches = await processNames(customNames);
-
-  return nameMatches;
 }

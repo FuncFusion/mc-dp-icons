@@ -167,31 +167,45 @@ export function warnAboutTooManyFiles() {
 }
 
 /**
- * Convert function id inside function tag file to filename
- * @param file - Function tag file
+ * @returns {Array} of load function names and {Array} of tick function names
  */
-export async function namespacedToFileName(
-  file: vscode.Uri,
-): Promise<string[]> {
-  const filePath = file.fsPath;
-  const removeNamespace = (input: string) => {
-    return input.split(":")[1];
-  };
+export async function getReferencesFromFunctionTags(namespace: string, functionTag: string): Promise<string[]> {
+  const functionTagFiles = await vscode.workspace.findFiles(
+    `**/${namespace}/tags/function/**/${functionTag}.json`,
+    "**/node_modules/**",
+  );
 
-  try {
-    const fileContent = await readFile(filePath, "utf8");
-    const fileObject = JSON.parse(fileContent);
-    const functionNotReferenced = fileObject.values?.length == 0;
+  if (!functionTagFiles.length) return [];
 
-    if (functionNotReferenced) return [];
+  let functionReferences: string[] = [];
 
-    return fileObject.values.map(
-      (value: string) => `${removeNamespace(value)}.mcfunction`,
-    );
-  } catch (err) {
-    console.error(`Failed to read tick.json || load.json: ${err}`);
-    return [];
-  }
+  functionTagFiles.forEach(functionTagFile => {
+    const functionTag: { values: string[] } = JSON.parse(fs.readFileSync(functionTagFile.fsPath, "utf8"));
+
+    if (!functionTag.values.length) return;
+
+    functionTag.values.forEach((functionID: string) => {
+      const functionName: string = functionID.split(":")[1];
+      functionReferences.push(`${functionName}.mcfunction`);
+    });
+  });
+
+  return functionReferences;
+}
+
+/**
+ * @returns {Array} of partially matched function names
+ */
+export async function getPartialMatches(customNames: string[]): Promise<string[]> {
+  const matchedFunctions = (await Promise.all(
+    customNames.map((name) => vscode.workspace.findFiles(`**/${name}.mcfunction`))
+  )).flat();
+
+  const fileNames: string[] = matchedFunctions.map((matchedFunction: vscode.Uri) => {
+    return path.basename(matchedFunction.fsPath);
+  });
+
+  return fileNames
 }
 
 export function getConfig(name: string): any {

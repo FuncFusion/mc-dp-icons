@@ -719,6 +719,7 @@
     "env.example": "config_file",
     "env.local": "config_file",
     "env.production": "config_file",
+    "htaccess": "config_file",
     "import": "config_file",
     "ini": "config_file",
     "ini.dist": "config_file",

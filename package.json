@@ -72,7 +72,7 @@
             "type": "boolean",
             "order": 0,
             "title": "Enable subfolder icons",
-            "default": false,
+            "default": true,
             "markdownDescription": "If enabled, json files inside namespace subfolders will also change their icons (e.g. `data/namespace/item_modifier/some_folder/file.json` will change its icon to a diamond pickaxe when this is enabled). Not recommended for large workspaces. Works only if there is `pack.mcmeta` in the same directory.\n\n*Warning: this feature is not currently supported for VS Code web.*"
           },
           "mc-dp-icons.enableChristmasIcons": {

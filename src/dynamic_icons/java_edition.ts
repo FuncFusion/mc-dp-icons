@@ -171,6 +171,7 @@ async function setNamespaceIcons() {
     const pathSegments = fullPath.split(path.sep);
     return path.join(...pathSegments.slice(-2)).replace(/\\/g, "/");
   })
+  console.log("namespaceNames: ", namespaceNames.toString())
 
   const folderNamesIconsMap: Record<string, string> = {};
   const folderNamesExpandedIconsMap: Record<string, string> = {};
@@ -267,12 +268,12 @@ function getNamespacePaths(): string[] {
   const namespacePaths: string[] = [];
 
   /** @returns {Array} of paths for every subdirectory in specified path */
-  const getPaths = (path: string): string[] => {
-    if (!fs.existsSync(path)) return [];
+  const getPaths = (directory: string): string[] => {
+    if (!fs.existsSync(directory)) return [];
     return fs
-      .readdirSync(path)
-      .filter((file) => fs.statSync(`${path}/${file}`).isDirectory())
-      .map((file) => `${path}/${file}`);
+      .readdirSync(directory)
+      .filter((file) => fs.statSync(`${directory}${path.sep}${file}`).isDirectory())
+      .map((file) => `${directory}${path.sep}${file}`);
   };
 
   packPaths.forEach((packPath) => {

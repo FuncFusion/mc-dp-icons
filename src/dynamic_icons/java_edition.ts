@@ -46,7 +46,26 @@ const subfolderIconMap: Record<string, string> = {
   shaders: "shaders_file",
 };
 
-// This function is called in extension.ts
+const PRIORITY = {
+  LOAD_TICK: 1,
+  CROWNED: 2
+};
+
+let currentFileIcons: Record<string, string> = {};
+let fileIconPriority: Record<string, number> = {};
+
+function applyIconsWithPriority(icons: Record<string, string>, level: number) {
+  for (const [file, icon] of Object.entries(icons)) {
+    const existingLevel = fileIconPriority[file] || 0;
+
+    if (level >= existingLevel) {
+      currentFileIcons[file] = icon;
+      fileIconPriority[file] = level;
+    }
+  }
+  setThemeValue("fileNames", currentFileIcons);
+}
+
 export function update() {
   if (noJavaPacks()) return;
   updateLoadTickIcons();
@@ -64,7 +83,6 @@ function noJavaPacks(): boolean {
   return true;
 }
 
-// Set icons for functions referenced in tick.json & load.json accordingly
 export async function updateLoadTickIcons() {
   const enableDynamicLoadTickChange = getConfig("enableLoadTickAutoChange");
   const fileNamesIconMap: Record<string, string> = {};
@@ -78,7 +96,7 @@ export async function updateLoadTickIcons() {
     tickNames.forEach((tickName: string) => {
       fileNamesIconMap[tickName] = "mcf_tick_file";
     });
-    setThemeValue("fileNames", fileNamesIconMap);
+    applyIconsWithPriority(fileNamesIconMap, PRIORITY.LOAD_TICK);
   } else {
     const customLoadNames: string[] = getConfig("functionNamesForLoad");
     const customTickNames: string[] = getConfig("functionNamesForTick");
@@ -114,7 +132,7 @@ export async function updateLoadTickIcons() {
     tickFunctions?.forEach((tickName: string) => {
       fileNamesIconMap[tickName] = "mcf_tick_file";
     });
-    setThemeValue("fileNames", fileNamesIconMap);
+    applyIconsWithPriority(fileNamesIconMap, PRIORITY.LOAD_TICK);
   }
   return
 }
@@ -157,7 +175,7 @@ async function setCrownedFunctions() {
     fileNamesIconMap[crownedTickFunction] = "mcf_tick_file_crowned";
   });
 
-  setThemeValue("fileNames", fileNamesIconMap);
+  applyIconsWithPriority(fileNamesIconMap, PRIORITY.CROWNED);
 }
 
 async function setNamespaceIcons() {
@@ -171,7 +189,6 @@ async function setNamespaceIcons() {
     const pathSegments = fullPath.split(path.sep);
     return path.join(...pathSegments.slice(-2)).replace(/\\/g, "/");
   })
-  console.log("namespaceNames: ", namespaceNames.toString())
 
   const folderNamesIconsMap: Record<string, string> = {};
   const folderNamesExpandedIconsMap: Record<string, string> = {};
@@ -209,7 +226,6 @@ async function setOverlayIcons() {
   setThemeValue("folderNamesExpanded", folderNamesExpandedIconsMap);
 }
 
-// Change icons of files in subfolders
 async function setSubFolderIcons() {
   const subfolderIconEnabled = getConfig("enableSubfolderIcons");
   if (!subfolderIconEnabled) return;

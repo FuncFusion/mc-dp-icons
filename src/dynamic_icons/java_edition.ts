@@ -171,7 +171,6 @@ async function setNamespaceIcons() {
     const pathSegments = fullPath.split(path.sep);
     return path.join(...pathSegments.slice(-2)).replace(/\\/g, "/");
   })
-  console.log("namespaceNames: ", namespaceNames.toString())
 
   const folderNamesIconsMap: Record<string, string> = {};
   const folderNamesExpandedIconsMap: Record<string, string> = {};

@@ -57,9 +57,11 @@ export async function updateTickIcons() {
   const enableDynamicTickChange = getConfig("enableLoadTickAutoChange");
   if (enableDynamicTickChange) {
     const tickNames = await getReferencesFromFunctionTags("minecraft", "tick");
+    const fileNamesIconMap: Record<string, string> = {};
     tickNames?.forEach((tickName: string) => {
-      setThemeValue(["fileNames", tickName], "mcf_tick_file");
+      fileNamesIconMap[tickName] = "mcf_tick_file";
     });
+    setThemeValue("fileNames", fileNamesIconMap);
   } else {
     const customTickNames = getConfig("functionNamesForTick");
 

@@ -69,40 +69,18 @@ async function applyFolderArrowsSettings() {
  * @param keys - A string or array of strings representing the key path (e.g., "key" or ["key1", "key2"]).
  * @param value - The value to set at the specified key path.
  */
-export async function setThemeValue(keyName: string | string[], value: any) {
-  let themeContent = fs.readFileSync(themePath, "utf8");
-  let themeObject = JSON.parse(themeContent);
-  const isObject = (obj: any) => obj === Object(obj);
-  let currentKey = themeObject;
-  const setValue = (key: string, value: any) => {
-    if (isObject(value)) {
-      currentKey[key] = {
-        ...currentKey[key],
-        ...value,
-      };
-    } else {
-      currentKey[key] = value;
-    }
-  };
+export function setThemeValue(key: string, value: any) {
+  const theme = JSON.parse(fs.readFileSync(themePath, "utf8"));
+  const isObject = (val: any) => val !== null && typeof val === "object" && !Array.isArray(val);
 
-  if (Array.isArray(keyName)) {
-    const lastKey = keyName[keyName.length - 1];
-
-    keyName.forEach((key) => {
-      if (key === lastKey) {
-        setValue(key, value);
-      } else {
-        currentKey[key] || {};
-        currentKey = currentKey[key];
-      }
-    });
-  } else {
-    setValue(keyName, value);
+  if (isObject(value) && isObject(theme[key])) {
+    theme[key] = { ...value, ...theme[key] };
+  } else if (!(key in theme)) {
+    theme[key] = value;
   }
-  fs.writeFileSync(themePath, JSON.stringify(themeObject, null, 2), "utf8");
-}
 
-export const readFile = util.promisify(fs.readFile);
+  fs.writeFileSync(themePath, JSON.stringify(theme, null, 2), "utf8");
+}
 
 /**
  * Helper function to retrieve all files in a directory and its subdirectories

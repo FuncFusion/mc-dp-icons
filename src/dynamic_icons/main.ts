@@ -71,11 +71,11 @@ async function applyFolderArrowsSettings() {
  */
 export function setThemeValue(key: string, value: any) {
   const theme = JSON.parse(fs.readFileSync(themePath, "utf8"));
-  const isObject = (val: any) => val !== null && typeof val === "object" && !Array.isArray(val);
+  const isObject = (val: any) => val !== null && typeof val === "object";
 
   if (isObject(value) && isObject(theme[key])) {
     theme[key] = { ...value, ...theme[key] };
-  } else if (!(key in theme)) {
+  } else {
     theme[key] = value;
   }
 

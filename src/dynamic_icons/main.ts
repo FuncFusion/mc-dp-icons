@@ -168,8 +168,9 @@ export async function getReferencesFromFunctionTags(namespace: string, functionT
     if (!functionTag.values.length) continue;
 
     for (const functionID of functionTag.values) {
-      const functionName: string = functionID.split(":")[1];
-      functionReferences.push(`${functionName}.mcfunction`);
+      const functionPath: string = "function" + path.sep + functionID.split(":")[1];
+      const shortenedPath = functionPath.split(path.sep).slice(-2).join(path.sep);
+      functionReferences.push(`${shortenedPath}.mcfunction`);
     }
   }
 

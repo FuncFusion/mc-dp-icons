@@ -1,7 +1,6 @@
 import * as vscode from "vscode";
 import * as path from "path";
-import * as fs from "fs";
-import util from "util";
+import * as fs from "fs/promises";
 import * as bedrock from "./bedrock_edition";
 import * as java from "./java_edition";
 import { workspace } from "vscode";
@@ -29,8 +28,8 @@ const defaultThemePath = path.join(
 );
 
 // This function is called in extension.ts
-export function update() {
-  resetIconDefinitions();
+export async function update() {
+  await resetIconDefinitions();
   applyFolderArrowsSettings();
   java.update();
   bedrock.update();
@@ -49,18 +48,18 @@ async function resetIconDefinitions() {
   };
 
   if (!shouldUseChristmasIcons()) {
-    fs.copyFileSync(defaultThemePath, themePath);
+    fs.copyFile(defaultThemePath, themePath);
   } else {
-    fs.copyFileSync(christmasThemePath, themePath);
+    fs.copyFile(christmasThemePath, themePath);
   }
 }
 
 async function applyFolderArrowsSettings() {
   const confHideFolderArrows = getConfig("hideFolderArrows");
   if (confHideFolderArrows) {
-    setThemeValue("hidesExplorerArrows", true);
+    await setThemeValue("hidesExplorerArrows", true);
   } else {
-    setThemeValue("hidesExplorerArrows", false);
+    await setThemeValue("hidesExplorerArrows", false);
   }
 }
 
@@ -69,17 +68,23 @@ async function applyFolderArrowsSettings() {
  * @param keys - A string or array of strings representing the key path (e.g., "key" or ["key1", "key2"]).
  * @param value - The value to set at the specified key path.
  */
-export function setThemeValue(key: string, value: any) {
-  const theme = JSON.parse(fs.readFileSync(themePath, "utf8"));
-  const isObject = (val: any) => val !== null && typeof val === "object";
+export async function setThemeValue(key: string, value: any) {
+  try {
+    const data = await fs.readFile(themePath, "utf8");
+    const theme = JSON.parse(data);
 
-  if (isObject(value) && isObject(theme[key])) {
-    theme[key] = { ...value, ...theme[key] };
-  } else {
-    theme[key] = value;
+    const isObject = (val: any) => val !== null && typeof val === "object";
+
+    if (isObject(value) && isObject(theme[key])) {
+      theme[key] = { ...value, ...theme[key] };
+    } else {
+      theme[key] = value;
+    }
+
+    fs.writeFile(themePath, JSON.stringify(theme, null, 2), "utf8");
+  } catch (error) {
+    console.error(`Error setting theme value: ${error}`);
   }
-
-  fs.writeFileSync(themePath, JSON.stringify(theme, null, 2), "utf8");
 }
 
 /**
@@ -87,7 +92,7 @@ export function setThemeValue(key: string, value: any) {
  * @param directory - The directory you're retrieving all of the files from
  * @returns {Array} of files located within the directory
  */
-export function getFilesInDirectory(directory: string): string[] {
+export async function getFilesInDirectory(directory: string): Promise<string[]> {
   const files: string[] = [];
   const excludedFiles = [
     "function/load.json",
@@ -95,12 +100,11 @@ export function getFilesInDirectory(directory: string): string[] {
     "functions/load.json",
     "functions/tick.json",
   ];
-  const collectFiles = (dir: string, relativePath = "") => {
-    const entries = fs.readdirSync(dir, { withFileTypes: true });
-    entries.forEach((entry) => {
-      if (entry.name.startsWith('.') || entry.name == 'node_modules') {
-        return;
-      }
+  const collectFiles = async (dir: string, relativePath = "") => {
+    const entries = await fs.readdir(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      if (entry.name.startsWith('.') || entry.name == 'node_modules') continue;
+
       const fullPath = path.join(dir, entry.name);
       const newPath = path.join(relativePath, entry.name).replace(/\\/g, "/");
       const validSubfolderFile =
@@ -119,7 +123,7 @@ export function getFilesInDirectory(directory: string): string[] {
 
         files.push(shortenedPath);
       }
-    });
+    }
   };
   collectFiles(directory);
   return files;
@@ -157,16 +161,17 @@ export async function getReferencesFromFunctionTags(namespace: string, functionT
 
   let functionReferences: string[] = [];
 
-  functionTagFiles.forEach(functionTagFile => {
-    const functionTag: { values: string[] } = JSON.parse(fs.readFileSync(functionTagFile.fsPath, "utf8"));
+  for (const functionTagFile of functionTagFiles) {
+    const data = await fs.readFile(functionTagFile.fsPath, "utf8");
+    const functionTag: { values: string[] } = JSON.parse(data);
 
-    if (!functionTag.values.length) return;
+    if (!functionTag.values.length) continue;
 
-    functionTag.values.forEach((functionID: string) => {
+    for (const functionID of functionTag.values) {
       const functionName: string = functionID.split(":")[1];
       functionReferences.push(`${functionName}.mcfunction`);
-    });
-  });
+    }
+  }
 
   return functionReferences;
 }
@@ -202,8 +207,16 @@ function changeConfigWorkspace(name: string, value: any) {
     .update(`mc-dp-icons.${name}`, value, vscode.ConfigurationTarget.Workspace);
 }
 
-/** @returns True if current date is between 24 and 26 December inclusive */
 export function isChristmas() {
   const now = new Date();
   return now.getMonth() === 11 && now.getDate() >= 24 && now.getDate() <= 26;
+}
+
+export async function pathExists(filePath: string): Promise<boolean> {
+  try {
+    await fs.access(filePath);
+    return true;
+  } catch (error) {
+    return false;
+  }
 }

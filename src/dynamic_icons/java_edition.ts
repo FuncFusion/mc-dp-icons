@@ -1,7 +1,8 @@
 import * as vscode from "vscode";
 import * as path from "path";
-import * as fs from "fs";
+import * as fs from "fs/promises";
 import {
+  pathExists,
   setThemeValue,
   getFilesInDirectory,
   warnAboutTooManyFiles,
@@ -47,17 +48,17 @@ const subfolderIconMap: Record<string, string> = {
 };
 
 // This function is called in extension.ts
-export function update() {
-  if (noJavaPacks()) return;
-  updateLoadTickIcons();
-  setCrownedFunctions();
-  setNamespaceIcons();
-  setOverlayIcons();
-  setSubFolderIcons();
+export async function update() {
+  if (await noJavaPacks()) return;
+  await setCrownedFunctions();
+  await updateLoadTickIcons();
+  await setNamespaceIcons();
+  await setOverlayIcons();
+  await setSubFolderIcons();
 }
 
-function noJavaPacks(): boolean {
-  const mcmetaFiles = findMcmetaInWorkspace();
+async function noJavaPacks(): Promise<boolean> {
+  const mcmetaFiles = await findMcmetaInWorkspace();
   if (mcmetaFiles.length > 0) {
     return false;
   }
@@ -71,6 +72,7 @@ export async function updateLoadTickIcons() {
   if (enableDynamicLoadTickChange) {
     const loadNames = await getReferencesFromFunctionTags("minecraft", "load");
     const tickNames = await getReferencesFromFunctionTags("minecraft", "tick");
+    console.log("loadNames: ", loadNames);
     
     loadNames.forEach((loadName: string) => {
       fileNamesIconMap[loadName] = "mcf_load_file";
@@ -78,7 +80,9 @@ export async function updateLoadTickIcons() {
     tickNames.forEach((tickName: string) => {
       fileNamesIconMap[tickName] = "mcf_tick_file";
     });
-    setThemeValue("fileNames", fileNamesIconMap);
+
+    console.log("fileNamesIconMap: ", fileNamesIconMap);
+    await setThemeValue("fileNames", fileNamesIconMap);
   } else {
     const customLoadNames: string[] = getConfig("functionNamesForLoad");
     const customTickNames: string[] = getConfig("functionNamesForTick");
@@ -114,7 +118,7 @@ export async function updateLoadTickIcons() {
     tickFunctions?.forEach((tickName: string) => {
       fileNamesIconMap[tickName] = "mcf_tick_file";
     });
-    setThemeValue("fileNames", fileNamesIconMap);
+    await setThemeValue("fileNames", fileNamesIconMap);
   }
   return
 }
@@ -157,7 +161,7 @@ async function setCrownedFunctions() {
     fileNamesIconMap[crownedTickFunction] = "mcf_tick_file_crowned";
   });
 
-  setThemeValue("fileNames", fileNamesIconMap);
+  await setThemeValue("fileNames", fileNamesIconMap);
 }
 
 async function setNamespaceIcons() {
@@ -165,7 +169,7 @@ async function setNamespaceIcons() {
 
   if (!enableNamespaceIcons) return;
 
-  let namespacePaths: string[] = getNamespacePaths() || [];
+  let namespacePaths: string[] = await getNamespacePaths() || [];
 
   const namespaceNames = namespacePaths.map((fullPath) => {
     const pathSegments = fullPath.split(path.sep);
@@ -182,8 +186,8 @@ async function setNamespaceIcons() {
     folderNamesIconsMap[namespace] = namespaceIcon;
     folderNamesExpandedIconsMap[namespace] = namespaceIconExpanded;
   });
-  setThemeValue("folderNames", folderNamesIconsMap);
-  setThemeValue("folderNamesExpanded", folderNamesExpandedIconsMap);
+  await setThemeValue("folderNames", folderNamesIconsMap);
+  await setThemeValue("folderNamesExpanded", folderNamesExpandedIconsMap);
 }
 
 async function setOverlayIcons() {
@@ -191,7 +195,7 @@ async function setOverlayIcons() {
 
   if (!enableOverlayIcons) return;
 
-  const overlayPaths: string[] = getOverlayPaths() || [];
+  const overlayPaths: string[] = await getOverlayPaths() || [];
 
   const folderNamesIconsMap: Record<string, string> = {};
   const folderNamesExpandedIconsMap: Record<string, string> = {};
@@ -204,8 +208,8 @@ async function setOverlayIcons() {
     folderNamesExpandedIconsMap[overlayPath] = overlayIconExpanded;
   });
 
-  setThemeValue("folderNames", folderNamesIconsMap);
-  setThemeValue("folderNamesExpanded", folderNamesExpandedIconsMap);
+  await setThemeValue("folderNames", folderNamesIconsMap);
+  await setThemeValue("folderNamesExpanded", folderNamesExpandedIconsMap);
 }
 
 // Change icons of files in subfolders
@@ -221,27 +225,28 @@ async function setSubFolderIcons() {
       subfolderFilesToIconsMap[fileName] = fileIcon;
     });
   });
-  setThemeValue("fileNames", subfolderFilesToIconsMap);
+  await setThemeValue("fileNames", subfolderFilesToIconsMap);
 }
 
 /**
  * @returns {Array} of overlay paths
  */
-function getOverlayPaths(): string[] {
-  const packPaths = findMcmetaInWorkspace().map(p => p.replace("pack.mcmeta", ""));
+async function getOverlayPaths(): Promise<string[]> {
+  const mcmetaPaths = await findMcmetaInWorkspace()
+  const packPaths = mcmetaPaths.map(p => p.replace("pack.mcmeta", ""));
   const validOverlayPaths: string[] = [];
 
-  packPaths.forEach(packPath => {
-    if (!fs.existsSync(packPath)) return;
+  for (const packPath of packPaths) {
+    if (!await pathExists(packPath)) continue;
 
-    const itemsWithinPack = fs.readdirSync(packPath, { withFileTypes: true });
+    const itemsWithinPack = await fs.readdir(packPath, { withFileTypes: true });
 
     for (const item of itemsWithinPack) {
       if (item.isDirectory()) {
-        const subDirPath = `${packPath}${item.name}`;
+        const subDirPath = path.join(packPath, item.name);
         
-        const hasData = fs.existsSync(`${subDirPath}/data`);
-        const hasAssets = fs.existsSync(`${subDirPath}/assets`);
+        const hasData = await pathExists(path.join(subDirPath, "data"));
+        const hasAssets = await pathExists(path.join(subDirPath, "assets"));
 
         if (hasData !== hasAssets) {
           const pathSegments = subDirPath.split(path.sep);
@@ -250,39 +255,40 @@ function getOverlayPaths(): string[] {
         }
       }
     }
-  });
-
+  }
   return validOverlayPaths;
 }
 
 /**
  * @returns {Array} of namespace paths
  */
-function getNamespacePaths(): string[] {
-  let packPaths = findMcmetaInWorkspace().map((packPath) =>
-    packPath.replace("pack.mcmeta", ""),
-  );
+async function getNamespacePaths(): Promise<string[]> {
+  const mcmetaPaths = await findMcmetaInWorkspace()
+  const packPaths = mcmetaPaths.map(p => p.replace("pack.mcmeta", ""));
+
   if (!packPaths) return [];
 
   const namespacePaths: string[] = [];
 
-  /** @returns {Array} of paths for every subdirectory in specified path */
-  const getPaths = (directory: string): string[] => {
-    if (!fs.existsSync(directory)) return [];
-    return fs
-      .readdirSync(directory)
-      .filter((file) => fs.statSync(`${directory}${path.sep}${file}`).isDirectory())
-      .map((file) => `${directory}${path.sep}${file}`);
+  const getPaths = async (directory: string): Promise<string[]> => { 
+    if (!await pathExists(directory)) return [];
+    const entries = await fs.readdir(directory, { withFileTypes: true });
+
+    return entries
+      .filter((entry) => entry.isDirectory())
+      .map(entry => path.join(directory, entry.name));
   };
 
-  packPaths.forEach((packPath) => {
+  for (const packPath of packPaths) {
     try {
-      namespacePaths.push(...getPaths(packPath + "data"));
-      namespacePaths.push(...getPaths(packPath + "assets"));
+      const assetsPaths = await getPaths(path.join(packPath, "assets"));
+      namespacePaths.push(...assetsPaths);
+      const dataPaths = await getPaths(path.join(packPath, "data"));
+      namespacePaths.push(...dataPaths);
     } catch (error) {
       console.error(`Error reading folder: ${packPath}data`, error);
     }
-  });
+  }
 
   return namespacePaths;
 }
@@ -292,23 +298,23 @@ function getNamespacePaths(): string[] {
  */
 async function subfolderReference(): Promise<{ [key: string]: string[] }> {
   const subfolders: { [key: string]: string[] } = {};
-  const namespacePaths = getNamespacePaths();
+  const namespacePaths = await getNamespacePaths();
   let filesAmount = 0;
 
-  namespacePaths.forEach((namespacePath) => {
+  for (const namespacePath of namespacePaths) {
     const namespaceFolderPath = path.join(namespacePath);
 
-    if (fs.existsSync(namespaceFolderPath)) {
-      const entries = fs.readdirSync(namespaceFolderPath, {
+    if (await pathExists(namespaceFolderPath)) {
+      const entries = await fs.readdir(namespaceFolderPath, {
         withFileTypes: true,
       });
-      entries.forEach((entry) => {
+      for (const entry of entries) {
         const properDirectory =
           entry.isDirectory() && entry.name in subfolderIconMap;
 
         if (properDirectory) {
           const subfolderPath = path.join(namespaceFolderPath, entry.name);
-          const files = getFilesInDirectory(subfolderPath);
+          const files = await getFilesInDirectory(subfolderPath);
           filesAmount += files.length;
 
           if (subfolders[entry.name]) {
@@ -317,9 +323,10 @@ async function subfolderReference(): Promise<{ [key: string]: string[] }> {
             subfolders[entry.name] = files;
           }
         }
-      });
+      }
     }
-  });
+  }
+
   if (filesAmount >= 2000) warnAboutTooManyFiles();
   return subfolders;
 }
@@ -327,14 +334,14 @@ async function subfolderReference(): Promise<{ [key: string]: string[] }> {
 /**
  * @returns {Array} of pack.mcmeta paths in this workspace
  */
-function findMcmetaInWorkspace(): string[] {
+async function findMcmetaInWorkspace(): Promise<string[]> {
   let mcmetaPaths: string[] = [];
   const directories =
     workspace.workspaceFolders?.map((folder) => folder.uri.fsPath) || [];
 
-  directories.forEach((directory) => {
-    mcmetaPaths = mcmetaPaths.concat(findMcmetaInDirectory(directory));
-  });
+  for (const directory of directories) {
+    mcmetaPaths = mcmetaPaths.concat(await findMcmetaInDirectory(directory));
+  }
 
   return mcmetaPaths;
 }
@@ -342,19 +349,19 @@ function findMcmetaInWorkspace(): string[] {
 /**
  * @returns {Array} of pack.mcmeta paths in specified directory
  */
-function findMcmetaInDirectory(directory: string): string[] {
-  const files = fs.readdirSync(directory);
+async function findMcmetaInDirectory(directory: string): Promise<string[]> {
+  const files = await fs.readdir(directory, { withFileTypes: true });
   let mcmetaPaths: string[] = [];
 
-  files.forEach((fileName) => {
-    const filePath = path.join(directory, fileName);
+  for (const fileName of files) {
+    const filePath = path.join(directory, fileName.name);
 
-    if (fs.statSync(filePath).isDirectory()) {
-      mcmetaPaths = mcmetaPaths.concat(findMcmetaInDirectory(filePath));
-    } else if (fileName === "pack.mcmeta") {
+    if (fileName.isDirectory()) {
+      mcmetaPaths = mcmetaPaths.concat(await findMcmetaInDirectory(filePath));
+    } else if (fileName.name === "pack.mcmeta") {
       mcmetaPaths.push(filePath);
     }
-  });
+  }
 
   return mcmetaPaths;
 }

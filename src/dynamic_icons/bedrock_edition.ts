@@ -1,5 +1,5 @@
 import * as path from "path";
-import * as fs from "fs";
+import * as fs from "fs/promises";
 import {
   setThemeValue,
   getFilesInDirectory,
@@ -38,14 +38,14 @@ const subfolderIconMap: Record<string, string> = {
 };
 
 // This function is called in extension.ts
-export function update() {
-  if (noBedrockPacks()) return;
-  updateTickIcons();
-  setSubFolderIcons();
+export async function update() {
+  if (await noBedrockPacks()) return;
+  await updateTickIcons();
+  await setSubFolderIcons();
 }
 
-function noBedrockPacks(): boolean {
-  const manifestFiles = findManifestInWorkspace();
+async function noBedrockPacks(): Promise<boolean> {
+  const manifestFiles = await findManifestInWorkspace();
   if (manifestFiles.length > 0) {
     return false;
   }
@@ -106,10 +106,10 @@ async function setSubFolderIcons() {
 /**
  * @returns Array of namespace paths
  */
-function getRootPaths(): string[] {
-  let packPaths = findManifestInWorkspace().map((packPath) =>
-    packPath.replace("manifest.json", ""),
-  );
+async function getRootPaths(): Promise<string[]> {
+  const manifestPaths = await findManifestInWorkspace();
+  const packPaths = manifestPaths.map(p => p.replace("manifest.json", ""));
+
   if (!packPaths) return [];
   return packPaths;
 }
@@ -119,20 +119,21 @@ function getRootPaths(): string[] {
  */
 async function subfolderReference(): Promise<{ [key: string]: string[] }> {
   const subfolders: { [key: string]: string[] } = {};
-  const rootPaths = getRootPaths();
+  const rootPaths = await getRootPaths();
   let filesAmount = 0;
 
-  rootPaths.forEach((rootPath) => {
-    const entries = fs.readdirSync(rootPath, {
+  for (const rootPath of rootPaths) {
+    const entries = await fs.readdir(rootPath, {
       withFileTypes: true,
     });
-    entries.forEach((entry) => {
+
+    for (const entry of entries) {
       const properDirectory =
         entry.isDirectory() && entry.name in subfolderIconMap;
 
       if (properDirectory) {
         const subfolderPath = path.join(rootPath, entry.name);
-        const files = getFilesInDirectory(subfolderPath);
+        const files = await getFilesInDirectory(subfolderPath);
         filesAmount += files.length;
 
         if (subfolders[entry.name]) {
@@ -141,23 +142,25 @@ async function subfolderReference(): Promise<{ [key: string]: string[] }> {
           subfolders[entry.name] = files;
         }
       }
-    });
-  });
+    }
+  }
+
   if (filesAmount >= 2000) warnAboutTooManyFiles();
+
   return subfolders;
 }
 
 /**
  * @returns Array of manifest.json paths in this workspace
  */
-function findManifestInWorkspace(): string[] {
+async function findManifestInWorkspace(): Promise<string[]> {
   let manifestPaths: string[] = [];
   const directories =
     workspace.workspaceFolders?.map((folder) => folder.uri.fsPath) || [];
 
-  directories.forEach((directory) => {
-    manifestPaths = manifestPaths.concat(findManifestInDirectory(directory));
-  });
+  for (const directory of directories) {
+    manifestPaths = manifestPaths.concat(await findManifestInDirectory(directory));
+  }
 
   return manifestPaths;
 }
@@ -165,19 +168,19 @@ function findManifestInWorkspace(): string[] {
 /**
  * @returns Array of mainfest.json paths in specified directory
  */
-function findManifestInDirectory(directory: string): string[] {
-  const files = fs.readdirSync(directory);
+async function findManifestInDirectory(directory: string): Promise<string[]> {
+  const files = await fs.readdir(directory, { withFileTypes: true });
   let manifestPaths: string[] = [];
 
-  files.forEach((fileName) => {
-    const filePath = path.join(directory, fileName);
+  for (const fileName of files) {
+    const filePath = path.join(directory, fileName.name);
 
-    if (fs.statSync(filePath).isDirectory()) {
-      manifestPaths = manifestPaths.concat(findManifestInDirectory(filePath));
-    } else if (fileName === "manifest.json") {
+    if (fileName.isDirectory()) {
+      manifestPaths = manifestPaths.concat(await findManifestInDirectory(filePath));
+    } else if (fileName.name === "manifest.json") {
       manifestPaths.push(filePath);
     }
-  });
+  }
 
   return manifestPaths;
 }

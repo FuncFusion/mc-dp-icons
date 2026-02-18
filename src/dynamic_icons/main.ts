@@ -106,9 +106,9 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
       if (entry.name.startsWith('.') || entry.name == 'node_modules') continue;
 
       const fullPath = path.join(dir, entry.name);
-      const newPath = path.join(relativePath, entry.name).replace(/\\/g, "/");
+      const newPath = path.join(relativePath, entry.name);
       const validSubfolderFile =
-        newPath.split("/").length > 1 &&
+        newPath.split(path.sep).length > 1 &&
         newPath.endsWith(".json") &&
         !excludedFiles.some((file) => newPath.includes(file));
       const fileInSubfolder = validSubfolderFile;
@@ -117,8 +117,8 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
         collectFiles(fullPath, newPath);
       } else if (fileInSubfolder) {
         const shortenedPath =
-          newPath.split("/").length > 2
-            ? newPath.split("/").slice(-2).join("/")
+          newPath.split(path.sep).length > 2
+            ? newPath.split(path.sep).slice(-2).join(path.sep)
             : newPath;
 
         files.push(shortenedPath);
@@ -170,7 +170,8 @@ export async function getReferencesFromFunctionTags(namespace: string, functionT
     for (const functionID of functionTag.values) {
       const functionPath: string = "function" + path.sep + functionID.split(":")[1];
       const shortenedPath = functionPath.split(path.sep).slice(-2).join(path.sep);
-      functionReferences.push(`${shortenedPath}.mcfunction`);
+      const forwardSlashPath = shortenedPath.replace(/\\/g, "/");
+      functionReferences.push(`${forwardSlashPath}.mcfunction`);
     }
   }
 

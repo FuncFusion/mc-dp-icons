@@ -30,19 +30,19 @@ Made by SuperAnt_: https://www.youtube.com/watch?v=eYAvg19stpU
 <details>
 <summary><h2>Dynamic Icons features</h2></summary>
 
-### Namespace Icons
-Namespace folders (folders directly within `data` and `assets`) will change their icons to ender chests. Works only if there is a `pack.mcmeta` file in the same directory.
+### <img src="icons/namespace_folder_closed.svg" width="24"> Namespace Icons
+Namespace folders (folders directly within <img src="icons/data_folder_closed.svg" width="18"> `data` and <img src="icons/assets_folder_closed.svg" width="18"> `assets`) will change their icons to <img src="icons/namespace_folder_closed.svg" width="18"> ender chests. This works only if there is a <img src="icons/pack.mcmeta_file.svg" width="18"> `pack.mcmeta` file in the same directory.
 
 ![Icons](assets/3.0/NamespaceIcons.gif)
 
-### pack.mcmeta detect
-The extension will look for `pack.mcmeta` in the workspace, and if it finds it, changes the icon theme from the current one to mc-dp-icons. If not, the theme will change to a default one - either the theme the workspace was launched with, or the one defined in the settings.
+### <img src="icons/pack.mcmeta_file.svg" width="24"> pack.mcmeta detect
+The extension will look for <img src="icons/pack.mcmeta_file.svg" width="18"> `pack.mcmeta` in the workspace, and if it finds it, changes the icon theme from the current one to mc-dp-icons. If not, the theme will change to a default one - either the theme the workspace was launched with, or the one defined in the settings.
 
 ![Icons](assets/3.0/PackMcmetaCheck.gif)
 
 
-### Icons for `load` and `tick` functions
-The icons for `tick` and `load` functions will change to repeating and impulse command blocks respectively, based on the values provided in the `tick.json` and `load.json` files found in the workspace. This feature can be toggled to assign the icons based on the functions' names (which can be specified in the settings) instead of the `tick.json` and `load.json` files.
+### <img src="icons/function_folder.svg" width="24"> Icons for `load` and `tick` functions
+The icons for <img src="icons/mcf_tick_file.svg" width="18"> `tick` and <img src="icons/mcf_load_file.svg" width="18"> `load` functions will change to repeating and impulse command blocks respectively, based on the values provided in the <img src="icons/tick.json_file.svg" width="18"> `tick.json` and <img src="icons/load.json_file.svg" width="18"> `load.json` files found in the workspace. This feature can be toggled to assign the icons based on the functions' names (which can be specified in the settings) instead of the <img src="icons/tick.json_file.svg" width="18"> `tick.json` and <img src="icons/load.json_file.svg" width="18"> `load.json` files.
 
 ![Icons](assets/3.0/LoadTickFunctions.gif)
 

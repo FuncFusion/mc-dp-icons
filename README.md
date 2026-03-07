@@ -70,7 +70,10 @@ If you don't like the arrows near the folder icons, you can hide them by enablin
 ---
 
 ## <sub><img src="icons/aseprite_file.svg" width="28"></sub> Assets
-You can find all the assets used during the development of Datapack Icons in our [assets repo](https://github.com/FuncFusion/mc-dp-icons-assets).
+You can find all the used (and unused!) assets during the development of Datapack Icons in our [assets repo](https://github.com/FuncFusion/mc-dp-icons-assets).
+
+## <sub><img src="icons/contributing_file.svg" width="28"></sub> Community & Feedback
+If you need to report a bug, request a new icon or suggest a feature, you can do that in our <sub><img src="assets/discord.png" width="18"></sub> [discord server](https://discord.gg/9FMRD9GvAq) or by opening a [github issue](https://github.com/FuncFusion/mc-dp-icons/issues).
 
 ## <sub><img src="icons/mojo_file.svg" width="28"></sub> Creators
 We are [FuncFusion](https://github.com/FuncFusion) - a small team of three:

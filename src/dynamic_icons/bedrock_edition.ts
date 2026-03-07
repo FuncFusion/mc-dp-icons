@@ -59,7 +59,7 @@ export async function updateTickIcons() {
     const tickNames = await getReferencesFromFunctionTags("minecraft", "tick");
     const fileNamesIconMap: Record<string, string> = {};
     tickNames?.forEach((tickName: string) => {
-      fileNamesIconMap[tickName] = "mcf_tick_file";
+      fileNamesIconMap[tickName] = "mcfunction_tick_file";
     });
     setThemeValue("fileNames", fileNamesIconMap);
   } else {
@@ -81,7 +81,7 @@ export async function updateTickIcons() {
     const tickFunctions = await processList(customTickNames);
 
     tickFunctions?.forEach((tickName: string) => {
-      fileNamesIconMap[tickName] = "mcf_tick_File";
+      fileNamesIconMap[tickName] = "mcfunction_tick_file";
     });
     setThemeValue("fileNames", fileNamesIconMap);
   }

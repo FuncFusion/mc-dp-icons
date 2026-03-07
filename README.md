@@ -35,11 +35,11 @@ The extension will look for <sub><img src="icons/pack.mcmeta_file.svg" width="18
 ![Icons](assets/3.0/PackMcmetaCheck.gif)
 
 ### <sub><img src="icons/function_folder.svg" width="24"></sub> Function Icons
-The icons for <img src="icons/mcf_tick_file.svg" width="18"> `tick` and <img src="icons/mcf_load_file.svg" width="18"> `load` functions will change to repeating and impulse command blocks respectively, based on the functions provided in the <sub><img src="icons/tick.json_file.svg" width="18"></sub> `tick.json` and <sub><img src="icons/load.json_file.svg" width="18"></sub> `load.json` files found in the workspace. This feature can be toggled to assign the icons based on the functions' names (which can be specified in the settings) instead of the <sub><img src="icons/tick.json_file.svg" width="18"></sub> `tick.json` and <sub><img src="icons/load.json_file.svg" width="18"></sub> `load.json` files.
+The icons for <img src="icons/mcfunction_tick_file.svg" width="18"> `tick` and <img src="icons/mcfunction_load_file.svg" width="18"> `load` functions will change to repeating and impulse command blocks respectively, based on the functions provided in the <sub><img src="icons/tick.json_file.svg" width="18"></sub> `tick.json` and <sub><img src="icons/load.json_file.svg" width="18"></sub> `load.json` files found in the workspace. This feature can be toggled to assign the icons based on the functions' names (which can be specified in the settings) instead of the <sub><img src="icons/tick.json_file.svg" width="18"></sub> `tick.json` and <sub><img src="icons/load.json_file.svg" width="18"></sub> `load.json` files.
 
 ![Icons](assets/3.0/LoadTickFunctions.gif)
 
-### <sub><img src="icons/mcf_file_crowned.svg" width="24"></sub> Crowned Function Icons
+### <sub><img src="icons/mcfunction_file_crowned.svg" width="24"></sub> Crowned Function Icons
 TODO
 
 ### <sub><img src="icons/loot_table_folder.svg" width="24"></sub> Subfolder Icons

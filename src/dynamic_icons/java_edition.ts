@@ -75,10 +75,10 @@ export async function updateLoadTickIcons() {
     console.log("loadNames: ", loadNames);
     
     loadNames.forEach((loadName: string) => {
-      fileNamesIconMap[loadName] = "mcf_load_file";
+      fileNamesIconMap[loadName] = "mcfunction_load_file";
     });
     tickNames.forEach((tickName: string) => {
-      fileNamesIconMap[tickName] = "mcf_tick_file";
+      fileNamesIconMap[tickName] = "mcfunction_tick_file";
     });
 
     console.log("fileNamesIconMap: ", fileNamesIconMap);
@@ -113,10 +113,10 @@ export async function updateLoadTickIcons() {
     const tickFunctions = await processList(customTickNames);
 
     loadFunctions?.forEach((loadName: string) => {
-      fileNamesIconMap[loadName] = "mcf_load_file";
+      fileNamesIconMap[loadName] = "mcfunction_load_file";
     });
     tickFunctions?.forEach((tickName: string) => {
-      fileNamesIconMap[tickName] = "mcf_tick_file";
+      fileNamesIconMap[tickName] = "mcfunction_tick_file";
     });
     await setThemeValue("fileNames", fileNamesIconMap);
   }
@@ -152,13 +152,13 @@ async function setCrownedFunctions() {
   const crownedTickFunctions = await processList(configCrownedTickFunctions);
 
   crownedFunctions.forEach((crownedFunction: string) => {
-    fileNamesIconMap[crownedFunction] = "mcf_file_crowned";
+    fileNamesIconMap[crownedFunction] = "mcfunction_file_crowned";
   });
   crownedLoadFunctions.forEach((crownedFunction: string) => {
-    fileNamesIconMap[crownedFunction] = "mcf_load_file_crowned";
+    fileNamesIconMap[crownedFunction] = "mcfunction_load_file_crowned";
   });
   crownedTickFunctions.forEach((crownedTickFunction: string) => {
-    fileNamesIconMap[crownedTickFunction] = "mcf_tick_file_crowned";
+    fileNamesIconMap[crownedTickFunction] = "mcfunction_tick_file_crowned";
   });
 
   await setThemeValue("fileNames", fileNamesIconMap);

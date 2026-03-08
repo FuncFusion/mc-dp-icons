@@ -666,6 +666,9 @@
     "lisp_file": {
       "iconPath": "../icons/lisp_file.svg"
     },
+    "lock_file": {
+      "iconPath": "../icons/lock_file.svg"
+    },
     "log_file": {
       "iconPath": "../icons/log_file.svg"
     },
@@ -717,6 +720,9 @@
     "npmignore_file": {
       "iconPath": "../icons/npmignore_file.svg"
     },
+    "objective_c_file": {
+      "iconPath": "../icons/objective_c_file.svg"
+    },
     "ocaml_file": {
       "iconPath": "../icons/ocaml_file.svg"
     },
@@ -740,6 +746,9 @@
     },
     "prettier_file": {
       "iconPath": "../icons/prettier_file.svg"
+    },
+    "prettierignore_file": {
+      "iconPath": "../icons/prettierignore_file.svg"
     },
     "prisma_file": {
       "iconPath": "../icons/prisma_file.svg"
@@ -1304,7 +1313,6 @@
     "c": "c_file",
     "h": "c_file",
     "i": "c_file",
-    "m": "c_file",
     "objc": "c_file",
     "clj": "clojure_file",
     "cljc": "clojure_file",
@@ -1593,6 +1601,10 @@
     "fasl": "lisp_file",
     "lisp": "lisp_file",
     "lsp": "lisp_file",
+    "lock": "lock_file",
+    "lock.json": "lock_file",
+    "lockb": "lock_file",
+    "lockfile": "lock_file",
     "dmp": "log_file",
     "dump": "log_file",
     "err": "log_file",
@@ -1659,6 +1671,9 @@
     "nimble": "nim_file",
     "nims": "nim_file",
     "npmignore": "npmignore_file",
+    "m": "objective_c_file",
+    "mm": "objective_c_file",
+    "pch": "objective_c_file",
     "ml": "ocaml_file",
     "mli": "ocaml_file",
     "odin": "odin_file",
@@ -1675,6 +1690,7 @@
     "pm": "perl_file",
     "xs": "perl_file",
     "php": "php_file",
+    "prettierignore": "prettierignore_file",
     "prisma": "prisma_file",
     "pyc": "python_compiled_file",
     "pyd": "python_compiled_file",
@@ -1921,11 +1937,13 @@
     "LICENSE": "license_file",
     "LICENSE.md": "license_file",
     "LICENSE.txt": "license_file",
+    "go.sum": "lock_file",
+    "package-lock.json": "lock_file",
+    "pnpm-lock.yaml": "lock_file",
     "modrinth.index.json": "modrinth_file",
     "nvim/init.lua": "neovim_file",
     "nvim/init.vim": "neovim_file",
     ".npmrc": "npm_file",
-    "package-lock.json": "npm_file",
     "package.json": "npm_file",
     "CODE_OF_CONDUCT": "pdf_file",
     "CODE_OF_CONDUCT.md": "pdf_file",

@@ -93,23 +93,8 @@
     "function_folder": {
       "iconPath": "../icons/function_folder.svg"
     },
-    "generic_file": {
-      "iconPath": "../icons/generic_file.svg"
-    },
-    "generic_folder": {
-      "iconPath": "../icons/generic_folder.svg"
-    },
-    "generic_folder_closed": {
-      "iconPath": "../icons/generic_folder_closed.svg"
-    },
     "hjmc_file": {
       "iconPath": "../icons/hjmc_file.svg"
-    },
-    "image_file": {
-      "iconPath": "../icons/image_file.svg"
-    },
-    "image_folder": {
-      "iconPath": "../icons/image_folder.svg"
     },
     "instrument_file": {
       "iconPath": "../icons/instrument_file.svg"
@@ -135,6 +120,9 @@
     "jukebox_song_folder": {
       "iconPath": "../icons/jukebox_song_folder.svg"
     },
+    "level.dat_file": {
+      "iconPath": "../icons/level.dat_file.svg"
+    },
     "load.json_file": {
       "iconPath": "../icons/load.json_file.svg"
     },
@@ -144,23 +132,23 @@
     "loot_table_folder": {
       "iconPath": "../icons/loot_table_folder.svg"
     },
-    "mcf_file": {
-      "iconPath": "../icons/mcf_file.svg"
+    "mcfunction_file": {
+      "iconPath": "../icons/mcfunction_file.svg"
     },
-    "mcf_file_crowned": {
-      "iconPath": "../icons/mcf_file_crowned.svg"
+    "mcfunction_file_crowned": {
+      "iconPath": "../icons/mcfunction_file_crowned.svg"
     },
-    "mcf_load_file": {
-      "iconPath": "../icons/mcf_load_file.svg"
+    "mcfunction_load_file": {
+      "iconPath": "../icons/mcfunction_load_file.svg"
     },
-    "mcf_load_file_crowned": {
-      "iconPath": "../icons/mcf_load_file_crowned.svg"
+    "mcfunction_load_file_crowned": {
+      "iconPath": "../icons/mcfunction_load_file_crowned.svg"
     },
-    "mcf_tick_file": {
-      "iconPath": "../icons/mcf_tick_file.svg"
+    "mcfunction_tick_file": {
+      "iconPath": "../icons/mcfunction_tick_file.svg"
     },
-    "mcf_tick_file_crowned": {
-      "iconPath": "../icons/mcf_tick_file_crowned.svg"
+    "mcfunction_tick_file_crowned": {
+      "iconPath": "../icons/mcfunction_tick_file_crowned.svg"
     },
     "namespace_folder": {
       "iconPath": "../icons/namespace_folder.svg"
@@ -197,6 +185,12 @@
     },
     "recipe_folder": {
       "iconPath": "../icons/recipe_folder.svg"
+    },
+    "spyglass_file": {
+      "iconPath": "../icons/spyglass_file.svg"
+    },
+    "spyglass_folder": {
+      "iconPath": "../icons/spyglass_folder.svg"
     },
     "structure_file": {
       "iconPath": "../icons/structure_file.svg"
@@ -279,8 +273,8 @@
     "atlases_folder": {
       "iconPath": "../icons/atlases_folder.svg"
     },
-    "bbmodel_file": {
-      "iconPath": "../icons/bbmodel_file.svg"
+    "blockbench_file": {
+      "iconPath": "../icons/blockbench_file.svg"
     },
     "blockstates_file": {
       "iconPath": "../icons/blockstates_file.svg"
@@ -300,8 +294,8 @@
     "font_folder": {
       "iconPath": "../icons/font_folder.svg"
     },
-    "fsh_file": {
-      "iconPath": "../icons/fsh_file.svg"
+    "fragment_shader_file": {
+      "iconPath": "../icons/fragment_shader_file.svg"
     },
     "glsl_file": {
       "iconPath": "../icons/glsl_file.svg"
@@ -336,26 +330,11 @@
     "shaders_folder": {
       "iconPath": "../icons/shaders_folder.svg"
     },
-    "sound_file": {
-      "iconPath": "../icons/sound_file.svg"
-    },
-    "sound_folder": {
-      "iconPath": "../icons/sound_folder.svg"
-    },
     "sounds.json_file": {
       "iconPath": "../icons/sounds.json_file.svg"
     },
-    "texts_folder": {
-      "iconPath": "../icons/texts_folder.svg"
-    },
-    "textures_folder": {
-      "iconPath": "../icons/textures_folder.svg"
-    },
-    "txt_file": {
-      "iconPath": "../icons/txt_file.svg"
-    },
-    "vsh_file": {
-      "iconPath": "../icons/vsh_file.svg"
+    "vertex_shader_file": {
+      "iconPath": "../icons/vertex_shader_file.svg"
     },
     "waypoint_style_file": {
       "iconPath": "../icons/waypoint_style_file.svg"
@@ -368,12 +347,6 @@
     },
     "blocks_folder": {
       "iconPath": "../icons/blocks_folder.svg"
-    },
-    "cameras_file": {
-      "iconPath": "../icons/cameras_file.svg"
-    },
-    "cameras_folder": {
-      "iconPath": "../icons/cameras_folder.svg"
     },
     "entities_file": {
       "iconPath": "../icons/entities_file.svg"
@@ -398,12 +371,6 @@
     },
     "trading_folder": {
       "iconPath": "../icons/trading_folder.svg"
-    },
-    "animations_file": {
-      "iconPath": "../icons/animations_file.svg"
-    },
-    "animations_folder": {
-      "iconPath": "../icons/animations_folder.svg"
     },
     "attachables_file": {
       "iconPath": "../icons/attachables_file.svg"
@@ -468,6 +435,12 @@
     "assembly_file": {
       "iconPath": "../icons/assembly_file.svg"
     },
+    "audio_file": {
+      "iconPath": "../icons/audio_file.svg"
+    },
+    "audio_folder": {
+      "iconPath": "../icons/audio_folder.svg"
+    },
     "autohotkey_file": {
       "iconPath": "../icons/autohotkey_file.svg"
     },
@@ -531,14 +504,14 @@
     "dlang_file": {
       "iconPath": "../icons/dlang_file.svg"
     },
-    "doc_file": {
-      "iconPath": "../icons/doc_file.svg"
-    },
     "docker_file": {
       "iconPath": "../icons/docker_file.svg"
     },
     "docker_folder": {
       "iconPath": "../icons/docker_folder.svg"
+    },
+    "document_file": {
+      "iconPath": "../icons/document_file.svg"
     },
     "editorconfig_file": {
       "iconPath": "../icons/editorconfig_file.svg"
@@ -561,11 +534,11 @@
     "excel_file": {
       "iconPath": "../icons/excel_file.svg"
     },
-    "exe_file": {
-      "iconPath": "../icons/exe_file.svg"
+    "executable_file": {
+      "iconPath": "../icons/executable_file.svg"
     },
-    "exe_folder": {
-      "iconPath": "../icons/exe_folder.svg"
+    "executable_folder": {
+      "iconPath": "../icons/executable_folder.svg"
     },
     "fennel_file": {
       "iconPath": "../icons/fennel_file.svg"
@@ -578,6 +551,15 @@
     },
     "gamemaker_file": {
       "iconPath": "../icons/gamemaker_file.svg"
+    },
+    "generic_file": {
+      "iconPath": "../icons/generic_file.svg"
+    },
+    "generic_folder": {
+      "iconPath": "../icons/generic_folder.svg"
+    },
+    "generic_folder_closed": {
+      "iconPath": "../icons/generic_folder_closed.svg"
     },
     "git_file": {
       "iconPath": "../icons/git_file.svg"
@@ -630,6 +612,12 @@
     "html_file": {
       "iconPath": "../icons/html_file.svg"
     },
+    "image_file": {
+      "iconPath": "../icons/image_file.svg"
+    },
+    "image_folder": {
+      "iconPath": "../icons/image_folder.svg"
+    },
     "jar_file": {
       "iconPath": "../icons/jar_file.svg"
     },
@@ -639,14 +627,17 @@
     "java_file": {
       "iconPath": "../icons/java_file.svg"
     },
+    "javascript_file": {
+      "iconPath": "../icons/javascript_file.svg"
+    },
+    "javascript_folder": {
+      "iconPath": "../icons/javascript_folder.svg"
+    },
     "jetbrains_file": {
       "iconPath": "../icons/jetbrains_file.svg"
     },
     "jetbrains_folder": {
       "iconPath": "../icons/jetbrains_folder.svg"
-    },
-    "js_file": {
-      "iconPath": "../icons/js_file.svg"
     },
     "jsconfig_file": {
       "iconPath": "../icons/jsconfig_file.svg"
@@ -693,6 +684,9 @@
     "maven_folder": {
       "iconPath": "../icons/maven_folder.svg"
     },
+    "modrinth_file": {
+      "iconPath": "../icons/modrinth_file.svg"
+    },
     "mojo_file": {
       "iconPath": "../icons/mojo_file.svg"
     },
@@ -735,14 +729,14 @@
     "pdf_file": {
       "iconPath": "../icons/pdf_file.svg"
     },
-    "pdx_file": {
-      "iconPath": "../icons/pdx_file.svg"
-    },
     "perl_file": {
       "iconPath": "../icons/perl_file.svg"
     },
     "php_file": {
       "iconPath": "../icons/php_file.svg"
+    },
+    "playdate_file": {
+      "iconPath": "../icons/playdate_file.svg"
     },
     "prettier_file": {
       "iconPath": "../icons/prettier_file.svg"
@@ -759,11 +753,11 @@
     "python_folder": {
       "iconPath": "../icons/python_folder.svg"
     },
-    "re_file": {
-      "iconPath": "../icons/re_file.svg"
-    },
     "readme_file": {
       "iconPath": "../icons/readme_file.svg"
+    },
+    "reason_react_file": {
+      "iconPath": "../icons/reason_react_file.svg"
     },
     "requirements.txt_file": {
       "iconPath": "../icons/requirements.txt_file.svg"
@@ -804,9 +798,6 @@
     "sublime_file": {
       "iconPath": "../icons/sublime_file.svg"
     },
-    "sublime_package_file": {
-      "iconPath": "../icons/sublime_package_file.svg"
-    },
     "svelte_file": {
       "iconPath": "../icons/svelte_file.svg"
     },
@@ -825,6 +816,12 @@
     "test.ts_file": {
       "iconPath": "../icons/test.ts_file.svg"
     },
+    "text_file": {
+      "iconPath": "../icons/text_file.svg"
+    },
+    "text_folder": {
+      "iconPath": "../icons/text_folder.svg"
+    },
     "todo_file": {
       "iconPath": "../icons/todo_file.svg"
     },
@@ -834,11 +831,11 @@
     "toml_file": {
       "iconPath": "../icons/toml_file.svg"
     },
-    "ts_file": {
-      "iconPath": "../icons/ts_file.svg"
-    },
     "tsconfig_file": {
       "iconPath": "../icons/tsconfig_file.svg"
+    },
+    "typescript_file": {
+      "iconPath": "../icons/typescript_file.svg"
     },
     "typst_file": {
       "iconPath": "../icons/typst_file.svg"
@@ -851,6 +848,12 @@
     },
     "valve_file": {
       "iconPath": "../icons/valve_file.svg"
+    },
+    "video_file": {
+      "iconPath": "../icons/video_file.svg"
+    },
+    "video_folder": {
+      "iconPath": "../icons/video_folder.svg"
     },
     "vim_file": {
       "iconPath": "../icons/vim_file.svg"
@@ -904,7 +907,6 @@
     "advancement": "advancement_folder",
     "advancements": "advancement_folder",
     "banner_pattern": "banner_pattern_folder",
-    "mcdoc": "cameras_folder",
     "cat_sound_variant": "cat_variant_folder",
     "cat_variant": "cat_variant_folder",
     "chat_type": "chat_type_folder",
@@ -936,47 +938,48 @@
     "predicates": "predicate_folder",
     "recipe": "recipe_folder",
     "recipes": "recipe_folder",
+    "mcdoc": "spyglass_folder",
     "structure": "structure_folder",
     "structures": "structure_folder",
     "tags": "tags_folder",
     "test_environment": "test_environment_folder",
     "test_instance": "test_instance_folder",
     "timeline": "timeline_folder",
+    "world_clock": "timeline_folder",
     "trade_set": "trading_folder",
+    "villager_trade": "trading_folder",
     "trial_spawner": "trial_spawner_folder",
     "trim_material": "trim_material_folder",
     "trim_pattern": "trim_pattern_folder",
-    "villager_trade": "trading_folder",
     "wolf_sound_variant": "wolf_variant_folder",
     "wolf_variant": "wolf_variant_folder",
-    "world_clock": "timeline_folder",
     "worldgen": "worldgen_folder",
     "zombie_nautilus_variant": "zombie_nautilus_variant_folder",
     "assets": "assets_folder",
     "atlases": "atlases_folder",
+    "sounds": "audio_folder",
     "blockstates": "blockstates_folder",
     "equipment": "equipment_folder",
     "font": "font_folder",
+    "textures": "image_folder",
     "items": "items_folder",
     "lang": "lang_folder",
     "models": "models_folder",
     "particles": "particles_folder",
     "post_effect": "shaders_folder",
     "shaders": "shaders_folder",
-    "sounds": "sound_folder",
-    "texts": "texts_folder",
-    "textures": "textures_folder",
+    "texts": "text_folder",
     "waypoint_style": "waypoint_style_folder",
-    "animation_controllers": "animations_folder",
-    "animations": "animations_folder",
     "blocks": "blocks_folder",
-    "cameras": "cameras_folder",
     "dialogue": "chat_type_folder",
     "entities": "entities_folder",
     "feature_rules": "features_folder",
     "features": "features_folder",
     "spawn_rules": "spawn_rules_folder",
+    "cameras": "spyglass_folder",
     "trading": "trading_folder",
+    "animation_controllers": "video_folder",
+    "animations": "video_folder",
     "attachables": "attachables_folder",
     "block_culling": "block_culling_folder",
     "entity": "entities_folder",
@@ -1017,14 +1020,14 @@
     "sql": "database_folder",
     ".docker": "docker_folder",
     "elm-stuff": "elm_folder",
-    "app": "exe_folder",
-    "bin": "exe_folder",
-    "build": "exe_folder",
-    "dist": "exe_folder",
-    "out": "exe_folder",
-    "publish": "exe_folder",
-    "release": "exe_folder",
-    "releases": "exe_folder",
+    "app": "executable_folder",
+    "bin": "executable_folder",
+    "build": "executable_folder",
+    "dist": "executable_folder",
+    "out": "executable_folder",
+    "publish": "executable_folder",
+    "release": "executable_folder",
+    "releases": "executable_folder",
     "fonts": "font_folder",
     ".git": "git_folder",
     ".github": "github_folder",
@@ -1038,6 +1041,11 @@
     "mods": "jar_folder",
     "plugins": "jar_folder",
     "target": "jar_folder",
+    "javascript": "javascript_folder",
+    "javascripts": "javascript_folder",
+    "js": "javascript_folder",
+    "script": "javascript_folder",
+    "scripts": "javascript_folder",
     ".idea": "jetbrains_folder",
     ".julia": "julia_folder",
     "alpine": "linux_folder",
@@ -1115,10 +1123,8 @@
     "ajblueprint": "ajmeta_file",
     "ajmeta": "ajmeta_file",
     "ajmodel": "ajmeta_file",
-    "mcmeta": "animations_file",
     "banner_pattern/json": "banner_pattern_file",
     "bolt": "bolt_file",
-    "mcdoc": "cameras_file",
     "cat_variant/json": "cat_variant_file",
     "chat_type/json": "chat_type_file",
     "chicken_variant/json": "chicken_variant_file",
@@ -1141,34 +1147,37 @@
     "jukebox_song/json": "jukebox_song_file",
     "loot_table/json": "loot_table_file",
     "loot_tables/json": "loot_table_file",
-    "mcfunction": "mcf_file",
+    "mcfunction": "mcfunction_file",
     "nbt": "nbt_file",
     "pig_variant/json": "pig_variant_file",
     "predicate/json": "predicate_file",
     "predicates/json": "predicate_file",
     "recipe/json": "recipe_file",
     "recipes/json": "recipe_file",
+    "mcdoc": "spyglass_file",
     "structure/nbt": "structure_file",
     "structures/nbt": "structure_file",
     "test_environment/json": "test_environment_file",
     "test_instance/json": "test_instance_file",
     "timeline/json": "timeline_file",
+    "world_clock/json": "timeline_file",
     "trade_set/json": "trading_file",
+    "villager_trade/json": "trading_file",
     "trial_spawner/json": "trial_spawner_file",
     "trim_material/json": "trim_material_file",
     "trim_pattern/json": "trim_pattern_file",
-    "villager_trade/json": "trading_file",
+    "mcmeta": "video_file",
     "wolf_variant/json": "wolf_variant_file",
-    "world_clock/json": "timeline_file",
     "zombie_nautilus_variant/json": "zombie_nautilus_variant_file",
     "atlases/json": "atlases_file",
-    "bbmodel": "bbmodel_file",
+    "ogg": "audio_file",
+    "bbmodel": "blockbench_file",
     "blockstates/json": "blockstates_file",
     "equipment/json": "equipment_file",
     "font": "font_file",
     "font/json": "font_file",
     "ttf": "font_file",
-    "fsh": "fsh_file",
+    "fsh": "fragment_shader_file",
     "glsl": "glsl_file",
     "items/json": "items_file",
     "lang": "lang_file",
@@ -1177,12 +1186,9 @@
     "particles/json": "particles_file",
     "post_effect/json": "shaders_file",
     "shaders/json": "shaders_file",
-    "ogg": "sound_file",
-    "txt": "txt_file",
-    "vsh": "vsh_file",
+    "txt": "text_file",
+    "vsh": "vertex_shader_file",
     "waypoint_style/json": "waypoint_style_file",
-    "animation_controllers/json": "animations_file",
-    "animations/animation.json": "animations_file",
     "mcaddon": "archive_file",
     "mceditoraddon": "archive_file",
     "mcpack": "archive_file",
@@ -1190,22 +1196,24 @@
     "mctemplate": "archive_file",
     "mcworld": "archive_file",
     "blocks/json": "blocks_file",
-    "cameras/json": "cameras_file",
     "dialogue/json": "chat_type_file",
     "entities/json": "entities_file",
     "feature_rules/json": "features_file",
     "features/json": "features_file",
     "spawn_rules/json": "spawn_rules_file",
+    "cameras/json": "spyglass_file",
     "mcstructure": "structure_file",
     "trading/json": "trading_file",
+    "animation_controllers/json": "video_file",
+    "animations/animation.json": "video_file",
     "attachables/json": "attachables_file",
+    "fsb": "audio_file",
     "block_culling/json": "block_culling_file",
     "entity/json": "entities_file",
     "fogs/json": "fogs_file",
     "fontdata": "font_file",
     "material": "materials_file",
     "render_controllers/render_controllers.json": "render_controllers_file",
-    "fsb": "sound_file",
     "ui/json": "ui_file",
     "aab": "android_file",
     "aar": "android_file",
@@ -1215,38 +1223,10 @@
     "dalvik": "android_file",
     "dex": "android_file",
     "smali": "android_file",
-    "3g2": "animations_file",
-    "3gp": "animations_file",
-    "amv": "animations_file",
-    "asf": "animations_file",
-    "avi": "animations_file",
-    "f4p": "animations_file",
-    "f4v": "animations_file",
-    "flv": "animations_file",
-    "gifv": "animations_file",
-    "m4v": "animations_file",
-    "mkv": "animations_file",
-    "mov": "animations_file",
-    "mp4": "animations_file",
-    "mpe": "animations_file",
-    "mpeg": "animations_file",
-    "mpg": "animations_file",
-    "mpv": "animations_file",
-    "mxf": "animations_file",
-    "nsv": "animations_file",
-    "ogv": "animations_file",
-    "pdv": "animations_file",
-    "qt": "animations_file",
-    "rm": "animations_file",
-    "roq": "animations_file",
-    "svi": "animations_file",
-    "vob": "animations_file",
-    "webm": "animations_file",
-    "wmv": "animations_file",
-    "yuv": "animations_file",
     "7z": "archive_file",
     "ace": "archive_file",
     "arj": "archive_file",
+    "asar": "archive_file",
     "bak": "archive_file",
     "br": "archive_file",
     "bz2": "archive_file",
@@ -1261,6 +1241,7 @@
     "rar": "archive_file",
     "rpm": "archive_file",
     "squashfs": "archive_file",
+    "sublime-package": "archive_file",
     "tar": "archive_file",
     "tgz": "archive_file",
     "txz": "archive_file",
@@ -1282,6 +1263,36 @@
     "nasm": "assembly_file",
     "s": "assembly_file",
     "yasm": "assembly_file",
+    "aac": "audio_file",
+    "ac3": "audio_file",
+    "aif": "audio_file",
+    "aiff": "audio_file",
+    "amr": "audio_file",
+    "ape": "audio_file",
+    "au": "audio_file",
+    "dts": "audio_file",
+    "f4a": "audio_file",
+    "f4b": "audio_file",
+    "flac": "audio_file",
+    "gsm": "audio_file",
+    "m4a": "audio_file",
+    "m4b": "audio_file",
+    "m4p": "audio_file",
+    "mid": "audio_file",
+    "midi": "audio_file",
+    "mka": "audio_file",
+    "mod": "audio_file",
+    "mp2": "audio_file",
+    "mp3": "audio_file",
+    "mpc": "audio_file",
+    "oga": "audio_file",
+    "opus": "audio_file",
+    "pda": "audio_file",
+    "ra": "audio_file",
+    "spx": "audio_file",
+    "wav": "audio_file",
+    "wma": "audio_file",
+    "wv": "audio_file",
     "ahk": "autohotkey_file",
     "cshtml": "blazor_file",
     "razor": "blazor_file",
@@ -1368,16 +1379,16 @@
     "d": "dlang_file",
     "dd": "dlang_file",
     "di": "dlang_file",
-    "doc": "doc_file",
-    "docx": "doc_file",
-    "dot": "doc_file",
-    "fodt": "doc_file",
-    "ltx": "doc_file",
-    "odm": "doc_file",
-    "odt": "doc_file",
-    "pages": "doc_file",
-    "wpd": "doc_file",
-    "wps": "doc_file",
+    "doc": "document_file",
+    "docx": "document_file",
+    "dot": "document_file",
+    "fodt": "document_file",
+    "ltx": "document_file",
+    "odm": "document_file",
+    "odt": "document_file",
+    "pages": "document_file",
+    "wpd": "document_file",
+    "wps": "document_file",
     "ejs": "ejs_file",
     "eex": "elixir_file",
     "ex": "elixir_file",
@@ -1397,19 +1408,19 @@
     "xlsm": "excel_file",
     "xlsx": "excel_file",
     "xlw": "excel_file",
-    "app": "exe_file",
-    "appx": "exe_file",
-    "bin": "exe_file",
-    "com": "exe_file",
-    "dll": "exe_file",
-    "dmg": "exe_file",
-    "exe": "exe_file",
-    "msi": "exe_file",
-    "out": "exe_file",
-    "pdx": "exe_file",
-    "pdz": "exe_file",
-    "run": "exe_file",
-    "sys": "exe_file",
+    "app": "executable_file",
+    "appx": "executable_file",
+    "bin": "executable_file",
+    "com": "executable_file",
+    "dll": "executable_file",
+    "dmg": "executable_file",
+    "exe": "executable_file",
+    "msi": "executable_file",
+    "out": "executable_file",
+    "pdx": "executable_file",
+    "pdz": "executable_file",
+    "run": "executable_file",
+    "sys": "executable_file",
     "fnl": "fennel_file",
     "bmap": "font_file",
     "eot": "font_file",
@@ -1434,8 +1445,8 @@
     "f95": "fortran_file",
     "for": "fortran_file",
     "ftn": "fortran_file",
-    "fp": "fsh_file",
-    "frag": "fsh_file",
+    "fp": "fragment_shader_file",
+    "frag": "fragment_shader_file",
     "fs": "fsharp_file",
     "fsi": "fsharp_file",
     "fsproj": "fsharp_file",
@@ -1524,8 +1535,8 @@
     "ora": "image_file",
     "pbm": "image_file",
     "pcx": "image_file",
-    "pdn": "image_file",
     "pdi": "image_file",
+    "pdn": "image_file",
     "pgf": "image_file",
     "pgm": "image_file",
     "pgx": "image_file",
@@ -1553,17 +1564,17 @@
     "jmod": "java_file",
     "jsp": "java_file",
     "jws": "java_file",
+    "cjs": "javascript_file",
+    "es6": "javascript_file",
+    "jake": "javascript_file",
+    "js": "javascript_file",
+    "jsm": "javascript_file",
+    "jss": "javascript_file",
+    "mjs": "javascript_file",
+    "pac": "javascript_file",
     "iml": "jetbrains_file",
     "ipr": "jetbrains_file",
     "iws": "jetbrains_file",
-    "cjs": "js_file",
-    "es6": "js_file",
-    "jake": "js_file",
-    "js": "js_file",
-    "jsm": "js_file",
-    "jss": "js_file",
-    "mjs": "js_file",
-    "pac": "js_file",
     "har": "json_file",
     "json5": "json_file",
     "jsonc": "json_file",
@@ -1636,6 +1647,8 @@
     "vrm": "models_file",
     "wrl": "models_file",
     "x3d": "models_file",
+    "modrinth.json": "modrinth_file",
+    "mrpack": "modrinth_file",
     "mojo": "mojo_file",
     "mojom": "mojo_file",
     "�": "mojo_file",
@@ -1674,10 +1687,10 @@
     "pyp": "python_file",
     "pyt": "python_file",
     "pyw": "python_file",
-    "jsx": "re_file",
-    "re": "re_file",
-    "rei": "re_file",
-    "tsx": "re_file",
+    "jsx": "reason_react_file",
+    "re": "reason_react_file",
+    "rei": "reason_react_file",
+    "tsx": "reason_react_file",
     "zs": "recipe_file",
     "r": "rlang_file",
     "rda": "rlang_file",
@@ -1730,36 +1743,6 @@
     "tcl": "shell_file",
     "tcsh": "shell_file",
     "zsh": "shell_file",
-    "aac": "sound_file",
-    "ac3": "sound_file",
-    "aif": "sound_file",
-    "aiff": "sound_file",
-    "amr": "sound_file",
-    "ape": "sound_file",
-    "au": "sound_file",
-    "dts": "sound_file",
-    "f4a": "sound_file",
-    "f4b": "sound_file",
-    "flac": "sound_file",
-    "gsm": "sound_file",
-    "m4a": "sound_file",
-    "m4b": "sound_file",
-    "m4p": "sound_file",
-    "mid": "sound_file",
-    "midi": "sound_file",
-    "mka": "sound_file",
-    "mod": "sound_file",
-    "mp2": "sound_file",
-    "mp3": "sound_file",
-    "mpc": "sound_file",
-    "oga": "sound_file",
-    "opus": "sound_file",
-    "pda": "sound_file",
-    "ra": "sound_file",
-    "spx": "sound_file",
-    "wav": "sound_file",
-    "wma": "sound_file",
-    "wv": "sound_file",
     "spwn": "spwn_file",
     "sublime-build": "sublime_file",
     "sublime-keymap": "sublime_file",
@@ -1769,7 +1752,6 @@
     "sublime-snippet": "sublime_file",
     "sublime-syntax": "sublime_file",
     "sublime-workspace": "sublime_file",
-    "sublime-package": "sublime_package_file",
     "svelte": "svelte_file",
     "swift": "swift_file",
     "swiftdeps": "swift_file",
@@ -1785,15 +1767,47 @@
     "todo": "todo_file",
     "todos": "todo_file",
     "toml": "toml_file",
-    "cts": "ts_file",
-    "ts": "ts_file",
-    "tsbuildinfo": "ts_file",
+    "cts": "typescript_file",
+    "ts": "typescript_file",
+    "tsbuildinfo": "typescript_file",
     "typ": "typst_file",
     "vala": "vala_file",
     "vapi": "vala_file",
     "bsp": "valve_file",
     "vmf": "valve_file",
     "vmt": "valve_file",
+    "vert": "vertex_shader_file",
+    "workflows/yaml": "vertex_shader_file",
+    "workflows/yml": "vertex_shader_file",
+    "3g2": "video_file",
+    "3gp": "video_file",
+    "amv": "video_file",
+    "asf": "video_file",
+    "avi": "video_file",
+    "f4p": "video_file",
+    "f4v": "video_file",
+    "flv": "video_file",
+    "gifv": "video_file",
+    "m4v": "video_file",
+    "mkv": "video_file",
+    "mov": "video_file",
+    "mp4": "video_file",
+    "mpe": "video_file",
+    "mpeg": "video_file",
+    "mpg": "video_file",
+    "mpv": "video_file",
+    "mxf": "video_file",
+    "nsv": "video_file",
+    "ogv": "video_file",
+    "pdv": "video_file",
+    "qt": "video_file",
+    "rm": "video_file",
+    "roq": "video_file",
+    "svi": "video_file",
+    "vob": "video_file",
+    "webm": "video_file",
+    "wmv": "video_file",
+    "yuv": "video_file",
     "vim": "vim_file",
     "v": "vlang_file",
     "sln": "vs_file",
@@ -1805,9 +1819,6 @@
     "vsix": "vscode_file",
     "vsixmanifest": "vscode_file",
     "vscodeignore": "vscodeignore_file",
-    "vert": "vsh_file",
-    "workflows/yaml": "vsh_file",
-    "workflows/yml": "vsh_file",
     "wasm": "web_assembly_file",
     "wat": "web_assembly_file",
     "admx": "xml_file",
@@ -1850,12 +1861,12 @@
     "language_names.json": "lang_file",
     "languages.json": "lang_file",
     "manifest.json": "pack.mcmeta_file",
-    "textures/flipbook_textures.json": "animations_file",
     "textures/terrain_texture.json": "atlases_file",
     "biomes_client.json": "biomes_client.json_file",
     "client_biome.json": "biomes_client.json_file",
     "blocks.json": "blocks.json_file",
     "splashes.json": "splashes.json_file",
+    "textures/flipbook_textures.json": "video_file",
     ".cargo/config.toml": "cargo_file",
     "Cargo.lock": "cargo_file",
     "Cargo.toml": "cargo_file",
@@ -1906,9 +1917,11 @@
     "cabal.project.local": "haskell_file",
     "haxelib.json": "haxe_file",
     "jsconfig.json": "jsconfig_file",
+    "level.dat": "level.dat_file",
     "LICENSE": "license_file",
     "LICENSE.md": "license_file",
     "LICENSE.txt": "license_file",
+    "modrinth.index.json": "modrinth_file",
     "nvim/init.lua": "neovim_file",
     "nvim/init.vim": "neovim_file",
     ".npmrc": "npm_file",
@@ -1917,12 +1930,12 @@
     "CODE_OF_CONDUCT": "pdf_file",
     "CODE_OF_CONDUCT.md": "pdf_file",
     "CODE_OF_CONDUCT.txt": "pdf_file",
+    "pdxinfo": "playdate_file",
     ".prettierrc": "prettier_file",
     ".prettierrc.json": "prettier_file",
     ".prettierrc.json5": "prettier_file",
     ".prettierrc.yaml": "prettier_file",
     ".prettierrc.yml": "prettier_file",
-    "pdxinfo": "pdx_file",
     "Pipfile": "python_file",
     "Pipfile.lock": "python_file",
     "pyproject.toml": "python_file",

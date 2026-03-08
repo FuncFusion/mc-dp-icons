@@ -420,6 +420,9 @@
     "android_file": {
       "iconPath": "../icons/android_file.svg"
     },
+    "ant_file": {
+      "iconPath": "../icons/ant_file.svg"
+    },
     "archive_file": {
       "iconPath": "../icons/archive_file.svg"
     },
@@ -452,6 +455,9 @@
     },
     "brainfuck_file": {
       "iconPath": "../icons/brainfuck_file.svg"
+    },
+    "bukkit_file": {
+      "iconPath": "../icons/bukkit_file.svg"
     },
     "c_file": {
       "iconPath": "../icons/c_file.svg"
@@ -543,11 +549,20 @@
     "executable_folder": {
       "iconPath": "../icons/executable_folder.svg"
     },
+    "fabric_file": {
+      "iconPath": "../icons/fabric_file.svg"
+    },
     "fennel_file": {
       "iconPath": "../icons/fennel_file.svg"
     },
+    "forge_file": {
+      "iconPath": "../icons/forge_file.svg"
+    },
     "fortran_file": {
       "iconPath": "../icons/fortran_file.svg"
+    },
+    "fox_file": {
+      "iconPath": "../icons/fox_file.svg"
     },
     "fsharp_file": {
       "iconPath": "../icons/fsharp_file.svg"
@@ -681,6 +696,9 @@
     "log_folder": {
       "iconPath": "../icons/log_folder.svg"
     },
+    "loom_file": {
+      "iconPath": "../icons/loom_file.svg"
+    },
     "lua_file": {
       "iconPath": "../icons/lua_file.svg"
     },
@@ -735,6 +753,9 @@
     "odin_file": {
       "iconPath": "../icons/odin_file.svg"
     },
+    "paper_file": {
+      "iconPath": "../icons/paper_file.svg"
+    },
     "pascal_file": {
       "iconPath": "../icons/pascal_file.svg"
     },
@@ -759,6 +780,9 @@
     "prisma_file": {
       "iconPath": "../icons/prisma_file.svg"
     },
+    "purpur_file": {
+      "iconPath": "../icons/purpur_file.svg"
+    },
     "python_compiled_file": {
       "iconPath": "../icons/python_compiled_file.svg"
     },
@@ -767,6 +791,9 @@
     },
     "python_folder": {
       "iconPath": "../icons/python_folder.svg"
+    },
+    "quilt_file": {
+      "iconPath": "../icons/quilt_file.svg"
     },
     "readme_file": {
       "iconPath": "../icons/readme_file.svg"
@@ -800,6 +827,12 @@
     },
     "shell_folder": {
       "iconPath": "../icons/shell_folder.svg"
+    },
+    "spigot_file": {
+      "iconPath": "../icons/spigot_file.svg"
+    },
+    "sponge_mixins_file": {
+      "iconPath": "../icons/sponge_mixins_file.svg"
     },
     "spwn_file": {
       "iconPath": "../icons/spwn_file.svg"
@@ -1238,6 +1271,7 @@
     "dalvik": "android_file",
     "dex": "android_file",
     "smali": "android_file",
+    "ant": "ant_file",
     "7z": "archive_file",
     "ace": "archive_file",
     "arj": "archive_file",
@@ -1445,6 +1479,7 @@
     "pdx": "executable_file",
     "pdz": "executable_file",
     "run": "executable_file",
+    "accesswidener": "fabric_file",
     "fnl": "fennel_file",
     "bmap": "font_file",
     "eot": "font_file",
@@ -1628,6 +1663,8 @@
     "err": "log_file",
     "log": "log_file",
     "tmp": "log_file",
+    "loom.gradle": "loom_file",
+    "loom.gradle.kts": "loom_file",
     "lua": "lua_file",
     "luac": "lua_file",
     "luau": "lua_file",
@@ -1777,6 +1814,9 @@
     "tcl": "shell_file",
     "tcsh": "shell_file",
     "zsh": "shell_file",
+    "mixins.json": "sponge_mixins_file",
+    "mixins/java": "sponge_mixins_file",
+    "refmap.json": "sponge_mixins_file",
     "spwn": "spwn_file",
     "sublime-build": "sublime_file",
     "sublime-keymap": "sublime_file",
@@ -1901,8 +1941,13 @@
     "blocks.json": "blocks.json_file",
     "splashes.json": "splashes.json_file",
     "textures/flipbook_textures.json": "video_file",
+    "ant.xml": "ant_file",
+    "build.xml": "ant_file",
+    "bukkit.yaml": "bukkit_file",
+    "bukkit.yml": "bukkit_file",
+    "plugin.yaml": "bukkit_file",
+    "plugin.yml": "bukkit_file",
     ".cargo/config.toml": "cargo_file",
-    "Cargo.lock": "cargo_file",
     "Cargo.toml": "cargo_file",
     ".eslintrc": "config_file",
     ".eslintrc.json": "config_file",
@@ -1931,6 +1976,7 @@
     "COPYRIGHT.txt": "copyright_file",
     ".dockerignore": "docker_file",
     "compose.override.json": "docker_file",
+    "compose.override.yaml": "docker_file",
     "compose.override.yml": "docker_file",
     "compose.yaml": "docker_file",
     "compose.yml": "docker_file",
@@ -1940,6 +1986,13 @@
     "docker-compose.yml": "docker_file",
     "Dockerfile": "docker_file",
     ".editorconfig": "editorconfig_file",
+    "fabric-mod.json": "fabric_file",
+    "accesstransformer.cfg": "forge_file",
+    "mcmod.info": "forge_file",
+    "mods.toml": "forge_file",
+    ".gitlab-ci.yaml": "fox_file",
+    ".gitlab-ci.yml": "fox_file",
+    "neoforge.mods.toml": "fox_file",
     ".gitmodules": "git_file",
     "project.godot": "godot_project_file",
     "gradle-wrapper.properties": "gradle_file",
@@ -1958,11 +2011,20 @@
     "go.sum": "lock_file",
     "package-lock.json": "lock_file",
     "pnpm-lock.yaml": "lock_file",
+    "pnpm-lock.yml": "lock_file",
     "modrinth.index.json": "modrinth_file",
     "nvim/init.lua": "neovim_file",
     "nvim/init.vim": "neovim_file",
     ".npmrc": "npm_file",
     "package.json": "npm_file",
+    "paper-global.yaml": "paper_file",
+    "paper-global.yml": "paper_file",
+    "paper-plugin.yaml": "paper_file",
+    "paper-plugin.yml": "paper_file",
+    "paper-world-defaults.yaml": "paper_file",
+    "paper-world-defaults.yml": "paper_file",
+    "paper-world.yaml": "paper_file",
+    "paper-world.yml": "paper_file",
     "CODE_OF_CONDUCT": "pdf_file",
     "CODE_OF_CONDUCT.md": "pdf_file",
     "CODE_OF_CONDUCT.txt": "pdf_file",
@@ -1972,15 +2034,18 @@
     ".prettierrc.json5": "prettier_file",
     ".prettierrc.yaml": "prettier_file",
     ".prettierrc.yml": "prettier_file",
+    "purpur.yaml": "purpur_file",
+    "purpur.yml": "purpur_file",
     "Pipfile": "python_file",
-    "Pipfile.lock": "python_file",
     "pyproject.toml": "python_file",
+    "quilt.mod.json": "quilt_file",
     "README": "readme_file",
     "README.md": "readme_file",
     "README.txt": "readme_file",
     "requirements.txt": "requirements.txt_file",
     "Gemfile": "ruby_file",
-    "Gemfile.lock": "ruby_file",
+    "spigot.yaml": "spigot_file",
+    "spigot.yml": "spigot_file",
     "CHANGELOG": "timeline_file",
     "CHANGELOG.md": "timeline_file",
     "CHANGELOG.txt": "timeline_file",

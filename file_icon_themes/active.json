@@ -444,6 +444,9 @@
     "autohotkey_file": {
       "iconPath": "../icons/autohotkey_file.svg"
     },
+    "binary_file": {
+      "iconPath": "../icons/binary_file.svg"
+    },
     "blazor_file": {
       "iconPath": "../icons/blazor_file.svg"
     },
@@ -587,6 +590,9 @@
     },
     "godot_project_file": {
       "iconPath": "../icons/godot_project_file.svg"
+    },
+    "godotignore_file": {
+      "iconPath": "../icons/godotignore_file.svg"
     },
     "gradle_file": {
       "iconPath": "../icons/gradle_file.svg"
@@ -1303,6 +1309,18 @@
     "wma": "audio_file",
     "wv": "audio_file",
     "ahk": "autohotkey_file",
+    "a": "binary_file",
+    "bin": "binary_file",
+    "blob": "binary_file",
+    "bson": "binary_file",
+    "dll": "binary_file",
+    "dylib": "binary_file",
+    "hex": "binary_file",
+    "lib": "binary_file",
+    "o": "binary_file",
+    "res": "binary_file",
+    "scn": "binary_file",
+    "sys": "binary_file",
     "cshtml": "blazor_file",
     "razor": "blazor_file",
     "b": "brainfuck_file",
@@ -1348,6 +1366,7 @@
     "ii": "cplusplus_file",
     "inl": "cplusplus_file",
     "ipp": "cplusplus_file",
+    "pch": "cplusplus_file",
     "tcc": "cplusplus_file",
     "tpp": "cplusplus_file",
     "vcxproj": "cplusplus_file",
@@ -1418,9 +1437,7 @@
     "xlw": "excel_file",
     "app": "executable_file",
     "appx": "executable_file",
-    "bin": "executable_file",
     "com": "executable_file",
-    "dll": "executable_file",
     "dmg": "executable_file",
     "exe": "executable_file",
     "msi": "executable_file",
@@ -1428,7 +1445,6 @@
     "pdx": "executable_file",
     "pdz": "executable_file",
     "run": "executable_file",
-    "sys": "executable_file",
     "fnl": "fennel_file",
     "bmap": "font_file",
     "eot": "font_file",
@@ -1476,9 +1492,11 @@
     "wgsl": "glsl_file",
     "go": "go_file",
     "gd": "godot_file",
-    "gd.uid": "godot_file",
+    "gdextension": "godot_file",
     "tres": "godot_file",
     "tscn": "godot_file",
+    "uid": "godot_file",
+    "gdignore": "godotignore_file",
     "gradle": "gradle_file",
     "gradle.kts": "gradle_file",
     "gql": "graphql_file",
@@ -1673,7 +1691,6 @@
     "npmignore": "npmignore_file",
     "m": "objective_c_file",
     "mm": "objective_c_file",
-    "pch": "objective_c_file",
     "ml": "ocaml_file",
     "mli": "ocaml_file",
     "odin": "odin_file",
@@ -1732,6 +1749,7 @@
     "rs": "rust_file",
     "sc": "scala_file",
     "scala": "scala_file",
+    "gdshader": "shaders_file",
     "ash": "shell_file",
     "awk": "shell_file",
     "bash": "shell_file",

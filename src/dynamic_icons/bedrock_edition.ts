@@ -25,6 +25,7 @@ const subfolderIconMap: Record<string, string> = {
   recipes: "recipe_file",
   spawn_rules: "spawn_rules_file",
   trading: "trading_file",
+  worldgen: "worldgen_file",
   // Bedrock resource packs
   attachables: "attachables_file",
   block_culling: "block_culling_file",

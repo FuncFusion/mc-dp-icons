@@ -28,15 +28,17 @@ const subfolderIconMap: Record<string, string> = {
   jukebox_song: "jukebox_song_file",
   loot_table: "loot_table_file",
   loot_tables: "loot_table_file",
-  painting_variant: "image",
+  painting_variant: "image_file",
   predicate: "predicate_file",
   predicates: "predicate_file",
   recipe: "recipe_file",
   recipes: "recipe_file",
   tags: "tags_file",
+  trade_set: "trading_file",
   trial_spawner: "trial_spawner_file",
   trim_material: "trim_material_file",
   trim_pattern: "trim_pattern_file",
+  villager_trade: "trading_file",
   wolf_variant: "wolf_variant_file",
   worldgen: "worldgen_file",
   // Resourcepacks
@@ -45,6 +47,7 @@ const subfolderIconMap: Record<string, string> = {
   models: "models_file",
   post_effect: "shaders_file",
   shaders: "shaders_file",
+  waypoint_style: "waypoint_style_file",
 };
 
 // This function is called in extension.ts

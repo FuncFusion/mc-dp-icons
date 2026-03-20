@@ -30,7 +30,7 @@ Made by SuperAnt_: https://www.youtube.com/watch?v=eYAvg19stpU
 <summary><h2><sub><img src="icons/particles_folder.svg" width="28"></sub> Dynamic Icons features</h2></summary>
 
 ### <sub><img src="icons/pack.mcmeta_file.svg" width="24"></sub> Workspace Detection
-The extension will look for <sub><img src="icons/pack.mcmeta_file.svg" width="18"></sub> `pack.mcmeta` in the workspace, and if it finds it, changes the icon theme from the current one to mc-dp-icons. If not, the theme will change to a default one - either the theme the workspace was launched with, or the one defined in the settings.
+**Want to use Datapack Icons only for Minecraft projects?** When enabled, this feature automatically switches your active icon theme to `mc-dp-icons` whenever it detects a Minecraft pack in your current workspace (by looking for <sub><img src="icons/pack.mcmeta_file.svg" width="18"></sub> `pack.mcmeta`). If not found, it restores your default icon theme. You can define a specific fallback theme in the settings or let the extension default to your previously active theme.
 
 ![Icons](assets/3.0/PackMcmetaCheck.gif)
 

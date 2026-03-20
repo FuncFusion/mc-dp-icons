@@ -59,7 +59,29 @@
     "configuration": [
       {
         "title": "Datapack Icons",
-        "order": 0,
+        "order": 0
+      },
+      {
+        "title": "Workspace Detection",
+        "order": 1,
+        "properties": {
+          "mc-dp-icons.enableWorkspaceDetection": {
+            "type": "boolean",
+            "title": "Enable Workspace Detection",
+            "default": false,
+            "markdownDescription": "If enabled, the extension scans your workspace for `pack.mcmeta` and automatically applies the `mc-dp-icons` theme if detected. If not, it switches back to your `#mc-dp-icons.fallbackIconTheme#`.\n\nThis scan runs on startup and when modifying files."
+          },
+          "mc-dp-icons.fallbackIconTheme": {
+            "type": "string",
+            "title": "Fallback Icon Theme",
+            "default": "",
+            "markdownDescription": "*Requires `#mc-dp-icons.enableWorkspaceDetection#` to be enabled.*\n\nEnter the exact ID of the icon theme you want to use for non-Minecraft workspaces (e.g., `vs-seti` or `material-icon-theme`).\n\nIf blank, the extension defaults to the icon theme that was active before `mc-dp-icons` was applied."
+          }
+        }
+      },
+      {
+        "title": "Dynamic Icons",
+        "order": 2,
         "properties": {
           "mc-dp-icons.enableNamespaceIcons": {
             "type": "boolean",
@@ -99,52 +121,13 @@
             "order": 2,
             "title": "Hide folder arrows",
             "default": false,
-            "markdownDescription": "if enabled, the extension will hide folder arrows in the explorer.\n\n*Warning: this feature is not currently supported for VS Code web.*"
-          }
-        }
-      },
-      {
-        "title": "Dynamic theme change",
-        "order": 1,
-        "properties": {
-          "mc-dp-icons.enablePackMcmetaCheck": {
-            "type": "boolean",
-            "title": "Enable pack.mcmeta check",
-            "default": false,
-            "markdownDescription": "If enabled, the extension will check for `pack.mcmeta` in the workspace to set the theme to `mc-dp-icons`. If there is no `pack.mcmeta` in the workspace, icon theme will change to default one used.\nThis check happens every time on extension startup, on changing workspace folder, on renaming, creating and deleting files."
-          },
-          "mc-dp-icons.setDefaultIconTheme": {
-            "type": "string",
-            "title": "What icon theme will be set if pack.mcmeta check fails",
-            "default": "",
-            "markdownDescription": "**This works only if `#mc-dp-icons.enablePackMcmetaCheck#` is enabled**.\nPut an id of an icon theme you want to be set when there is no `pack.mcmeta` in the workspace.\nIf blank, the extension will remember the icon theme you launched the workspace with."
-          },
-          "mc-dp-icons.crownedFunctions": {
-            "title": "",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "mc-dp-icons.crownedTickFunctions": {
-            "title": "",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "mc-dp-icons.crownedLoadFunctions": {
-            "title": "",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
+            "markdownDescription": "If enabled, the extension will hide folder arrows in the explorer.\n\n*Warning: this feature is not currently supported for VS Code web.*"
           }
         }
       },
       {
         "id": "loadTick",
-        "title": "Dynamic load and tick functions",
+        "title": "Function Icons",
         "order": 2,
         "properties": {
           "mc-dp-icons.enableLoadTickAutoChange": {
@@ -168,6 +151,27 @@
               "type": "string"
             },
             "markdownDescription": "**Only works if `#mc-dp-icons.enableLoadTickAutoChange#` is NOT enabled**. Put here all the names of function files (without `.mcfunction`) you'd like to have an impulse command block icon.\n\n*Warning: this feature is not currently supported for VS Code web.*"
+          },
+          "mc-dp-icons.crownedFunctions": {
+            "title": "",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mc-dp-icons.crownedTickFunctions": {
+            "title": "",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mc-dp-icons.crownedLoadFunctions": {
+            "title": "",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       }

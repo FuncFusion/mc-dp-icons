@@ -59,7 +59,7 @@ async function noBedrockPacks(): Promise<boolean> {
 
 // Set icons for functions referenced in tick.json
 export async function updateTickIcons() {
-  const enableDynamicTickChange = getConfig("enableLoadTickAutoChange");
+  const enableDynamicTickChange = getConfig("dynamicFunctionIcons");
   if (enableDynamicTickChange) {
     const tickNames = await getReferencesFromFunctionTags("minecraft", "tick");
     const fileNamesIconMap: Record<string, string> = {};
@@ -68,7 +68,7 @@ export async function updateTickIcons() {
     });
     setThemeValue("fileNames", fileNamesIconMap);
   } else {
-    const customTickNames = getConfig("functionNamesForTick");
+    const customTickNames = getConfig("tickFunctionNames");
 
     if (!customTickNames) return;
 
@@ -94,7 +94,7 @@ export async function updateTickIcons() {
 
 // Change icons of files in subfolders
 async function setSubFolderIcons() {
-  const subfolderIconEnabled = getConfig("enableSubfolderIcons");
+  const subfolderIconEnabled = getConfig("subfolderIcons");
   if (!subfolderIconEnabled) return;
   const subfolderToFilesMap = (await subfolderReference()) || {};
   const subfolderFilesToIconsMap: Record<string, string> = {};

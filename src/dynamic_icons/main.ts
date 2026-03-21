@@ -36,13 +36,13 @@ export async function update() {
 }
 
 async function resetIconDefinitions() {
-  const enableChristmasIcons = getConfig("enableChristmasIcons");
+  const christmasIcons = getConfig("christmasIcons");
   const shouldUseChristmasIcons = () => {
-    if (enableChristmasIcons === "Always") {
+    if (christmasIcons === "Always") {
       return true;
-    } else if (enableChristmasIcons === "Only on Christmas") {
+    } else if (christmasIcons === "Only on Christmas") {
       return isChristmas();
-    } else if (enableChristmasIcons === "Disable") {
+    } else if (christmasIcons === "Disable") {
       return false;
     }
   };
@@ -141,9 +141,9 @@ export function warnAboutTooManyFiles() {
     )
     .then((selection) => {
       if (selection === "Disable Globally") {
-        changeConfigGlobal("enableSubfolderIcons", false);
+        changeConfigGlobal("subfolderIcons", false);
       } else if (selection === "Disable in Workspace") {
-        changeConfigWorkspace("enableSubfolderIcons", false);
+        changeConfigWorkspace("subfolderIcons", false);
       }
     });
 }

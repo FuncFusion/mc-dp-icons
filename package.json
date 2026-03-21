@@ -65,17 +65,75 @@
         "title": "Workspace Detection",
         "order": 1,
         "properties": {
-          "mc-dp-icons.enableWorkspaceDetection": {
+          "mc-dp-icons.workspaceDetection": {
+            "order": 0,
             "type": "boolean",
             "title": "Enable Workspace Detection",
             "default": false,
             "markdownDescription": "If enabled, the extension scans your workspace for `pack.mcmeta` and automatically applies the `mc-dp-icons` theme if detected. If not, it switches back to your `#mc-dp-icons.fallbackIconTheme#`.\n\nThis scan runs on startup and when modifying files."
           },
           "mc-dp-icons.fallbackIconTheme": {
+            "order": 1,
             "type": "string",
             "title": "Fallback Icon Theme",
             "default": "",
-            "markdownDescription": "*Requires `#mc-dp-icons.enableWorkspaceDetection#` to be enabled.*\n\nEnter the exact ID of the icon theme you want to use for non-Minecraft workspaces (e.g., `vs-seti` or `material-icon-theme`).\n\nIf blank, the extension defaults to the icon theme that was active before `mc-dp-icons` was applied."
+            "markdownDescription": "*Requires `#mc-dp-icons.workspaceDetection#` to be enabled.*\n\nEnter the exact ID of the icon theme you want to use for non-Minecraft workspaces (e.g., `vs-seti` or `material-icon-theme`).\n\nIf blank, the extension defaults to the icon theme that was active before `mc-dp-icons` was applied."
+          }
+        }
+      },
+      {
+        "id": "loadTick",
+        "title": "Function Icons",
+        "order": 1,
+        "properties": {
+          "mc-dp-icons.dynamicFunctionIcons": {
+            "order": 0,
+            "type": "boolean",
+            "title": "Dynamic Function Icons",
+            "default": true,
+            "markdownDescription": "If enabled, the extension automatically reads your workspace's `tick.json` and `load.json` files so that the functions listed inside them receive repeating and impulse command block icons.\n\nDisable this to manually assign these icons using the name lists below.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
+          },
+          "mc-dp-icons.loadFunctionNames": {
+            "order": 1,
+            "title": "Load function names",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "markdownDescription": "*Requires `#mc-dp-icons.dynamicFunctionIcons#` to be disabled.*\n\nEnter the file names (without `.mcfunction`) that should receive the **impulse command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `setup_*` will match `setup_game.mcfunction` and `setup_settings.mcfunction`.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
+          },
+          "mc-dp-icons.tickFunctionNames": {
+            "order": 2,
+            "title": "Tick function names",
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "markdownDescription": "*Requires `#mc-dp-icons.dynamicFunctionIcons#` to be disabled.*\n\nEnter the file names (without `.mcfunction`) that should receive the **repeating command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `*_loop` will match `game_loop.mcfunction` and `particle_loop.mcfunction`.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
+          },
+          "mc-dp-icons.crownedFunctions": {
+            "order": 3,
+            "title": "Crowned Functions",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mc-dp-icons.crownedTickFunctions": {
+            "order": 4,
+            "title": "Crowned Tick Functions",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "mc-dp-icons.crownedLoadFunctions": {
+            "order": 5,
+            "title": "Crowned Load Functions",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -83,28 +141,28 @@
         "title": "Dynamic Icons",
         "order": 2,
         "properties": {
-          "mc-dp-icons.enableNamespaceIcons": {
+          "mc-dp-icons.namespaceIcons": {
             "type": "boolean",
             "order": 0,
             "title": "Changes namespace folders icons to an ender chest",
             "default": true,
             "markdownDescription": "If enabled, namespace folders (folders directly within `data` and `assets`) will change their icons to ender chests. Works only if there is `pack.mcmeta` in the same directory.\n\n*Warning: this feature is not currently supported for VS Code web.*"
           },
-          "mc-dp-icons.enableOverlayIcons": {
+          "mc-dp-icons.overlayIcons": {
             "type": "boolean",
             "order": 0,
             "title": "Changes overlay folders icons to glass chest",
             "default": true,
             "markdownDescription": "todo"
           },
-          "mc-dp-icons.enableSubfolderIcons": {
+          "mc-dp-icons.subfolderIcons": {
             "type": "boolean",
             "order": 0,
             "title": "Enable subfolder icons",
             "default": true,
             "markdownDescription": "If enabled, json files inside namespace subfolders will also change their icons (e.g. `data/namespace/item_modifier/some_folder/file.json` will change its icon to a diamond pickaxe when this is enabled). Not recommended for large workspaces. Works only if there is `pack.mcmeta` in the same directory.\n\n*Warning: this feature is not currently supported for VS Code web.*"
           },
-          "mc-dp-icons.enableChristmasIcons": {
+          "mc-dp-icons.christmasIcons": {
             "type": "string",
             "order": 1,
             "title": "Use Christmas icons",
@@ -122,56 +180,6 @@
             "title": "Hide folder arrows",
             "default": false,
             "markdownDescription": "If enabled, the extension will hide folder arrows in the explorer.\n\n*Warning: this feature is not currently supported for VS Code web.*"
-          }
-        }
-      },
-      {
-        "id": "loadTick",
-        "title": "Function Icons",
-        "order": 2,
-        "properties": {
-          "mc-dp-icons.enableLoadTickAutoChange": {
-            "type": "boolean",
-            "title": "Dynamic icons for tick and load functions",
-            "default": true,
-            "markdownDescription": "If enabled, load and tick functions will change their icons to repeating and impulse command blocks accordingly, based on values provided in `tick.json` and `load.json` files found in the workspace.\n\nIf not enabled, load and tick icons will be set by their names, that are set by the user in the settings below.\n\n*Warning: this feature is not currently supported for VS Code web.*"
-          },
-          "mc-dp-icons.functionNamesForTick": {
-            "title": "Tick function names",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "markdownDescription": "**Only works if `#mc-dp-icons.enableLoadTickAutoChange#` is NOT enabled**. Put here all the names of function files (without `.mcfunction`) you'd like to have a repeating command block icon.\n\n*Warning: this feature is not currently supported for VS Code web.*"
-          },
-          "mc-dp-icons.functionNamesForLoad": {
-            "title": "Load function names",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "markdownDescription": "**Only works if `#mc-dp-icons.enableLoadTickAutoChange#` is NOT enabled**. Put here all the names of function files (without `.mcfunction`) you'd like to have an impulse command block icon.\n\n*Warning: this feature is not currently supported for VS Code web.*"
-          },
-          "mc-dp-icons.crownedFunctions": {
-            "title": "",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "mc-dp-icons.crownedTickFunctions": {
-            "title": "",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "mc-dp-icons.crownedLoadFunctions": {
-            "title": "",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
           }
         }
       }

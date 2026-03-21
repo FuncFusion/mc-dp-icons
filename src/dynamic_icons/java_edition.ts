@@ -87,7 +87,7 @@ async function noJavaPacks(): Promise<boolean> {
 
 // Set icons for functions referenced in tick.json & load.json accordingly
 export async function updateLoadTickIcons() {
-  const enableDynamicLoadTickChange = getConfig("enableLoadTickAutoChange");
+  const enableDynamicLoadTickChange = getConfig("dynamicFunctionIcons");
   const fileNamesIconMap: Record<string, string> = {};
   if (enableDynamicLoadTickChange) {
     const loadNames = await getReferencesFromFunctionTags("minecraft", "load");
@@ -104,8 +104,8 @@ export async function updateLoadTickIcons() {
     console.log("fileNamesIconMap: ", fileNamesIconMap);
     await setThemeValue("fileNames", fileNamesIconMap);
   } else {
-    const customLoadNames: string[] = getConfig("functionNamesForLoad");
-    const customTickNames: string[] = getConfig("functionNamesForTick");
+    const customLoadNames: string[] = getConfig("loadFunctionNames");
+    const customTickNames: string[] = getConfig("tickFunctionNames");
 
     if (!(customLoadNames || customTickNames)) return;
 
@@ -185,9 +185,9 @@ async function setCrownedFunctions() {
 }
 
 async function setNamespaceIcons() {
-  const enableNamespaceIcons = getConfig("enableNamespaceIcons");
+  const namespaceIcons = getConfig("namespaceIcons");
 
-  if (!enableNamespaceIcons) return;
+  if (!namespaceIcons) return;
 
   let namespacePaths: string[] = await getNamespacePaths() || [];
 
@@ -211,9 +211,9 @@ async function setNamespaceIcons() {
 }
 
 async function setOverlayIcons() {
-  const enableOverlayIcons = getConfig("enableOverlayIcons");
+  const overlayIcons = getConfig("overlayIcons");
 
-  if (!enableOverlayIcons) return;
+  if (!overlayIcons) return;
 
   const overlayPaths: string[] = await getOverlayPaths() || [];
 
@@ -234,7 +234,7 @@ async function setOverlayIcons() {
 
 // Change icons of files in subfolders
 async function setSubFolderIcons() {
-  const subfolderIconEnabled = getConfig("enableSubfolderIcons");
+  const subfolderIconEnabled = getConfig("subfolderIcons");
   if (!subfolderIconEnabled) return;
   const subfolderToFilesMap = (await subfolderReference()) || {};
   const subfolderFilesToIconsMap: Record<string, string> = {};

@@ -35,7 +35,7 @@ Made by SuperAnt_: https://www.youtube.com/watch?v=eYAvg19stpU
 ![Icons](assets/3.0/PackMcmetaCheck.gif)
 
 ### <sub><img src="icons/function_folder.svg" width="24"></sub> Function Icons
-The icons for <img src="icons/mcfunction_tick_file.svg" width="18"> `tick` and <img src="icons/mcfunction_load_file.svg" width="18"> `load` functions will change to repeating and impulse command blocks respectively, based on the functions provided in the <sub><img src="icons/tick.json_file.svg" width="18"></sub> `tick.json` and <sub><img src="icons/load.json_file.svg" width="18"></sub> `load.json` files found in the workspace. This feature can be toggled to assign the icons based on the functions' names (which can be specified in the settings) instead of the <sub><img src="icons/tick.json_file.svg" width="18"></sub> `tick.json` and <sub><img src="icons/load.json_file.svg" width="18"></sub> `load.json` files.
+By default, functions listed in your <sub><img src="icons/tick.json_file.svg" width="18"></sub> `tick.json` and <sub><img src="icons/load.json_file.svg" width="18"></sub> `load.json` files automatically receive <img src="icons/mcfunction_tick_file.svg" width="18"> repeating and <img src="icons/mcfunction_load_file.svg" width="18"> impulse command block icons. You can toggle this dynamic behavior off in the settings to assign these icons manually based on file names. Manual assignments support wildcards (e.g., `setup_*` or `*_loop`) to easily match multiple files at once.
 
 ![Icons](assets/3.0/LoadTickFunctions.gif)
 

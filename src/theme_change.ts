@@ -18,7 +18,7 @@ export function getDefaultIconTheme() {
 
 // Updates the icon theme theme based on the existence of pack.mcmeta in the workspace
 export function checkPackMcmeta() {
-	const enableCheck = workspace.getConfiguration().get<boolean>('mc-dp-icons.enableWorkspaceDetection');
+	const enableCheck = workspace.getConfiguration().get<boolean>('mc-dp-icons.workspaceDetection');
 		if (enableCheck) {
 		vscode.workspace
 		.findFiles('**/pack.mcmeta', '**/node_modules/**')

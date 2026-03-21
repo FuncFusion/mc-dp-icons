@@ -91,7 +91,7 @@
             "type": "boolean",
             "title": "Dynamic Function Icons",
             "default": true,
-            "markdownDescription": "If enabled, the extension automatically reads your workspace's `tick.json` and `load.json` files so that the functions listed inside them receive repeating and impulse command block icons.\n\nDisable this to manually assign these icons using the name lists below.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
+            "markdownDescription": "If enabled, functions listed in your `tick.json` and `load.json` files automatically receive repeating and impulse command block icons.\n\nDisable this to manually assign these icons using the name lists below.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
           },
           "mc-dp-icons.loadFunctionNames": {
             "order": 1,

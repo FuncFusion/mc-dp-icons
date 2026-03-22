@@ -84,7 +84,7 @@
       {
         "id": "loadTick",
         "title": "Function Icons",
-        "order": 1,
+        "order": 2,
         "properties": {
           "mc-dp-icons.dynamicFunctionIcons": {
             "order": 0,
@@ -110,36 +110,43 @@
               "type": "string"
             },
             "markdownDescription": "*Requires `#mc-dp-icons.dynamicFunctionIcons#` to be disabled.*\n\nEnter the file names (without `.mcfunction`) that should receive the **repeating command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `*_loop` will match `game_loop.mcfunction` and `particle_loop.mcfunction`.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
-          },
+          }
+        }
+      },
+      {
+        "id": "crownedFunctions",
+        "title": "Crowned Function Icons",
+        "order": 3,
+        "properties": {
           "mc-dp-icons.crownedFunctions": {
-            "order": 3,
             "title": "Crowned Functions",
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "markdownDescription": "Enter the file names (without `.mcfunction`) that should receive the **crowned chain command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `*utils*` matches `math_utils.mcfunction` and `utils-parser.mcfunction`."
           },
           "mc-dp-icons.crownedTickFunctions": {
-            "order": 4,
             "title": "Crowned Tick Functions",
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "markdownDescription": "Enter the file names (without `.mcfunction`) that receive the **crowned repeating command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `*_main` matches `combat_main.mcfunction` and `spawn_main.mcfunction`."
           },
           "mc-dp-icons.crownedLoadFunctions": {
-            "order": 5,
             "title": "Crowned Load Functions",
             "type": "array",
             "items": {
               "type": "string"
-            }
+            },
+            "markdownDescription": "Enter the file names (without `.mcfunction`) that receive the **crowned impulse command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `init_*` matches `init_scoreboards.mcfunction` and `init_entities.mcfunction`."
           }
         }
       },
       {
         "title": "Dynamic Icons",
-        "order": 2,
+        "order": 4,
         "properties": {
           "mc-dp-icons.namespaceIcons": {
             "type": "boolean",

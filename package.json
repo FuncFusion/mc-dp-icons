@@ -132,7 +132,7 @@
             "items": {
               "type": "string"
             },
-            "markdownDescription": "Enter the file names (without `.mcfunction`) that receive the **crowned repeating command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `*_main` matches `combat_main.mcfunction` and `spawn_main.mcfunction`."
+            "markdownDescription": "Enter the file names (without `.mcfunction`) that should receive the **crowned repeating command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `*_main` matches `combat_main.mcfunction` and `spawn_main.mcfunction`."
           },
           "mc-dp-icons.crownedLoadFunctions": {
             "title": "Crowned Load Functions",
@@ -140,7 +140,7 @@
             "items": {
               "type": "string"
             },
-            "markdownDescription": "Enter the file names (without `.mcfunction`) that receive the **crowned impulse command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `init_*` matches `init_scoreboards.mcfunction` and `init_entities.mcfunction`."
+            "markdownDescription": "Enter the file names (without `.mcfunction`) that should receive the **crowned impulse command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `init_*` matches `init_scoreboards.mcfunction` and `init_entities.mcfunction`."
           }
         }
       },

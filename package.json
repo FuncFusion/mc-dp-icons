@@ -124,7 +124,7 @@
             "items": {
               "type": "string"
             },
-            "markdownDescription": "Enter the file names (without `.mcfunction`) that should receive the **crowned chain command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `*utils*` matches `math_utils.mcfunction` and `utils-parser.mcfunction`."
+            "markdownDescription": "Enter the file names (without `.mcfunction`) that should receive the **crowned chain command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `*utils*` matches `math_utils.mcfunction` and `utils-general.mcfunction`."
           },
           "mc-dp-icons.crownedTickFunctions": {
             "title": "Crowned Tick Functions",

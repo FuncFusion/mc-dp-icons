@@ -40,7 +40,7 @@ By default, functions listed in your <sub><img src="icons/tick.json_file.svg" wi
 ![Icons](assets/3.0/LoadTickFunctions.gif)
 
 ### <sub><img src="icons/mcfunction_file_crowned.svg" width="24"></sub> Crowned Function Icons
-**Highlight your most important functions!** The extension has 3 special crowned command block icons (<sub><img src="icons/mcfunction_file_crowned.svg" width="18"></sub> <sub><img src="icons/mcfunction_load_file_crowned.svg" width="18"></sub> <sub><img src="icons/mcfunction_tick_file_crowned.svg" width="18"></sub>) to help you visually prioritize specific functions. Add your chosen file names to the settings to apply these icons. Wildcards are also supported (e.g., `core_*` or `*helper*`).
+**Highlight your most important functions!** The extension has 3 special crowned command block icons (<sub><img src="icons/mcfunction_file_crowned.svg" width="18"></sub> <sub><img src="icons/mcfunction_load_file_crowned.svg" width="18"></sub> <sub><img src="icons/mcfunction_tick_file_crowned.svg" width="18"></sub>) to help you visually prioritize specific functions. Add your chosen file names to the settings to apply these icons. Wildcards are also supported (e.g., `core_*` or `*helper*`) to easily match multiple files at once.
 
 ### <sub><img src="icons/loot_table_folder.svg" width="24"></sub> Subfolder Icons
 JSON files inside namespace subfolders will also change their icons (e.g. `data/namespace/item_modifier/some_folder/file.json` will change its icon to a <sub><img src="icons/item_modifier_file.svg" width="18"></sub> diamond pickaxe when this is enabled). Not recommended for large workspaces. Works only if there is a <sub><img src="icons/pack.mcmeta_file.svg" width="18"></sub> `pack.mcmeta` file in the same directory.

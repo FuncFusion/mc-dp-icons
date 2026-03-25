@@ -93,7 +93,6 @@ export async function updateLoadTickIcons() {
   if (enableDynamicLoadTickChange) {
     const loadNames = await getReferencesFromFunctionTags("minecraft", "load");
     const tickNames = await getReferencesFromFunctionTags("minecraft", "tick");
-    console.log("loadNames: ", loadNames);
     
     loadNames.forEach((loadName: string) => {
       fileNamesIconMap[loadName] = "mcfunction_load_file";
@@ -102,7 +101,6 @@ export async function updateLoadTickIcons() {
       fileNamesIconMap[tickName] = "mcfunction_tick_file";
     });
 
-    console.log("fileNamesIconMap: ", fileNamesIconMap);
     await setThemeValue("fileNames", fileNamesIconMap);
   } else {
     const customLoadNames: string[] = getConfig("loadFunctionNames");

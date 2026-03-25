@@ -1,6 +1,5 @@
 import * as vscode from "vscode";
 import * as path from "path";
-import * as fs from "fs/promises";
 import {
   pathExists,
   setThemeValue,
@@ -11,6 +10,8 @@ import {
   getPartialMatches,
 } from "./main";
 import { workspace } from "vscode";
+
+const fs = workspace.fs;
 
 const subfolderIconMap: Record<string, string> = {
   // Datapacks
@@ -259,11 +260,13 @@ async function getOverlayPaths(): Promise<string[]> {
   for (const packPath of packPaths) {
     if (!await pathExists(packPath)) continue;
 
-    const itemsWithinPack = await fs.readdir(packPath, { withFileTypes: true });
+    const itemsWithinPack = await workspace.fs.readDirectory(vscode.Uri.file(packPath));
 
     for (const item of itemsWithinPack) {
-      if (item.isDirectory()) {
-        const subDirPath = path.join(packPath, item.name);
+      const entryName = item[0]; // name
+      const entryType = item[1]; // type
+      if (entryType === vscode.FileType.Directory) {
+        const subDirPath = path.join(packPath, entryName);
         
         const hasData = await pathExists(path.join(subDirPath, "data"));
         const hasAssets = await pathExists(path.join(subDirPath, "assets"));
@@ -292,11 +295,11 @@ async function getNamespacePaths(): Promise<string[]> {
 
   const getPaths = async (directory: string): Promise<string[]> => { 
     if (!await pathExists(directory)) return [];
-    const entries = await fs.readdir(directory, { withFileTypes: true });
+    const entries = await workspace.fs.readDirectory(vscode.Uri.file(directory));
 
     return entries
-      .filter((entry) => entry.isDirectory())
-      .map(entry => path.join(directory, entry.name));
+      .filter((entry: [string, vscode.FileType]) => entry[1] === vscode.FileType.Directory)
+      .map(entry => path.join(directory, entry[0]));
   };
 
   for (const packPath of packPaths) {
@@ -325,22 +328,22 @@ async function subfolderReference(): Promise<{ [key: string]: string[] }> {
     const namespaceFolderPath = path.join(namespacePath);
 
     if (await pathExists(namespaceFolderPath)) {
-      const entries = await fs.readdir(namespaceFolderPath, {
-        withFileTypes: true,
-      });
+      const entries = await workspace.fs.readDirectory(vscode.Uri.file(namespaceFolderPath));
       for (const entry of entries) {
+        const entryName = entry[0]; // name
+        const entryType = entry[1]; // type
         const properDirectory =
-          entry.isDirectory() && entry.name in subfolderIconMap;
+          entryType === vscode.FileType.Directory && entryName in subfolderIconMap;
 
         if (properDirectory) {
-          const subfolderPath = path.join(namespaceFolderPath, entry.name);
+          const subfolderPath = path.join(namespaceFolderPath, entryName);
           const files = await getFilesInDirectory(subfolderPath);
           filesAmount += files.length;
 
-          if (subfolders[entry.name]) {
-            subfolders[entry.name].push(...files);
+          if (subfolders[entryName]) {
+            subfolders[entryName].push(...files);
           } else {
-            subfolders[entry.name] = files;
+            subfolders[entryName] = files;
           }
         }
       }
@@ -370,15 +373,18 @@ async function findMcmetaInWorkspace(): Promise<string[]> {
  * @returns {Array} of pack.mcmeta paths in specified directory
  */
 async function findMcmetaInDirectory(directory: string): Promise<string[]> {
-  const files = await fs.readdir(directory, { withFileTypes: true });
+  const dirUri = vscode.Uri.file(directory);
+  const entries = await workspace.fs.readDirectory(dirUri);
   let mcmetaPaths: string[] = [];
 
-  for (const fileName of files) {
-    const filePath = path.join(directory, fileName.name);
+  for (const entry of entries) {
+    const entryName = entry[0]; // name
+    const entryType = entry[1]; // type
+    const filePath = path.join(directory, entryName);
 
-    if (fileName.isDirectory()) {
+    if (entryType === vscode.FileType.Directory) {
       mcmetaPaths = mcmetaPaths.concat(await findMcmetaInDirectory(filePath));
-    } else if (fileName.name === "pack.mcmeta") {
+    } else if (entryName === "pack.mcmeta") {
       mcmetaPaths.push(filePath);
     }
   }

@@ -1,9 +1,10 @@
 import * as vscode from "vscode";
 import * as path from "path";
-import * as fs from "fs/promises";
 import * as bedrock from "./bedrock_edition";
 import * as java from "./java_edition";
 import { workspace } from "vscode";
+
+const fs = workspace.fs;
 
 export const themePath = path.join(
   __dirname,
@@ -48,9 +49,11 @@ async function resetIconDefinitions() {
   };
 
   if (!shouldUseChristmasIcons()) {
-    fs.copyFile(defaultThemePath, themePath);
+    const defaultData = await fs.readFile(vscode.Uri.file(defaultThemePath));
+    await fs.writeFile(vscode.Uri.file(themePath), defaultData);
   } else {
-    fs.copyFile(christmasThemePath, themePath);
+    const christmasData = await fs.readFile(vscode.Uri.file(christmasThemePath));
+    await fs.writeFile(vscode.Uri.file(themePath), christmasData);
   }
 }
 
@@ -70,8 +73,9 @@ async function applyFolderArrowsSettings() {
  */
 export async function setThemeValue(key: string, value: any) {
   try {
-    const data = await fs.readFile(themePath, "utf8");
-    const theme = JSON.parse(data);
+    const data = await fs.readFile(vscode.Uri.file(themePath));
+    const content = new TextDecoder().decode(data);
+    const theme = JSON.parse(content);
 
     const isObject = (val: any) => val !== null && typeof val === "object";
 
@@ -81,7 +85,9 @@ export async function setThemeValue(key: string, value: any) {
       theme[key] = value;
     }
 
-    fs.writeFile(themePath, JSON.stringify(theme, null, 2), "utf8");
+    const jsonString = JSON.stringify(theme, null, 2);
+    const encodedContent = new TextEncoder().encode(jsonString);
+    await fs.writeFile(vscode.Uri.file(themePath), encodedContent);
   } catch (error) {
     console.error(`Error setting theme value: ${error}`);
   }
@@ -101,19 +107,22 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
     "functions/tick.json",
   ];
   const collectFiles = async (dir: string, relativePath = "") => {
-    const entries = await fs.readdir(dir, { withFileTypes: true });
+    const dirUri = vscode.Uri.file(dir);
+    const entries = await workspace.fs.readDirectory(dirUri);
     for (const entry of entries) {
-      if (entry.name.startsWith('.') || entry.name == 'node_modules') continue;
+      const entryName = entry[0]; // name
+      const entryType = entry[1]; // type
+      if (entryName.startsWith('.') || entryName == 'node_modules') continue;
 
-      const fullPath = path.join(dir, entry.name);
-      const newPath = path.join(relativePath, entry.name);
+      const fullPath = path.join(dir, entryName);
+      const newPath = path.join(relativePath, entryName);
       const validSubfolderFile =
         newPath.split(path.sep).length > 1 &&
         newPath.endsWith(".json") &&
         !excludedFiles.some((file) => newPath.includes(file));
       const fileInSubfolder = validSubfolderFile;
 
-      if (entry.isDirectory()) {
+      if (entryType === vscode.FileType.Directory) {
         collectFiles(fullPath, newPath);
       } else if (fileInSubfolder) {
         const shortenedPath =
@@ -162,8 +171,9 @@ export async function getReferencesFromFunctionTags(namespace: string, functionT
   let functionReferences: string[] = [];
 
   for (const functionTagFile of functionTagFiles) {
-    const data = await fs.readFile(functionTagFile.fsPath, "utf8");
-    const functionTag: { values: string[] } = JSON.parse(data);
+    const data = await fs.readFile(functionTagFile);
+    const content = new TextDecoder().decode(data);
+    const functionTag: { values: string[] } = JSON.parse(content);
 
     if (!functionTag.values.length) continue;
 
@@ -214,11 +224,15 @@ export function isChristmas() {
   return now.getMonth() === 11 && now.getDate() >= 24 && now.getDate() <= 26;
 }
 
-export async function pathExists(filePath: string): Promise<boolean> {
+export async function uriExists(uri: vscode.Uri): Promise<boolean> {
   try {
-    await fs.access(filePath);
+    await workspace.fs.stat(uri);
     return true;
-  } catch (error) {
+  } catch {
     return false;
   }
+}
+
+export async function pathExists(filePath: string): Promise<boolean> {
+  return await uriExists(vscode.Uri.file(filePath));
 }

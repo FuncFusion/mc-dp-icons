@@ -1,5 +1,5 @@
 import * as path from "path";
-import * as fs from "fs/promises";
+import * as vscode from "vscode";
 import {
   setThemeValue,
   getFilesInDirectory,
@@ -9,6 +9,8 @@ import {
   getPartialMatches,
 } from "./main";
 import { workspace } from "vscode";
+
+const fs = workspace.fs;
 
 const subfolderIconMap: Record<string, string> = {
   // Bedrock behavior packs
@@ -128,23 +130,24 @@ async function subfolderReference(): Promise<{ [key: string]: string[] }> {
   let filesAmount = 0;
 
   for (const rootPath of rootPaths) {
-    const entries = await fs.readdir(rootPath, {
-      withFileTypes: true,
-    });
+    const rootUri = vscode.Uri.file(rootPath);
+    const entries = await workspace.fs.readDirectory(rootUri);
 
     for (const entry of entries) {
+      const entryName = entry[0]; // name
+      const entryType = entry[1]; // type
       const properDirectory =
-        entry.isDirectory() && entry.name in subfolderIconMap;
+        entryType === vscode.FileType.Directory && entryName in subfolderIconMap;
 
       if (properDirectory) {
-        const subfolderPath = path.join(rootPath, entry.name);
+        const subfolderPath = path.join(rootPath, entryName);
         const files = await getFilesInDirectory(subfolderPath);
         filesAmount += files.length;
 
-        if (subfolders[entry.name]) {
-          subfolders[entry.name].push(...files);
+        if (subfolders[entryName]) {
+          subfolders[entryName].push(...files);
         } else {
-          subfolders[entry.name] = files;
+          subfolders[entryName] = files;
         }
       }
     }
@@ -174,15 +177,18 @@ async function findManifestInWorkspace(): Promise<string[]> {
  * @returns Array of mainfest.json paths in specified directory
  */
 async function findManifestInDirectory(directory: string): Promise<string[]> {
-  const files = await fs.readdir(directory, { withFileTypes: true });
+  const dirUri = vscode.Uri.file(directory);
+  const entries = await workspace.fs.readDirectory(dirUri);
   let manifestPaths: string[] = [];
 
-  for (const fileName of files) {
-    const filePath = path.join(directory, fileName.name);
+  for (const entry of entries) {
+    const entryName = entry[0]; // name
+    const entryType = entry[1]; // type
+    const filePath = path.join(directory, entryName);
 
-    if (fileName.isDirectory()) {
+    if (entryType === vscode.FileType.Directory) {
       manifestPaths = manifestPaths.concat(await findManifestInDirectory(filePath));
-    } else if (fileName.name === "manifest.json") {
+    } else if (entryName === "manifest.json") {
       manifestPaths.push(filePath);
     }
   }

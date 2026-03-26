@@ -108,7 +108,7 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
   ];
   const collectFiles = async (dir: string, relativePath = "") => {
     const dirUri = vscode.Uri.file(dir);
-    const entries = await workspace.fs.readDirectory(dirUri);
+    const entries = await fs.readDirectory(dirUri);
     for (const entry of entries) {
       const entryName = entry[0]; // name
       const entryType = entry[1]; // type
@@ -226,7 +226,7 @@ export function isChristmas() {
 
 export async function uriExists(uri: vscode.Uri): Promise<boolean> {
   try {
-    await workspace.fs.stat(uri);
+    await fs.stat(uri);
     return true;
   } catch {
     return false;

@@ -258,7 +258,7 @@ async function getOverlayPaths(): Promise<string[]> {
   for (const packPath of packPaths) {
     if (!await pathExists(packPath)) continue;
 
-    const itemsWithinPack = await workspace.fs.readDirectory(vscode.Uri.file(packPath));
+    const itemsWithinPack = await fs.readDirectory(vscode.Uri.file(packPath));
 
     for (const item of itemsWithinPack) {
       const entryName = item[0]; // name
@@ -293,7 +293,7 @@ async function getNamespacePaths(): Promise<string[]> {
 
   const getPaths = async (directory: string): Promise<string[]> => { 
     if (!await pathExists(directory)) return [];
-    const entries = await workspace.fs.readDirectory(vscode.Uri.file(directory));
+    const entries = await fs.readDirectory(vscode.Uri.file(directory));
 
     return entries
       .filter((entry: [string, vscode.FileType]) => entry[1] === vscode.FileType.Directory)
@@ -326,7 +326,7 @@ async function subfolderReference(): Promise<{ [key: string]: string[] }> {
     const namespaceFolderPath = path.join(namespacePath);
 
     if (await pathExists(namespaceFolderPath)) {
-      const entries = await workspace.fs.readDirectory(vscode.Uri.file(namespaceFolderPath));
+      const entries = await fs.readDirectory(vscode.Uri.file(namespaceFolderPath));
       for (const entry of entries) {
         const entryName = entry[0]; // name
         const entryType = entry[1]; // type
@@ -372,7 +372,7 @@ async function findMcmetaInWorkspace(): Promise<string[]> {
  */
 async function findMcmetaInDirectory(directory: string): Promise<string[]> {
   const dirUri = vscode.Uri.file(directory);
-  const entries = await workspace.fs.readDirectory(dirUri);
+  const entries = await fs.readDirectory(dirUri);
   let mcmetaPaths: string[] = [];
 
   for (const entry of entries) {

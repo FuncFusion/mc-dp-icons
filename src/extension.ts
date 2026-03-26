@@ -3,7 +3,7 @@ import * as DynamicIcons from "./dynamic_icons/main";
 import * as path from "path";
 
 export function activate(context: vscode.ExtensionContext) {
-
+  const UPDATE_INTERVAL = 50;
   let updateTimer: NodeJS.Timeout | undefined
 
   const runUpdates = () => {
@@ -15,7 +15,7 @@ export function activate(context: vscode.ExtensionContext) {
       DynamicIcons.update()
       console.log("mc-dp-icons: Updating Dynamic icons")
       updateTimer = undefined
-    }, 50)
+    }, UPDATE_INTERVAL)
   }
 
   const handleFileChange = (fileName: string) => {
@@ -47,12 +47,9 @@ export function activate(context: vscode.ExtensionContext) {
     }),
   );
 
-  // Calling these functions on startup
-  ThemeChange.getDefaultIconTheme();
-  ThemeChange.checkPackMcmeta();
   DynamicIcons.update();
 
-  let DpIconsOpenSettings = vscode.commands.registerCommand(
+  const DpIconsOpenSettings = vscode.commands.registerCommand(
     "mc-dp-icons.DpIconsOpenSettings",
     () => {
       vscode.commands.executeCommand(

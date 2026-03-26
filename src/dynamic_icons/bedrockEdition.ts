@@ -131,7 +131,7 @@ async function subfolderReference(): Promise<{ [key: string]: string[] }> {
 
   for (const rootPath of rootPaths) {
     const rootUri = vscode.Uri.file(rootPath);
-    const entries = await workspace.fs.readDirectory(rootUri);
+    const entries = await fs.readDirectory(rootUri);
 
     for (const entry of entries) {
       const entryName = entry[0]; // name
@@ -178,7 +178,7 @@ async function findManifestInWorkspace(): Promise<string[]> {
  */
 async function findManifestInDirectory(directory: string): Promise<string[]> {
   const dirUri = vscode.Uri.file(directory);
-  const entries = await workspace.fs.readDirectory(dirUri);
+  const entries = await fs.readDirectory(dirUri);
   let manifestPaths: string[] = [];
 
   for (const entry of entries) {

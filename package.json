@@ -225,6 +225,5 @@
     "webpack-cli": "^5.1.4",
     "path": "^0.12.7"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }

@@ -5,7 +5,6 @@ import * as java from "./javaEdition";
 import { Uri, workspace } from "vscode";
 
 const fs = workspace.fs;
-const defaultIconTheme: string | undefined = undefined;
 
 export const themePath = path.join(
   __dirname,
@@ -39,21 +38,36 @@ export async function update() {
 }
 
 async function workspaceDetection() {
-  const workspaceDetection = getConfig("workspaceDetection");
-  if (!workspaceDetection) return;
+  const isDetectionEnabled = getConfig("workspaceDetection");
+  if (!isDetectionEnabled) return;
 
   if (await isMinecraftWorkspace()) {
-      await updateWorkbenchIconTheme("mc-dp-icons");
-  } else {
-    const iconTheme = getConfig("fallbackIconTheme") || defaultIconTheme;
-    await updateWorkbenchIconTheme(iconTheme);
+    await updateWorkbenchIconTheme("mc-dp-icons");
+    return;
   }
+
+  const fallbackIconTheme = getConfig("fallbackIconTheme");
+  if (fallbackIconTheme) {
+    await updateWorkbenchIconTheme(fallbackIconTheme);
+    return;
+  }
+
+  const workbenchConfig = vscode.workspace.getConfiguration("workbench");
+  const iconThemeInspection = workbenchConfig.inspect<string>("iconTheme");
+  const userDefaultTheme = iconThemeInspection?.globalValue ?? iconThemeInspection?.defaultValue;
+
+  await updateWorkbenchIconTheme(userDefaultTheme);
 }
 
 async function updateWorkbenchIconTheme(themeId: string | undefined) {
   if (!themeId) return;
-  await vscode.workspace.getConfiguration('workbench')
-      .update('iconTheme', themeId, vscode.ConfigurationTarget.Workspace);
+
+  const workbenchConfig = vscode.workspace.getConfiguration("workbench");
+  await workbenchConfig.update(
+    "iconTheme",
+    themeId,
+    vscode.ConfigurationTarget.Workspace
+  );
 }
 
 async function resetIconDefinitions() {
@@ -262,31 +276,32 @@ export async function findPackMcmeta(): Promise<Uri[]> {
 }
 
 async function isMinecraftWorkspace(): Promise<boolean> {
-  const mcmetaFiles = await findPackMcmeta();
+  const easyPatterns = [
+    "**/pack.mcmeta",
+    "**/jmc_config.json",
+    "**/{beet.json,beet.yaml,beet.yml}",
+  ];
 
-  if (mcmetaFiles.length > 0) {
-    return true;
-  }
-
-  const beetFiles = await workspace.findFiles('**/{beet.json,beet.yaml,beet.yml}', '**/node_modules/**');
-
-  if (beetFiles.length > 0) {
-    return true;
+  for (const pattern of easyPatterns) {
+    const files = await workspace.findFiles(pattern, "**/node_modules/**");
+    if (files.length > 0) {
+      return true;
+    }
   }
 
   const manifestFiles = await workspace.findFiles('**/manifest.json', '**/node_modules/**');
 
-  if (manifestFiles.length > 0) {
-    for (const manifestFile of manifestFiles) {
+  for (const manifestFile of manifestFiles) {
+    try {
       const manifestContent = await workspace.fs.readFile(manifestFile);
       const manifestJson = JSON.parse(manifestContent.toString());
 
       if ("format_version" in manifestJson) {
-        break;
+        return true;
       }
+    } catch (error) {
+      continue;
     }
-
-    return true;
   }
 
   return false;

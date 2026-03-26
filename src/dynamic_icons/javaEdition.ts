@@ -6,6 +6,7 @@ import {
   getFilesInDirectory,
   warnAboutTooManyFiles,
   getConfig,
+  findPackMcmeta,
   getReferencesFromFunctionTags,
   getPartialMatches,
 } from "./main";
@@ -79,7 +80,7 @@ export async function update() {
 }
 
 async function noJavaPacks(): Promise<boolean> {
-  const mcmetaFiles = await findMcmetaInWorkspace();
+  const mcmetaFiles = await findPackMcmeta();
   if (mcmetaFiles.length > 0) {
     return false;
   }
@@ -251,8 +252,8 @@ async function setSubFolderIcons() {
  * @returns {Array} of overlay paths
  */
 async function getOverlayPaths(): Promise<string[]> {
-  const mcmetaPaths = await findMcmetaInWorkspace()
-  const packPaths = mcmetaPaths.map(p => p.replace("pack.mcmeta", ""));
+  const mcmetaFiles = await findPackMcmeta()
+  const packPaths = mcmetaFiles.map(p => p.fsPath.replace("pack.mcmeta", ""));
   const validOverlayPaths: string[] = [];
 
   for (const packPath of packPaths) {
@@ -284,8 +285,8 @@ async function getOverlayPaths(): Promise<string[]> {
  * @returns {Array} of namespace paths
  */
 async function getNamespacePaths(): Promise<string[]> {
-  const mcmetaPaths = await findMcmetaInWorkspace()
-  const packPaths = mcmetaPaths.map(p => p.replace("pack.mcmeta", ""));
+  const mcmetaFiles = await findPackMcmeta()
+  const packPaths = mcmetaFiles.map(p => p.fsPath.replace("pack.mcmeta", ""));
 
   if (!packPaths) return [];
 
@@ -350,42 +351,4 @@ async function subfolderReference(): Promise<{ [key: string]: string[] }> {
 
   if (filesAmount >= 2000) warnAboutTooManyFiles();
   return subfolders;
-}
-
-/**
- * @returns {Array} of pack.mcmeta paths in this workspace
- */
-async function findMcmetaInWorkspace(): Promise<string[]> {
-  let mcmetaPaths: string[] = [];
-  const directories =
-    workspace.workspaceFolders?.map((folder) => folder.uri.fsPath) || [];
-
-  for (const directory of directories) {
-    mcmetaPaths = mcmetaPaths.concat(await findMcmetaInDirectory(directory));
-  }
-
-  return mcmetaPaths;
-}
-
-/**
- * @returns {Array} of pack.mcmeta paths in specified directory
- */
-async function findMcmetaInDirectory(directory: string): Promise<string[]> {
-  const dirUri = vscode.Uri.file(directory);
-  const entries = await fs.readDirectory(dirUri);
-  let mcmetaPaths: string[] = [];
-
-  for (const entry of entries) {
-    const entryName = entry[0]; // name
-    const entryType = entry[1]; // type
-    const filePath = path.join(directory, entryName);
-
-    if (entryType === vscode.FileType.Directory) {
-      mcmetaPaths = mcmetaPaths.concat(await findMcmetaInDirectory(filePath));
-    } else if (entryName === "pack.mcmeta") {
-      mcmetaPaths.push(filePath);
-    }
-  }
-
-  return mcmetaPaths;
 }

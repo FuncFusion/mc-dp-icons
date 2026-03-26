@@ -1,10 +1,11 @@
 import * as vscode from "vscode";
 import * as path from "path";
-import * as bedrock from "./bedrock_edition";
-import * as java from "./java_edition";
-import { workspace } from "vscode";
+import * as bedrock from "./bedrockEdition";
+import * as java from "./javaEdition";
+import { Uri, workspace } from "vscode";
 
 const fs = workspace.fs;
+const defaultIconTheme: string | undefined = undefined;
 
 export const themePath = path.join(
   __dirname,
@@ -31,9 +32,28 @@ const defaultThemePath = path.join(
 // This function is called in extension.ts
 export async function update() {
   await resetIconDefinitions();
+  workspaceDetection();
   applyFolderArrowsSettings();
   java.update();
   bedrock.update();
+}
+
+async function workspaceDetection() {
+  const workspaceDetection = getConfig("workspaceDetection");
+  if (!workspaceDetection) return;
+
+  if (await isMinecraftWorkspace()) {
+      await updateWorkbenchIconTheme("mc-dp-icons");
+  } else {
+    const iconTheme = getConfig("fallbackIconTheme") || defaultIconTheme;
+    await updateWorkbenchIconTheme(iconTheme);
+  }
+}
+
+async function updateWorkbenchIconTheme(themeId: string | undefined) {
+  if (!themeId) return;
+  await vscode.workspace.getConfiguration('workbench')
+      .update('iconTheme', themeId, vscode.ConfigurationTarget.Workspace);
 }
 
 async function resetIconDefinitions() {
@@ -235,4 +255,39 @@ export async function uriExists(uri: vscode.Uri): Promise<boolean> {
 
 export async function pathExists(filePath: string): Promise<boolean> {
   return await uriExists(vscode.Uri.file(filePath));
+}
+
+export async function findPackMcmeta(): Promise<Uri[]> {
+    return await workspace.findFiles('**/pack.mcmeta', '**/node_modules/**');
+}
+
+async function isMinecraftWorkspace(): Promise<boolean> {
+  const mcmetaFiles = await findPackMcmeta();
+
+  if (mcmetaFiles.length > 0) {
+    return true;
+  }
+
+  const beetFiles = await workspace.findFiles('**/{beet.json,beet.yaml,beet.yml}', '**/node_modules/**');
+
+  if (beetFiles.length > 0) {
+    return true;
+  }
+
+  const manifestFiles = await workspace.findFiles('**/manifest.json', '**/node_modules/**');
+
+  if (manifestFiles.length > 0) {
+    for (const manifestFile of manifestFiles) {
+      const manifestContent = await workspace.fs.readFile(manifestFile);
+      const manifestJson = JSON.parse(manifestContent.toString());
+
+      if ("format_version" in manifestJson) {
+        break;
+      }
+    }
+
+    return true;
+  }
+
+  return false;
 }

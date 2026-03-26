@@ -1,5 +1,4 @@
 import * as vscode from "vscode";
-import * as ThemeChange from "./theme_change";
 import * as DynamicIcons from "./dynamic_icons/main";
 import * as path from "path";
 
@@ -14,7 +13,6 @@ export function activate(context: vscode.ExtensionContext) {
 
     updateTimer = setTimeout(() => {
       DynamicIcons.update()
-      ThemeChange.checkPackMcmeta()
       console.log("mc-dp-icons: Updating Dynamic icons")
       updateTimer = undefined
     }, 50)

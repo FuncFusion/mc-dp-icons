@@ -30,7 +30,7 @@ Made by SuperAnt_: https://www.youtube.com/watch?v=eYAvg19stpU
 <summary><h2><sub><img src="icons/particles_folder.svg" width="28"></sub> Dynamic Icons features</h2></summary>
 
 ### <sub><img src="icons/pack.mcmeta_file.svg" width="24"></sub> Workspace Detection
-**Want to use Datapack Icons only for Minecraft projects?** When enabled, this feature automatically switches your active icon theme to `mc-dp-icons` whenever it detects a Minecraft project in your current workspace (by scanning for <sub><img src="icons/pack.mcmeta_file.svg" width="18"></sub> `pack.mcmeta`, Bedrock `manifest.json`, Beet or JMC config files). If not found, it restores your default icon theme. You can define a specific fallback theme in the settings or let the extension default to your previously active theme.
+**Want to use Datapack Icons only for Minecraft projects?** When enabled, this feature automatically switches your active icon theme to `mc-dp-icons` whenever it detects a Minecraft project in your current workspace. It works by scanning for <sub><img src="icons/pack.mcmeta_file.svg" width="18"></sub> `pack.mcmeta`, Bedrock <sub><img src="icons/pack.mcmeta_file.svg" width="18"></sub> `manifest.json`, <sub><img src="icons/beet_file.svg" width="18"></sub> Beet or <sub><img src="icons/jmc_file.svg" width="18"></sub> JMC config files. If not found, it restores your default icon theme. You can define a specific fallback theme in the settings or let the extension default to your previously active theme.
 
 ![Icons](assets/3.0/PackMcmetaCheck.gif)
 
@@ -78,11 +78,11 @@ If you need to report a bug, request a new icon or suggest a feature, you can do
 ## <sub><img src="icons/mojo_file.svg" width="28"></sub> Creators
 We are [FuncFusion](https://github.com/FuncFusion) - a small team of three:
 
-<sub><img src="assets/ant.png" width="18"></sub> [SuperAnt_](https://github.com/SuperAnt220) - Came up with the initial idea, made the extension
+<sub><img src="assets/ant.png" width="18"></sub> [SuperAnt_](https://github.com/SuperAnt220) - Project Lead. Manages the theme architecture, documentation, and promotional assets.
 
-<img src="assets/bth123.png" width="18"> [bth123](https://github.com/bth123) - Made all the icons and illustrations, also made a [sublime port](https://github.com/bth123/mc-dp-icons-sublime) of this extension
+<img src="assets/bth123.png" width="18"> [bth123](https://github.com/bth123) - Lead Artist. Designs all the icons and repository artwork, maintains the assets repo, and created a [sublime port](https://github.com/bth123/mc-dp-icons-sublime) of this extension.
 
-<img src="assets/amandin.png" width="18"> [amandin](https://github.com/amqndin) - Responsible for most of the code, included this extension in his [amazing extension pack](https://marketplace.visualstudio.com/items?itemName=amandin.dpc-pack)
+<img src="assets/amandin.png" width="18"> [amandin](https://github.com/amqndin) - Lead developer behind all the code, and included this extension in his [amazing extension pack](https://marketplace.visualstudio.com/items?itemName=amandin.dpc-pack).
 
 ![Creators](assets/creators.png)
 

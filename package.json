@@ -70,7 +70,7 @@
             "type": "boolean",
             "title": "Enable Workspace Detection",
             "default": false,
-            "markdownDescription": "If enabled, the extension scans your workspace for Minecraft project files (`pack.mcmeta`, Bedrock `manifest.json`, or Beet config files) and automatically applies the `mc-dp-icons` theme if detected. If not, it switches back to your `#mc-dp-icons.fallbackIconTheme#`.\n\nThis scan runs on startup and when modifying files."
+            "markdownDescription": "If enabled, the extension scans your workspace for Minecraft project files (`pack.mcmeta`, Bedrock `manifest.json`, Beet or JMC config files) and automatically applies the `mc-dp-icons` theme if detected. If not, it switches back to your `#mc-dp-icons.fallbackIconTheme#`.\n\nThis scan runs on startup and when modifying files."
           },
           "mc-dp-icons.fallbackIconTheme": {
             "order": 1,

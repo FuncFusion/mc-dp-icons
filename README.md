@@ -30,7 +30,7 @@ Made by SuperAnt_: https://www.youtube.com/watch?v=eYAvg19stpU
 <summary><h2><sub><img src="icons/particles_folder.svg" width="28"></sub> Dynamic Icons features</h2></summary>
 
 ### <sub><img src="icons/pack.mcmeta_file.svg" width="24"></sub> Workspace Detection
-**Want to use Datapack Icons only for Minecraft projects?** When enabled, this feature automatically switches your active icon theme to `mc-dp-icons` whenever it detects a Minecraft project in your current workspace (by scanning for <sub><img src="icons/pack.mcmeta_file.svg" width="18"></sub> `pack.mcmeta`, Bedrock `manifest.json`, or Beet config files). If not found, it restores your default icon theme. You can define a specific fallback theme in the settings or let the extension default to your previously active theme.
+**Want to use Datapack Icons only for Minecraft projects?** When enabled, this feature automatically switches your active icon theme to `mc-dp-icons` whenever it detects a Minecraft project in your current workspace (by scanning for <sub><img src="icons/pack.mcmeta_file.svg" width="18"></sub> `pack.mcmeta`, Bedrock `manifest.json`, Beet or JMC config files). If not found, it restores your default icon theme. You can define a specific fallback theme in the settings or let the extension default to your previously active theme.
 
 ![Icons](assets/3.0/PackMcmetaCheck.gif)
 

@@ -56,12 +56,12 @@ Namespace folders (directories directly within <img src="icons/data_folder_close
 Overlay folders (directories at the pack root registered as overlays in <sub><img src="icons/pack.mcmeta_file.svg" width="18"></sub> `pack.mcmeta`) receive a <sub><img src="icons/overlay_folder.svg" width="18"></sub> glass chest icon.
 
 ### <img src="icons/generic_folder_closed_xmas.svg" width="24"> Christmas Icons
-Similarly to minecraft, the extension will change all of the chest icons to their Christmas variants during December 24-26 (<sub><img src="icons/trading_folder.svg" width="18"></sub> → <sub><img src="icons/trading_folder_xmas.svg" width="18"></sub>). This feature can be disabled or enabled to work at any time in the settings.
+Similar to Minecraft, the extension changes all chest icons to their festive Christmas variants during December 24-26 (<sub><img src="icons/trading_folder.svg" width="18"></sub> → <sub><img src="icons/trading_folder_xmas.svg" width="18"></sub>). This feature can be disabled or enabled to work at any time in the settings.
 
 ![Icons](assets/4.0/ChristmasIcons.png)
 
 ### Hide Folder Arrows
-If you don't like the arrows near the folder icons, you can hide them by enabling this setting!
+Hides the default expand/collapse arrows next to folder icons in the VS Code Explorer to make your workspace feel less cluttered.
 
 ![Icons](assets/3.0/HideFolderArrows.gif)
 

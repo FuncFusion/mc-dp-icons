@@ -177,16 +177,16 @@
             "enum": [
               "Only on Christmas",
               "Always",
-              "Disable"
+              "Never"
             ],
-            "markdownDescription": "Choose when to use Christmas icons.\n\n*Warning: this feature is not currently supported for VS Code web.*"
+            "markdownDescription": "Determines when chest icons switch to their festive Christmas variants.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
           },
           "mc-dp-icons.hideFolderArrows": {
             "type": "boolean",
             "order": 4,
             "title": "Hide folder arrows",
             "default": false,
-            "markdownDescription": "If enabled, the extension will hide folder arrows in the explorer.\n\n*Warning: this feature is not currently supported for VS Code web.*"
+            "markdownDescription": "If enabled, hides the expand/collapse arrows next to folders in the VS Code Explorer.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
           }
         }
       }

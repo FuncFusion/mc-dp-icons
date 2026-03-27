@@ -77,7 +77,7 @@ async function resetIconDefinitions() {
       return true;
     } else if (christmasIcons === "Only on Christmas") {
       return isChristmas();
-    } else if (christmasIcons === "Disable") {
+    } else if (christmasIcons === "Never") {
       return false;
     }
   };

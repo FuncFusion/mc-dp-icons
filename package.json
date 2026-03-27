@@ -124,7 +124,7 @@
             "items": {
               "type": "string"
             },
-            "markdownDescription": "Enter the file names (without `.mcfunction`) that should receive the **crowned chain command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `*utils*` matches `math_utils.mcfunction` and `utils-general.mcfunction`."
+            "markdownDescription": "Enter the file names (without `.mcfunction`) that should receive the **crowned chain command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `*utils*` matches `math_utils.mcfunction` and `utils-general.mcfunction`.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
           },
           "mc-dp-icons.crownedTickFunctions": {
             "title": "Crowned Tick Functions",
@@ -132,7 +132,7 @@
             "items": {
               "type": "string"
             },
-            "markdownDescription": "Enter the file names (without `.mcfunction`) that should receive the **crowned repeating command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `*_main` matches `combat_main.mcfunction` and `spawn_main.mcfunction`."
+            "markdownDescription": "Enter the file names (without `.mcfunction`) that should receive the **crowned repeating command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `*_main` matches `combat_main.mcfunction` and `spawn_main.mcfunction`.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
           },
           "mc-dp-icons.crownedLoadFunctions": {
             "title": "Crowned Load Functions",
@@ -140,7 +140,7 @@
             "items": {
               "type": "string"
             },
-            "markdownDescription": "Enter the file names (without `.mcfunction`) that should receive the **crowned impulse command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `init_*` matches `init_scoreboards.mcfunction` and `init_entities.mcfunction`."
+            "markdownDescription": "Enter the file names (without `.mcfunction`) that should receive the **crowned impulse command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `init_*` matches `init_scoreboards.mcfunction` and `init_entities.mcfunction`.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
           }
         }
       },
@@ -148,30 +148,30 @@
         "title": "Dynamic Icons",
         "order": 4,
         "properties": {
-          "mc-dp-icons.namespaceIcons": {
-            "type": "boolean",
-            "order": 0,
-            "title": "Changes namespace folders icons to an ender chest",
-            "default": true,
-            "markdownDescription": "If enabled, namespace folders (folders directly within `data` and `assets`) will change their icons to ender chests. Works only if there is `pack.mcmeta` in the same directory.\n\n*Warning: this feature is not currently supported for VS Code web.*"
-          },
-          "mc-dp-icons.overlayIcons": {
-            "type": "boolean",
-            "order": 0,
-            "title": "Changes overlay folders icons to glass chest",
-            "default": true,
-            "markdownDescription": "todo"
-          },
           "mc-dp-icons.subfolderIcons": {
             "type": "boolean",
             "order": 0,
-            "title": "Enable subfolder icons",
+            "title": "Enable Subfolder Icons",
             "default": true,
-            "markdownDescription": "If enabled, json files inside namespace subfolders will also change their icons (e.g. `data/namespace/item_modifier/some_folder/file.json` will change its icon to a diamond pickaxe when this is enabled). Not recommended for large workspaces. Works only if there is `pack.mcmeta` in the same directory.\n\n*Warning: this feature is not currently supported for VS Code web.*"
+            "markdownDescription": "*Requires a `pack.mcmeta` file at the root of the pack.*\n\nIf enabled, a workaround activates that allows JSON files nested inside category subfolders to receive their specific icon rather than a generic one (e.g., `data/namespace/item_modifier/subfolder/file.json` receives the diamond pickaxe icon). *Not recommended for extremely large workspaces.*\n\n*Warning: This feature is not currently supported on VS Code Web.*"
+          },
+          "mc-dp-icons.namespaceIcons": {
+            "type": "boolean",
+            "order": 1,
+            "title": "Namespace Icons",
+            "default": true,
+            "markdownDescription": "*Requires a `pack.mcmeta` file at the root of the pack.*\n\nIf enabled, namespace folders (directories directly within `data` and `assets`) receive an ender chest icon.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
+          },
+          "mc-dp-icons.overlayIcons": {
+            "type": "boolean",
+            "order": 2,
+            "title": "Overlay Icons",
+            "default": true,
+            "markdownDescription": "If enabled, overlay folders registered in your `pack.mcmeta` receive a glass chest icon.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
           },
           "mc-dp-icons.christmasIcons": {
             "type": "string",
-            "order": 1,
+            "order": 3,
             "title": "Use Christmas icons",
             "default": "Only on Christmas",
             "enum": [
@@ -183,7 +183,7 @@
           },
           "mc-dp-icons.hideFolderArrows": {
             "type": "boolean",
-            "order": 2,
+            "order": 4,
             "title": "Hide folder arrows",
             "default": false,
             "markdownDescription": "If enabled, the extension will hide folder arrows in the explorer.\n\n*Warning: this feature is not currently supported for VS Code web.*"

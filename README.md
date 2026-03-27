@@ -43,17 +43,17 @@ By default, functions listed in your <sub><img src="icons/tick.json_file.svg" wi
 **Highlight your most important functions!** The extension has 3 special crowned command block icons (<sub><img src="icons/mcfunction_file_crowned.svg" width="18"></sub> <sub><img src="icons/mcfunction_load_file_crowned.svg" width="18"></sub> <sub><img src="icons/mcfunction_tick_file_crowned.svg" width="18"></sub>) to help you visually prioritize specific functions. Add your chosen file names to the settings to apply these icons. Wildcards are also supported (e.g., `core_*` or `*helper*`) to easily match multiple files at once.
 
 ### <sub><img src="icons/loot_table_folder.svg" width="24"></sub> Subfolder Icons
-JSON files inside namespace subfolders will also change their icons (e.g. `data/namespace/item_modifier/some_folder/file.json` will change its icon to a <sub><img src="icons/item_modifier_file.svg" width="18"></sub> diamond pickaxe when this is enabled). Not recommended for large workspaces. Works only if there is a <sub><img src="icons/pack.mcmeta_file.svg" width="18"></sub> `pack.mcmeta` file in the same directory.
+Due to VS Code API limitations, special icons can only be assigned to files directly inside a category folder (e.g.,  `data/namespace/item_modifier/`<sub><img src="icons/item_modifier_file.svg" width="18"></sub>`file.json`). Enabling this option activates a workaround that bypasses this restriction, ensuring that nested files like `data/namespace/item_modifier/subfolder/`<sub><img src="icons/item_modifier_file.svg" width="18"></sub>`file.json` get their specific icon rather than a generic one. Not recommended for extremely large workspaces. This requires a <sub><img src="icons/pack.mcmeta_file.svg" width="18"></sub> `pack.mcmeta` file at the root of the pack.
 
 ![Icons](assets/4.0/SubfolderIcons.gif)
 
 ### <img src="icons/namespace_folder_closed.svg" width="24"> Namespace Icons
-Namespace folders (folders directly within <img src="icons/data_folder_closed.svg" width="18"> `data` and <img src="icons/assets_folder_closed.svg" width="18"> `assets`) will change their icons to <sub><img src="icons/namespace_folder.svg" width="18"></sub> ender chests. Works only if there is a <sub><img src="icons/pack.mcmeta_file.svg" width="18"></sub> `pack.mcmeta` file in the same directory.
+Namespace folders (directories directly within <img src="icons/data_folder_closed.svg" width="18"> `data` or <img src="icons/assets_folder_closed.svg" width="18"> `assets`) receive an <sub><img src="icons/namespace_folder.svg" width="18"></sub> ender chest icon. This requires a <sub><img src="icons/pack.mcmeta_file.svg" width="18"></sub> `pack.mcmeta` file at the root of the pack.
 
 ![Icons](assets/3.0/NamespaceIcons.gif)
 
 ### <img src="icons/overlay_folder_closed.svg" width="24"> Overlay Icons
-Overlay folders (folders in the root of datapacks & resource packs that are registered as overlays in <sub><img src="icons/pack.mcmeta_file.svg" width="18"></sub> `pack.mcmeta`) will change their icons to <sub><img src="icons/overlay_folder.svg" width="18"></sub> glass chests.
+Overlay folders (directories at the pack root registered as overlays in <sub><img src="icons/pack.mcmeta_file.svg" width="18"></sub> `pack.mcmeta`) receive a <sub><img src="icons/overlay_folder.svg" width="18"></sub> glass chest icon.
 
 ### <img src="icons/generic_folder_closed_xmas.svg" width="24"> Christmas Icons
 Similarly to minecraft, the extension will change all of the chest icons to their Christmas variants during December 24-26 (<sub><img src="icons/trading_folder.svg" width="18"></sub> → <sub><img src="icons/trading_folder_xmas.svg" width="18"></sub>). This feature can be disabled or enabled to work at any time in the settings.

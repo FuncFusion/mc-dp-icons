@@ -42,13 +42,13 @@ async function workspaceDetection() {
   if (!isDetectionEnabled) return;
 
   if (await isMinecraftWorkspace()) {
-    await updateWorkbenchIconTheme("mc-dp-icons");
+    await changeConfigWorkspace("workbench.iconTheme", "mc-dp-icons");
     return;
   }
 
   const fallbackIconTheme = getConfig("fallbackIconTheme");
   if (fallbackIconTheme) {
-    await updateWorkbenchIconTheme(fallbackIconTheme);
+    await changeConfigWorkspace("workbench.iconTheme", fallbackIconTheme);
     return;
   }
 
@@ -56,18 +56,7 @@ async function workspaceDetection() {
   const iconThemeInspection = workbenchConfig.inspect<string>("iconTheme");
   const userDefaultTheme = iconThemeInspection?.globalValue ?? iconThemeInspection?.defaultValue;
 
-  await updateWorkbenchIconTheme(userDefaultTheme);
-}
-
-async function updateWorkbenchIconTheme(themeId: string | undefined) {
-  if (!themeId) return;
-
-  const workbenchConfig = vscode.workspace.getConfiguration("workbench");
-  await workbenchConfig.update(
-    "iconTheme",
-    themeId,
-    vscode.ConfigurationTarget.Workspace
-  );
+  await changeConfigWorkspace("workbench.iconTheme", userDefaultTheme);
 }
 
 async function resetIconDefinitions() {
@@ -144,8 +133,8 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
     const dirUri = vscode.Uri.file(dir);
     const entries = await fs.readDirectory(dirUri);
     for (const entry of entries) {
-      const entryName = entry[0]; // name
-      const entryType = entry[1]; // type
+      const entryName = entry[0];
+      const entryType = entry[1];
       if (entryName.startsWith('.') || entryName == 'node_modules') continue;
 
       const fullPath = path.join(dir, entryName);
@@ -241,16 +230,24 @@ export function getConfig(name: string): any {
   return workspace.getConfiguration().get(`mc-dp-icons.${name}`);
 }
 
-function changeConfigGlobal(name: string, value: any) {
-  return workspace
-    .getConfiguration()
-    .update(`mc-dp-icons.${name}`, value, vscode.ConfigurationTarget.Global);
+async function changeConfigGlobal(settingName: string, value: any) {
+  const config = workspace.getConfiguration();
+
+  await config.update(
+    settingName,
+    value,
+    vscode.ConfigurationTarget.Global
+  );
 }
 
-function changeConfigWorkspace(name: string, value: any) {
-  return workspace
-    .getConfiguration()
-    .update(`mc-dp-icons.${name}`, value, vscode.ConfigurationTarget.Workspace);
+async function changeConfigWorkspace(settingName: string, value: any) {
+  const config = workspace.getConfiguration();
+
+  await config.update(
+    settingName,
+    value,
+    vscode.ConfigurationTarget.Workspace
+  );
 }
 
 export function isChristmas() {

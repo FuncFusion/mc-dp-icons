@@ -193,7 +193,7 @@ async function setNamespaceIcons() {
 
   const namespaceNames = namespacePaths.map((fullPath) => {
     const pathSegments = fullPath.split('/');
-    return Utils.joinPath(vscode.Uri.file(pathSegments.slice(-2).join('/'))).fsPath;
+    return pathSegments.slice(-2).join('/');
   })
 
   const folderNamesIconsMap: Record<string, string> = {};
@@ -272,7 +272,7 @@ async function getOverlayPaths(): Promise<string[]> {
 
         if (hasData !== hasAssets) {
           const pathSegments = subDirPath.split('/');
-          const validPath = Utils.joinPath(vscode.Uri.file(pathSegments.slice(-2).join('/'))).fsPath;
+          const validPath = pathSegments.slice(-2).join('/');
           validOverlayPaths.push(validPath);
         }
       }

@@ -1,47 +1,41 @@
 import * as vscode from "vscode";
-import * as path from "path";
 import * as bedrock from "./bedrockEdition";
 import * as java from "./javaEdition";
 import { Uri, workspace } from "vscode";
+import { Utils } from 'vscode-uri';
 
 const fs = workspace.fs;
 
-export const themePath = path.join(
-  __dirname,
-  "..",
-  "..",
-  "file_icon_themes",
-  "active.json",
-);
-const christmasThemePath = path.join(
-  __dirname,
-  "..",
-  "..",
-  "file_icon_themes",
-  "xmas.json",
-);
-const defaultThemePath = path.join(
-  __dirname,
-  "..",
-  "..",
-  "file_icon_themes",
-  "default.json",
-);
+export let extensionUri: vscode.Uri;
 
-// This function is called in extension.ts
+export function setExtensionUri(uri: vscode.Uri) {
+  extensionUri = uri;
+}
+
+let themePath = '';
+let christmasThemePath = '';
+let defaultThemePath = '';
+
+
 export async function update() {
+  themePath = Utils.joinPath(extensionUri, "file_icon_themes", "active.json").fsPath;
+  christmasThemePath = Utils.joinPath(extensionUri, "file_icon_themes", "xmas.json").fsPath;
+  defaultThemePath = Utils.joinPath(extensionUri, "file_icon_themes", "default.json").fsPath;
+  
   await resetIconDefinitions();
-  workspaceDetection();
+  await workspaceDetection();
   applyFolderArrowsSettings();
   java.update();
   bedrock.update();
 }
 
-async function workspaceDetection() {
+export async function workspaceDetection() {
   const isDetectionEnabled = getConfig("workspaceDetection");
   if (!isDetectionEnabled) return;
 
-  if (await isMinecraftWorkspace()) {
+  const isMinecraft = await isMinecraftWorkspace();
+
+  if (isMinecraft) {
     await changeConfigWorkspace("workbench.iconTheme", "mc-dp-icons");
     return;
   }
@@ -54,7 +48,7 @@ async function workspaceDetection() {
 
   const workbenchConfig = vscode.workspace.getConfiguration("workbench");
   const iconThemeInspection = workbenchConfig.inspect<string>("iconTheme");
-  const userDefaultTheme = iconThemeInspection?.globalValue ?? iconThemeInspection?.defaultValue;
+  const userDefaultTheme = iconThemeInspection?.globalValue;
 
   await changeConfigWorkspace("workbench.iconTheme", userDefaultTheme);
 }
@@ -137,10 +131,10 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
       const entryType = entry[1];
       if (entryName.startsWith('.') || entryName == 'node_modules') continue;
 
-      const fullPath = path.join(dir, entryName);
-      const newPath = path.join(relativePath, entryName);
+      const fullPath = Utils.joinPath(vscode.Uri.file(dir), entryName).fsPath;
+      const newPath = Utils.joinPath(vscode.Uri.file(relativePath), entryName).fsPath;
       const validSubfolderFile =
-        newPath.split(path.sep).length > 1 &&
+        newPath.split('/').length > 1 &&
         newPath.endsWith(".json") &&
         !excludedFiles.some((file) => newPath.includes(file));
       const fileInSubfolder = validSubfolderFile;
@@ -149,8 +143,8 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
         collectFiles(fullPath, newPath);
       } else if (fileInSubfolder) {
         const shortenedPath =
-          newPath.split(path.sep).length > 2
-            ? newPath.split(path.sep).slice(-2).join(path.sep)
+          newPath.split('/').length > 2
+            ? newPath.split('/').slice(-2).join('/')
             : newPath;
 
         files.push(shortenedPath);
@@ -201,8 +195,8 @@ export async function getReferencesFromFunctionTags(namespace: string, functionT
     if (!functionTag.values.length) continue;
 
     for (const functionID of functionTag.values) {
-      const functionPath: string = "function" + path.sep + functionID.split(":")[1];
-      const shortenedPath = functionPath.split(path.sep).slice(-2).join(path.sep);
+      const functionPath: string = "function/" + functionID.split(":")[1];
+      const shortenedPath = functionPath.split('/').slice(-2).join('/');
       const forwardSlashPath = shortenedPath.replace(/\\/g, "/");
       functionReferences.push(`${forwardSlashPath}.mcfunction`);
     }
@@ -220,7 +214,7 @@ export async function getPartialMatches(customNames: string[]): Promise<string[]
   )).flat();
 
   const fileNames: string[] = matchedFunctions.map((matchedFunction: vscode.Uri) => {
-    return path.basename(matchedFunction.fsPath);
+    return matchedFunction.fsPath.split('/').pop() || '';
   });
 
   return fileNames

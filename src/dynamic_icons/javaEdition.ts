@@ -1,5 +1,4 @@
 import * as vscode from "vscode";
-import * as path from "path";
 import {
   pathExists,
   setThemeValue,
@@ -9,13 +8,15 @@ import {
   findPackMcmeta,
   getReferencesFromFunctionTags,
   getPartialMatches,
+  extensionUri,
 } from "./main";
 import { workspace } from "vscode";
+import { Utils } from 'vscode-uri';
 
 const fs = workspace.fs;
 
 const subfolderIconMap: Record<string, string> = {
-  // Datapacks
+  
   advancement: "advancement_file",
   advancements: "advancement_file",
   banner_pattern: "banner_pattern_file",
@@ -60,7 +61,7 @@ const subfolderIconMap: Record<string, string> = {
   worldgen: "worldgen_file",
   zombie_nautilus_variant: "zombie_nautilus_variant_file",
 
-  // Resourcepacks
+  
   font: "font_file",
   items: "items_file",
   models: "models_file",
@@ -69,7 +70,7 @@ const subfolderIconMap: Record<string, string> = {
   waypoint_style: "waypoint_style_file",
 };
 
-// This function is called in extension.ts
+
 export async function update() {
   if (await noJavaPacks()) return;
   await setCrownedFunctions();
@@ -87,7 +88,7 @@ async function noJavaPacks(): Promise<boolean> {
   return true;
 }
 
-// Set icons for functions referenced in tick.json & load.json accordingly
+
 export async function updateLoadTickIcons() {
   const enableDynamicLoadTickChange = getConfig("dynamicFunctionIcons");
   const fileNamesIconMap: Record<string, string> = {};
@@ -192,8 +193,8 @@ async function setNamespaceIcons() {
   let namespacePaths: string[] = await getNamespacePaths() || [];
 
   const namespaceNames = namespacePaths.map((fullPath) => {
-    const pathSegments = fullPath.split(path.sep);
-    return path.join(...pathSegments.slice(-2)).replace(/\\/g, "/");
+    const pathSegments = fullPath.split('/');
+    return Utils.joinPath(vscode.Uri.file(pathSegments.slice(-2).join('/'))).fsPath;
   })
 
   const folderNamesIconsMap: Record<string, string> = {};
@@ -232,7 +233,7 @@ async function setOverlayIcons() {
   await setThemeValue("folderNamesExpanded", folderNamesExpandedIconsMap);
 }
 
-// Change icons of files in subfolders
+
 async function setSubFolderIcons() {
   const subfolderIconEnabled = getConfig("subfolderIcons");
   if (!subfolderIconEnabled) return;
@@ -262,17 +263,17 @@ async function getOverlayPaths(): Promise<string[]> {
     const itemsWithinPack = await fs.readDirectory(vscode.Uri.file(packPath));
 
     for (const item of itemsWithinPack) {
-      const entryName = item[0]; // name
-      const entryType = item[1]; // type
+      const entryName = item[0]; 
+      const entryType = item[1]; 
       if (entryType === vscode.FileType.Directory) {
-        const subDirPath = path.join(packPath, entryName);
+        const subDirPath = Utils.joinPath(vscode.Uri.file(packPath), entryName).fsPath;
         
-        const hasData = await pathExists(path.join(subDirPath, "data"));
-        const hasAssets = await pathExists(path.join(subDirPath, "assets"));
+        const hasData = await pathExists(Utils.joinPath(vscode.Uri.file(subDirPath), "data").fsPath);
+        const hasAssets = await pathExists(Utils.joinPath(vscode.Uri.file(subDirPath), "assets").fsPath);
 
         if (hasData !== hasAssets) {
-          const pathSegments = subDirPath.split(path.sep);
-          const validPath = path.join(...pathSegments.slice(-2)).replace(/\\/g, "/");
+          const pathSegments = subDirPath.split('/');
+          const validPath = Utils.joinPath(vscode.Uri.file(pathSegments.slice(-2).join('/'))).fsPath;
           validOverlayPaths.push(validPath);
         }
       }
@@ -298,14 +299,14 @@ async function getNamespacePaths(): Promise<string[]> {
 
     return entries
       .filter((entry: [string, vscode.FileType]) => entry[1] === vscode.FileType.Directory)
-      .map(entry => path.join(directory, entry[0]));
+      .map(entry => Utils.joinPath(vscode.Uri.file(directory), entry[0]).fsPath);
   };
 
   for (const packPath of packPaths) {
     try {
-      const assetsPaths = await getPaths(path.join(packPath, "assets"));
+      const assetsPaths = await getPaths(Utils.joinPath(vscode.Uri.file(packPath), "assets").fsPath);
       namespacePaths.push(...assetsPaths);
-      const dataPaths = await getPaths(path.join(packPath, "data"));
+      const dataPaths = await getPaths(Utils.joinPath(vscode.Uri.file(packPath), "data").fsPath);
       namespacePaths.push(...dataPaths);
     } catch (error) {
       console.error(`Error reading folder: ${packPath}data`, error);
@@ -324,18 +325,18 @@ async function subfolderReference(): Promise<{ [key: string]: string[] }> {
   let filesAmount = 0;
 
   for (const namespacePath of namespacePaths) {
-    const namespaceFolderPath = path.join(namespacePath);
+    const namespaceFolderPath = namespacePath;
 
     if (await pathExists(namespaceFolderPath)) {
       const entries = await fs.readDirectory(vscode.Uri.file(namespaceFolderPath));
       for (const entry of entries) {
-        const entryName = entry[0]; // name
-        const entryType = entry[1]; // type
+        const entryName = entry[0]; 
+        const entryType = entry[1]; 
         const properDirectory =
           entryType === vscode.FileType.Directory && entryName in subfolderIconMap;
 
         if (properDirectory) {
-          const subfolderPath = path.join(namespaceFolderPath, entryName);
+          const subfolderPath = Utils.joinPath(vscode.Uri.file(namespaceFolderPath), entryName).fsPath;
           const files = await getFilesInDirectory(subfolderPath);
           filesAmount += files.length;
 

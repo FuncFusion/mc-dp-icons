@@ -1,8 +1,9 @@
 import * as vscode from "vscode";
 import * as DynamicIcons from "./dynamic_icons/main";
-import * as path from "path";
 
 export function activate(context: vscode.ExtensionContext) {
+  DynamicIcons.setExtensionUri(context.extensionUri);
+  
   const UPDATE_INTERVAL = 50;
   let updateTimer: NodeJS.Timeout | undefined
 
@@ -13,7 +14,6 @@ export function activate(context: vscode.ExtensionContext) {
 
     updateTimer = setTimeout(() => {
       DynamicIcons.update()
-      console.log("mc-dp-icons: Updating Dynamic icons")
       updateTimer = undefined
     }, UPDATE_INTERVAL)
   }
@@ -34,13 +34,13 @@ export function activate(context: vscode.ExtensionContext) {
       runUpdates();
     }),
     vscode.workspace.onDidDeleteFiles((event) => {
-      handleFileChange(path.basename(event.files[0].fsPath));
+      handleFileChange(event.files[0].fsPath.split('/').pop() || '');
     }),
     vscode.workspace.onDidCreateFiles((event) => {
-      handleFileChange(path.basename(event.files[0].fsPath));
+      handleFileChange(event.files[0].fsPath.split('/').pop() || '');
     }),
     vscode.workspace.onDidSaveTextDocument((document) => {
-      handleFileChange(path.basename(document.fileName));
+      handleFileChange(document.fileName.split('/').pop() || '');
     }),
     vscode.workspace.onDidChangeConfiguration(() => {
       runUpdates();

@@ -1,4 +1,3 @@
-import * as path from "path";
 import * as vscode from "vscode";
 import {
   setThemeValue,
@@ -7,13 +6,15 @@ import {
   getConfig,
   getReferencesFromFunctionTags,
   getPartialMatches,
+  extensionUri,
 } from "./main";
 import { workspace } from "vscode";
+import { Utils } from 'vscode-uri';
 
 const fs = workspace.fs;
 
 const subfolderIconMap: Record<string, string> = {
-  // Bedrock behavior packs
+  
   animation_controllers: "animations_file",
   animations: "animations_file",
   biomes: "worldgen_file",
@@ -30,7 +31,7 @@ const subfolderIconMap: Record<string, string> = {
   spawn_rules: "spawn_rules_file",
   trading: "trading_file",
   worldgen: "worldgen_file",
-  // Bedrock resource packs
+  
   atmospherics: "fogs_file",
   attachables: "attachables_file",
   block_culling: "block_culling_file",
@@ -44,7 +45,7 @@ const subfolderIconMap: Record<string, string> = {
   ui: "ui_file",
 };
 
-// This function is called in extension.ts
+
 export async function update() {
   if (await noBedrockPacks()) return;
   await updateTickIcons();
@@ -59,7 +60,7 @@ async function noBedrockPacks(): Promise<boolean> {
   return true;
 }
 
-// Set icons for functions referenced in tick.json
+
 export async function updateTickIcons() {
   const enableDynamicTickChange = getConfig("dynamicFunctionIcons");
   if (enableDynamicTickChange) {
@@ -94,7 +95,7 @@ export async function updateTickIcons() {
   }
 }
 
-// Change icons of files in subfolders
+
 async function setSubFolderIcons() {
   const subfolderIconEnabled = getConfig("subfolderIcons");
   if (!subfolderIconEnabled) return;
@@ -134,13 +135,13 @@ async function subfolderReference(): Promise<{ [key: string]: string[] }> {
     const entries = await fs.readDirectory(rootUri);
 
     for (const entry of entries) {
-      const entryName = entry[0]; // name
-      const entryType = entry[1]; // type
+      const entryName = entry[0]; 
+      const entryType = entry[1]; 
       const properDirectory =
         entryType === vscode.FileType.Directory && entryName in subfolderIconMap;
 
       if (properDirectory) {
-        const subfolderPath = path.join(rootPath, entryName);
+        const subfolderPath = Utils.joinPath(vscode.Uri.file(rootPath), entryName).fsPath;
         const files = await getFilesInDirectory(subfolderPath);
         filesAmount += files.length;
 
@@ -182,9 +183,9 @@ async function findManifestInDirectory(directory: string): Promise<string[]> {
   let manifestPaths: string[] = [];
 
   for (const entry of entries) {
-    const entryName = entry[0]; // name
-    const entryType = entry[1]; // type
-    const filePath = path.join(directory, entryName);
+    const entryName = entry[0]; 
+    const entryType = entry[1]; 
+    const filePath = Utils.joinPath(vscode.Uri.file(directory), entryName).fsPath;
 
     if (entryType === vscode.FileType.Directory) {
       manifestPaths = manifestPaths.concat(await findManifestInDirectory(filePath));

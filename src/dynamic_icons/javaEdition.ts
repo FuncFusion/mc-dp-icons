@@ -8,7 +8,6 @@ import {
   findPackMcmeta,
   getReferencesFromFunctionTags,
   getPartialMatches,
-  extensionUri,
 } from "./main";
 import { workspace } from "vscode";
 import { Utils } from 'vscode-uri';
@@ -304,9 +303,11 @@ async function getNamespacePaths(): Promise<string[]> {
 
   for (const packPath of packPaths) {
     try {
-      const assetsPaths = await getPaths(Utils.joinPath(vscode.Uri.file(packPath), "assets").fsPath);
+      const assetsPath = Utils.joinPath(vscode.Uri.file(packPath), "assets").fsPath;
+      const assetsPaths = await getPaths(assetsPath);
       namespacePaths.push(...assetsPaths);
-      const dataPaths = await getPaths(Utils.joinPath(vscode.Uri.file(packPath), "data").fsPath);
+      const dataPath = Utils.joinPath(vscode.Uri.file(packPath), "data").fsPath;
+      const dataPaths = await getPaths(dataPath);
       namespacePaths.push(...dataPaths);
     } catch (error) {
       console.error(`Error reading folder: ${packPath}data`, error);

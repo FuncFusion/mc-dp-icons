@@ -133,17 +133,19 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
 
       const fullPath = Utils.joinPath(vscode.Uri.file(dir), entryName).fsPath;
       const newPath = Utils.joinPath(vscode.Uri.file(relativePath), entryName).fsPath;
+      const pathDepth = newPath.split('/').length;
+
       const validSubfolderFile =
-        newPath.split('/').length > 1 &&
+        pathDepth > 2 &&
         newPath.endsWith(".json") &&
         !excludedFiles.some((file) => newPath.includes(file));
       const fileInSubfolder = validSubfolderFile;
 
       if (entryType === vscode.FileType.Directory) {
-        collectFiles(fullPath, newPath);
+        await collectFiles(fullPath, newPath);
       } else if (fileInSubfolder) {
         const shortenedPath =
-          newPath.split('/').length > 2
+          pathDepth > 2
             ? newPath.split('/').slice(-2).join('/')
             : newPath;
 
@@ -151,7 +153,7 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
       }
     }
   };
-  collectFiles(directory);
+  await collectFiles(directory);
   return files;
 }
 

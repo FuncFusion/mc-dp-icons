@@ -1,5 +1,5 @@
 import * as vscode from "vscode";
-import * as DynamicIcons from "./dynamic_icons/main";
+import * as DynamicIcons from "./dynamicIcons/main";
 
 export function activate(context: vscode.ExtensionContext) {
   DynamicIcons.setExtensionUri(context.extensionUri);

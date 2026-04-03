@@ -162,7 +162,7 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
 }
 
 export function warnAboutTooManyFiles() {
-  const warningMessage = `Too many files in subsubfolders (Over 2000). Subsubfolder icons feature might not work properly. Would you like to disable this feature?`;
+  const warningMessage = `Too many files in subsubfolders (Over 2000). Subfolder icons feature might not work properly. Would you like to disable this feature?`;
 
   vscode.window
     .showWarningMessage(

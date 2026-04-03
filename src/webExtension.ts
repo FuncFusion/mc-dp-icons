@@ -1,5 +1,5 @@
 import * as vscode from 'vscode';
-import { workspaceDetection } from './dynamic_icons/main';
+import { workspaceDetection } from './dynamicIcons/main';
 
 export function activate(context: vscode.ExtensionContext) {
   

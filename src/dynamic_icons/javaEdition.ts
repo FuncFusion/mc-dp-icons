@@ -8,6 +8,7 @@ import {
   findPackMcmeta,
   getReferencesFromFunctionTags,
   getPartialMatches,
+  normalizePath,
 } from "./main";
 import { workspace } from "vscode";
 import { Utils } from 'vscode-uri';
@@ -192,7 +193,7 @@ async function setNamespaceIcons() {
   let namespacePaths: string[] = await getNamespacePaths() || [];
 
   const namespaceNames = namespacePaths.map((fullPath) => {
-    const pathSegments = fullPath.split('/');
+    const pathSegments = normalizePath(fullPath).split('/');
     return pathSegments.slice(-2).join('/');
   })
 
@@ -271,7 +272,7 @@ async function getOverlayPaths(): Promise<string[]> {
         const hasAssets = await pathExists(Utils.joinPath(vscode.Uri.file(subDirPath), "assets").fsPath);
 
         if (hasData !== hasAssets) {
-          const pathSegments = subDirPath.split('/');
+          const pathSegments = normalizePath(subDirPath).split('/');
           const validPath = pathSegments.slice(-2).join('/');
           validOverlayPaths.push(validPath);
         }

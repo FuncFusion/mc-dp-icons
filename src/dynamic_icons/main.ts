@@ -6,6 +6,10 @@ import { Utils } from 'vscode-uri';
 
 const fs = workspace.fs;
 
+export function normalizePath(path: string): string {
+  return path.replace(/\\/g, "/");
+}
+
 export let extensionUri: vscode.Uri;
 
 export function setExtensionUri(uri: vscode.Uri) {
@@ -132,7 +136,7 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
       if (entryName.startsWith('.') || entryName == 'node_modules') continue;
 
       const fullPath = Utils.joinPath(vscode.Uri.file(dir), entryName).fsPath;
-      const newPath = Utils.joinPath(vscode.Uri.file(relativePath), entryName).fsPath;
+      const newPath = normalizePath(Utils.joinPath(vscode.Uri.file(relativePath), entryName).fsPath);
       const pathDepth = newPath.split('/').length;
 
       const validSubfolderFile =
@@ -198,9 +202,8 @@ export async function getReferencesFromFunctionTags(namespace: string, functionT
 
     for (const functionID of functionTag.values) {
       const functionPath: string = "function/" + functionID.split(":")[1];
-      const shortenedPath = functionPath.split('/').slice(-2).join('/');
-      const forwardSlashPath = shortenedPath.replace(/\\/g, "/");
-      functionReferences.push(`${forwardSlashPath}.mcfunction`);
+      const shortenedPath = normalizePath(functionPath).split('/').slice(-2).join('/');
+      functionReferences.push(`${shortenedPath}.mcfunction`);
     }
   }
 
@@ -216,7 +219,7 @@ export async function getPartialMatches(customNames: string[]): Promise<string[]
   )).flat();
 
   const fileNames: string[] = matchedFunctions.map((matchedFunction: vscode.Uri) => {
-    return matchedFunction.fsPath.split('/').pop() || '';
+    return normalizePath(matchedFunction.fsPath).split('/').pop() || '';
   });
 
   return fileNames

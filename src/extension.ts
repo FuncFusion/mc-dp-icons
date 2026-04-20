@@ -34,13 +34,13 @@ export function activate(context: vscode.ExtensionContext) {
       runUpdates();
     }),
     vscode.workspace.onDidDeleteFiles((event) => {
-      handleFileChange(event.files[0].fsPath.split('/').pop() || '');
+      handleFileChange(event.files[0].fsPath.replace(/\\/g, "/").split('/').pop() || '');
     }),
     vscode.workspace.onDidCreateFiles((event) => {
-      handleFileChange(event.files[0].fsPath.split('/').pop() || '');
+      handleFileChange(event.files[0].fsPath.replace(/\\/g, "/").split('/').pop() || '');
     }),
     vscode.workspace.onDidSaveTextDocument((document) => {
-      handleFileChange(document.fileName.split('/').pop() || '');
+      handleFileChange(document.fileName.replace(/\\/g, "/").split('/').pop() || '');
     }),
     vscode.workspace.onDidChangeConfiguration(() => {
       runUpdates();

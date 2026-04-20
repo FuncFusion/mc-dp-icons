@@ -218,9 +218,9 @@
     "@vscode/test-cli": "^0.0.4",
     "@vscode/test-electron": "^2.5.2",
     "@vscode/test-web": "^0.0.63",
+    "cross-env": "^10.1.0",
     "esbuild": "^0.24.0",
     "eslint": "^8.57.1",
     "typescript": "^5.9.3"
-  },
-  "dependencies": {}
+  }
 }

@@ -202,7 +202,7 @@
     "vscode:prepublish": "npm run package",
     "build": "node esbuild.mjs",
     "build-dev": "node esbuild.mjs --watch",
-    "package": "NODE_ENV=production node esbuild.mjs",
+    "package": "cross-env NODE_ENV=production node esbuild.mjs",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",

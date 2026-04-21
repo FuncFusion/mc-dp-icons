@@ -55,6 +55,7 @@ export async function workspaceDetection() {
   const userDefaultTheme = iconThemeInspection?.globalValue;
 
   await changeConfigWorkspace("workbench.iconTheme", userDefaultTheme);
+  console.log("set to default theme ", userDefaultTheme)
 }
 
 async function resetIconDefinitions() {
@@ -87,31 +88,30 @@ async function applyFolderArrowsSettings() {
   }
 }
 
-/**
- * Sets a nested key's value within the theme configuration.
- * @param keys - A string or array of strings representing the key path (e.g., "key" or ["key1", "key2"]).
- * @param value - The value to set at the specified key path.
- */
+let lock = Promise.resolve();
+
 export async function setThemeValue(key: string, value: any) {
-  try {
-    const data = await fs.readFile(vscode.Uri.file(themePath));
-    const content = new TextDecoder().decode(data);
-    const theme = JSON.parse(content);
+  lock = lock.then(async () => {
+    try {
+      const data = await fs.readFile(vscode.Uri.file(themePath));
+      const content = new TextDecoder().decode(data);
+      const theme = JSON.parse(content || "{}");
 
-    const isObject = (val: any) => val !== null && typeof val === "object";
+      const isObject = (val: any) => val !== null && typeof val === "object";
 
-    if (isObject(value) && isObject(theme[key])) {
-      theme[key] = { ...value, ...theme[key] };
-    } else {
-      theme[key] = value;
+      if (isObject(value) && isObject(theme[key])) {
+        theme[key] = { ...value, ...theme[key] };
+      } else {
+        theme[key] = value;
+      }
+
+      const jsonString = JSON.stringify(theme, null, 2);
+      await fs.writeFile(vscode.Uri.file(themePath), new TextEncoder().encode(jsonString));
+    } catch (error) {
+      console.error(`Error: ${error}`);
     }
-
-    const jsonString = JSON.stringify(theme, null, 2);
-    const encodedContent = new TextEncoder().encode(jsonString);
-    await fs.writeFile(vscode.Uri.file(themePath), encodedContent);
-  } catch (error) {
-    console.error(`Error setting theme value: ${error}`);
-  }
+  });
+  return lock;
 }
 
 /**
@@ -281,6 +281,7 @@ async function isMinecraftWorkspace(): Promise<boolean> {
   for (const pattern of easyPatterns) {
     const files = await workspace.findFiles(pattern, "**/node_modules/**");
     if (files.length > 0) {
+      console.log("found ", files.toString)
       return true;
     }
   }

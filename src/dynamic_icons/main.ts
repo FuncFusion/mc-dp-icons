@@ -267,8 +267,20 @@ export async function pathExists(filePath: string): Promise<boolean> {
   return await uriExists(vscode.Uri.file(filePath));
 }
 
-export async function findPackMcmeta(): Promise<Uri[]> {
-    return await workspace.findFiles('**/pack.mcmeta', '**/node_modules/**');
+export async function findRootFiles(): Promise<Uri[]> {
+  const projectRootPatterns = [
+    "**/pack.mcmeta",
+    "**/jmc_config.json",
+    "**/{beet.json,beet.yaml,beet.yml}",
+  ];
+
+  const lists = await Promise.all(
+    projectRootPatterns.map(p => workspace.findFiles(p, "**/node_modules/**"))
+  );
+
+  console.log("saygex: ", lists.flat().toString())
+
+  return lists.flat();
 }
 
 async function isMinecraftWorkspace(): Promise<boolean> {
@@ -281,7 +293,6 @@ async function isMinecraftWorkspace(): Promise<boolean> {
   for (const pattern of easyPatterns) {
     const files = await workspace.findFiles(pattern, "**/node_modules/**");
     if (files.length > 0) {
-      console.log("found ", files.toString)
       return true;
     }
   }

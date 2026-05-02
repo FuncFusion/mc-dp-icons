@@ -5,7 +5,7 @@ import {
   getFilesInDirectory,
   warnAboutTooManyFiles,
   getConfig,
-  findPackMcmeta,
+  findRootFiles,
   getReferencesFromFunctionTags,
   getPartialMatches,
   normalizePath,
@@ -81,8 +81,8 @@ export async function update() {
 }
 
 async function noJavaPacks(): Promise<boolean> {
-  const mcmetaFiles = await findPackMcmeta();
-  if (mcmetaFiles.length > 0) {
+  const rootFiles = await findRootFiles();
+  if (rootFiles.length > 0) {
     return false;
   }
   return true;
@@ -253,8 +253,12 @@ async function setSubFolderIcons() {
  * @returns {Array} of overlay paths
  */
 async function getOverlayPaths(): Promise<string[]> {
-  const mcmetaFiles = await findPackMcmeta()
-  const packPaths = mcmetaFiles.map(p => p.fsPath.replace("pack.mcmeta", ""));
+  const rootFiles = await findRootFiles()
+  const packPaths = rootFiles.map(p => {
+    const normalizedPath = normalizePath(p.fsPath)
+    const lastElementRemoved = normalizedPath.split("/").slice(0, -1).join('/')
+    return lastElementRemoved
+  });
   const validOverlayPaths: string[] = [];
 
   for (const packPath of packPaths) {
@@ -286,8 +290,12 @@ async function getOverlayPaths(): Promise<string[]> {
  * @returns {Array} of namespace paths
  */
 async function getNamespacePaths(): Promise<string[]> {
-  const mcmetaFiles = await findPackMcmeta()
-  const packPaths = mcmetaFiles.map(p => p.fsPath.replace("pack.mcmeta", ""));
+  const rootFiles = await findRootFiles()
+  const packPaths = rootFiles.map(p => {
+    const normalizedPath = normalizePath(p.fsPath)
+    const lastElementRemoved = normalizedPath.split("/").slice(0, -1).join('/')
+    return lastElementRemoved
+  });
 
   if (!packPaths) return [];
 

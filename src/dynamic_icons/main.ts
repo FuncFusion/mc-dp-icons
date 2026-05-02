@@ -270,7 +270,6 @@ export async function pathExists(filePath: string): Promise<boolean> {
 export async function findRootFiles(): Promise<Uri[]> {
   const projectRootPatterns = [
     "**/pack.mcmeta",
-    "**/jmc_config.json",
     "**/{beet.json,beet.yaml,beet.yml}",
   ];
 

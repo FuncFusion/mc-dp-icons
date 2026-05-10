@@ -132,6 +132,9 @@
     "loot_table_folder": {
       "iconPath": "../icons/loot_table_folder.svg"
     },
+    "mcbuild_file": {
+      "iconPath": "../icons/mcbuild_file.svg"
+    },
     "mcfunction_file": {
       "iconPath": "../icons/mcfunction_file.svg"
     },
@@ -186,6 +189,9 @@
     "recipe_folder": {
       "iconPath": "../icons/recipe_folder.svg"
     },
+    "sandstone_file": {
+      "iconPath": "../icons/sandstone_file.svg"
+    },
     "spyglass_file": {
       "iconPath": "../icons/spyglass_file.svg"
     },
@@ -197,6 +203,12 @@
     },
     "structure_folder": {
       "iconPath": "../icons/structure_folder.svg"
+    },
+    "sulfur_cube_archetype_file": {
+      "iconPath": "../icons/sulfur_cube_archetype_file.svg"
+    },
+    "sulfur_cube_archetype_folder": {
+      "iconPath": "../icons/sulfur_cube_archetype_folder.svg"
     },
     "tags_file": {
       "iconPath": "../icons/tags_file.svg"
@@ -431,6 +443,9 @@
     },
     "arduino_file": {
       "iconPath": "../icons/arduino_file.svg"
+    },
+    "aseprite_extension_file": {
+      "iconPath": "../icons/aseprite_extension_file.svg"
     },
     "aseprite_file": {
       "iconPath": "../icons/aseprite_file.svg"
@@ -947,9 +962,9 @@
   "folder": "generic_folder_closed",
   "folderExpanded": "generic_folder",
   "folderNames": {
-    "convert blocks to displays/1.21.5": "overlay_folder_closed",
-    "convert blocks to displays/1.21.6-1.21.8": "overlay_folder_closed",
-    "convert blocks to displays/1.21.9-1.21.11": "overlay_folder_closed",
+    "Convert blocks to block displays/1.21.5": "overlay_folder_closed",
+    "Convert blocks to block displays/1.21.6-1.21.8": "overlay_folder_closed",
+    "Convert blocks to block displays/1.21.9-1.21.11": "overlay_folder_closed",
     "data/blockstate": "namespace_folder_closed",
     "data/btobd": "namespace_folder_closed",
     "data/minecraft": "namespace_folder_closed",
@@ -958,9 +973,9 @@
     "src": "src_folder_closed"
   },
   "folderNamesExpanded": {
-    "convert blocks to displays/1.21.5": "overlay_folder",
-    "convert blocks to displays/1.21.6-1.21.8": "overlay_folder",
-    "convert blocks to displays/1.21.9-1.21.11": "overlay_folder",
+    "Convert blocks to block displays/1.21.5": "overlay_folder",
+    "Convert blocks to block displays/1.21.6-1.21.8": "overlay_folder",
+    "Convert blocks to block displays/1.21.9-1.21.11": "overlay_folder",
     "data/blockstate": "namespace_folder",
     "data/btobd": "namespace_folder",
     "data/minecraft": "namespace_folder",
@@ -1001,6 +1016,7 @@
     "mcdoc": "spyglass_folder",
     "structure": "structure_folder",
     "structures": "structure_folder",
+    "sulfur_cube_archetype": "sulfur_cube_archetype_folder",
     "tags": "tags_folder",
     "test_environment": "test_environment_folder",
     "test_instance": "test_instance_folder",
@@ -1242,6 +1258,8 @@
     "jukebox_song/json": "jukebox_song_file",
     "loot_table/json": "loot_table_file",
     "loot_tables/json": "loot_table_file",
+    "mcb": "mcbuild_file",
+    "mcbt": "mcbuild_file",
     "mcfunction": "mcfunction_file",
     "nbt": "nbt_file",
     "pig_variant/json": "pig_variant_file",
@@ -1252,6 +1270,7 @@
     "mcdoc": "spyglass_file",
     "structure/nbt": "structure_file",
     "structures/nbt": "structure_file",
+    "sulfur_cube_archetype/json": "sulfur_cube_archetype_file",
     "test_environment/json": "test_environment_file",
     "test_instance/json": "test_instance_file",
     "timeline/json": "timeline_file",
@@ -1351,6 +1370,7 @@
     "zip": "archive_file",
     "zst": "archive_file",
     "ino": "arduino_file",
+    "aseprite-extension": "aseprite_extension_file",
     "ase": "aseprite_file",
     "aseprite": "aseprite_file",
     "a51": "assembly_file",
@@ -1849,6 +1869,7 @@
     "sc": "scala_file",
     "scala": "scala_file",
     "gdshader": "shaders_file",
+    "gpl": "shaders_file",
     "ash": "shell_file",
     "awk": "shell_file",
     "bash": "shell_file",
@@ -1959,6 +1980,8 @@
     "wasm": "web_assembly_file",
     "wat": "web_assembly_file",
     "admx": "xml_file",
+    "aseprite-data": "xml_file",
+    "aseprite-keys": "xml_file",
     "filters": "xml_file",
     "ivy": "xml_file",
     "jelly": "xml_file",
@@ -1984,9 +2007,14 @@
     "zon": "zig_file"
   },
   "fileNames": {
-    "test/what.json": "loot_table_file",
+    "enchantment/adaptability.json": "predicate_file",
+    "enchantment/pred.json": "predicate_file",
     "block/raycast_ignore.json": "tags_file",
+    "subfolder/ddd.json": "sulfur_cube_archetype_file",
+    "subfolder/eee.json": "sulfur_cube_archetype_file",
     "function/load.mcfunction": "mcfunction_load_file",
+    "test2/funcccc.mcfunction": "mcfunction_load_file",
+    "test/funct.mcfunction": "mcfunction_load_file",
     "function/tick.mcfunction": "mcfunction_tick_file",
     "beet.json": "beet_file",
     "beet.yaml": "beet_file",
@@ -1994,6 +2022,8 @@
     "function/load.json": "load.json_file",
     "functions/load.json": "load.json_file",
     "pack.mcmeta": "pack.mcmeta_file",
+    "sandstone.config.ts": "sandstone_file",
+    "spyglass.json": "spyglass_file",
     "function/tick.json": "tick.json_file",
     "functions/tick.json": "tick.json_file",
     "atlases/blocks.json": "atlases_file",
@@ -2032,9 +2062,7 @@
     "config.json": "config_file",
     "settings.json": "config_file",
     "webpack.config.cjs": "config_file",
-    "webpack.config.js": "config_file",
     "webpack.config.mjs": "config_file",
-    "webpack.config.ts": "config_file",
     "CONTRIBUTING": "contributing_file",
     "CONTRIBUTING.md": "contributing_file",
     "CONTRIBUTING.txt": "contributing_file",
@@ -2124,5 +2152,5 @@
     "_gvimrc": "vim_file",
     "_vimrc": "vim_file"
   },
-  "hidesExplorerArrows": false
+  "hidesExplorerArrows": true
 }

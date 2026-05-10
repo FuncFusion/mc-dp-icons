@@ -46,6 +46,7 @@ const subfolderIconMap: Record<string, string> = {
   predicates: "predicate_file",
   recipe: "recipe_file",
   recipes: "recipe_file",
+  sulfur_cube_archetype: "sulfur_cube_archetype_file",
   tags: "tags_file",
   test_environment: "test_environment_file",
   test_instance: "test_instance_file",

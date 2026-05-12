@@ -3,11 +3,15 @@ description: Request new icons for file types
 title: "[Icon Request]: "
 labels: ["icon request"]
 body:
-  - type: markdown
+  - type: checkboxes
+    id: guidelines
     attributes:
-      value: |
-        Before creating a new icon request, please search existing issues to make sure a similar request doesn't already exist.
-        If you have multiple related file types, please combine them into one request.
+      label: Contributing guidelines
+      options:
+      - label: I checked that [a similar icon hasn't already been suggested.](https://github.com/FuncFusion/mc-dp-icons/issues?q=is%3Aissue%20label%3A"icon request")
+        required: true
+      - label: I will not manually close this request
+        required: true
 
   - type: dropdown
     id: category

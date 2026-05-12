@@ -8,7 +8,7 @@ body:
     attributes:
       label: Contributing guidelines
       options:
-      - label: I checked that [a similar feature hasn't already been suggested.](https://github.com/FuncFusion/mc-dp-icons/issues?q=is%3Aissue%20label%3A"feature request")
+      - label: I checked that [a similar feature hasn't already been suggested.](https://github.com/FuncFusion/mc-dp-icons/issues?q=is%3Aissue)
         required: true
       - label: I will not manually close this request
         required: true

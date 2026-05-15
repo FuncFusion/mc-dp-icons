@@ -218,6 +218,7 @@
     "package": "cross-env NODE_ENV=production node esbuild.mjs",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
+    "generate:icon-names": "npx tsx scripts/generateIconNames.ts",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "vscode-test"

@@ -4,14 +4,15 @@ import {
   setThemeValue,
   getFilesInDirectory,
   warnAboutTooManyFiles,
-  getConfig,
-  findRootFiles,
+  findPackMcmeta,
   getReferencesFromFunctionTags,
   getPartialMatches,
   normalizePath,
 } from "./main";
 import { workspace } from "vscode";
 import { Utils } from 'vscode-uri';
+import { config } from "../configuration/configManager"
+import { logger } from "../common/logger"
 
 const fs = workspace.fs;
 
@@ -91,7 +92,7 @@ async function noJavaPacks(): Promise<boolean> {
 
 
 export async function updateLoadTickIcons() {
-  const enableDynamicLoadTickChange = getConfig("dynamicFunctionIcons");
+  const enableDynamicLoadTickChange = config.get("dynamicFunctionIcons");
   const fileNamesIconMap: Record<string, string> = {};
   if (enableDynamicLoadTickChange) {
     const loadNames = await getReferencesFromFunctionTags("minecraft", "load");
@@ -106,8 +107,8 @@ export async function updateLoadTickIcons() {
 
     await setThemeValue("fileNames", fileNamesIconMap);
   } else {
-    const customLoadNames: string[] = getConfig("loadFunctionNames");
-    const customTickNames: string[] = getConfig("tickFunctionNames");
+    const customLoadNames: string[] = config.get("loadFunctionNames");
+    const customTickNames: string[] = config.get("tickFunctionNames");
 
     if (!(customLoadNames || customTickNames)) return;
 
@@ -146,9 +147,9 @@ export async function updateLoadTickIcons() {
 }
 
 async function setCrownedFunctions() {
-  let configCrownedFunctions: string[] = getConfig("crownedFunctions");
-  let configCrownedLoadFunctions: string[] = getConfig("crownedLoadFunctions");
-  let configCrownedTickFunctions: string[] = getConfig("crownedTickFunctions");
+  let configCrownedFunctions: string[] = config.get("crownedFunctions");
+  let configCrownedLoadFunctions: string[] = config.get("crownedLoadFunctions");
+  let configCrownedTickFunctions: string[] = config.get("crownedTickFunctions");
 
   const atLeastOneCrownedFunction = (
     configCrownedFunctions.length ||
@@ -187,7 +188,7 @@ async function setCrownedFunctions() {
 }
 
 async function setNamespaceIcons() {
-  const namespaceIcons = getConfig("namespaceIcons");
+  const namespaceIcons = config.get("namespaceIcons");
 
   if (!namespaceIcons) return;
 
@@ -213,7 +214,7 @@ async function setNamespaceIcons() {
 }
 
 async function setOverlayIcons() {
-  const overlayIcons = getConfig("overlayIcons");
+  const overlayIcons = config.get("overlayIcons");
 
   if (!overlayIcons) return;
 
@@ -236,7 +237,7 @@ async function setOverlayIcons() {
 
 
 async function setSubFolderIcons() {
-  const subfolderIconEnabled = getConfig("subfolderIcons");
+  const subfolderIconEnabled = config.get("subfolderIcons");
   if (!subfolderIconEnabled) return;
   const subfolderToFilesMap = (await subfolderReference()) || {};
   const subfolderFilesToIconsMap: Record<string, string> = {};
@@ -320,7 +321,7 @@ async function getNamespacePaths(): Promise<string[]> {
       const dataPaths = await getPaths(dataPath);
       namespacePaths.push(...dataPaths);
     } catch (error) {
-      console.error(`Error reading folder: ${packPath}data`, error);
+      logger.error(error, `reading folder: ${packPath}data`);
     }
   }
 

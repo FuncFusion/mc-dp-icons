@@ -3,13 +3,12 @@ import {
   setThemeValue,
   getFilesInDirectory,
   warnAboutTooManyFiles,
-  getConfig,
   getReferencesFromFunctionTags,
   getPartialMatches,
-  extensionUri,
 } from "./main";
 import { workspace } from "vscode";
 import { Utils } from 'vscode-uri';
+import { config } from "../configuration/configManager"
 
 const fs = workspace.fs;
 
@@ -62,7 +61,7 @@ async function noBedrockPacks(): Promise<boolean> {
 
 
 export async function updateTickIcons() {
-  const enableDynamicTickChange = getConfig("dynamicFunctionIcons");
+  const enableDynamicTickChange = config.get("dynamicFunctionIcons");
   if (enableDynamicTickChange) {
     const tickNames = await getReferencesFromFunctionTags("minecraft", "tick");
     const fileNamesIconMap: Record<string, string> = {};
@@ -71,7 +70,7 @@ export async function updateTickIcons() {
     });
     setThemeValue("fileNames", fileNamesIconMap);
   } else {
-    const customTickNames = getConfig("tickFunctionNames");
+    const customTickNames = config.get("tickFunctionNames");
 
     if (!customTickNames) return;
 
@@ -97,7 +96,7 @@ export async function updateTickIcons() {
 
 
 async function setSubFolderIcons() {
-  const subfolderIconEnabled = getConfig("subfolderIcons");
+  const subfolderIconEnabled = config.get("subfolderIcons");
   if (!subfolderIconEnabled) return;
   const subfolderToFilesMap = (await subfolderReference()) || {};
   const subfolderFilesToIconsMap: Record<string, string> = {};

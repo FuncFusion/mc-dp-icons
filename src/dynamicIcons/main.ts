@@ -3,6 +3,8 @@ import * as bedrock from "./bedrockEdition";
 import * as java from "./javaEdition";
 import { Uri, workspace } from "vscode";
 import { Utils } from 'vscode-uri';
+import { config } from "../configuration/configManager"
+import { logger } from "../common/logger"
 
 const fs = workspace.fs;
 
@@ -34,7 +36,7 @@ export async function update() {
 }
 
 export async function workspaceDetection() {
-  const isDetectionEnabled = getConfig("workspaceDetection");
+  const isDetectionEnabled = config.get("workspaceDetection");
   if (!isDetectionEnabled) return;
 
   const isMinecraft = await isMinecraftWorkspace();
@@ -44,7 +46,7 @@ export async function workspaceDetection() {
     return;
   }
 
-  const fallbackIconTheme = getConfig("fallbackIconTheme");
+  const fallbackIconTheme = config.get("fallbackIconTheme");
   if (fallbackIconTheme) {
     await changeConfigWorkspace("workbench.iconTheme", fallbackIconTheme);
     return;
@@ -59,7 +61,7 @@ export async function workspaceDetection() {
 }
 
 async function resetIconDefinitions() {
-  const christmasIcons = getConfig("christmasIcons");
+  const christmasIcons = config.get("christmasIcons");
   const shouldUseChristmasIcons = () => {
     if (christmasIcons === "Always") {
       return true;
@@ -80,7 +82,7 @@ async function resetIconDefinitions() {
 }
 
 async function applyFolderArrowsSettings() {
-  const confHideFolderArrows = getConfig("hideFolderArrows");
+  const confHideFolderArrows = config.get("hideFolderArrows");
   if (confHideFolderArrows) {
     await setThemeValue("hidesExplorerArrows", true);
   } else {
@@ -110,8 +112,13 @@ export async function setThemeValue(key: string, value: any) {
     } catch (error) {
       console.error(`Error: ${error}`);
     }
-  });
-  return lock;
+
+    const jsonString = JSON.stringify(theme, null, 2);
+    const encodedContent = new TextEncoder().encode(jsonString);
+    await fs.writeFile(vscode.Uri.file(themePath), encodedContent);
+  } catch (error) {
+    logger.error(error, "setting theme value");
+  }
 }
 
 /**
@@ -223,30 +230,6 @@ export async function getPartialMatches(customNames: string[]): Promise<string[]
   });
 
   return fileNames
-}
-
-export function getConfig(name: string): any {
-  return workspace.getConfiguration().get(`mc-dp-icons.${name}`);
-}
-
-async function changeConfigGlobal(settingName: string, value: any) {
-  const config = workspace.getConfiguration();
-
-  await config.update(
-    settingName,
-    value,
-    vscode.ConfigurationTarget.Global
-  );
-}
-
-async function changeConfigWorkspace(settingName: string, value: any) {
-  const config = workspace.getConfiguration();
-
-  await config.update(
-    settingName,
-    value,
-    vscode.ConfigurationTarget.Workspace
-  );
 }
 
 export function isChristmas() {

@@ -189,6 +189,19 @@
             "markdownDescription": "If enabled, hides the expand/collapse arrows next to folders in the VS Code Explorer.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
           }
         }
+      },
+      {
+        "title": "Debug",
+        "order": 5,
+        "properties": {
+          "mc-dp-icons.debug": {
+            "type": "boolean",
+            "order": 0,
+            "title": "Enable debug logging",
+            "default": false,
+            "markdownDescription": "If enabled, verbose debug messages are printed to the console."
+          }
+        }
       }
     ],
     "commands": [

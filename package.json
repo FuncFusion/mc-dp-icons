@@ -41,8 +41,6 @@
   },
   "homepage": "https://github.com/FuncFusion/mc-dp-icons",
   "activationEvents": [
-    "onStartup",
-    "onWorkspaceFolderOpened",
     "onStartupFinished"
   ],
   "main": "./out/extension.js",

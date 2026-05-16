@@ -1,6 +1,5 @@
 import * as vscode from "vscode";
 import {
-  setThemeValue,
   getFilesInDirectory,
   warnAboutTooManyFiles,
   getReferencesFromFunctionTags,
@@ -46,9 +45,22 @@ const subfolderIconMap: Record<string, string> = {
 
 
 export async function update() {
-  if (await noBedrockPacks()) return;
-  await updateTickIcons();
-  await setSubFolderIcons();
+  if (await noBedrockPacks()) {
+    return {
+      fileNames: {},
+    }
+  }
+
+  const tickFileNames = await updateTickIcons()
+  const subFolderFileNames = await setSubFolderIcons()
+
+  const fileNames: Record<string, string> = {}
+  Object.assign(fileNames, tickFileNames)
+  Object.assign(fileNames, subFolderFileNames)
+
+  return {
+    fileNames: fileNames,
+  }
 }
 
 async function noBedrockPacks(): Promise<boolean> {
@@ -60,7 +72,7 @@ async function noBedrockPacks(): Promise<boolean> {
 }
 
 
-export async function updateTickIcons() {
+export async function updateTickIcons(): Promise<Record<string, string>> {
   const enableDynamicTickChange = config.get("dynamicFunctionIcons");
   if (enableDynamicTickChange) {
     const tickNames = await getReferencesFromFunctionTags("minecraft", "tick");
@@ -68,11 +80,13 @@ export async function updateTickIcons() {
     tickNames?.forEach((tickName: string) => {
       fileNamesIconMap[tickName] = "mcfunction_tick_file";
     });
-    setThemeValue("fileNames", fileNamesIconMap);
+    return fileNamesIconMap;
   } else {
     const customTickNames = config.get("tickFunctionNames");
 
-    if (!customTickNames) return;
+    if (!customTickNames) {
+      return {};
+    }
 
     const usesPartialMatch = (array: string[])=>{return array.some(item => item.includes("*"))}
 
@@ -90,14 +104,16 @@ export async function updateTickIcons() {
     tickFunctions?.forEach((tickName: string) => {
       fileNamesIconMap[tickName] = "mcfunction_tick_file";
     });
-    setThemeValue("fileNames", fileNamesIconMap);
+    return fileNamesIconMap;
   }
 }
 
 
-async function setSubFolderIcons() {
+async function setSubFolderIcons(): Promise<Record<string, string>> {
   const subfolderIconEnabled = config.get("subfolderIcons");
-  if (!subfolderIconEnabled) return;
+  if (!subfolderIconEnabled) {
+    return {};
+  }
   const subfolderToFilesMap = (await subfolderReference()) || {};
   const subfolderFilesToIconsMap: Record<string, string> = {};
 
@@ -107,7 +123,7 @@ async function setSubFolderIcons() {
       subfolderFilesToIconsMap[fileName] = fileIcon;
     });
   });
-  setThemeValue("fileNames", subfolderFilesToIconsMap);
+  return subfolderFilesToIconsMap;
 }
 
 /**

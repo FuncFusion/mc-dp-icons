@@ -1,4 +1,4 @@
-import { workspace } from "vscode"
+import { workspace, ConfigurationTarget } from "vscode"
 
 type ChristmasOption = 'Only on Christmas' | 'Always' | 'Never'
 
@@ -26,6 +26,14 @@ class ConfigManager {
 
   get<Key extends ConfigKey>(name: Key): (typeof defaults)[Key] {
     return this.config.get<(typeof defaults)[Key]>(`mc-dp-icons.${name}`, defaults[name])
+  }
+
+  changeGlobal(key: string, value: any): void {
+    this.config.update(key, value, ConfigurationTarget.Global)
+  }
+
+  changeWorkspace(key: string, value: any): void {
+    this.config.update(key, value, ConfigurationTarget.Workspace)
   }
 }
 

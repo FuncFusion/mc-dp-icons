@@ -4,7 +4,8 @@ import * as java from "./javaEdition";
 import { Uri, workspace } from "vscode";
 import { Utils } from 'vscode-uri';
 import { config } from "../configuration/configManager"
-import { logger } from "../common/logger"
+import { baseTheme } from "../data/baseTheme"
+import { ThemeBuilder } from "../theme/themeBuilder"
 
 const fs = workspace.fs;
 
@@ -18,21 +19,26 @@ export function setExtensionUri(uri: vscode.Uri) {
   extensionUri = uri;
 }
 
-let themePath = '';
-let christmasThemePath = '';
-let defaultThemePath = '';
-
-
 export async function update() {
-  themePath = Utils.joinPath(extensionUri, "file_icon_themes", "active.json").fsPath;
-  christmasThemePath = Utils.joinPath(extensionUri, "file_icon_themes", "xmas.json").fsPath;
-  defaultThemePath = Utils.joinPath(extensionUri, "file_icon_themes", "default.json").fsPath;
-  
-  await resetIconDefinitions();
   await workspaceDetection();
-  applyFolderArrowsSettings();
-  java.update();
-  bedrock.update();
+
+  const activePath = Utils.joinPath(extensionUri, "icon_theme", "active.json").fsPath;
+
+  const builder = new ThemeBuilder(baseTheme)
+
+  const javaResult = await java.update()
+  builder.addFileNames(javaResult.fileNames)
+  builder.addFolders(javaResult.folderNamesExpanded)
+
+  const bedrockResult = await bedrock.update()
+  builder.addFileNames(bedrockResult.fileNames)
+
+  const confHideFolderArrows = config.get("hideFolderArrows")
+  if (confHideFolderArrows) {
+    builder.setHidesExplorerArrows(true)
+  }
+
+  builder.write(activePath)
 }
 
 export async function workspaceDetection() {
@@ -42,13 +48,13 @@ export async function workspaceDetection() {
   const isMinecraft = await isMinecraftWorkspace();
 
   if (isMinecraft) {
-    await changeConfigWorkspace("workbench.iconTheme", "mc-dp-icons");
+    config.changeWorkspace("workbench.iconTheme", "mc-dp-icons");
     return;
   }
 
   const fallbackIconTheme = config.get("fallbackIconTheme");
   if (fallbackIconTheme) {
-    await changeConfigWorkspace("workbench.iconTheme", fallbackIconTheme);
+    config.changeWorkspace("workbench.iconTheme", fallbackIconTheme);
     return;
   }
 
@@ -56,69 +62,7 @@ export async function workspaceDetection() {
   const iconThemeInspection = workbenchConfig.inspect<string>("iconTheme");
   const userDefaultTheme = iconThemeInspection?.globalValue;
 
-  await changeConfigWorkspace("workbench.iconTheme", userDefaultTheme);
-  console.log("set to default theme ", userDefaultTheme)
-}
-
-async function resetIconDefinitions() {
-  const christmasIcons = config.get("christmasIcons");
-  const shouldUseChristmasIcons = () => {
-    if (christmasIcons === "Always") {
-      return true;
-    } else if (christmasIcons === "Only on Christmas") {
-      return isChristmas();
-    } else if (christmasIcons === "Never") {
-      return false;
-    }
-  };
-
-  if (!shouldUseChristmasIcons()) {
-    const defaultData = await fs.readFile(vscode.Uri.file(defaultThemePath));
-    await fs.writeFile(vscode.Uri.file(themePath), defaultData);
-  } else {
-    const christmasData = await fs.readFile(vscode.Uri.file(christmasThemePath));
-    await fs.writeFile(vscode.Uri.file(themePath), christmasData);
-  }
-}
-
-async function applyFolderArrowsSettings() {
-  const confHideFolderArrows = config.get("hideFolderArrows");
-  if (confHideFolderArrows) {
-    await setThemeValue("hidesExplorerArrows", true);
-  } else {
-    await setThemeValue("hidesExplorerArrows", false);
-  }
-}
-
-let lock = Promise.resolve();
-
-export async function setThemeValue(key: string, value: any) {
-  lock = lock.then(async () => {
-    try {
-      const data = await fs.readFile(vscode.Uri.file(themePath));
-      const content = new TextDecoder().decode(data);
-      const theme = JSON.parse(content || "{}");
-
-      const isObject = (val: any) => val !== null && typeof val === "object";
-
-      if (isObject(value) && isObject(theme[key])) {
-        theme[key] = { ...value, ...theme[key] };
-      } else {
-        theme[key] = value;
-      }
-
-      const jsonString = JSON.stringify(theme, null, 2);
-      await fs.writeFile(vscode.Uri.file(themePath), new TextEncoder().encode(jsonString));
-    } catch (error) {
-      console.error(`Error: ${error}`);
-    }
-
-    const jsonString = JSON.stringify(theme, null, 2);
-    const encodedContent = new TextEncoder().encode(jsonString);
-    await fs.writeFile(vscode.Uri.file(themePath), encodedContent);
-  } catch (error) {
-    logger.error(error, "setting theme value");
-  }
+  config.changeWorkspace("workbench.iconTheme", userDefaultTheme);
 }
 
 /**
@@ -180,9 +124,9 @@ export function warnAboutTooManyFiles() {
     )
     .then((selection) => {
       if (selection === "Disable Globally") {
-        changeConfigGlobal("subfolderIcons", false);
+        config.changeGlobal("mc-dp-icons.subfolderIcons", false);
       } else if (selection === "Disable in Workspace") {
-        changeConfigWorkspace("subfolderIcons", false);
+        config.changeWorkspace("mc-dp-icons.subfolderIcons", false);
       }
     });
 }

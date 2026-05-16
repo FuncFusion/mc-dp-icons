@@ -1,7 +1,6 @@
 import * as vscode from "vscode";
 import {
   pathExists,
-  setThemeValue,
   getFilesInDirectory,
   warnAboutTooManyFiles,
   findPackMcmeta,
@@ -74,12 +73,37 @@ const subfolderIconMap: Record<string, string> = {
 
 
 export async function update() {
-  if (await noJavaPacks()) return;
-  await setCrownedFunctions();
-  await updateLoadTickIcons();
-  await setNamespaceIcons();
-  await setOverlayIcons();
-  await setSubFolderIcons();
+  if (await noJavaPacks()) {
+    return {
+      fileNames: {},
+      folderNames: {},
+      folderNamesExpanded: {},
+    }
+  }
+
+  const crownedFileNames = await setCrownedFunctions()
+  const loadTickFileNames = await updateLoadTickIcons()
+  const namespaceResult = await setNamespaceIcons()
+  const overlayResult = await setOverlayIcons()
+  const subFolderFileNames = await setSubFolderIcons()
+
+  const fileNames: Record<string, string> = {}
+  Object.assign(fileNames, crownedFileNames)
+  Object.assign(fileNames, loadTickFileNames)
+  Object.assign(fileNames, subFolderFileNames)
+
+  const folderNames: Record<string, string> = {}
+  const folderNamesExpanded: Record<string, string> = {}
+  Object.assign(folderNames, namespaceResult.folderNames)
+  Object.assign(folderNamesExpanded, namespaceResult.folderNamesExpanded)
+  Object.assign(folderNames, overlayResult.folderNames)
+  Object.assign(folderNamesExpanded, overlayResult.folderNamesExpanded)
+
+  return {
+    fileNames: fileNames,
+    folderNames: folderNames,
+    folderNamesExpanded: folderNamesExpanded,
+  }
 }
 
 async function noJavaPacks(): Promise<boolean> {
@@ -91,7 +115,7 @@ async function noJavaPacks(): Promise<boolean> {
 }
 
 
-export async function updateLoadTickIcons() {
+export async function updateLoadTickIcons(): Promise<Record<string, string>> {
   const enableDynamicLoadTickChange = config.get("dynamicFunctionIcons");
   const fileNamesIconMap: Record<string, string> = {};
   if (enableDynamicLoadTickChange) {
@@ -104,13 +128,13 @@ export async function updateLoadTickIcons() {
     tickNames.forEach((tickName: string) => {
       fileNamesIconMap[tickName] = "mcfunction_tick_file";
     });
-
-    await setThemeValue("fileNames", fileNamesIconMap);
   } else {
     const customLoadNames: string[] = config.get("loadFunctionNames");
     const customTickNames: string[] = config.get("tickFunctionNames");
 
-    if (!(customLoadNames || customTickNames)) return;
+    if (!(customLoadNames || customTickNames)) {
+      return fileNamesIconMap;
+    }
 
     const hasCommonName = customLoadNames.some((item: string) =>
       customTickNames.includes(item),
@@ -120,7 +144,7 @@ export async function updateLoadTickIcons() {
       vscode.window.showWarningMessage(
         "Naming Conflict: Tick and Load functions must be unique",
       );
-      return;
+      return fileNamesIconMap;
     }
 
     const usesPartialMatch = (array: string[])=>{return array.some(item => item.includes("*"))}
@@ -141,12 +165,11 @@ export async function updateLoadTickIcons() {
     tickFunctions?.forEach((tickName: string) => {
       fileNamesIconMap[tickName] = "mcfunction_tick_file";
     });
-    await setThemeValue("fileNames", fileNamesIconMap);
   }
-  return
+  return fileNamesIconMap;
 }
 
-async function setCrownedFunctions() {
+async function setCrownedFunctions(): Promise<Record<string, string>> {
   let configCrownedFunctions: string[] = config.get("crownedFunctions");
   let configCrownedLoadFunctions: string[] = config.get("crownedLoadFunctions");
   let configCrownedTickFunctions: string[] = config.get("crownedTickFunctions");
@@ -157,7 +180,9 @@ async function setCrownedFunctions() {
     configCrownedLoadFunctions.length
   )
 
-  if (!atLeastOneCrownedFunction) return;
+  if (!atLeastOneCrownedFunction) {
+    return {};
+  }
 
   const usesPartialMatch = (array: string[])=>{return array.some(item => item.includes("*"))}
 
@@ -184,13 +209,21 @@ async function setCrownedFunctions() {
     fileNamesIconMap[crownedTickFunction] = "mcfunction_tick_file_crowned";
   });
 
-  await setThemeValue("fileNames", fileNamesIconMap);
+  return fileNamesIconMap;
 }
 
-async function setNamespaceIcons() {
+async function setNamespaceIcons(): Promise<{
+  folderNames: Record<string, string>
+  folderNamesExpanded: Record<string, string>
+}> {
   const namespaceIcons = config.get("namespaceIcons");
 
-  if (!namespaceIcons) return;
+  if (!namespaceIcons) {
+    return {
+      folderNames: {},
+      folderNamesExpanded: {},
+    };
+  }
 
   let namespacePaths: string[] = await getNamespacePaths() || [];
 
@@ -209,14 +242,25 @@ async function setNamespaceIcons() {
     folderNamesIconsMap[namespace] = namespaceIcon;
     folderNamesExpandedIconsMap[namespace] = namespaceIconExpanded;
   });
-  await setThemeValue("folderNames", folderNamesIconsMap);
-  await setThemeValue("folderNamesExpanded", folderNamesExpandedIconsMap);
+
+  return {
+    folderNames: folderNamesIconsMap,
+    folderNamesExpanded: folderNamesExpandedIconsMap,
+  };
 }
 
-async function setOverlayIcons() {
+async function setOverlayIcons(): Promise<{
+  folderNames: Record<string, string>
+  folderNamesExpanded: Record<string, string>
+}> {
   const overlayIcons = config.get("overlayIcons");
 
-  if (!overlayIcons) return;
+  if (!overlayIcons) {
+    return {
+      folderNames: {},
+      folderNamesExpanded: {},
+    };
+  }
 
   const overlayPaths: string[] = await getOverlayPaths() || [];
 
@@ -231,14 +275,18 @@ async function setOverlayIcons() {
     folderNamesExpandedIconsMap[overlayPath] = overlayIconExpanded;
   });
 
-  await setThemeValue("folderNames", folderNamesIconsMap);
-  await setThemeValue("folderNamesExpanded", folderNamesExpandedIconsMap);
+  return {
+    folderNames: folderNamesIconsMap,
+    folderNamesExpanded: folderNamesExpandedIconsMap,
+  };
 }
 
 
-async function setSubFolderIcons() {
+async function setSubFolderIcons(): Promise<Record<string, string>> {
   const subfolderIconEnabled = config.get("subfolderIcons");
-  if (!subfolderIconEnabled) return;
+  if (!subfolderIconEnabled) {
+    return {};
+  }
   const subfolderToFilesMap = (await subfolderReference()) || {};
   const subfolderFilesToIconsMap: Record<string, string> = {};
 
@@ -248,7 +296,7 @@ async function setSubFolderIcons() {
       subfolderFilesToIconsMap[fileName] = fileIcon;
     });
   });
-  await setThemeValue("fileNames", subfolderFilesToIconsMap);
+  return subfolderFilesToIconsMap;
 }
 
 /**

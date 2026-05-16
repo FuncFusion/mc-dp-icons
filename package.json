@@ -52,7 +52,7 @@
       {
         "id": "mc-dp-icons",
         "label": "Datapack Icons Theme",
-        "path": "./file_icon_themes/active.json",
+        "path": "./icon_theme/active.json",
         "_watch": true
       }
     ],
@@ -218,8 +218,8 @@
     "package": "cross-env NODE_ENV=production node esbuild.mjs",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "generate:icon-names": "npx tsx scripts/generateIconNames.ts",
-    "generate:base-theme": "npx tsx scripts/generateBaseTheme.ts",
+    "generate:icon-names": "npx tsx src/scripts/generateIconNames.ts",
+    "generate:base-theme": "npx tsx src/scripts/generateBaseTheme.ts",
     "generate": "npm run generate:icon-names && npm run generate:base-theme",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",

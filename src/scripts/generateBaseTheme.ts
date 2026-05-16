@@ -1,11 +1,11 @@
 import { mkdirSync, writeFileSync } from "fs"
 import { dirname, resolve } from "path"
-import { icons } from "../src/data/icons"
-import type { IconDefinition } from "../src/data/icons"
-import type { ThemeSchema } from "../src/theme/types"
+import { icons } from "../data/icons"
+import type { IconDefinition } from "../data/icons"
+import type { ThemeSchema } from "../theme/types"
 
 function resolveIconPath(iconName: string): string {
-  return `./icons/${iconName}.svg`
+  return `../icons/${iconName}.svg`
 }
 
 function isFileIcon(iconName: string): boolean {
@@ -122,6 +122,7 @@ function buildBaseSchema(
     fileNames: fileAssociations.fileNames,
     folderNames: folderAssociations.folderNames,
     folderNamesExpanded: folderAssociations.folderNamesExpanded,
+    hidesExplorerArrows: false,
   }
 }
 
@@ -135,7 +136,7 @@ function writeOutput(
   const serialized = JSON.stringify(schema, null, 2)
   const content =
     "// GENERATED — do not edit manually\n" +
-    "// Run: npx tsx scripts/generateBaseTheme.ts\n" +
+    "// Run: npx tsx src/scripts/generateBaseTheme.ts\n" +
     `import type { ThemeSchema } from "../theme/types"\n` +
     "\n" +
     `export const baseTheme: ThemeSchema = ${serialized}\n`
@@ -143,7 +144,7 @@ function writeOutput(
   writeFileSync(outputFilePath, content)
 }
 
-const outputFilePath = resolve(__dirname, "..", "src", "data", "baseTheme.ts")
+const outputFilePath = resolve(__dirname, "..", "..", "src", "data", "baseTheme.ts")
 const schema = buildBaseSchema(icons)
 writeOutput(schema, outputFilePath)
 console.log(`Generated base theme with ${Object.keys(schema.iconDefinitions).length} icons → ${outputFilePath}`)

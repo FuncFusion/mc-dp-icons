@@ -1,7 +1,7 @@
 import { readdirSync, writeFileSync } from "fs"
 import { resolve } from "path"
 
-const iconsDir = resolve(__dirname, "..", "icons")
+const iconsDir = resolve(__dirname, "..", "..", "icons")
 const names = readdirSync(iconsDir)
   .filter((f) => {
     if (!f.endsWith(".svg")) return false
@@ -12,7 +12,7 @@ const names = readdirSync(iconsDir)
   .sort()
 
 const output = `// GENERATED — do not edit manually
-// Run: npx tsx scripts/generateIconNames.ts
+// Run: npx tsx src/scripts/generateIconNames.ts
 
 export type IconName = ${names.map((n) => `"${n}"`).join(" | ")}
 
@@ -21,6 +21,6 @@ export const iconNames: IconName[] = [
 ]
 `
 
-const outPath = resolve(__dirname, "..", "src", "data", "iconNames.ts")
+const outPath = resolve(__dirname, "..", "..", "src", "data", "iconNames.ts")
 writeFileSync(outPath, output)
 console.log(`Generated ${names.length} icon names → src/data/iconNames.ts`)

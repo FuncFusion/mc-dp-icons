@@ -5,7 +5,9 @@ dist/
 .vscode-test-web/
 out/
 src/data/baseTheme.ts
-src/data/iconNames.ts.ts
+src/data/iconNames.ts
 
 todo.md
+src/scripts/*.js
+src/scripts/*.js.map
 *.vsix

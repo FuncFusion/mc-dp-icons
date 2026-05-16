@@ -1,9 +1,11 @@
-node_modules
+node_modules/
 dist/
 .vscode/
 .vscode-test/
 .vscode-test-web/
-*.vsix
-out
+out/
+src/data/baseTheme.ts
+src/data/iconNames.ts.ts
+
 todo.md
-file_icon_themes/*.py
+*.vsix

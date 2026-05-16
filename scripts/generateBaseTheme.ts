@@ -135,7 +135,7 @@ function writeOutput(
   const serialized = JSON.stringify(schema, null, 2)
   const content =
     "// GENERATED — do not edit manually\n" +
-    "// Run: bun run generate:base-theme\n" +
+    "// Run: npx tsx scripts/generateBaseTheme.ts\n" +
     `import type { ThemeSchema } from "../theme/types"\n` +
     "\n" +
     `export const baseTheme: ThemeSchema = ${serialized}\n`

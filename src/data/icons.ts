@@ -447,6 +447,15 @@ export const icons: IconDefinition[] = [
     extensions: ["gml", "yy", "yymp", "yyp", "yyz"],
   },
   {
+    name: "generic_file",
+  },
+  {
+    name: "generic_folder",
+  },
+  {
+    name: "generic_folder_closed",
+  },
+  {
     name: "git_file",
     extensions: ["git"],
     filenames: [".gitattributes", ".gitmodules"],
@@ -713,6 +722,21 @@ export const icons: IconDefinition[] = [
     extensions: ["mcfunction"],
   },
   {
+    name: "mcfunction_file_crowned",
+  },
+  {
+    name: "mcfunction_load_file",
+  },
+  {
+    name: "mcfunction_load_file_crowned",
+  },
+  {
+    name: "mcfunction_tick_file",
+  },
+  {
+    name: "mcfunction_tick_file_crowned",
+  },
+  {
     name: "models_file",
     extensions: ["models/json", "3dm", "3ds", "3mf", "blend", "blockymodel", "c4d", "collada", "dxf", "fbx", "glb", "gltf", "iges", "ipt", "ma", "max", "mb", "mesh", "mqo", "obj", "ply", "pmx", "skp", "step", "stl", "stp", "usd", "usda", "usdc", "usdz", "vox", "vrm", "wrl", "x3d"],
   },
@@ -736,6 +760,12 @@ export const icons: IconDefinition[] = [
   {
     name: "moonscript_file",
     extensions: ["moon"],
+  },
+  {
+    name: "namespace_folder",
+  },
+  {
+    name: "namespace_folder_closed",
   },
   {
     name: "nbt_file",
@@ -780,6 +810,12 @@ export const icons: IconDefinition[] = [
   {
     name: "odin_file",
     extensions: ["odin"],
+  },
+  {
+    name: "overlay_folder",
+  },
+  {
+    name: "overlay_folder_closed",
   },
   {
     name: "pack.mcmeta_file",
@@ -999,6 +1035,9 @@ export const icons: IconDefinition[] = [
   {
     name: "swift_file",
     extensions: ["swift", "swiftdeps", "swiftdoc", "swiftinterface", "swiftmodule", "swiftsourceinfo"],
+  },
+  {
+    name: "tags_file",
   },
   {
     name: "tags_folder",

@@ -6,6 +6,7 @@ dist/
 out/
 src/data/baseTheme.ts
 src/data/iconNames.ts
+icon_theme/active.json
 
 todo.md
 src/scripts/*.js

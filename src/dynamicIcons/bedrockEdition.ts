@@ -3,11 +3,12 @@ import {
   getFilesInDirectory,
   warnAboutTooManyFiles,
   getReferencesFromFunctionTags,
-  getPartialMatches,
-} from "./main";
+  processList,
+} from "./utils";
 import { workspace } from "vscode";
 import { Utils } from 'vscode-uri';
 import { config } from "../configuration/configManager"
+import { logger } from "../common/logger"
 
 const fs = workspace.fs;
 
@@ -46,13 +47,16 @@ const subfolderIconMap: Record<string, string> = {
 
 export async function update() {
   if (await noBedrockPacks()) {
+    logger.debug("Bedrock: no packs found, skipping")
     return {
       fileNames: {},
     }
   }
 
   const tickFileNames = await updateTickIcons()
+  logger.debug("Bedrock tick functions:", Object.keys(tickFileNames).length)
   const subFolderFileNames = await setSubFolderIcons()
+  logger.debug("Bedrock subfolder files:", Object.keys(subFolderFileNames).length)
 
   const fileNames: Record<string, string> = {}
   Object.assign(fileNames, tickFileNames)
@@ -87,15 +91,6 @@ export async function updateTickIcons(): Promise<Record<string, string>> {
     if (!customTickNames) {
       return {};
     }
-
-    const usesPartialMatch = (array: string[])=>{return array.some(item => item.includes("*"))}
-
-    const processList = async (list: string[]) => {
-      if (usesPartialMatch(list)) {
-        return await getPartialMatches(list);
-      }
-      return list.map(item => item + ".mcfunction");
-    };
 
     const fileNamesIconMap: Record<string, string> = {};
 

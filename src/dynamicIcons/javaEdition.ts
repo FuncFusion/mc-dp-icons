@@ -5,9 +5,8 @@ import {
   warnAboutTooManyFiles,
   findPackMcmeta,
   getReferencesFromFunctionTags,
-  getPartialMatches,
-  normalizePath,
-} from "./main";
+  processList,
+} from "./utils";
 import { workspace } from "vscode";
 import { Utils } from 'vscode-uri';
 import { config } from "../configuration/configManager"
@@ -74,6 +73,7 @@ const subfolderIconMap: Record<string, string> = {
 
 export async function update() {
   if (await noJavaPacks()) {
+    logger.debug("Java: no packs found, skipping")
     return {
       fileNames: {},
       folderNames: {},
@@ -82,10 +82,15 @@ export async function update() {
   }
 
   const crownedFileNames = await setCrownedFunctions()
+  logger.debug("Java crowned functions:", Object.keys(crownedFileNames).length)
   const loadTickFileNames = await updateLoadTickIcons()
+  logger.debug("Java load/tick functions:", Object.keys(loadTickFileNames).length)
   const namespaceResult = await setNamespaceIcons()
+  logger.debug("Java namespace folders:", Object.keys(namespaceResult.folderNames).length)
   const overlayResult = await setOverlayIcons()
+  logger.debug("Java overlay folders:", Object.keys(overlayResult.folderNames).length)
   const subFolderFileNames = await setSubFolderIcons()
+  logger.debug("Java subfolder files:", Object.keys(subFolderFileNames).length)
 
   const fileNames: Record<string, string> = {}
   Object.assign(fileNames, crownedFileNames)
@@ -147,15 +152,6 @@ export async function updateLoadTickIcons(): Promise<Record<string, string>> {
       return fileNamesIconMap;
     }
 
-    const usesPartialMatch = (array: string[])=>{return array.some(item => item.includes("*"))}
-
-    const processList = async (list: string[]) => {
-      if (usesPartialMatch(list)) {
-        return await getPartialMatches(list);
-      }
-      return list.map(item => item + ".mcfunction");
-    };
-
     const loadFunctions = await processList(customLoadNames);
     const tickFunctions = await processList(customTickNames);
 
@@ -183,15 +179,6 @@ async function setCrownedFunctions(): Promise<Record<string, string>> {
   if (!atLeastOneCrownedFunction) {
     return {};
   }
-
-  const usesPartialMatch = (array: string[])=>{return array.some(item => item.includes("*"))}
-
-  const processList = async (list: string[]) => {
-    if (usesPartialMatch(list)) {
-      return await getPartialMatches(list);
-    }
-    return list.map(item => item + ".mcfunction");
-  };
 
   const fileNamesIconMap: Record<string, string> = {};
 

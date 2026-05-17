@@ -47,7 +47,23 @@ async function getCustomFunctionNames(): Promise<Record<string, string>> {
 }
 
 export async function getLoadTickFileNames(): Promise<Record<string, string>> {
-  const dynamicMode = getConfig("dynamicFunctionIcons")
-  if (dynamicMode) return getDynamicFunctionNames()
-  return getCustomFunctionNames()
+  let dynamicResult: Record<string, string> = {}
+
+  if (getConfig("dynamicFunctionIcons")) {
+    dynamicResult = await getDynamicFunctionNames()
+  }
+
+  const customResult = await getCustomFunctionNames()
+
+  const fileNames: Record<string, string> = {}
+
+  for (const key of Object.keys(dynamicResult)) {
+    const basename = key.includes("/") ? key.split("/").pop() || key : key
+    if (!(basename in customResult)) {
+      fileNames[key] = dynamicResult[key]
+    }
+  }
+
+  Object.assign(fileNames, customResult)
+  return fileNames
 }

@@ -28,8 +28,8 @@ async function collect(): Promise<ThemeContributions> {
   const subFolderFiles = collectorResults[4]
 
   const fileNames: Record<string, string> = {}
-  Object.assign(fileNames, crowned)
   Object.assign(fileNames, loadTick)
+  Object.assign(fileNames, crowned)
   Object.assign(fileNames, subFolderFiles)
 
   const folderNames: Record<string, string> = {}

@@ -133,11 +133,18 @@ function writeOutput(
 
   mkdirSync(dirname(outputFilePath), { recursive: true })
 
+  const subfolderIconMap = buildSubfolderIconMap(schema.iconDefinitions, schema.folderNamesExpanded)
+
   const serialized = JSON.stringify(schema, null, 2)
+  const subfolderSerialized = JSON.stringify(subfolderIconMap, null, 2)
   const content =
     "// GENERATED — do not edit manually\n" +
     "// Run: npx tsx src/scripts/generateBaseTheme.ts\n" +
     `import type { ThemeSchema } from "../theme/types"\n` +
+    "\n" +
+    `export const baseTheme: ThemeSchema = ${serialized}\n` +
+    "\n" +
+    `export const subfolderIconMap: Record<string, IconName> = ${subfolderSerialized}\n` +
     "\n" +
     `export const baseTheme: ThemeSchema = ${serialized}\n`
 

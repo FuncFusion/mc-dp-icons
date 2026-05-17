@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync } from "fs"
+import { mkdirSync, readdirSync, writeFileSync } from "fs"
 import { dirname, resolve } from "path"
 import { icons } from "../data/icons"
 import type { IconDefinition } from "../data/icons"
@@ -105,6 +105,32 @@ function buildFolderAssociations(
   }
 }
 
+function scanXmasIcons(): string[] {
+  const iconsDir = resolve(__dirname, "..", "..", "icons")
+  const files = readdirSync(iconsDir)
+  const names: string[] = []
+  for (const file of files) {
+    if (file.endsWith("_xmas.svg")) {
+      names.push(file.replace("_xmas.svg", ""))
+    }
+  }
+  return names
+}
+
+function buildSubfolderIconMap(
+  iconDefinitions: Record<string, { iconPath: string }>,
+  folderNamesExpanded: Record<string, string>
+): Record<string, string> {
+  const map: Record<string, string> = {}
+  for (const [folderName, iconName] of Object.entries(folderNamesExpanded)) {
+    const fileIconName = iconName.replace(/_folder$/, "_file")
+    if (fileIconName in iconDefinitions) {
+      map[folderName] = fileIconName
+    }
+  }
+  return map
+}
+
 function buildBaseSchema(
   iconDefinitions: IconDefinition[]
 ): ThemeSchema {
@@ -134,19 +160,22 @@ function writeOutput(
   mkdirSync(dirname(outputFilePath), { recursive: true })
 
   const subfolderIconMap = buildSubfolderIconMap(schema.iconDefinitions, schema.folderNamesExpanded)
+  const xmasIcons = scanXmasIcons()
 
   const serialized = JSON.stringify(schema, null, 2)
   const subfolderSerialized = JSON.stringify(subfolderIconMap, null, 2)
+  const xmasSerialized = JSON.stringify(xmasIcons, null, 2)
   const content =
     "// GENERATED — do not edit manually\n" +
     "// Run: npx tsx src/scripts/generateBaseTheme.ts\n" +
     `import type { ThemeSchema } from "../theme/types"\n` +
+    `import type { IconName } from "./icons/types"\n` +
     "\n" +
     `export const baseTheme: ThemeSchema = ${serialized}\n` +
     "\n" +
     `export const subfolderIconMap: Record<string, IconName> = ${subfolderSerialized}\n` +
     "\n" +
-    `export const baseTheme: ThemeSchema = ${serialized}\n`
+    `export const xmasIcons: IconName[] = ${xmasSerialized}\n`
 
   writeFileSync(outputFilePath, content)
 }

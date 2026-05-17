@@ -1,12 +1,9 @@
 import { workspace, Uri } from "vscode"
 import { dirname } from "path"
 import { getConfig } from "../configuration/configManager"
+import { xmasIcons } from "../data/baseTheme"
+import type { IconName } from "../data/iconNames"
 import type { FileNamesMap, FolderNamesMap, ThemeSchema } from "./types"
-
-const noChristmasVersion = [
-  "data_folder", "src_folder", "overlay_folder", "assets_folder",
-  "data_folder_closed", "src_folder_closed", "overlay_folder_closed", "assets_folder_closed"
-]
 
 export class ThemeBuilder {
   private theme: ThemeSchema
@@ -59,15 +56,15 @@ export class ThemeBuilder {
   }
 
   private makeXmasIcon(iconName: string): string {
+    if (iconName.endsWith("_xmas")) return iconName
+
+    if (!xmasIcons.includes(iconName as IconName)) return iconName
+
     const xmasKey = iconName + "_xmas"
 
     if (xmasKey in this.theme.iconDefinitions) return xmasKey
 
     const original = this.theme.iconDefinitions[iconName]
-
-    if (noChristmasVersion.includes(iconName)) {
-      return iconName
-    }
 
     this.theme.iconDefinitions[xmasKey] = {
       iconPath: original.iconPath.replace(".svg", "_xmas.svg"),

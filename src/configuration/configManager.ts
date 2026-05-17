@@ -19,7 +19,7 @@ const defaults = {
   debug: false,
 } as const
 
-type ConfigKey = keyof typeof defaults
+export type ConfigKey = keyof typeof defaults
 
 class ConfigManager {
   private config = workspace.getConfiguration()
@@ -28,11 +28,11 @@ class ConfigManager {
     return this.config.get<(typeof defaults)[Key]>(`mc-dp-icons.${name}`, defaults[name])
   }
 
-  changeGlobal(key: string, value: any): void {
+  changeGlobal(key: string, value: unknown): void {
     this.config.update(key, value, ConfigurationTarget.Global)
   }
 
-  changeWorkspace(key: string, value: any): void {
+  changeWorkspace(key: string, value: unknown): void {
     this.config.update(key, value, ConfigurationTarget.Workspace)
   }
 }

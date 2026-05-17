@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync } from "fs"
+import { workspace, Uri } from "vscode"
 import { dirname } from "path"
 import { config } from "../configuration/configManager"
 import type { FileNamesMap, FolderNamesMap, ThemeSchema } from "./types"
@@ -35,11 +35,13 @@ export class ThemeBuilder {
     this.theme.hidesExplorerArrows = value
   }
 
-  write(outputPath: string): void {
+  async write(outputPath: string): Promise<void> {
     const theme = this.build()
-    mkdirSync(dirname(outputPath), { recursive: true })
+    const dirUri = Uri.file(dirname(outputPath))
+    await workspace.fs.createDirectory(dirUri)
     const content = JSON.stringify(theme, null, 2)
-    writeFileSync(outputPath, content, "utf-8")
+    const encodedContent = new TextEncoder().encode(content)
+    await workspace.fs.writeFile(Uri.file(outputPath), encodedContent)
   }
 
   build(): ThemeSchema {

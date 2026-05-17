@@ -5,8 +5,8 @@ async function getTaggedTick(): Promise<Record<string, string>> {
   const tickNames = await getReferencesFromFunctionTags("minecraft", "tick")
 
   const fileNames: Record<string, string> = {}
-  for (let i = 0; i < tickNames.length; i++) {
-    fileNames[tickNames[i]] = "mcfunction_tick_file"
+  for (const name of tickNames) {
+    fileNames[name] = "mcfunction_tick_file"
   }
   return fileNames
 }
@@ -18,8 +18,8 @@ async function getCustomTick(): Promise<Record<string, string>> {
   const tickFunctions = await processList(customTickNames)
 
   const fileNames: Record<string, string> = {}
-  for (let i = 0; i < tickFunctions.length; i++) {
-    fileNames[tickFunctions[i]] = "mcfunction_tick_file"
+  for (const name of tickFunctions) {
+    fileNames[name] = "mcfunction_tick_file"
   }
   return fileNames
 }

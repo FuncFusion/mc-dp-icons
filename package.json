@@ -41,7 +41,8 @@
   },
   "homepage": "https://github.com/FuncFusion/mc-dp-icons",
   "activationEvents": [
-    "onStartupFinished"
+    "onStartupFinished",
+    "onWorkspaceFolderOpened"
   ],
   "main": "./out/extension.js",
   "browser": "./dist/webExtension.js",
@@ -206,15 +207,86 @@
       {
         "title": "Datapack Icons: Open extension settings",
         "command": "mc-dp-icons.DpIconsOpenSettings"
+      },
+      {
+        "title": "Datapack Icons: Set as Tick",
+        "command": "mc-dp-icons.setTickIcon"
+      },
+      {
+        "title": "Datapack Icons: Set as Load",
+        "command": "mc-dp-icons.setLoadIcon"
+      },
+      {
+        "title": "Datapack Icons: Set as Crowned",
+        "command": "mc-dp-icons.setCrownedIcon"
+      },
+      {
+        "title": "Datapack Icons: Set as Crowned Tick",
+        "command": "mc-dp-icons.setCrownedTickIcon"
+      },
+      {
+        "title": "Datapack Icons: Set as Crowned Load",
+        "command": "mc-dp-icons.setCrownedLoadIcon"
+      },
+      {
+        "title": "Datapack Icons: Reset Icon",
+        "command": "mc-dp-icons.resetIcon"
       }
-    ]
+    ],
+    "submenus": [
+      {
+        "id": "mc-dp-icons.changeIconSubmenu",
+        "label": "Datapack Icons: Set Icon"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "submenu": "mc-dp-icons.changeIconSubmenu",
+          "group": "z_mc_dp_icons",
+          "when": "resourceExtname == .mcfunction"
+        }
+      ],
+      "mc-dp-icons.changeIconSubmenu": [
+        {
+          "command": "mc-dp-icons.setTickIcon",
+          "group": "mc-dp-icons@1",
+          "when": "resourceExtname == .mcfunction"
+        },
+        {
+          "command": "mc-dp-icons.setLoadIcon",
+          "group": "mc-dp-icons@2",
+          "when": "resourceExtname == .mcfunction"
+        },
+        {
+          "command": "mc-dp-icons.setCrownedIcon",
+          "group": "mc-dp-icons@3",
+          "when": "resourceExtname == .mcfunction"
+        },
+        {
+          "command": "mc-dp-icons.setCrownedTickIcon",
+          "group": "mc-dp-icons@4",
+          "when": "resourceExtname == .mcfunction"
+        },
+        {
+          "command": "mc-dp-icons.setCrownedLoadIcon",
+          "group": "mc-dp-icons@5",
+          "when": "resourceExtname == .mcfunction"
+        },
+        {
+          "command": "mc-dp-icons.resetIcon",
+          "group": "mc-dp-icons@6",
+          "when": "resourceExtname == .mcfunction"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
     "build": "node esbuild.mjs",
     "build-dev": "node esbuild.mjs --watch",
     "package": "cross-env NODE_ENV=production node esbuild.mjs",
-    "compile": "tsc -p ./",
+    "compile": "npm run generate && tsc -p ./",
     "watch": "tsc -watch -p ./",
     "generate:icon-names": "npx tsx src/scripts/generateIconNames.ts",
     "generate:base-theme": "npx tsx src/scripts/generateBaseTheme.ts",

@@ -1,8 +1,9 @@
 import * as vscode from "vscode"
 import { workspace } from "vscode"
+import path from "path"
 
 function isRelevantFile(event: vscode.Uri): boolean {
-  const name = event.fsPath.split('/').pop() || ''
+  const name = path.basename(event.fsPath)
   return (name === "pack.mcmeta" || name.endsWith(".json")) && name !== "settings.json"
 }
 

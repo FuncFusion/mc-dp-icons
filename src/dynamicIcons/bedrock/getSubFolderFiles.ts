@@ -13,13 +13,9 @@ export async function getSubFolderFiles(): Promise<Record<string, string>> {
   if (totalFiles >= 2000) warnAboutTooManyFiles()
 
   const fileNames: Record<string, string> = {}
-  const entries = Object.entries(subfolders)
-  for (let i = 0; i < entries.length; i++) {
-    const key = entries[i][0]
-    const filesArray = entries[i][1]
+  for (const [key, filesArray] of Object.entries(subfolders)) {
     const icon = subfolderIconMap[key]
-    for (let j = 0; j < filesArray.length; j++) {
-      const fileName = filesArray[j]
+    for (const fileName of filesArray) {
       fileNames[fileName] = icon
     }
   }

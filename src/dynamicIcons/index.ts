@@ -1,5 +1,5 @@
-import * as vscode from "vscode";
-import { Utils } from 'vscode-uri';
+import * as vscode from "vscode"
+import { Utils } from 'vscode-uri'
 import { config } from "../configuration/configManager"
 import { baseTheme } from "../data/baseTheme"
 import { ThemeBuilder } from "../theme/themeBuilder"
@@ -11,14 +11,10 @@ import type { ThemeModule } from "./plugin"
 
 const modules: ThemeModule[] = [java, bedrock]
 
-export function normalizePath(path: string): string {
-  return path.replace(/\\/g, "/");
-}
-
-export let extensionUri: vscode.Uri;
+export let extensionUri: vscode.Uri
 
 export function setExtensionUri(uri: vscode.Uri) {
-  extensionUri = uri;
+  extensionUri = uri
 }
 
 export async function update() {
@@ -53,6 +49,6 @@ export async function update() {
     builder.setHidesExplorerArrows(true)
   }
 
-  builder.write(activePath)
+  await builder.write(activePath)
   logger.debug("Theme written to", activePath)
 }

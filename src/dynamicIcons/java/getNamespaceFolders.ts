@@ -1,3 +1,4 @@
+import path from "path"
 import { config } from "../../configuration/configManager"
 import { getNamespacePaths } from "./helpers/getNamespacePaths"
 
@@ -8,7 +9,7 @@ export async function getNamespaceFolders(): Promise<Record<string, string>> {
   const namespacePaths = await getNamespacePaths() || []
 
   const namespaceNames = namespacePaths.map((fullPath) => {
-    const pathSegments = fullPath.split('/')
+    const pathSegments = fullPath.split(path.sep)
     return pathSegments.slice(-2).join('/')
   })
 

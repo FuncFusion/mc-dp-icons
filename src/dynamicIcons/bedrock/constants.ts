@@ -1,9 +1,6 @@
 export const subfolderIconMap: Record<string, string> = {
-  animation_controllers: "animations_file",
-  animations: "animations_file",
   biomes: "worldgen_file",
   blocks: "blocks_file",
-  cameras: "cameras_file",
   dialogue: "chat_type_file",
   entities: "entities_file",
   features: "features_file",

@@ -1,6 +1,7 @@
 import * as vscode from "vscode"
 import { workspace } from "vscode"
 import { Utils } from "vscode-uri"
+import path from "path"
 import { findPackMcmeta, pathExists } from "../../utils"
 import { logger } from "../../../common/logger"
 
@@ -8,7 +9,7 @@ const fs = workspace.fs
 
 export async function getNamespacePaths(): Promise<string[]> {
   const mcmetaFiles = await findPackMcmeta()
-  const packPaths = mcmetaFiles.map(p => p.fsPath.replace("pack.mcmeta", ""))
+  const packPaths = mcmetaFiles.map(p => path.dirname(p.fsPath))
 
   if (!packPaths) return []
 

@@ -2,7 +2,7 @@ import * as vscode from "vscode"
 import { workspace } from "vscode"
 import { Utils } from 'vscode-uri'
 import path from "path"
-import { config } from "../configuration/configManager"
+import { getConfig, changeGlobalConfig, changeWorkspaceConfig } from "../configuration/configManager"
 
 const fs = workspace.fs
 
@@ -60,9 +60,9 @@ export function warnAboutTooManyFiles() {
     )
     .then((selection) => {
       if (selection === "Disable Globally") {
-        config.changeGlobal("mc-dp-icons.subfolderIcons", false)
+        changeGlobalConfig("mc-dp-icons.subfolderIcons", false)
       } else if (selection === "Disable in Workspace") {
-        config.changeWorkspace("mc-dp-icons.subfolderIcons", false)
+        changeWorkspaceConfig("mc-dp-icons.subfolderIcons", false)
       }
     })
 }

@@ -21,20 +21,14 @@ const defaults = {
 
 export type ConfigKey = keyof typeof defaults
 
-class ConfigManager {
-  private config = workspace.getConfiguration()
-
-  get<Key extends ConfigKey>(name: Key): (typeof defaults)[Key] {
-    return this.config.get<(typeof defaults)[Key]>(`mc-dp-icons.${name}`, defaults[name])
-  }
-
-  changeGlobal(key: string, value: unknown): void {
-    this.config.update(key, value, ConfigurationTarget.Global)
-  }
-
-  changeWorkspace(key: string, value: unknown): void {
-    this.config.update(key, value, ConfigurationTarget.Workspace)
-  }
+export function getConfig<Key extends ConfigKey>(name: Key): (typeof defaults)[Key] {
+  return workspace.getConfiguration().get<(typeof defaults)[Key]>(`mc-dp-icons.${name}`, defaults[name])
 }
 
-export const config = new ConfigManager()
+export function changeGlobalConfig(key: string, value: unknown): Thenable<void> {
+  return workspace.getConfiguration().update(key, value, ConfigurationTarget.Global)
+}
+
+export function changeWorkspaceConfig(key: string, value: unknown): Thenable<void> {
+  return workspace.getConfiguration().update(key, value, ConfigurationTarget.Workspace)
+}

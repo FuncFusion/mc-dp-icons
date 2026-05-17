@@ -1,5 +1,5 @@
 import * as vscode from "vscode"
-import { config } from "../configuration/configManager"
+import { getConfig, changeWorkspaceConfig } from "../configuration/configManager"
 import type { ConfigKey } from "../configuration/configManager"
 import path from "path"
 
@@ -12,9 +12,9 @@ function makeHandler(suffix: string) {
 
     const fsPath = uri.fsPath
     const shortenedPath = fsPath.split(path.sep).slice(-2).join(path.sep).replace(".mcfunction", "")
-    const current = config.get(suffix as ConfigKey) as string[]
+    const current = getConfig(suffix as ConfigKey) as string[]
     const deduplicated = current.includes(shortenedPath) ? current : [...current, shortenedPath]
-    config.changeWorkspace(configKey, deduplicated)
+    changeWorkspaceConfig(configKey, deduplicated)
   }
 }
 
@@ -38,13 +38,13 @@ const resetIcon = {
 
     for (const suffix of configSuffixes) {
       const fullKey = keyPrefix + suffix
-      const currentNames = config.get(suffix as ConfigKey) as string[]
+      const currentNames = getConfig(suffix as ConfigKey) as string[]
 
       if (currentNames.includes(shortenedPath)) {
         const remainingNames = currentNames.filter(function(name) {
           return name !== shortenedPath
         })
-        config.changeWorkspace(fullKey, remainingNames)
+        changeWorkspaceConfig(fullKey, remainingNames)
       }
     }
   }

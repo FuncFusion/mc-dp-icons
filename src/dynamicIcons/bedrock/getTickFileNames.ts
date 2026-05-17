@@ -1,4 +1,4 @@
-import { config } from "../../configuration/configManager"
+import { getConfig } from "../../configuration/configManager"
 import { getReferencesFromFunctionTags, processList } from "../utils"
 
 async function getTaggedTick(): Promise<Record<string, string>> {
@@ -12,7 +12,7 @@ async function getTaggedTick(): Promise<Record<string, string>> {
 }
 
 async function getCustomTick(): Promise<Record<string, string>> {
-  const customTickNames = config.get("tickFunctionNames")
+  const customTickNames = getConfig("tickFunctionNames")
   if (!customTickNames) return {}
 
   const tickFunctions = await processList(customTickNames)
@@ -25,7 +25,7 @@ async function getCustomTick(): Promise<Record<string, string>> {
 }
 
 export async function getTickFileNames(): Promise<Record<string, string>> {
-  const dynamicMode = config.get("dynamicFunctionIcons")
+  const dynamicMode = getConfig("dynamicFunctionIcons")
   if (dynamicMode) return getTaggedTick()
   return getCustomTick()
 }

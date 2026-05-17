@@ -1,10 +1,10 @@
-import { config } from "../../configuration/configManager"
+import { getConfig } from "../../configuration/configManager"
 import { processList } from "../utils"
 
 export async function getCrownedFileNames(): Promise<Record<string, string>> {
-  const configCrownedFunctions: string[] = config.get("crownedFunctions")
-  const configCrownedLoadFunctions: string[] = config.get("crownedLoadFunctions")
-  const configCrownedTickFunctions: string[] = config.get("crownedTickFunctions")
+  const configCrownedFunctions: string[] = getConfig("crownedFunctions")
+  const configCrownedLoadFunctions: string[] = getConfig("crownedLoadFunctions")
+  const configCrownedTickFunctions: string[] = getConfig("crownedTickFunctions")
 
   const atLeastOneCrownedFunction = (
     configCrownedFunctions.length ||

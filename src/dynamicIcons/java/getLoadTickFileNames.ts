@@ -1,5 +1,5 @@
 import * as vscode from "vscode"
-import { config } from "../../configuration/configManager"
+import { getConfig } from "../../configuration/configManager"
 import { getReferencesFromFunctionTags, processList } from "../utils"
 
 async function getDynamicFunctionNames(): Promise<Record<string, string>> {
@@ -17,8 +17,8 @@ async function getDynamicFunctionNames(): Promise<Record<string, string>> {
 }
 
 async function getCustomFunctionNames(): Promise<Record<string, string>> {
-  const customLoadNames: string[] = config.get("loadFunctionNames")
-  const customTickNames: string[] = config.get("tickFunctionNames")
+  const customLoadNames: string[] = getConfig("loadFunctionNames")
+  const customTickNames: string[] = getConfig("tickFunctionNames")
 
   if (!(customLoadNames || customTickNames)) return {}
 
@@ -47,7 +47,7 @@ async function getCustomFunctionNames(): Promise<Record<string, string>> {
 }
 
 export async function getLoadTickFileNames(): Promise<Record<string, string>> {
-  const dynamicMode = config.get("dynamicFunctionIcons")
+  const dynamicMode = getConfig("dynamicFunctionIcons")
   if (dynamicMode) return getDynamicFunctionNames()
   return getCustomFunctionNames()
 }

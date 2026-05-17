@@ -1,10 +1,10 @@
 import * as vscode from "vscode"
 import { workspace } from "vscode"
-import { config } from "../configuration/configManager"
+import { getConfig, changeWorkspaceConfig } from "../configuration/configManager"
 import { logger } from "../common/logger"
 
 export async function workspaceDetection() {
-  const isDetectionEnabled = config.get("workspaceDetection")
+  const isDetectionEnabled = getConfig("workspaceDetection")
   if (!isDetectionEnabled) {
     logger.debug("Workspace detection disabled, skipping")
     return
@@ -14,14 +14,14 @@ export async function workspaceDetection() {
 
   if (isMinecraft) {
     logger.debug("Detected Minecraft workspace, activating theme")
-    config.changeWorkspace("workbench.iconTheme", "mc-dp-icons")
+    changeWorkspaceConfig("workbench.iconTheme", "mc-dp-icons")
     return
   }
 
-  const fallbackIconTheme = config.get("fallbackIconTheme")
+  const fallbackIconTheme = getConfig("fallbackIconTheme")
   if (fallbackIconTheme) {
     logger.debug("Falling back to configured theme:", fallbackIconTheme)
-    config.changeWorkspace("workbench.iconTheme", fallbackIconTheme)
+    changeWorkspaceConfig("workbench.iconTheme", fallbackIconTheme)
     return
   }
 
@@ -30,7 +30,7 @@ export async function workspaceDetection() {
   const userDefaultTheme = iconThemeInspection?.globalValue
 
   logger.debug("No Minecraft workspace detected, falling back to user default:", userDefaultTheme)
-  config.changeWorkspace("workbench.iconTheme", userDefaultTheme)
+  changeWorkspaceConfig("workbench.iconTheme", userDefaultTheme)
 }
 
 async function isMinecraftWorkspace(): Promise<boolean> {

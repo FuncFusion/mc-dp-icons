@@ -1,6 +1,6 @@
 import * as vscode from "vscode"
 import { Utils } from 'vscode-uri'
-import { config } from "../configuration/configManager"
+import { getConfig } from "../configuration/configManager"
 import { baseTheme } from "../data/baseTheme"
 import { ThemeBuilder } from "../theme/themeBuilder"
 import { workspaceDetection } from "./workspace"
@@ -44,7 +44,7 @@ export async function update() {
     }
   }
 
-  const confHideFolderArrows = config.get("hideFolderArrows")
+  const confHideFolderArrows = getConfig("hideFolderArrows")
   if (confHideFolderArrows) {
     builder.setHidesExplorerArrows(true)
   }

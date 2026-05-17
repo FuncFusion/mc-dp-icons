@@ -1,9 +1,9 @@
 import path from "path"
-import { config } from "../../configuration/configManager"
+import { getConfig } from "../../configuration/configManager"
 import { getNamespacePaths } from "./helpers/getNamespacePaths"
 
 export async function getNamespaceFolders(): Promise<Record<string, string>> {
-  const namespaceIcons = config.get("namespaceIcons")
+  const namespaceIcons = getConfig("namespaceIcons")
   if (!namespaceIcons) return {}
 
   const namespacePaths = await getNamespacePaths() || []

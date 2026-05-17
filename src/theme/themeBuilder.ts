@@ -1,6 +1,6 @@
 import { workspace, Uri } from "vscode"
 import { dirname } from "path"
-import { config } from "../configuration/configManager"
+import { getConfig } from "../configuration/configManager"
 import type { FileNamesMap, FolderNamesMap, ThemeSchema } from "./types"
 
 const noChristmasVersion = [
@@ -52,7 +52,7 @@ export class ThemeBuilder {
   }
 
   private isChristmas(): boolean {
-    const setting = config.get("christmasIcons")
+    const setting = getConfig("christmasIcons")
     if (setting === "Never") return false
     if (setting === "Always") return true
     return new Date().getMonth() === 11

@@ -1,6 +1,10 @@
 import { mkdirSync, readdirSync, writeFileSync } from "fs"
 import { dirname, resolve } from "path"
 import { icons } from "../data/icons"
+import { dataPackIcons } from "../data/icons/dataPackIcons"
+import { resourcePackIcons } from "../data/icons/resourcePackIcons"
+import { bedrockAddonIcons } from "../data/icons/bedrockAddonIcons"
+import { bedrockResourceIcons } from "../data/icons/bedrockResourceIcons"
 import type { IconDefinition } from "../data/icons"
 import type { ThemeSchema } from "../theme/types"
 
@@ -159,7 +163,12 @@ function writeOutput(
 
   mkdirSync(dirname(outputFilePath), { recursive: true })
 
-  const subfolderIconMap = buildSubfolderIconMap(schema.iconDefinitions, schema.folderNamesExpanded)
+  const minecraftIcons = [
+    ...dataPackIcons, ...resourcePackIcons,
+    ...bedrockAddonIcons, ...bedrockResourceIcons,
+  ]
+  const mcFolderAssocs = buildFolderAssociations(minecraftIcons)
+  const subfolderIconMap = buildSubfolderIconMap(schema.iconDefinitions, mcFolderAssocs.folderNamesExpanded)
   const xmasIcons = scanXmasIcons()
 
   const serialized = JSON.stringify(schema, null, 2)

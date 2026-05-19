@@ -1,8 +1,7 @@
-[id]
+id = "mc-dp-icons"
 name = "mc-dp-icons"
 version = "0.1.0"
-description = "Minecraft icon theme for datapacks, resource packs, and addons"
+schema_version = 1
 authors = ["funcfusion"]
-
-[icon_themes]
-path = "icon_themes"
+description = "Minecraft-inspired icon theme"
+icon_themes = ["icon_themes/mc-dp-icons.json"]

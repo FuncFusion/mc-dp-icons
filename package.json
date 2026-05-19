@@ -288,9 +288,7 @@
     "package": "cross-env NODE_ENV=production node esbuild.mjs",
     "compile": "npm run generate && tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "generate:icon-names": "npx tsx src/scripts/generateIconNames.ts",
-    "generate:base-theme": "npx tsx src/scripts/generateBaseTheme.ts",
-    "generate": "npm run generate:icon-names && npm run generate:base-theme",
+    "generate": "npx tsx src/generate/index.ts",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "vscode-test"

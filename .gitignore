@@ -9,6 +9,6 @@ src/data/iconNames.ts
 icon_theme/active.json
 
 todo.md
-src/scripts/*.js
-src/scripts/*.js.map
 *.vsix
+zed/icon_themes/mc-dp-icons.json
+zed/icons

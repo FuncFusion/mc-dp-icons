@@ -1,10 +1,8 @@
-export interface ThemeContributions {
-  fileNames: Record<string, string>
-  folderNames?: Record<string, string>
-}
+export type { ThemeContributions } from "../themeScan"
 
+/** @deprecated Theme modules replaced by themeScan; kept for compatibility. */
 export interface ThemeModule {
   name: string
   guard(): Promise<boolean>
-  collect(): Promise<ThemeContributions>
+  collect(): Promise<import("../themeScan").ThemeContributions>
 }

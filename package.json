@@ -290,7 +290,9 @@
     "watch": "tsc -watch -p ./",
     "generate:icon-names": "npx tsx src/scripts/generateIconNames.ts",
     "generate:base-theme": "npx tsx src/scripts/generateBaseTheme.ts",
-    "generate": "npm run generate:icon-names && npm run generate:base-theme",
+    "generate:zed-theme": "npx tsx src/scripts/generateZedTheme.ts",
+    "generate": "npm run generate:icon-names && npm run generate:base-theme && npm run generate:zed-theme",
+    "zed:link-icons": "powershell -ExecutionPolicy Bypass -File scripts/link-zed-icons.ps1",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "vscode-test"

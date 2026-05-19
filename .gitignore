@@ -7,8 +7,14 @@ out/
 src/data/baseTheme.ts
 src/data/iconNames.ts
 icon_theme/active.json
+zed/icons
+zed/icon_themes/mc-dp-icons.json
 
 todo.md
 src/scripts/*.js
 src/scripts/*.js.map
 *.vsix
+
+.claude/skills/gitnexus/
+AGENTS.md
+CLAUDE.md

@@ -1,0 +1,7 @@
+id = "mc-dp-icons"
+name = "Datapack Icons"
+version = "5.0.0"
+schema_version = 1
+authors = ["FuncFusion"]
+description = "Minecraft-inspired file icons for Zed."
+repository = "https://github.com/FuncFusion/mc-dp-icons"

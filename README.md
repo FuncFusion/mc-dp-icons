@@ -69,6 +69,19 @@ Hides the default expand/collapse arrows next to folder icons in the VS Code Exp
 
 ---
 
+## Zed
+
+A dev icon theme extension lives in [`zed/`](zed/). See [docs/zed.md](docs/zed.md) for install, workspace regeneration, and limitations vs VS Code.
+
+```bash
+npm run generate          # includes Zed JSON; requires zed:link-icons first
+npm run zed:link-icons    # Windows; on Unix: sh scripts/link-zed-icons.sh
+```
+
+`zed/icon_themes/mc-dp-icons.json` is generated locally (gitignored). Then **Install Dev Extension** in Zed and select **Datapack Icons**.
+
+---
+
 ## <sub><img src="assets/readme_icons/aseprite_file.png" width="28"></sub> Assets
 You can find all the used (and unused!) assets during the development of Datapack Icons in our [assets repo](https://github.com/FuncFusion/mc-dp-icons-assets).
 

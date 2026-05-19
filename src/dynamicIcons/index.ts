@@ -1,15 +1,18 @@
 import * as vscode from "vscode"
-import { Utils } from 'vscode-uri'
+import { Utils } from "vscode-uri"
 import { getConfig } from "../configuration/configManager"
-import { baseTheme } from "../data/baseTheme"
+import { baseTheme, subfolderIconMap } from "../data/baseTheme"
 import { ThemeBuilder } from "../theme/themeBuilder"
+import {
+  buildCollectOptionsFromVscodeConfig,
+  collectWorkspaceContributions,
+  createVscodeFsPort,
+} from "../themeScan"
 import { workspaceDetection } from "./workspace"
 import { logger } from "../common/logger"
-import { java } from "./java"
-import { bedrock } from "./bedrock"
-import type { ThemeModule } from "./plugin"
+import { warnAboutTooManyFiles } from "./utils"
 
-const modules: ThemeModule[] = [java, bedrock]
+export type { ThemeContributions } from "../themeScan"
 
 export let extensionUri: vscode.Uri
 
@@ -26,21 +29,26 @@ export async function update() {
 
   const builder = new ThemeBuilder(baseTheme)
 
-  const activeModules: ThemeModule[] = []
-  for (const module of modules) {
-    if (await module.guard()) {
-      activeModules.push(module)
-    }
-  }
+  const fs = createVscodeFsPort()
+  if (fs.roots.length > 0) {
+    const contributions = await collectWorkspaceContributions(
+      buildCollectOptionsFromVscodeConfig(fs, subfolderIconMap, {
+        onSubfolderFileCount: (count) => {
+          if (count >= 2000) {
+            warnAboutTooManyFiles()
+          }
+        },
+        onLoadTickNamingConflict: () => {
+          vscode.window.showWarningMessage(
+            "Naming Conflict: Tick and Load functions must be unique"
+          )
+        },
+      })
+    )
 
-  const results = await Promise.all(
-    activeModules.map(module => module.collect())
-  )
-
-  for (const result of results) {
-    builder.addFileNames(result.fileNames)
-    if (result.folderNames) {
-      builder.addFolders(result.folderNames)
+    builder.addFileNames(contributions.fileNames)
+    if (contributions.folderNames) {
+      builder.addFolders(contributions.folderNames)
     }
   }
 

@@ -5,7 +5,7 @@ import type { DirEntry, FileSystemPort } from "./fsPort"
 const fs = workspace.fs
 
 export function createVscodeFsPort(): FileSystemPort {
-  const roots = workspace.workspaceFolders?.map((f) => f.fsPath) ?? []
+  const roots = workspace.workspaceFolders?.map((f) => f.uri.fsPath) ?? []
   return {
     roots,
     pathExists: async (filePath) => {

@@ -282,15 +282,15 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run package",
-    "build": "node esbuild.mjs",
-    "build-dev": "node esbuild.mjs --watch",
-    "package": "cross-env NODE_ENV=production node esbuild.mjs",
-    "compile": "npm run generate && tsc -p ./",
+    "vscode:prepublish": "bun run package",
+    "build": "bun esbuild.mjs",
+    "build-dev": "bun esbuild.mjs --watch",
+    "package": "NODE_ENV=production bun esbuild.mjs",
+    "compile": "bun run generate && tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "generate": "npx tsx src/generate/index.ts",
-    "pretest": "npm run compile && npm run lint",
-    "lint": "eslint src --ext ts",
+    "generate": "bun src/generate/index.ts",
+    "pretest": "bun run compile && bun run lint",
+    "lint": "bunx eslint src --ext ts",
     "test": "vscode-test"
   },
   "devDependencies": {
@@ -302,7 +302,6 @@
     "@vscode/test-cli": "^0.0.4",
     "@vscode/test-electron": "^2.5.2",
     "@vscode/test-web": "^0.0.63",
-    "cross-env": "^10.1.0",
     "esbuild": "^0.24.0",
     "eslint": "^8.57.1",
     "typescript": "^5.9.3"

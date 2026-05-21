@@ -13,7 +13,7 @@ export function generateIconNames(): void {
     .sort()
 
   const output = `// GENERATED — do not edit manually
-// Run: npx tsx src/generate/index.ts
+// Run: bun src/generate/index.ts
 
 export type IconName = ${names.map((n) => `"${n}"`).join(" | ")}
 

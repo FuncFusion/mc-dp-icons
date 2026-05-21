@@ -12,3 +12,5 @@ todo.md
 *.vsix
 zed/icon_themes/mc-dp-icons.json
 zed/icons
+bun.lock
+bun.lockb

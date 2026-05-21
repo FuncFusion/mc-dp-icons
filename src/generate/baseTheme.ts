@@ -33,7 +33,7 @@ function writeOutput(
   const xmasSerialized = JSON.stringify(xmasIcons, null, 2)
   const content =
     "// GENERATED — do not edit manually\n" +
-    "// Run: npx tsx src/generate/index.ts\n" +
+    "// Run: bun src/generate/index.ts\n" +
     `import type { ThemeSchema } from "../theme/types"\n` +
     `import type { IconName } from "./icons/types"\n` +
     "\n" +

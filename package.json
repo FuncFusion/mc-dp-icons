@@ -282,28 +282,26 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "bun run package",
+    "test": "vscode-test",
     "build": "bun esbuild.mjs",
-    "build-dev": "bun esbuild.mjs --watch",
-    "package": "NODE_ENV=production bun esbuild.mjs",
-    "compile": "bun run generate && tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "watch": "bun esbuild.mjs --watch",
     "generate": "bun src/generate/index.ts",
-    "pretest": "bun run compile && bun run lint",
-    "lint": "bunx eslint src --ext ts",
-    "test": "vscode-test"
+    "compile": "bun run generate && tsc -p ./ && bunx eslint src --ext ts",
+    "package": "bun run generate && NODE_ENV=production bun esbuild.mjs",
+    "vscode:prepublish": "bun run package"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "^18.19.130",
     "@types/vscode": "^1.5.1",
-    "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.21.0",
+    "@typescript-eslint/eslint-plugin": "^8.59.4",
+    "@typescript-eslint/parser": "^8.59.4",
     "@vscode/test-cli": "^0.0.4",
     "@vscode/test-electron": "^2.5.2",
     "@vscode/test-web": "^0.0.63",
     "esbuild": "^0.24.0",
     "eslint": "^8.57.1",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vsce": "^2.15.0"
   }
 }

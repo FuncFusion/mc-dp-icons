@@ -4,7 +4,9 @@ const prefix = "[mc-dp-icons]"
 
 export const logger = {
   debug(...args: unknown[]) {
-    if (!getConfig("debug")) return
+    if (!getConfig("debug")) {
+      return
+    }
     console.info(prefix, ...args)
   },
   error(error: unknown, context?: string) {

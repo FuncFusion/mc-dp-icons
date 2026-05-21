@@ -20,7 +20,9 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
     for (const entry of entries) {
       const entryName = entry[0]
       const entryType = entry[1]
-      if (entryName.startsWith('.') || entryName == 'node_modules') continue
+      if (entryName.startsWith('.') || entryName === 'node_modules') {
+        continue
+      }
 
       const fullPath = Utils.joinPath(vscode.Uri.file(dir), entryName).fsPath
       const newPath = Utils.joinPath(vscode.Uri.file(relativePath), entryName).fsPath
@@ -73,7 +75,9 @@ export async function getReferencesFromFunctionTags(namespace: string, functionT
     "**/node_modules/**",
   )
 
-  if (!functionTagFiles.length) return []
+  if (!functionTagFiles.length) {
+    return []
+  }
 
   let functionReferences: string[] = []
 
@@ -82,7 +86,9 @@ export async function getReferencesFromFunctionTags(namespace: string, functionT
     const content = new TextDecoder().decode(data)
     const functionTag: { values: string[] } = JSON.parse(content)
 
-    if (!functionTag.values.length) continue
+    if (!functionTag.values.length) {
+      continue
+    }
 
     for (const functionID of functionTag.values) {
       const functionPath: string = "function/" + functionID.split(":")[1]

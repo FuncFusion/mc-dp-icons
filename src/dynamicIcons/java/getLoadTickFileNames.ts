@@ -20,7 +20,9 @@ async function getCustomFunctionNames(): Promise<Record<string, string>> {
   const customLoadNames: string[] = getConfig("loadFunctionNames")
   const customTickNames: string[] = getConfig("tickFunctionNames")
 
-  if (!(customLoadNames || customTickNames)) return {}
+  if (!(customLoadNames || customTickNames)) {
+    return {}
+  }
 
   const hasCommonName = customLoadNames.some((item: string) =>
     customTickNames.includes(item)

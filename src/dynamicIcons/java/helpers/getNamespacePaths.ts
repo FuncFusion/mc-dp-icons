@@ -11,12 +11,16 @@ export async function getNamespacePaths(): Promise<string[]> {
   const mcmetaFiles = await findPackMcmeta()
   const packPaths = mcmetaFiles.map(p => path.dirname(p.fsPath))
 
-  if (!packPaths) return []
+  if (!packPaths) {
+    return []
+  }
 
   const namespacePaths: string[] = []
 
   const getPaths = async (directory: string): Promise<string[]> => {
-    if (!await pathExists(directory)) return []
+    if (!await pathExists(directory)) {
+      return []
+    }
     const entries = await fs.readDirectory(vscode.Uri.file(directory))
 
     return entries

@@ -50,19 +50,29 @@ export class ThemeBuilder {
 
   private isChristmas(): boolean {
     const setting = getConfig("christmasIcons")
-    if (setting === "Never") return false
-    if (setting === "Always") return true
+    if (setting === "Never") {
+      return false
+    }
+    if (setting === "Always") {
+      return true
+    }
     return new Date().getMonth() === 11
   }
 
   private makeXmasIcon(iconName: string): string {
-    if (iconName.endsWith("_xmas")) return iconName
+    if (iconName.endsWith("_xmas")) {
+      return iconName
+    }
 
-    if (!xmasIcons.includes(iconName as IconName)) return iconName
+    if (!xmasIcons.includes(iconName as IconName)) {
+      return iconName
+    }
 
     const xmasKey = iconName + "_xmas"
 
-    if (xmasKey in this.theme.iconDefinitions) return xmasKey
+    if (xmasKey in this.theme.iconDefinitions) {
+      return xmasKey
+    }
 
     const original = this.theme.iconDefinitions[iconName]
 

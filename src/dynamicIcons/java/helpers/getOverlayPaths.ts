@@ -12,7 +12,9 @@ export async function getOverlayPaths(): Promise<string[]> {
   const validOverlayPaths: string[] = []
 
   for (const packPath of packPaths) {
-    if (!await pathExists(packPath)) continue
+    if (!await pathExists(packPath)) {
+      continue
+    }
 
     const itemsWithinPack = await fs.readDirectory(vscode.Uri.file(packPath))
 

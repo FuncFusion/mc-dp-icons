@@ -5,7 +5,9 @@ export function generateIconNames(): void {
   const iconsDir = resolve(__dirname, "..", "..", "icons")
   const names = readdirSync(iconsDir)
     .filter((f) => {
-      if (!f.endsWith(".svg")) return false
+      if (!f.endsWith(".svg")) {
+        return false
+      }
       const name = f.slice(0, -4)
       return !name.endsWith("_xmas")
     })

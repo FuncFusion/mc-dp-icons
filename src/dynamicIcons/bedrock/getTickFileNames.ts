@@ -13,7 +13,9 @@ async function getTaggedTick(): Promise<Record<string, string>> {
 
 async function getCustomTick(): Promise<Record<string, string>> {
   const customTickNames = getConfig("tickFunctionNames")
-  if (!customTickNames) return {}
+  if (!customTickNames) {
+    return {}
+  }
 
   const tickFunctions = await processList(customTickNames)
 

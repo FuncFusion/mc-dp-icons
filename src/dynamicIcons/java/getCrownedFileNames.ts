@@ -12,7 +12,9 @@ export async function getCrownedFileNames(): Promise<Record<string, string>> {
     configCrownedLoadFunctions.length
   )
 
-  if (!atLeastOneCrownedFunction) return {}
+  if (!atLeastOneCrownedFunction) {
+    return {}
+  }
 
   const fileNames: Record<string, string> = {}
 

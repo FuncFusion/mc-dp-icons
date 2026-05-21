@@ -13,7 +13,9 @@ export async function subfolderReference(): Promise<{ subfolders: Record<string,
   let totalFiles = 0
 
   for (const namespacePath of namespacePaths) {
-    if (!await pathExists(namespacePath)) continue
+    if (!await pathExists(namespacePath)) {
+      continue
+    }
 
     const entries = await fs.readDirectory(vscode.Uri.file(namespacePath))
 

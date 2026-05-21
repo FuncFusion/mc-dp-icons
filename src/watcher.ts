@@ -12,7 +12,9 @@ export function createFileWatcher(onChange: () => void) {
   let timer: NodeJS.Timeout | undefined
 
   const debounce = () => {
-    if (timer) clearTimeout(timer)
+    if (timer) {
+      clearTimeout(timer)
+    }
     timer = setTimeout(() => {
       onChange()
       timer = undefined
@@ -23,13 +25,19 @@ export function createFileWatcher(onChange: () => void) {
     workspace.onDidChangeWorkspaceFolders(() => debounce()),
     workspace.onDidRenameFiles(() => debounce()),
     workspace.onDidDeleteFiles(event => {
-      if (isRelevantFile(event.files[0])) debounce()
+      if (isRelevantFile(event.files[0])) {
+        debounce()
+      }
     }),
     workspace.onDidCreateFiles(event => {
-      if (isRelevantFile(event.files[0])) debounce()
+      if (isRelevantFile(event.files[0])) {
+        debounce()
+      }
     }),
     workspace.onDidSaveTextDocument(document => {
-      if (isRelevantFile(document.uri)) debounce()
+      if (isRelevantFile(document.uri)) {
+        debounce()
+      }
     }),
     workspace.onDidChangeConfiguration(() => debounce()),
   ]

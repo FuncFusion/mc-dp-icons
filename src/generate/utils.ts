@@ -41,7 +41,9 @@ export function buildFileAssociations(
   const fileExtensions: Record<string, string> = {}
   const fileNames: Record<string, string> = {}
   for (const icon of iconDefinitions) {
-    if (isFileIcon(icon.name) === false) continue
+    if (isFileIcon(icon.name) === false) {
+      continue
+    }
     if (icon.extensions) {
       for (const extension of icon.extensions) {
         fileExtensions[extension] = icon.name
@@ -68,7 +70,9 @@ export function buildFolderAssociations(
   const folderNames: Record<string, string> = {}
   const folderNamesExpanded: Record<string, string> = {}
   for (const icon of iconDefinitions) {
-    if (icon.foldernames === undefined) continue
+    if (icon.foldernames === undefined) {
+      continue
+    }
     if (isFolderClosedIcon(icon.name)) {
       for (const folderName of icon.foldernames) {
         folderNames[folderName] = icon.name

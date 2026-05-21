@@ -4,7 +4,9 @@ import { getNamespacePaths } from "./helpers/getNamespacePaths"
 
 export async function getNamespaceFolders(): Promise<Record<string, string>> {
   const namespaceIcons = getConfig("namespaceIcons")
-  if (!namespaceIcons) return {}
+  if (!namespaceIcons) {
+    return {}
+  }
 
   const namespacePaths = await getNamespacePaths() || []
 

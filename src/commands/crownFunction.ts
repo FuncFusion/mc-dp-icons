@@ -8,7 +8,9 @@ const keyPrefix = "mc-dp-icons."
 function makeHandler(suffix: string) {
   const configKey = keyPrefix + suffix
   return (uri?: vscode.Uri) => {
-    if (!uri) return
+    if (!uri) {
+      return
+    }
 
     const fsPath = uri.fsPath
     const shortenedPath = fsPath.split(path.sep).slice(-2).join(path.sep).replace(".mcfunction", "")

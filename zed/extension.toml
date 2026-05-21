@@ -1,7 +1,0 @@
-id = "mc-dp-icons-theme"
-name = "Datapack Icons"
-version = "0.1.0"
-schema_version = 1
-authors = ["funcfusion"]
-description = "Minecraft-inspired icon theme"
-icon_themes = ["icon_themes/mc-dp-icons.json"]

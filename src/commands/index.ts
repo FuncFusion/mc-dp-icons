@@ -1,8 +1,8 @@
 import * as vscode from "vscode"
 import { openSettings } from "./openSettings"
-import { commands as crownCommands } from "./crownFunction"
+import { commands as iconCommands } from "./setIcon"
 
-const commandList = [openSettings, ...crownCommands]
+const commandList = [openSettings, ...iconCommands]
 
 export function registerAll(context: vscode.ExtensionContext) {
   for (const command of commandList) {

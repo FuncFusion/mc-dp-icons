@@ -1,0 +1,34 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "command": "bun run build",
+      "group": "build",
+      "problemMatcher": ["$tsc"],
+      "label": "bun: build",
+      "detail": "Bundle extension"
+    },
+    {
+      "type": "shell",
+      "command": "bun run check",
+      "problemMatcher": ["$tsc"],
+      "label": "bun: check",
+      "detail": "Run typecheck + eslint"
+    },
+    {
+      "type": "shell",
+      "command": "bun test",
+      "group": "test",
+      "label": "bun: test",
+      "detail": "Run all tests"
+    },
+    {
+      "type": "shell",
+      "command": "bun run watch",
+      "problemMatcher": ["$tsc"],
+      "label": "bun: watch",
+      "detail": "Rebuild on changes"
+    }
+  ]
+}

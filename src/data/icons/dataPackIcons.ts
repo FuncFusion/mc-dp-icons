@@ -178,6 +178,10 @@ export const dataPackIcons: IconDefinition[] = [
     foldernames: ["loot_table", "loot_tables", "drops"],
   },
   {
+    name: "mcbuild_file",
+    extensions: ["mcb", "mcbt"]
+  },
+  {
     name: "mcfunction_file",
     extensions: ["mcfunction"],
   },
@@ -234,15 +238,20 @@ export const dataPackIcons: IconDefinition[] = [
   },
   {
     name: "recipe_file",
-    extensions: ["recipe/json", "recipes/json", "zs"],
+    extensions: ["mak", "make", "mk", "recipe/json", "recipes/json", "zs"],
+    filenames: ["gnumakefile", "kbuild", "makefile"]
   },
   {
     name: "recipe_folder",
     foldernames: ["recipe", "recipes"],
   },
   {
+    name: "sandstone_file",
+    filenames: ["sandstone.config.ts"]
+  },
+  {
     name: "spyglass_file",
-    extensions: ["mcdoc", "cameras/json"],
+    extensions: ["mcdoc", "cameras/json", "spyglass.json"],
   },
   {
     name: "spyglass_folder",
@@ -255,6 +264,14 @@ export const dataPackIcons: IconDefinition[] = [
   {
     name: "structure_folder",
     foldernames: ["structure", "structures", "instances"],
+  },
+  {
+    name: "sulfur_cube_archetype_file",
+    extensions: ["sulfur_cube_archetype/json"]
+  },
+  {
+    name: "sulfur_cube_archetype_folder",
+    foldernames: ["sulfur_cube_archetype"]
   },
   {
     name: "tags_file",

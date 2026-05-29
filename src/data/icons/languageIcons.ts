@@ -19,7 +19,11 @@ export const languageIcons: IconDefinition[] = [
   },
   {
     name: "c_file",
-    extensions: ["c", "h", "i", "objc"],
+    extensions: ["c", "i", "objc"],
+  },
+  {
+    name: "c_header_file",
+    extensions: ["h",],
   },
   {
     name: "clojure_file",
@@ -27,7 +31,11 @@ export const languageIcons: IconDefinition[] = [
   },
   {
     name: "cplusplus_file",
-    extensions: ["c++", "cc", "cpp", "cxx", "hh", "hpp", "hxx", "ii", "inl", "ipp", "pch", "tcc", "tpp", "vcxproj"],
+    extensions: ["c++", "cc", "cpp", "cxx", "ii"],
+  },
+  {
+    name: "cplusplus_header_file",
+    extensions: ["h++", "hh", "hpp", "hxx", "inl", "ipp", "pch", "tcc", "tpp"],
   },
   {
     name: "crystal_file",
@@ -178,7 +186,7 @@ export const languageIcons: IconDefinition[] = [
   {
     name: "python_file",
     extensions: ["ipynb", "py", "pyde", "pyi", "pyp", "pyt", "pyw"],
-    filenames: ["Pipfile", "pyproject.toml"],
+    filenames: ["Pipfile"],
   },
   {
     name: "reason_react_file",

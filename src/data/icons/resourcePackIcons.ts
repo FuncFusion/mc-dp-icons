@@ -89,7 +89,7 @@ export const resourcePackIcons: IconDefinition[] = [
   },
   {
     name: "shaders_file",
-    extensions: ["post_effect/json", "shaders/json", "color_grading/json", "gdshader"],
+    extensions: ["post_effect/json", "shaders/json", "color_grading/json", "gdshader", "gpl"],
   },
   {
     name: "shaders_folder",

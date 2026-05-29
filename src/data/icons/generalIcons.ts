@@ -19,6 +19,10 @@ export const generalIcons: IconDefinition[] = [
     foldernames: ["archive", "archived", "archives", "lib", "libs", "packages", "pkg"],
   },
   {
+    name: "aseprite_extension_file",
+    extensions: ["aseprite-extension"]
+  },
+  {
     name: "aseprite_file",
     extensions: ["ase", "aseprite"],
   },
@@ -53,7 +57,7 @@ export const generalIcons: IconDefinition[] = [
   {
     name: "config_file",
     extensions: ["cfg", "cnf", "conf", "conf.dist", "config", "config.js", "config.ts", "dist", "env", "env.development", "env.example", "env.local", "env.production", "htaccess", "import", "ini", "ini.dist", "properties", "settings"],
-    filenames: [".eslintrc", ".eslintrc.json", ".eslintrc.yaml", ".eslintrc.yml", ".hintrc", ".hintrc.json", ".hintrc.yaml", ".hintrc.yml", ".mcattributes", ".mcdefinitions", "appsettings.json", "conf", "config", "config.json", "settings.json", "webpack.config.cjs", "webpack.config.js", "webpack.config.mjs", "webpack.config.ts"],
+    filenames: [".eslintrc", ".eslintrc.json", ".eslintrc.yaml", ".eslintrc.yml", ".hintrc", ".hintrc.json", ".hintrc.yaml", ".hintrc.yml", ".mcattributes", ".mcdefinitions", "appsettings.json", "conf", "config", "config.json", "settings.json", "webpack.config.cjs", "webpack.config.mjs"],
   },
   {
     name: "config_folder",
@@ -342,7 +346,7 @@ export const generalIcons: IconDefinition[] = [
   },
   {
     name: "requirements.txt_file",
-    filenames: ["requirements.txt"],
+    filenames: ["requirements.txt", "pyproject.toml"],
   },
   {
     name: "rss_file",
@@ -445,7 +449,7 @@ export const generalIcons: IconDefinition[] = [
   },
   {
     name: "vs_file",
-    extensions: ["sln", "vbproj"],
+    extensions: ["sln", "vbproj", "vcxproj"],
   },
   {
     name: "vs_folder",
@@ -465,7 +469,7 @@ export const generalIcons: IconDefinition[] = [
   },
   {
     name: "xml_file",
-    extensions: ["admx", "filters", "ivy", "jelly", "mxml", "nuspec", "resx", "targets", "tld", "wsdl", "xib", "xlf", "xliff", "xmi", "xml", "xsd", "xsl", "xslt"],
+    extensions: ["admx", "aseprite-data", "aseprite-keys", "filters", "ivy", "jelly", "mxml", "nuspec", "resx", "targets", "tld", "wsdl", "xib", "xlf", "xliff", "xmi", "xml", "xsd", "xsl", "xslt"],
   },
   {
     name: "yaml_file",

@@ -1,6 +1,8 @@
 import * as esbuild from 'esbuild';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { existsSync } from 'fs';
+import { execSync } from 'child_process';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -25,11 +27,16 @@ const desktopConfig = {
 const webConfig = {
   ...commonOptions,
   entryPoints: ['src/webExtension.ts'],
-  outfile: 'dist/webExtension.js',
+  outfile: 'out/webExtension.js',
   target: 'node18',
 };
 
 async function build() {
+  if (!existsSync('src/data/baseTheme.ts')) {
+    console.log('baseTheme.ts missing, running generate...');
+    execSync('bun run generate', { stdio: 'inherit' });
+  }
+
   if (isWatch) {
     const desktopCtx = await esbuild.context(desktopConfig);
     const webCtx = await esbuild.context(webConfig);

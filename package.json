@@ -286,8 +286,8 @@
     "build": "bun esbuild.mjs",
     "watch": "bun esbuild.mjs --watch",
     "generate": "bun src/generate/index.ts",
-    "compile": "bun run generate && tsc -p ./ && bunx eslint src --ext ts",
-    "package": "bun run generate && NODE_ENV=production bun esbuild.mjs",
+    "check": "bun run generate && tsc --noEmit -p ./ && bunx eslint src --ext ts",
+    "package": "NODE_ENV=production bun esbuild.mjs",
     "vscode:prepublish": "bun run package"
   },
   "devDependencies": {

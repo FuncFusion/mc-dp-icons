@@ -75,6 +75,14 @@ You can find all the used (and unused!) assets during the development of Datapac
 ## <sub><img src="assets/readme_icons/contributing_file.png" width="28"></sub> Community & Feedback
 If you need to report a bug, request a new icon or suggest a feature, you can do that in our <sub><img src="assets/readme_icons/discord.png" width="18"></sub> [discord server](https://discord.gg/9FMRD9GvAq) or by opening a [github issue](https://github.com/FuncFusion/mc-dp-icons/issues).
 
+## <img src="assets/readme_icons/dimension_file.png" width="28"> Ports
+Datapack Icons isn't just for VS Code! We've ported the extension to other IDEs. Keep in mind they will probably have fewer features than the VS Code extension due to different extension capabilities.
+
+- <sub><img src="assets/readme_icons/sublime_file.png" width="18"></sub> [**Sublime Text** port](https://github.com/FuncFusion/mc-dp-icons-sublime)
+- [**Zed** port](https://github.com/FuncFusion/mc-dp-icons-zed)
+
+We are also planning a <sub><img src="assets/readme_icons/jetbrains_file.png" width="18"></sub> **JetBrains** port and a <sub><img src="assets/readme_icons/neovim_file.png" width="18"></sub> **Neovim** port in the future.
+
 ## <sub><img src="assets/readme_icons/mojo_file.png" width="28"></sub> Creators
 We are [FuncFusion](https://github.com/FuncFusion) - a small team of three:
 
@@ -85,5 +93,15 @@ We are [FuncFusion](https://github.com/FuncFusion) - a small team of three:
 <img src="assets/amandin.png" width="18"> [amandin](https://github.com/amqndin) - Lead developer behind all the code, and included this extension in his [amazing extension pack](https://marketplace.visualstudio.com/items?itemName=amandin.dpc-pack).
 
 ![Creators](assets/creators.png)
+
+## <img src="assets/readme_icons/lang_file.png" width="28"> Used By
+
+We love seeing our icons power other creations! Here are some of the awesome projects that use Datapack Icons:
+
+- [Scythe](https://scythe-editor.com/) — The dedicated IDE for Minecraft Datapacks and resource packs.
+- [cord.nvim](https://github.com/vyfor/cord.nvim) — A highly extensible Discord Rich Presence plugin for Neovim (features a custom Minecraft icon set built on Datapack Icons).
+- [Snave Sutit](https://snavesutit.github.io/) — Personal developer website and portfolio.
+
+*If your project is not on the list, feel free to reach out or open a pull request!*
 
 **Enjoy!**

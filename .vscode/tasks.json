@@ -11,6 +11,13 @@
     },
     {
       "type": "shell",
+      "command":"bun run generate",
+      "problemMatcher": ["$tsc"],
+      "label": "bun: generate",
+      "detail": "Generate base theme"
+    },
+    {
+      "type": "shell",
       "command": "bun run check",
       "problemMatcher": ["$tsc"],
       "label": "bun: check",

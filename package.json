@@ -240,6 +240,32 @@
       }
     ],
     "menus": {
+      "commandPalette": [
+        {
+          "command": "mc-dp-icons.setTickIcon",
+          "when": "false"
+        },
+        {
+          "command": "mc-dp-icons.setLoadIcon",
+          "when": "false"
+        },
+        {
+          "command": "mc-dp-icons.setCrownedIcon",
+          "when": "false"
+        },
+        {
+          "command": "mc-dp-icons.setCrownedTickIcon",
+          "when": "false"
+        },
+        {
+          "command": "mc-dp-icons.setCrownedLoadIcon",
+          "when": "false"
+        },
+        {
+          "command": "mc-dp-icons.resetIcon",
+          "when": "false"
+        }
+      ],
       "explorer/context": [
         {
           "submenu": "mc-dp-icons.changeIconSubmenu",

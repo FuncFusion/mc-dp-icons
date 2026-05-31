@@ -28,8 +28,42 @@
     "dp",
     "command",
     "block",
+    "function",
     "mcfunction",
-    "mcf"
+    "mcf",
+    "file-icons",
+    "icon-pack",
+    "icon-theme",
+    "minecraft-icons",
+    "ui",
+    "explorer",
+    "modding",
+    "nbt",
+    "snbt",
+    "json",
+    "mcmeta",
+    "beet",
+    "bolt",
+    "map-making",
+    "plugin",
+    "custom"
+  ],
+  "badges": [
+    {
+      "url": "https://vsmarketplacebadges.dev/version-short/SuperAnt.mc-dp-icons.png?style=for-the-badge&color=36a7dd",
+      "href": "https://marketplace.visualstudio.com/items?itemName=SuperAnt.mc-dp-icons",
+      "description": "Version"
+    },
+    {
+      "url": "https://vsmarketplacebadges.dev/installs-short/SuperAnt.mc-dp-icons.png?style=for-the-badge&color=36a7dd",
+      "href": "https://marketplace.visualstudio.com/items?itemName=SuperAnt.mc-dp-icons",
+      "description": "Installs"
+    },
+    {
+      "url": "https://img.shields.io/discord/1447615372353212713?label=Discord&logo=discord&style=for-the-badge&color=7289da",
+      "href": "https://discord.gg/wpzAVk8Wrc",
+      "description": "Discord"
+    }
   ],
   "categories": [
     "Themes",

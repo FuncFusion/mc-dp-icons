@@ -27,4 +27,22 @@ describe("processList", () => {
       "tick.mcfunction",
     ])
   })
+
+  test("resolves wildcards via findFiles returning last-2-segments", async () => {
+    mockVscodeState.findFilesResult = (include: string) => {
+      if (include.includes("setup_")) {
+        return [
+          { fsPath: "/dp/data/minecraft/functions/setup_main.mcfunction" },
+          { fsPath: "/dp/data/minecraft/functions/setup_debug.mcfunction" },
+        ]
+      }
+      return []
+    }
+
+    const result = await processList(["setup_*"])
+    expect(result).toEqual([
+      "functions/setup_main.mcfunction",
+      "functions/setup_debug.mcfunction",
+    ])
+  })
 })

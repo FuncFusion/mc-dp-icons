@@ -35,13 +35,13 @@ Made by SuperAnt_: https://www.youtube.com/watch?v=eYAvg19stpU
 ![Icons](assets/3.0/PackMcmetaCheck.gif)
 
 ### <sub><img src="assets/readme_icons/function_folder.png" width="24"></sub> Special Function Icons
-By default, `.mcfunction` files use the standard <img src="icons/mcfunction_file.svg" width="18"> chain command block icon. Since functions usually make up the vast majority of files in a datapack, it can be difficult to tell your core logic apart from the rest. To help you visually prioritize important files, the extension offers several special command block icons!
+By default, `.mcfunction` files use the standard <img src="assets/readme_icons/mcfunction_file.png" width="18"> chain command block icon. Since functions usually make up the vast majority of files in a datapack, it can be difficult to tell your core logic apart from the rest. To help you visually prioritize important files, the extension offers several special command block icons!
 
 Functions listed in your <sub><img src="assets/readme_icons/tick.json_file.png" width="18"></sub> `tick.json` and <sub><img src="assets/readme_icons/load.json_file.png" width="18"></sub> `load.json` files automatically receive <img src="assets/readme_icons/mcfunction_tick_file.png" width="18"> repeating and <img src="assets/readme_icons/mcfunction_load_file.png" width="18"> impulse command block icons.
 
-You can also manually assign the <img src="assets/readme_icons/mcfunction_load_file.png" width="18"> load and <img src="assets/readme_icons/mcfunction_tick_file.png" width="18"> tick icons to any file, alongside three special crowned variants (<sub><img src="assets/readme_icons/mcfunction_file_crowned.png" width="18"></sub> <sub><img src="assets/readme_icons/mcfunction_load_file_crowned.png" width="18"></sub> <sub><img src="assets/readme_icons/mcfunction_tick_file_crowned.png" width="18"></sub>) specifically designed to highlight your most important functions.
+You can also manually assign the <img src="assets/readme_icons/mcfunction_tick_file.png" width="18"> repeating and <img src="assets/readme_icons/mcfunction_load_file.png" width="18"> impulse command block icons to any file, alongside three special crowned variants (<sub><img src="assets/readme_icons/mcfunction_file_crowned.png" width="18"></sub> <sub><img src="assets/readme_icons/mcfunction_load_file_crowned.png" width="18"></sub> <sub><img src="assets/readme_icons/mcfunction_tick_file_crowned.png" width="18"></sub>) specifically designed to highlight your most important functions.
 
-To assign a custom icon, right-click any function file and use the `Datapack Icons: Set Icon` menu. Alternatively, you can use the settings to assign icons by file name. Wildcards are also supported (e.g., `setup_*`, `*_loop` or `*helper*`) to easily match multiple files at once.
+To assign a custom icon, right-click any function file and use the `Datapack Icons: Set Icon` menu. Alternatively, you can use the settings to assign icons by file name. For maximum precision, it is recommended to specify the direct parent folder name (e.g., `subfolder/file`) rather than using just the file name. [GlobPatterns](https://code.visualstudio.com/api/references/vscode-api#GlobPattern) are also supported (e.g., `*_setup`, `*helper*`, or `phase_[0-9]`) to easily match multiple files at once.
 
 ![Icons](assets/3.0/LoadTickFunctions.gif)
 

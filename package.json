@@ -99,7 +99,7 @@
             "items": {
               "type": "string"
             },
-            "markdownDescription": "Assign custom command block icons to specific function files using the lists below. \n\n*Tip: Quickly add files to these lists by right-clicking a `.mcfunction` file in the Explorer and using the `Datapack Icons: Set Icon` context menu option.*\n\n**Wildcards are supported:** Use `*` to match multiple files (e.g., `setup_*` or `*utils*`).\n\n*Warning: This feature is not currently supported on VS Code Web.*"
+            "markdownDescription": "Assign custom command block icons to specific function files using the lists below.\n\n*Tip: Quickly add files to these lists by right-clicking a `.mcfunction` file in the Explorer and using the `Datapack Icons: Set Icon` context menu.*\n\nFor maximum precision, specify the direct parent folder (e.g., `subfolder/file`). [GlobPatterns](https://code.visualstudio.com/api/references/vscode-api#GlobPattern) are also supported to match multiple files (e.g., `*_setup` or `phase_[0-9]`).\n\n*Warning: This feature is not currently supported on VS Code Web.*"
           },
           "mc-dp-icons.tickFunctionNames": {
             "order": 2,

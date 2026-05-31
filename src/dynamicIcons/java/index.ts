@@ -1,35 +1,29 @@
 import type { ThemeContributions, ThemeModule } from "../plugin"
 import { findPackMcmeta } from "../utils"
-import { getCrownedFileNames } from "./getCrownedFileNames"
-import { getLoadTickFileNames } from "./getLoadTickFileNames"
+import { getTagFileNames } from "./getTagFileNames"
+import { getUserFileNames } from "./getUserFileNames"
 import { getNamespaceFolders } from "./getNamespaceFolders"
 import { getOverlayFolders } from "./getOverlayFolders"
 import { getSubFolderFiles } from "./getSubFolderFiles"
 
 async function collect(): Promise<ThemeContributions> {
-  const crownedPromise = getCrownedFileNames()
-  const loadTickPromise = getLoadTickFileNames()
-  const namespaceFoldersPromise = getNamespaceFolders()
-  const overlayFoldersPromise = getOverlayFolders()
-  const subFolderFilesPromise = getSubFolderFiles()
-
-  const collectorResults = await Promise.all([
-    crownedPromise,
-    loadTickPromise,
-    namespaceFoldersPromise,
-    overlayFoldersPromise,
-    subFolderFilesPromise,
+  const [
+    tagEntries,
+    userEntries,
+    namespaceFolders,
+    overlayFolders,
+    subFolderFiles,
+  ] = await Promise.all([
+    getTagFileNames(),
+    getUserFileNames(),
+    getNamespaceFolders(),
+    getOverlayFolders(),
+    getSubFolderFiles(),
   ])
 
-  const crowned = collectorResults[0]
-  const loadTick = collectorResults[1]
-  const namespaceFolders = collectorResults[2]
-  const overlayFolders = collectorResults[3]
-  const subFolderFiles = collectorResults[4]
-
   const fileNames: Record<string, string> = {}
-  Object.assign(fileNames, loadTick)
-  Object.assign(fileNames, crowned)
+  Object.assign(fileNames, tagEntries)
+  Object.assign(fileNames, userEntries)
   Object.assign(fileNames, subFolderFiles)
 
   const folderNames: Record<string, string> = {}

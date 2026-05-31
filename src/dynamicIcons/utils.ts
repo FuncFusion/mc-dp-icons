@@ -137,5 +137,5 @@ export async function processList(list: string[]): Promise<string[]> {
   if (usesPartialMatch(list)) {
     return await getPartialMatches(list)
   }
-  return list.map(item => item + ".mcfunction")
+  return list.map(item => item.replace(/\\/g, "/") + ".mcfunction")
 }

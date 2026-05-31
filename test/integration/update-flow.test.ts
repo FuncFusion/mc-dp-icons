@@ -23,7 +23,7 @@ beforeAll(async () => {
   mockVscodeState.configStore["mc-dp-icons.dynamicFunctionIcons"] = true
   mockVscodeState.configStore["mc-dp-icons.loadFunctionNames"] = ["init"]
   mockVscodeState.configStore["mc-dp-icons.tickFunctionNames"] = ["main"]
-  mockVscodeState.configStore["mc-dp-icons.crownedFunctions"] = ["init"]
+  mockVscodeState.configStore["mc-dp-icons.crownedFunctions"] = ["my_crowned"]
   mockVscodeState.configStore["mc-dp-icons.subfolderIcons"] = true
   mockVscodeState.configStore["mc-dp-icons.namespaceIcons"] = true
   mockVscodeState.configStore["mc-dp-icons.overlayIcons"] = true
@@ -98,7 +98,8 @@ describe("update integration", () => {
     await update()
 
     const theme = JSON.parse(mockVscodeState.lastWrittenContent)
-    expect(theme.fileNames["init.mcfunction"]).toBe("mcfunction_file_crowned")
+    expect(theme.fileNames["init.mcfunction"]).toBe("mcfunction_load_file")
+    expect(theme.fileNames["my_crowned.mcfunction"]).toBe("mcfunction_file_crowned")
   })
 
   test("folderNamesExpanded has namespace and overlay entries", async () => {

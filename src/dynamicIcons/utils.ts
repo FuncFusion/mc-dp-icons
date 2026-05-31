@@ -106,7 +106,8 @@ export async function getPartialMatches(customNames: string[]): Promise<string[]
   )).flat()
 
   const fileNames: string[] = matchedFunctions.map((matchedFunction: vscode.Uri) => {
-    return path.basename(matchedFunction.fsPath)
+    const segments = matchedFunction.fsPath.split(path.sep)
+    return segments.slice(-2).join("/")
   })
 
   return fileNames

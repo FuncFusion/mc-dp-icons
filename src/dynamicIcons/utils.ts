@@ -9,10 +9,10 @@ const fs = workspace.fs
 export async function getFilesInDirectory(directory: string): Promise<string[]> {
   const files: string[] = []
   const excludedFiles = [
-    "function/load.json",
-    "function/tick.json",
-    "functions/load.json",
-    "functions/tick.json",
+    "function" + path.sep + "load.json",
+    "function" + path.sep + "tick.json",
+    "functions" + path.sep + "load.json",
+    "functions" + path.sep + "tick.json",
   ]
   const collectFiles = async (dir: string, relativePath = "") => {
     const dirUri = vscode.Uri.file(dir)

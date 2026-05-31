@@ -171,23 +171,23 @@
               "Never"
             ],
             "markdownDescription": "Determines when chest icons switch to their festive Christmas variants.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
-          },
-          "mc-dp-icons.hideFolderArrows": {
-            "type": "boolean",
-            "order": 4,
-            "title": "Hide folder arrows",
-            "default": false,
-            "markdownDescription": "If enabled, hides the expand/collapse arrows next to folders in the VS Code Explorer.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
           }
         }
       },
       {
-        "title": "Debug",
+        "title": "Other",
         "order": 5,
         "properties": {
-          "mc-dp-icons.debug": {
+          "mc-dp-icons.hideFolderArrows": {
             "type": "boolean",
             "order": 0,
+            "title": "Hide folder arrows",
+            "default": false,
+            "markdownDescription": "If enabled, hides the expand/collapse arrows next to folders in the VS Code Explorer.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
+          },
+          "mc-dp-icons.debug": {
+            "type": "boolean",
+            "order": 1,
             "title": "Enable debug logging",
             "default": false,
             "markdownDescription": "If enabled, verbose debug messages are printed to the console."

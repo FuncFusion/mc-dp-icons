@@ -34,13 +34,16 @@ Made by SuperAnt_: https://www.youtube.com/watch?v=eYAvg19stpU
 
 ![Icons](assets/3.0/PackMcmetaCheck.gif)
 
-### <sub><img src="assets/readme_icons/function_folder.png" width="24"></sub> Function Icons
-By default, functions listed in your <sub><img src="assets/readme_icons/tick.json_file.png" width="18"></sub> `tick.json` and <sub><img src="assets/readme_icons/load.json_file.png" width="18"></sub> `load.json` files automatically receive <img src="assets/readme_icons/mcfunction_tick_file.png" width="18"> repeating and <img src="assets/readme_icons/mcfunction_load_file.png" width="18"> impulse command block icons. You can toggle this dynamic behavior off in the settings to assign these icons manually based on file names. Manual assignments support wildcards (e.g., `setup_*` or `*_loop`) to easily match multiple files at once.
+### <sub><img src="assets/readme_icons/function_folder.png" width="24"></sub> Special Function Icons
+By default, `.mcfunction` files use the standard <img src="icons/mcfunction_file.svg" width="18"> chain command block icon. Since functions usually make up the vast majority of files in a datapack, it can be difficult to tell your core logic apart from the rest. To help you visually prioritize important files, the extension offers several special command block icons!
+
+Functions listed in your <sub><img src="assets/readme_icons/tick.json_file.png" width="18"></sub> `tick.json` and <sub><img src="assets/readme_icons/load.json_file.png" width="18"></sub> `load.json` files automatically receive <img src="assets/readme_icons/mcfunction_tick_file.png" width="18"> repeating and <img src="assets/readme_icons/mcfunction_load_file.png" width="18"> impulse command block icons.
+
+You can also manually assign the <img src="assets/readme_icons/mcfunction_load_file.png" width="18"> load and <img src="assets/readme_icons/mcfunction_tick_file.png" width="18"> tick icons to any file, alongside three special crowned variants (<sub><img src="assets/readme_icons/mcfunction_file_crowned.png" width="18"></sub> <sub><img src="assets/readme_icons/mcfunction_load_file_crowned.png" width="18"></sub> <sub><img src="assets/readme_icons/mcfunction_tick_file_crowned.png" width="18"></sub>) specifically designed to highlight your most important functions.
+
+To assign a custom icon, right-click any function file and use the `Datapack Icons: Set Icon` menu. Alternatively, you can use the settings to assign icons by file name. Wildcards are also supported (e.g., `setup_*`, `*_loop` or `*helper*`) to easily match multiple files at once.
 
 ![Icons](assets/3.0/LoadTickFunctions.gif)
-
-### <sub><img src="assets/readme_icons/mcfunction_file_crowned.png" width="24"></sub> Crowned Function Icons
-**Highlight your most important functions!** The extension has 3 special crowned command block icons (<sub><img src="assets/readme_icons/mcfunction_file_crowned.png" width="18"></sub> <sub><img src="assets/readme_icons/mcfunction_load_file_crowned.png" width="18"></sub> <sub><img src="assets/readme_icons/mcfunction_tick_file_crowned.png" width="18"></sub>) to help you visually prioritize specific functions. Add your chosen file names to the settings to apply these icons. Wildcards are also supported (e.g., `core_*` or `*helper*`) to easily match multiple files at once.
 
 ### <sub><img src="assets/readme_icons/loot_table_folder.png" width="24"></sub> Subfolder Icons
 Due to VS Code API limitations, special icons can only be assigned to files directly inside a category folder (e.g.,  `data/namespace/item_modifier/`<sub><img src="assets/readme_icons/item_modifier_file.png" width="18"></sub>`file.json`). Enabling this option activates a workaround that bypasses this restriction, ensuring that nested files like `data/namespace/item_modifier/subfolder/`<sub><img src="assets/readme_icons/item_modifier_file.png" width="18"></sub>`file.json` get their specific icon rather than a generic one. Not recommended for extremely large workspaces. This requires a <sub><img src="assets/readme_icons/pack.mcmeta_file.png" width="18"></sub> `pack.mcmeta` file at the root of the pack.

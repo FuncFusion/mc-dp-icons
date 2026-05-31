@@ -5,6 +5,19 @@ import path from "path"
 
 const keyPrefix = "mc-dp-icons."
 
+function resetShortenedPath(shortenedPath: string) {
+  for (const suffix of configSuffixes) {
+    const currentNames = getConfig(suffix as ConfigKey) as string[]
+
+    if (currentNames.includes(shortenedPath)) {
+      const remainingNames = currentNames.filter(function(name) {
+        return name !== shortenedPath
+      })
+      changeWorkspaceConfig(keyPrefix + suffix, remainingNames)
+    }
+  }
+}
+
 function makeHandler(suffix: string) {
   const configKey = keyPrefix + suffix
   return (uri?: vscode.Uri) => {
@@ -13,10 +26,9 @@ function makeHandler(suffix: string) {
     }
 
     const fsPath = uri.fsPath
-    const shortenedPath = fsPath.split(path.sep).slice(-2).join(path.sep).replace(".mcfunction", "")
-    const current = getConfig(suffix as ConfigKey) as string[]
-    const deduplicated = current.includes(shortenedPath) ? current : [...current, shortenedPath]
-    changeWorkspaceConfig(configKey, deduplicated)
+    const shortenedPath = fsPath.split(path.sep).slice(-2).join("/").replace(".mcfunction", "")
+    resetShortenedPath(shortenedPath)
+    changeWorkspaceConfig(configKey, [shortenedPath])
   }
 }
 
@@ -36,19 +48,9 @@ const resetIcon = {
     }
 
     const fsPath = uri.fsPath
-    const shortenedPath = fsPath.split(path.sep).slice(-2).join(path.sep).replace(".mcfunction", "")
+    const shortenedPath = fsPath.split(path.sep).slice(-2).join("/").replace(".mcfunction", "")
 
-    for (const suffix of configSuffixes) {
-      const fullKey = keyPrefix + suffix
-      const currentNames = getConfig(suffix as ConfigKey) as string[]
-
-      if (currentNames.includes(shortenedPath)) {
-        const remainingNames = currentNames.filter(function(name) {
-          return name !== shortenedPath
-        })
-        changeWorkspaceConfig(fullKey, remainingNames)
-      }
-    }
+    resetShortenedPath(shortenedPath)
   }
 }
 

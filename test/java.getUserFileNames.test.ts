@@ -9,9 +9,9 @@ let getUserFileNames: () => Promise<Record<string, string>>
 beforeAll(async () => {
   mockVscodeState.configStore["mc-dp-icons.loadFunctionNames"] = []
   mockVscodeState.configStore["mc-dp-icons.tickFunctionNames"] = []
-  mockVscodeState.configStore["mc-dp-icons.crownedFunctions"] = []
-  mockVscodeState.configStore["mc-dp-icons.crownedLoadFunctions"] = []
-  mockVscodeState.configStore["mc-dp-icons.crownedTickFunctions"] = []
+  mockVscodeState.configStore["mc-dp-icons.crownedFunctionsNames"] = []
+  mockVscodeState.configStore["mc-dp-icons.crownedLoadFunctionsNames"] = []
+  mockVscodeState.configStore["mc-dp-icons.crownedTickFunctionsNames"] = []
   const mod = await import("../src/dynamicIcons/java/getUserFileNames")
   getUserFileNames = mod.getUserFileNames
 })
@@ -27,9 +27,9 @@ describe("getUserFileNames", () => {
   })
 
   test("maps crowned functions with correct icon names", async () => {
-    mockVscodeState.configStore["mc-dp-icons.crownedFunctions"] = ["a", "b"]
-    mockVscodeState.configStore["mc-dp-icons.crownedLoadFunctions"] = []
-    mockVscodeState.configStore["mc-dp-icons.crownedTickFunctions"] = ["c"]
+    mockVscodeState.configStore["mc-dp-icons.crownedFunctionsNames"] = ["a", "b"]
+    mockVscodeState.configStore["mc-dp-icons.crownedLoadFunctionsNames"] = []
+    mockVscodeState.configStore["mc-dp-icons.crownedTickFunctionsNames"] = ["c"]
 
     const result = await getUserFileNames()
     expect(result["a.mcfunction"]).toBe("mcfunction_file_crowned")
@@ -49,7 +49,7 @@ describe("getUserFileNames", () => {
   test("shows warning on crowned vs load conflict", async () => {
     mockVscodeState.configStore["mc-dp-icons.loadFunctionNames"] = ["dup"]
     mockVscodeState.configStore["mc-dp-icons.tickFunctionNames"] = []
-    mockVscodeState.configStore["mc-dp-icons.crownedFunctions"] = ["dup"]
+    mockVscodeState.configStore["mc-dp-icons.crownedFunctionsNames"] = ["dup"]
 
     const result = await getUserFileNames()
     expect(mockVscodeState.showWarningMessage).toContain("one special icon per file")
@@ -57,8 +57,8 @@ describe("getUserFileNames", () => {
   })
 
   test("shows warning on crowned vs crownedTick conflict", async () => {
-    mockVscodeState.configStore["mc-dp-icons.crownedFunctions"] = ["dup"]
-    mockVscodeState.configStore["mc-dp-icons.crownedTickFunctions"] = ["dup"]
+    mockVscodeState.configStore["mc-dp-icons.crownedFunctionsNames"] = ["dup"]
+    mockVscodeState.configStore["mc-dp-icons.crownedTickFunctionsNames"] = ["dup"]
 
     const result = await getUserFileNames()
     expect(mockVscodeState.showWarningMessage).toContain("one special icon per file")
@@ -68,9 +68,9 @@ describe("getUserFileNames", () => {
   test("returns empty when no configs are set", async () => {
     mockVscodeState.configStore["mc-dp-icons.loadFunctionNames"] = []
     mockVscodeState.configStore["mc-dp-icons.tickFunctionNames"] = []
-    mockVscodeState.configStore["mc-dp-icons.crownedFunctions"] = []
-    mockVscodeState.configStore["mc-dp-icons.crownedLoadFunctions"] = []
-    mockVscodeState.configStore["mc-dp-icons.crownedTickFunctions"] = []
+    mockVscodeState.configStore["mc-dp-icons.crownedFunctionsNames"] = []
+    mockVscodeState.configStore["mc-dp-icons.crownedLoadFunctionsNames"] = []
+    mockVscodeState.configStore["mc-dp-icons.crownedTickFunctionsNames"] = []
 
     const result = await getUserFileNames()
     expect(Object.keys(result).length).toBe(0)

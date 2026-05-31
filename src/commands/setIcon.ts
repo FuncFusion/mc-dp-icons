@@ -35,9 +35,9 @@ function makeHandler(suffix: string) {
 const configSuffixes = [
   "tickFunctionNames",
   "loadFunctionNames",
-  "crownedFunctions",
-  "crownedTickFunctions",
-  "crownedLoadFunctions",
+  "crownedFunctionsNames",
+  "crownedTickFunctionsNames",
+  "crownedLoadFunctionsNames",
 ]
 
 const resetIcon = {
@@ -65,15 +65,15 @@ export const commands = [
   },
   {
     id: "mc-dp-icons.setCrownedIcon",
-    handler: makeHandler("crownedFunctions"),
+    handler: makeHandler("crownedFunctionsNames"),
   },
   {
     id: "mc-dp-icons.setCrownedTickIcon",
-    handler: makeHandler("crownedTickFunctions"),
+    handler: makeHandler("crownedTickFunctionsNames"),
   },
   {
     id: "mc-dp-icons.setCrownedLoadIcon",
-    handler: makeHandler("crownedLoadFunctions"),
+    handler: makeHandler("crownedLoadFunctionsNames"),
   },
   resetIcon,
 ]

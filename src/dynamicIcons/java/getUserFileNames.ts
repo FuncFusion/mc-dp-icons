@@ -11,9 +11,9 @@ type SpecialIcon = {
 const specialIcons: SpecialIcon[] = [
   { key: "loadFunctionNames", icon: "mcfunction_load_file" },
   { key: "tickFunctionNames", icon: "mcfunction_tick_file" },
-  { key: "crownedFunctions", icon: "mcfunction_file_crowned" },
-  { key: "crownedLoadFunctions", icon: "mcfunction_load_file_crowned" },
-  { key: "crownedTickFunctions", icon: "mcfunction_tick_file_crowned" },
+  { key: "crownedFunctionsNames", icon: "mcfunction_file_crowned" },
+  { key: "crownedLoadFunctionsNames", icon: "mcfunction_load_file_crowned" },
+  { key: "crownedTickFunctionsNames", icon: "mcfunction_tick_file_crowned" },
 ]
 
 export async function getUserFileNames(): Promise<Record<string, string>> {

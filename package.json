@@ -81,7 +81,7 @@
         }
       },
       {
-        "id": "loadTick",
+        "id": "functionIcons",
         "title": "Function Icons",
         "order": 2,
         "properties": {
@@ -99,7 +99,7 @@
             "items": {
               "type": "string"
             },
-            "markdownDescription": "*Requires `#mc-dp-icons.dynamicFunctionIcons#` to be disabled.*\n\nEnter the file names (without `.mcfunction`) that should receive the **impulse command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `setup_*` will match `setup_game.mcfunction` and `setup_settings.mcfunction`.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
+            "markdownDescription": "Assign custom command block icons to specific function files using the lists below. \n\n*Tip: Quickly add files to these lists by right-clicking a `.mcfunction` file in the Explorer and using the `Datapack Icons: Set Icon` context menu option.*\n\n**Wildcards are supported:** Use `*` to match multiple files (e.g., `setup_*` or `*utils*`).\n\n*Warning: This feature is not currently supported on VS Code Web.*"
           },
           "mc-dp-icons.tickFunctionNames": {
             "order": 2,
@@ -107,39 +107,31 @@
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "markdownDescription": "*Requires `#mc-dp-icons.dynamicFunctionIcons#` to be disabled.*\n\nEnter the file names (without `.mcfunction`) that should receive the **repeating command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `*_loop` will match `game_loop.mcfunction` and `particle_loop.mcfunction`.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
-          }
-        }
-      },
-      {
-        "id": "crownedFunctions",
-        "title": "Crowned Function Icons",
-        "order": 3,
-        "properties": {
-          "mc-dp-icons.crownedFunctions": {
-            "title": "Crowned Functions",
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "markdownDescription": "Enter the file names (without `.mcfunction`) that should receive the **crowned chain command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `*utils*` matches `math_utils.mcfunction` and `utils-general.mcfunction`.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
+            }
           },
-          "mc-dp-icons.crownedTickFunctions": {
-            "title": "Crowned Tick Functions",
+          "mc-dp-icons.crownedFunctionsNames": {
+            "order": 3,
+            "title": "Crowned Functions Names",
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "markdownDescription": "Enter the file names (without `.mcfunction`) that should receive the **crowned repeating command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `*_main` matches `combat_main.mcfunction` and `spawn_main.mcfunction`.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
+            }
           },
-          "mc-dp-icons.crownedLoadFunctions": {
-            "title": "Crowned Load Functions",
+          "mc-dp-icons.crownedLoadFunctionsNames": {
+            "order": 4,
+            "title": "Crowned Load Functions Names",
             "type": "array",
             "items": {
               "type": "string"
-            },
-            "markdownDescription": "Enter the file names (without `.mcfunction`) that should receive the **crowned impulse command block** icon.\n\n**Wildcards are supported:** Use `*` to match multiple files. For example, `init_*` matches `init_scoreboards.mcfunction` and `init_entities.mcfunction`.\n\n*Warning: This feature is not currently supported on VS Code Web.*"
+            }
+          },
+          "mc-dp-icons.crownedTickFunctionsNames": {
+            "order": 5,
+            "title": "Crowned Tick Functions Names",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },

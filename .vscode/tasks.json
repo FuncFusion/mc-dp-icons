@@ -12,6 +12,7 @@
     {
       "type": "shell",
       "command":"bun run generate",
+      "group": "build",
       "problemMatcher": ["$tsc"],
       "label": "bun: generate",
       "detail": "Generate base theme"
@@ -20,6 +21,7 @@
       "type": "shell",
       "command": "bun run check",
       "problemMatcher": ["$tsc"],
+      "group": "build",
       "label": "bun: check",
       "detail": "Run typecheck + eslint"
     },
@@ -27,6 +29,7 @@
       "type": "shell",
       "command": "bun test",
       "group": "test",
+      "group": "build",
       "label": "bun: test",
       "detail": "Run all tests"
     },
@@ -34,6 +37,7 @@
       "type": "shell",
       "command": "bun run watch",
       "problemMatcher": ["$tsc"],
+      "group": "build",
       "label": "bun: watch",
       "detail": "Rebuild on changes"
     }

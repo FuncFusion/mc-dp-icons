@@ -108,3 +108,6 @@ We love seeing our icons power other creations! Here are some of the awesome pro
 *If your project is not on the list, feel free to reach out or open a pull request!*
 
 **Enjoy!**
+
+---
+<small><em>NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.</em></small>

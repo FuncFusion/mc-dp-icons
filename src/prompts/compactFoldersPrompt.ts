@@ -22,8 +22,8 @@ export async function showCompactFoldersPrompt(context: vscode.ExtensionContext)
   const WORKSPACE = "Disable in workspace"
   const NEVER = "Don't show again"
 
-  vscode.window.showErrorMessage(
-    "Get the best experience by disabling 'Compact Folders'. Disable setting?",
+  vscode.window.showInformationMessage(
+    "Get the best Datapack Icons experience by disabling 'Compact Folders'. Disable setting?",
     { modal: false },
     GLOBAL,
     WORKSPACE,

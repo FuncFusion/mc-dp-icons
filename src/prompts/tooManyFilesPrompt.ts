@@ -7,7 +7,7 @@ export function warnAboutTooManyFiles() {
   vscode.window
     .showWarningMessage(
       warningMessage,
-      { modal: true },
+      { modal: false },
       "Disable Globally",
       "Disable in This Workspace",
     )

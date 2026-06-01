@@ -18,19 +18,22 @@ export async function showCompactFoldersPrompt(context: vscode.ExtensionContext)
     return
   }
 
-  const NEVER = "Never show again"
-  const APPLY = "Apply"
+  const GLOBAL = "Disable globally"
+  const WORKSPACE = "Disable in workspace"
+  const NEVER = "Don't show again"
 
-  vscode.window.showInformationMessage(
-    "[Datapack Icons] For the best experience, disable compact folders.",
-    { modal: true },
-    APPLY,
+  vscode.window.showErrorMessage(
+    "Get the best experience by disabling 'Compact Folders'. Disable setting?",
+    { modal: false },
+    GLOBAL,
+    WORKSPACE,
     NEVER
   ).then(function(selection) {
-    if (selection === APPLY) {
+    if (selection === GLOBAL) {
       explorerConfig.update("compactFolders", false, vscode.ConfigurationTarget.Global)
-    }
-    if (selection === NEVER) {
+    } else if (selection === WORKSPACE) {
+        explorerConfig.update("compactFolders", false, vscode.ConfigurationTarget.Workspace)
+    } else if (selection === NEVER) {
       context.globalState.update(DISMISSED_KEY, true)
     }
   })

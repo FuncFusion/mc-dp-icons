@@ -52,7 +52,7 @@ export async function getUserFileNames(): Promise<Record<string, string>> {
   })
 
   if (invalidEntries.length > 0) {
-    vscode.window.showWarningMessage(
+    vscode.window.showErrorMessage(
       "Ignored " + invalidEntries.length + " icon path(s) with more than 2 segments. " +
       "VS Code icon themes only support up to 2 path segments."
     )

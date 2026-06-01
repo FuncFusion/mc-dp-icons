@@ -22,7 +22,7 @@ async function getCustomTick(): Promise<Record<string, string>> {
 
   const { valid, invalid } = filterSegmentDepth(tickFunctions)
   if (invalid.length > 0) {
-    vscode.window.showWarningMessage(
+    vscode.window.showErrorMessage(
       "Ignored " + invalid.length + " icon path(s) with more than 2 segments. " +
       "VS Code icon themes only support up to 2 path segments."
     )

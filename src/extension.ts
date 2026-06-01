@@ -2,6 +2,7 @@ import * as vscode from "vscode"
 import * as DynamicIcons from "./dynamicIcons"
 import { createFileWatcher } from "./watcher"
 import { registerAll } from "./commands"
+import { showCompactFoldersPrompt } from "./prompts/compactFoldersPrompt"
 
 export function activate(context: vscode.ExtensionContext) {
   DynamicIcons.setExtensionUri(context.extensionUri)
@@ -11,4 +12,5 @@ export function activate(context: vscode.ExtensionContext) {
 
   DynamicIcons.update()
   registerAll(context)
+  showCompactFoldersPrompt(context)
 }

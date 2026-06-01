@@ -33,7 +33,7 @@ export async function workspaceDetection() {
   changeWorkspaceConfig("workbench.iconTheme", userDefaultTheme)
 }
 
-async function isMinecraftWorkspace(): Promise<boolean> {
+export async function isMinecraftWorkspace(): Promise<boolean> {
   const easyPatterns = [
     "**/pack.mcmeta",
     "**/jmc_config.json",

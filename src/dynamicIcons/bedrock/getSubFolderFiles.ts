@@ -1,5 +1,5 @@
 import { getConfig } from "../../configuration/configManager"
-import { warnAboutTooManyFiles } from "../utils"
+import { warnAboutTooManyFiles } from "../../prompts/tooManyFilesPrompt"
 import { subfolderIconMap } from "./constants"
 import { subfolderReference } from "./helpers/subfolderReference"
 
@@ -12,7 +12,7 @@ export async function getSubFolderFiles(): Promise<Record<string, string>> {
   const subfolderResult = await subfolderReference()
   const subfolders = subfolderResult.subfolders
   const totalFiles = subfolderResult.totalFiles
-  if (totalFiles >= 2000) {
+  if (totalFiles >= 10000) {
     warnAboutTooManyFiles()
   }
 

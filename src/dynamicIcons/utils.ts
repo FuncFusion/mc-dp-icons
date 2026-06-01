@@ -134,6 +134,19 @@ export function usesPartialMatch(array: string[]): boolean {
   return array.some(item => item.includes("*"))
 }
 
+export function filterSegmentDepth(names: string[]): { valid: string[], invalid: string[] } {
+  const valid: string[] = []
+  const invalid: string[] = []
+  for (const name of names) {
+    if (name.split("/").length > 2) {
+      invalid.push(name)
+    } else {
+      valid.push(name)
+    }
+  }
+  return { valid, invalid }
+}
+
 export async function processList(list: string[]): Promise<string[]> {
   if (usesPartialMatch(list)) {
     return await getPartialMatches(list)

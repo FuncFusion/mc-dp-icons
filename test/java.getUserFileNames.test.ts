@@ -56,4 +56,28 @@ describe("getUserFileNames", () => {
     const result = await getUserFileNames()
     expect(Object.keys(result).length).toBe(0)
   })
+
+  test("rejects entries with more than 2 path segments", async () => {
+    mockVscodeState.configStore["mc-dp-icons.tickFunctionNames"] = ["a/b"]
+    mockVscodeState.configStore["mc-dp-icons.loadFunctionNames"] = ["x/y/z"]
+
+    const result = await getUserFileNames()
+    expect(result["a/b.mcfunction"]).toBe("mcfunction_tick_file")
+    expect(result["x/y/z.mcfunction"]).toBeUndefined()
+    expect(mockVscodeState.showWarningMessage).toContain("2 path segments")
+  })
+
+  test("shows warning for mixed valid and invalid entries", async () => {
+    mockVscodeState.configStore["mc-dp-icons.tickFunctionNames"] = ["good/func", "bad/a/b/c", "func"]
+    mockVscodeState.configStore["mc-dp-icons.loadFunctionNames"] = []
+    mockVscodeState.configStore["mc-dp-icons.crownedFunctionsNames"] = []
+    mockVscodeState.configStore["mc-dp-icons.crownedLoadFunctionsNames"] = []
+    mockVscodeState.configStore["mc-dp-icons.crownedTickFunctionsNames"] = []
+
+    const result = await getUserFileNames()
+    expect(result["good/func.mcfunction"]).toBe("mcfunction_tick_file")
+    expect(result["func.mcfunction"]).toBe("mcfunction_tick_file")
+    expect(result["bad/a/b/c.mcfunction"]).toBeUndefined()
+    expect(mockVscodeState.showWarningMessage).toContain("1 icon path(s)")
+  })
 })

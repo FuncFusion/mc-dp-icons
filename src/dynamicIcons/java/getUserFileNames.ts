@@ -1,7 +1,7 @@
 import * as vscode from "vscode"
 import { getConfig } from "../../configuration/configManager"
 import type { ConfigKey } from "../../configuration/configManager"
-import { processList } from "../utils"
+import { filterSegmentDepth, processList } from "../utils"
 
 type SpecialIcon = {
   key: ConfigKey
@@ -44,6 +44,20 @@ export async function getUserFileNames(): Promise<Record<string, string>> {
     })
   )
 
+  const invalidEntries: string[] = []
+  const validArrays = processedArrays.map(function(arr) {
+    const { valid, invalid } = filterSegmentDepth(arr)
+    invalidEntries.push(...invalid)
+    return valid
+  })
+
+  if (invalidEntries.length > 0) {
+    vscode.window.showWarningMessage(
+      "Ignored " + invalidEntries.length + " icon path(s) with more than 2 segments. " +
+      "VS Code icon themes only support up to 2 path segments."
+    )
+  }
+
   const fileNames: Record<string, string> = {}
 
   function assignIcon(names: string[], icon: string) {
@@ -53,7 +67,7 @@ export async function getUserFileNames(): Promise<Record<string, string>> {
   }
 
   for (let i = 0; i < specialIcons.length; i++) {
-    assignIcon(processedArrays[i], specialIcons[i].icon)
+    assignIcon(validArrays[i], specialIcons[i].icon)
   }
 
   return fileNames

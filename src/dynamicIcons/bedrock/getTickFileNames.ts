@@ -1,5 +1,6 @@
+import * as vscode from "vscode"
 import { getConfig } from "../../configuration/configManager"
-import { getReferencesFromFunctionTags, processList } from "../utils"
+import { filterSegmentDepth, getReferencesFromFunctionTags, processList } from "../utils"
 
 async function getTaggedTick(): Promise<Record<string, string>> {
   const tickNames = await getReferencesFromFunctionTags("minecraft", "tick")
@@ -19,8 +20,16 @@ async function getCustomTick(): Promise<Record<string, string>> {
 
   const tickFunctions = await processList(customTickNames)
 
+  const { valid, invalid } = filterSegmentDepth(tickFunctions)
+  if (invalid.length > 0) {
+    vscode.window.showWarningMessage(
+      "Ignored " + invalid.length + " icon path(s) with more than 2 segments. " +
+      "VS Code icon themes only support up to 2 path segments."
+    )
+  }
+
   const fileNames: Record<string, string> = {}
-  for (const name of tickFunctions) {
+  for (const name of valid) {
     fileNames[name] = "mcfunction_tick_file"
   }
   return fileNames

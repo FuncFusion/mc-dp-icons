@@ -29,7 +29,6 @@
       "type": "shell",
       "command": "bun test",
       "group": "test",
-      "group": "build",
       "label": "bun: test",
       "detail": "Run all tests"
     },

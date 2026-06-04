@@ -52,7 +52,7 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
 
 export async function getReferencesFromFunctionTags(namespace: string, functionTag: string): Promise<string[]> {
   const functionTagFiles = await vscode.workspace.findFiles(
-    `**/${namespace}/tags/function{,s}/**/${functionTag}.json`,
+    `**/${namespace}/tags/{function,functions}/**/${functionTag}.json`,
     "**/node_modules/**",
   )
 
@@ -71,7 +71,7 @@ export async function getReferencesFromFunctionTags(namespace: string, functionT
       continue
     }
 
-    const tagDir = functionTagFile.path.includes("/tags/functions/")
+    const tagDir = functionTagFile.path.includes("tags/functions/")
       ? "functions"
       : "function"
 

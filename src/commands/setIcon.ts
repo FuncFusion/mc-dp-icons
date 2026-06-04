@@ -1,7 +1,6 @@
 import * as vscode from "vscode"
 import { getConfig, changeWorkspaceConfig } from "../configuration/configManager"
 import type { ConfigKey } from "../configuration/configManager"
-import path from "path"
 
 const keyPrefix = "mc-dp-icons."
 
@@ -25,8 +24,7 @@ function makeHandler(suffix: string) {
       return
     }
 
-    const fsPath = uri.fsPath
-    const shortenedPath = fsPath.split(path.sep).slice(-2).join("/").replace(".mcfunction", "")
+    const shortenedPath = uri.path.split("/").slice(-2).join("/").replace(".mcfunction", "")
     resetShortenedPath(shortenedPath)
     changeWorkspaceConfig(configKey, [shortenedPath])
   }
@@ -47,8 +45,7 @@ const resetIcon = {
       return
     }
 
-    const fsPath = uri.fsPath
-    const shortenedPath = fsPath.split(path.sep).slice(-2).join("/").replace(".mcfunction", "")
+    const shortenedPath = uri.path.split("/").slice(-2).join("/").replace(".mcfunction", "")
 
     resetShortenedPath(shortenedPath)
   }

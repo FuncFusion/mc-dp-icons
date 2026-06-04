@@ -13,7 +13,7 @@ beforeAll(async () => {
     JSON.stringify({ values: ["minecraft:main"] })
   mockVscodeState.findFilesResult = (include: string) => {
     if (include.includes("tick.json")) {
-      return [{ fsPath: "/dp/tags/minecraft/tags/function/tick.json" }]
+      return [{ fsPath: "/dp/tags/minecraft/tags/function/tick.json", path: "/dp/tags/minecraft/tags/function/tick.json" }]
     }
     return []
   }

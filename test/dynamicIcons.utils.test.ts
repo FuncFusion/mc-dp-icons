@@ -66,8 +66,8 @@ describe("processList", () => {
     mockVscodeState.findFilesResult = (include: string) => {
       if (include.includes("setup_")) {
         return [
-          { fsPath: "/dp/data/minecraft/functions/setup_main.mcfunction" },
-          { fsPath: "/dp/data/minecraft/functions/setup_debug.mcfunction" },
+          { fsPath: "/dp/data/minecraft/functions/setup_main.mcfunction", path: "/dp/data/minecraft/functions/setup_main.mcfunction" },
+          { fsPath: "/dp/data/minecraft/functions/setup_debug.mcfunction", path: "/dp/data/minecraft/functions/setup_debug.mcfunction" },
         ]
       }
       return []

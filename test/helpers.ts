@@ -10,7 +10,7 @@ export const mockVscodeState = {
     | ((dirPath: string) => Array<[string, number]>)
     | undefined,
   findFilesResult: undefined as
-    | ((include: string) => Array<{ fsPath: string }>)
+    | ((include: string) => Array<{ fsPath: string; path: string }>)
     | undefined,
   workspaceFoldersResult: undefined as Array<{ uri: { fsPath: string } }> | undefined,
 }
@@ -63,6 +63,9 @@ export function createMockVscode() {
     },
     window: {
       showWarningMessage: async (msg: string) => {
+        mockVscodeState.showWarningMessage = msg
+      },
+      showErrorMessage: async (msg: string) => {
         mockVscodeState.showWarningMessage = msg
       },
     },

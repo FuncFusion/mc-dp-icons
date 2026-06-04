@@ -52,7 +52,7 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
 
 export async function getReferencesFromFunctionTags(namespace: string, functionTag: string): Promise<string[]> {
   const functionTagFiles = await vscode.workspace.findFiles(
-    `**/${namespace}/tags/function/**/${functionTag}.json`,
+    `**/${namespace}/tags/function{,s}/**/${functionTag}.json`,
     "**/node_modules/**",
   )
 
@@ -71,8 +71,12 @@ export async function getReferencesFromFunctionTags(namespace: string, functionT
       continue
     }
 
+    const tagDir = functionTagFile.path.includes("/tags/functions/")
+      ? "functions"
+      : "function"
+
     for (const functionID of functionTag.values) {
-      const functionPath: string = "function/" + functionID.split(":")[1]
+      const functionPath: string = tagDir + "/" + functionID.split(":")[1]
       const shortenedPath = functionPath.split('/').slice(-2).join('/')
       functionReferences.push(`${shortenedPath}.mcfunction`)
     }
@@ -87,7 +91,7 @@ export async function getPartialMatches(customNames: string[]): Promise<string[]
   )).flat()
 
   const fileNames: string[] = matchedFunctions.map((matchedFunction: vscode.Uri) => {
-    const segments = matchedFunction.fsPath.split(path.sep)
+    const segments = matchedFunction.path.split("/")
     return segments.slice(-2).join("/")
   })
 

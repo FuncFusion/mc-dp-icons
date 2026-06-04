@@ -12,7 +12,7 @@ beforeAll(async () => {
 
   mockVscodeState.findFilesResult = (include: string) => {
     if (include.includes("pack.mcmeta")) {
-      return [{ fsPath: "/dp/pack.mcmeta" }]
+      return [{ fsPath: "/dp/pack.mcmeta", path: "/dp/pack.mcmeta" }]
     }
     return []
   }

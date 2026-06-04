@@ -18,7 +18,7 @@ beforeAll(async () => {
       : include.includes("load")
         ? ["/dp/data/minecraft/tags/function/load.json"]
         : []
-    return paths.map((p) => ({ fsPath: p }))
+    return paths.map((p) => ({ fsPath: p, path: p }))
   }
   const mod = await import("../src/dynamicIcons/java/getTagFileNames")
   getTagFileNames = mod.getTagFileNames

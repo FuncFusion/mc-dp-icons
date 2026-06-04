@@ -71,6 +71,8 @@ export function createMockVscode() {
     },
     Uri: {
       file: (p: string) => {
+        const normalized = p.replace(/\\/g, "/").replace(/^([a-zA-Z]):/, "/$1")
+        const finalPath = normalized.startsWith("/") ? normalized : "/" + normalized
         const wrap = (path: string) => ({
           fsPath: path,
           scheme: "file",
@@ -78,7 +80,7 @@ export function createMockVscode() {
           authority: "",
           with: (changes: { path?: string }) => wrap(changes.path ?? path),
         })
-        return wrap(p.startsWith("/") ? p : "/" + p)
+        return wrap(finalPath)
       },
     },
     FileType: { File: 1, Directory: 2 },

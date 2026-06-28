@@ -1,5 +1,5 @@
 import { readdirSync } from "fs"
-import type { IconDefinition } from "../data/icons"
+import type { IconDefinition, IconName } from "../data/icons"
 import type { ThemeSchema } from "../theme/types"
 
 export function resolveVsCodeIconPath(iconName: string): string {
@@ -118,17 +118,48 @@ export function buildSubfolderIconMap(
 
 export function applyXmasTheme(
   schema: ThemeSchema,
-  xmasNames: string[],
-  resolvePath: (iconName: string) => string
+  xmasWhitelist: IconName[]
 ): ThemeSchema {
   const result = structuredClone(schema)
-  for (const key of xmasNames) {
-    if (key in result.iconDefinitions) {
-      result.iconDefinitions[key] = {
-        iconPath: resolvePath(`${key}_xmas`)
-      }
+  const xmasNames = xmasWhitelist as string[]
+
+  function xmasIcon(iconName: string): string {
+    if (iconName.endsWith("_xmas")) {
+      return iconName
     }
+
+    if (!xmasNames.includes(iconName)) {
+      return iconName
+    }
+
+    if (!(iconName in result.iconDefinitions)) {
+      return iconName
+    }
+
+    const xmasKey = iconName + "_xmas"
+
+    if (xmasKey in result.iconDefinitions) {
+      return xmasKey
+    }
+
+    const original = result.iconDefinitions[iconName]
+
+    result.iconDefinitions[xmasKey] = {
+      iconPath: original.iconPath.replace(".svg", "_xmas.svg"),
+    }
+    return xmasKey
   }
+
+  result.folder = xmasIcon(result.folder)
+  result.folderExpanded = xmasIcon(result.folderExpanded)
+
+  for (const [folderPath, iconName] of Object.entries(result.folderNames)) {
+    result.folderNames[folderPath] = xmasIcon(iconName)
+  }
+  for (const [folderPath, iconName] of Object.entries(result.folderNamesExpanded)) {
+    result.folderNamesExpanded[folderPath] = xmasIcon(iconName)
+  }
+
   return result
 }
 

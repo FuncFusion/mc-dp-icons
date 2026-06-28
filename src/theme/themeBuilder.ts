@@ -2,7 +2,7 @@ import { workspace, Uri } from "vscode"
 import { dirname } from "path"
 import { getConfig } from "../configuration/configManager"
 import { xmasIcons } from "../data/baseTheme"
-import type { IconName } from "../data/iconNames"
+import { applyXmasTheme } from "../generate/utils"
 import type { FileNamesMap, FolderNamesMap, ThemeSchema } from "./types"
 
 export class ThemeBuilder {
@@ -42,10 +42,11 @@ export class ThemeBuilder {
   }
 
   build(): ThemeSchema {
+    const result = structuredClone(this.theme)
     if (this.isChristmas()) {
-      this.applyChristmasIcons()
+      return applyXmasTheme(result, xmasIcons)
     }
-    return structuredClone(this.theme)
+    return result
   }
 
   private isChristmas(): boolean {
@@ -57,40 +58,5 @@ export class ThemeBuilder {
       return true
     }
     return new Date().getMonth() === 11
-  }
-
-  private makeXmasIcon(iconName: string): string {
-    if (iconName.endsWith("_xmas")) {
-      return iconName
-    }
-
-    if (!xmasIcons.includes(iconName as IconName)) {
-      return iconName
-    }
-
-    const xmasKey = iconName + "_xmas"
-
-    if (xmasKey in this.theme.iconDefinitions) {
-      return xmasKey
-    }
-
-    const original = this.theme.iconDefinitions[iconName]
-
-    this.theme.iconDefinitions[xmasKey] = {
-      iconPath: original.iconPath.replace(".svg", "_xmas.svg"),
-    }
-    return xmasKey
-  }
-
-  private applyChristmasIcons(): void {
-    this.theme.folder = this.makeXmasIcon(this.theme.folder)
-    this.theme.folderExpanded = this.makeXmasIcon(this.theme.folderExpanded)
-
-    for (const [folderPath, iconName] of Object.entries(this.theme.folderNames)) {
-      this.theme.folderNames[folderPath] = this.makeXmasIcon(iconName)
-    }
-    for (const [folderPath, iconName] of Object.entries(this.theme.folderNamesExpanded)) {
-      this.theme.folderNamesExpanded[folderPath] = this.makeXmasIcon(iconName)
-    }
   }
 }

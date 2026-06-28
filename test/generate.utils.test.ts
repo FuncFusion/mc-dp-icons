@@ -1,4 +1,3 @@
-/// <reference types="bun-types" />
 import { describe, test, expect } from "bun:test"
 import { buildSubfolderIconMap, applyXmasTheme } from "../src/generate/utils"
 import type { ThemeSchema } from "../src/theme/types"
@@ -16,6 +15,88 @@ function emptySchema(): ThemeSchema {
     hidesExplorerArrows: false,
   }
 }
+
+describe("applyXmasTheme", () => {
+  test("converts generic folder icons to xmas variants", () => {
+    const schema = emptySchema()
+    schema.iconDefinitions.generic_folder = { iconPath: "../icons/generic_folder.svg" }
+    schema.iconDefinitions.generic_folder_closed = { iconPath: "../icons/generic_folder_closed.svg" }
+    const result = applyXmasTheme(schema, ["generic_folder", "generic_folder_closed"])
+    expect(result.folder).toBe("generic_folder_closed_xmas")
+    expect(result.folderExpanded).toBe("generic_folder_xmas")
+  })
+
+  test("does not mutate the original schema", () => {
+    const schema = emptySchema()
+    schema.iconDefinitions.generic_folder = { iconPath: "../icons/generic_folder.svg" }
+    schema.folderExpanded = "generic_folder"
+    const original = schema.folderExpanded
+    applyXmasTheme(schema, ["generic_folder"])
+    expect(schema.folderExpanded).toBe(original)
+  })
+
+  test("skips whitelisted names not in iconDefinitions", () => {
+    const schema = emptySchema()
+    schema.folder = "nonexistent"
+    schema.folderExpanded = "nonexistent"
+    const result = applyXmasTheme(schema, ["nonexistent"])
+    expect(result.iconDefinitions.nonexistent).toBeUndefined()
+  })
+
+  test("converts folderNames entries to xmas variants", () => {
+    const schema = emptySchema()
+    schema.iconDefinitions.my_folder = { iconPath: "../icons/my_folder.svg" }
+    schema.iconDefinitions.my_folder_xmas = { iconPath: "../icons/my_folder_xmas.svg" }
+    schema.folderNames["some/path"] = "my_folder"
+    const result = applyXmasTheme(schema, ["my_folder"])
+    expect(result.folderNames["some/path"]).toBe("my_folder_xmas")
+  })
+
+  test("converts folderNamesExpanded entries to xmas variants", () => {
+    const schema = emptySchema()
+    schema.iconDefinitions.my_folder = { iconPath: "../icons/my_folder.svg" }
+    schema.iconDefinitions.my_folder_xmas = { iconPath: "../icons/my_folder_xmas.svg" }
+    schema.folderNamesExpanded["some/path"] = "my_folder"
+    const result = applyXmasTheme(schema, ["my_folder"])
+    expect(result.folderNamesExpanded["some/path"]).toBe("my_folder_xmas")
+  })
+
+  test("creates missing xmas definition dynamically", () => {
+    const schema = emptySchema()
+    schema.iconDefinitions.custom_folder = { iconPath: "../icons/custom_folder.svg" }
+    schema.folderNamesExpanded["ns/path"] = "custom_folder"
+    const result = applyXmasTheme(schema, ["custom_folder"])
+    expect(result.iconDefinitions.custom_folder_xmas).toBeDefined()
+    expect(result.iconDefinitions.custom_folder_xmas.iconPath).toBe("../icons/custom_folder_xmas.svg")
+    expect(result.folderNamesExpanded["ns/path"]).toBe("custom_folder_xmas")
+  })
+
+  test("already-xmas names pass through unchanged", () => {
+    const schema = emptySchema()
+    schema.folderExpanded = "generic_folder_xmas"
+    const result = applyXmasTheme(schema, ["generic_folder"])
+    expect(result.folderExpanded).toBe("generic_folder_xmas")
+  })
+
+  test("non-whitelisted icons in folder fields stay unchanged", () => {
+    const schema = emptySchema()
+    schema.iconDefinitions.not_xmas_folder = { iconPath: "../icons/not_xmas_folder.svg" }
+    schema.folderNames["path"] = "not_xmas_folder"
+    const result = applyXmasTheme(schema, ["other"])
+    expect(result.folderNames["path"]).toBe("not_xmas_folder")
+  })
+
+  test("whitelist affects only matching folder entries", () => {
+    const schema = emptySchema()
+    schema.iconDefinitions.xmas_f = { iconPath: "../icons/xmas_f.svg" }
+    schema.iconDefinitions.normal_f = { iconPath: "../icons/normal_f.svg" }
+    schema.folderNamesExpanded["a"] = "xmas_f"
+    schema.folderNamesExpanded["b"] = "normal_f"
+    const result = applyXmasTheme(schema, ["xmas_f"])
+    expect(result.folderNamesExpanded["a"]).toBe("xmas_f_xmas")
+    expect(result.folderNamesExpanded["b"]).toBe("normal_f")
+  })
+})
 
 describe("buildSubfolderIconMap", () => {
   test("maps _folder names to _file names when file icon exists", () => {
@@ -41,37 +122,5 @@ describe("buildSubfolderIconMap", () => {
     const expanded: Record<string, string> = { "x": "folder_folder" }
     const result = buildSubfolderIconMap(defs, expanded)
     expect(result["x"]).toBe("folder_file")
-  })
-})
-
-describe("applyXmasTheme", () => {
-  test("replaces icon paths for whitelisted entries with _xmas suffix", () => {
-    const schema = emptySchema()
-    schema.iconDefinitions.chest = { iconPath: "../icons/chest.svg" }
-    const result = applyXmasTheme(schema, ["chest"], (n) => `../icons/${n}.svg`)
-    expect(result.iconDefinitions.chest.iconPath).toBe("../icons/chest_xmas.svg")
-  })
-
-  test("does not mutate the original schema", () => {
-    const schema = emptySchema()
-    schema.iconDefinitions.chest = { iconPath: "../icons/chest.svg" }
-    const original = schema.iconDefinitions.chest.iconPath
-    applyXmasTheme(schema, ["chest"], (n) => `../icons/${n}.svg`)
-    expect(schema.iconDefinitions.chest.iconPath).toBe(original)
-  })
-
-  test("skips whitelisted names not in iconDefinitions", () => {
-    const schema = emptySchema()
-    const result = applyXmasTheme(schema, ["nonexistent"], (n) => `../icons/${n}.svg`)
-    expect(Object.keys(result.iconDefinitions).length).toBe(0)
-  })
-
-  test("only affects icons in the whitelist, not all icons", () => {
-    const schema = emptySchema()
-    schema.iconDefinitions.chest = { iconPath: "../icons/chest.svg" }
-    schema.iconDefinitions.stick = { iconPath: "../icons/stick.svg" }
-    const result = applyXmasTheme(schema, ["chest"], (n) => `../icons/${n}.svg`)
-    expect(result.iconDefinitions.chest.iconPath).toBe("../icons/chest_xmas.svg")
-    expect(result.iconDefinitions.stick.iconPath).toBe("../icons/stick.svg")
   })
 })

@@ -2,7 +2,6 @@ import * as vscode from "vscode"
 import { workspace } from "vscode"
 import { Utils } from 'vscode-uri'
 import path from "path"
-import { getConfig } from "../configuration/configManager"
 import { logger } from "../common/logger"
 
 const fs = workspace.fs
@@ -33,11 +32,10 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
         pathDepth > 2 &&
         newPath.endsWith(".json") &&
         !excludedFiles.some((file) => newPath.includes(file))
-      const fileInSubfolder = validSubfolderFile
 
       if (entryType === vscode.FileType.Directory) {
         await collectFiles(fullPath, newPath)
-      } else if (fileInSubfolder) {
+      } else if (validSubfolderFile) {
         const shortenedPath =
           pathDepth > 2
             ? newPath.split(path.sep).slice(-2).join('/')

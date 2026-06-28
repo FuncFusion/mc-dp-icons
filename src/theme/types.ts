@@ -1,4 +1,4 @@
-export type DefinitionsMap = Record<string, { iconPath: string }>
+type DefinitionsMap = Record<string, { iconPath: string }>
 export type FileNamesMap = Record<string, string>
 export type FolderNamesMap = Record<string, string>
 

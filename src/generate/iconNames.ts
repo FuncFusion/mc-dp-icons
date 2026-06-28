@@ -18,10 +18,6 @@ export function generateIconNames(): void {
 // Run: bun src/generate/index.ts
 
 export type IconName = ${names.map((n) => `"${n}"`).join(" | ")}
-
-export const iconNames: IconName[] = [
-  ${names.map((n) => `"${n}"`).join(",\n  ")},
-]
 `
 
   const outPath = resolve(__dirname, "..", "..", "src", "data", "iconNames.ts")

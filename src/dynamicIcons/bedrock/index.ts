@@ -2,18 +2,16 @@ import type { ThemeContributions, ThemeModule } from "../plugin"
 import { findManifestInWorkspace } from "./helpers/findManifest"
 import { getTickFileNames } from "./getTickFileNames"
 import { getSubFolderFiles } from "./getSubFolderFiles"
+import { safeCollect } from "../utils"
 
 async function collect(): Promise<ThemeContributions> {
-  const tickFileNamesPromise = getTickFileNames()
-  const subFolderFilesPromise = getSubFolderFiles()
-
-  const collectorResults = await Promise.all([
-    tickFileNamesPromise,
-    subFolderFilesPromise,
+  const [
+    tickFileNames,
+    subFolderFiles,
+  ] = await Promise.all([
+    safeCollect(getTickFileNames, "getTickFileNames", {}),
+    safeCollect(getSubFolderFiles, "getSubFolderFiles", {}),
   ])
-
-  const tickFileNames = collectorResults[0]
-  const subFolderFiles = collectorResults[1]
 
   const fileNames: Record<string, string> = {}
   Object.assign(fileNames, tickFileNames)

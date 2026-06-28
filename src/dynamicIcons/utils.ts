@@ -3,6 +3,7 @@ import { workspace } from "vscode"
 import { Utils } from 'vscode-uri'
 import path from "path"
 import { getConfig } from "../configuration/configManager"
+import { logger } from "../common/logger"
 
 const fs = workspace.fs
 
@@ -63,22 +64,27 @@ export async function getReferencesFromFunctionTags(namespace: string, functionT
   let functionReferences: string[] = []
 
   for (const functionTagFile of functionTagFiles) {
-    const data = await fs.readFile(functionTagFile)
-    const content = new TextDecoder().decode(data)
-    const functionTag: { values: string[] } = JSON.parse(content)
+    try {
+      const data = await fs.readFile(functionTagFile)
+      const content = new TextDecoder().decode(data)
+      const tagData: { values: string[] } = JSON.parse(content)
 
-    if (!functionTag.values.length) {
+      if (!tagData.values.length) {
+        continue
+      }
+
+      const tagDir = functionTagFile.path.includes("tags/functions/")
+        ? "functions"
+        : "function"
+
+      for (const functionID of tagData.values) {
+        const functionPath: string = tagDir + "/" + functionID.split(":")[1]
+        const shortenedPath = functionPath.split('/').slice(-2).join('/')
+        functionReferences.push(`${shortenedPath}.mcfunction`)
+      }
+    } catch (error) {
+      logger.error(error, `skipping bad function tag file: ${functionTagFile.fsPath}`)
       continue
-    }
-
-    const tagDir = functionTagFile.path.includes("tags/functions/")
-      ? "functions"
-      : "function"
-
-    for (const functionID of functionTag.values) {
-      const functionPath: string = tagDir + "/" + functionID.split(":")[1]
-      const shortenedPath = functionPath.split('/').slice(-2).join('/')
-      functionReferences.push(`${shortenedPath}.mcfunction`)
     }
   }
 
@@ -137,4 +143,13 @@ export async function processList(list: string[]): Promise<string[]> {
     return await getPartialMatches(list)
   }
   return list.map(item => item.replace(/\\/g, "/") + ".mcfunction")
+}
+
+export async function safeCollect<T>(fn: () => Promise<T>, name: string, fallback: T): Promise<T> {
+  try {
+    return await fn()
+  } catch (error) {
+    logger.error(error, `${name} failed`)
+    return fallback
+  }
 }

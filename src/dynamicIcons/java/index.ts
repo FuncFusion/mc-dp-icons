@@ -1,5 +1,5 @@
 import type { ThemeContributions, ThemeModule } from "../plugin"
-import { findPackMcmeta } from "../utils"
+import { findPackMcmeta, safeCollect } from "../utils"
 import { getTagFileNames } from "./getTagFileNames"
 import { getUserFileNames } from "./getUserFileNames"
 import { getNamespaceFolders } from "./getNamespaceFolders"
@@ -14,11 +14,11 @@ async function collect(): Promise<ThemeContributions> {
     overlayFolders,
     subFolderFiles,
   ] = await Promise.all([
-    getTagFileNames(),
-    getUserFileNames(),
-    getNamespaceFolders(),
-    getOverlayFolders(),
-    getSubFolderFiles(),
+    safeCollect(getTagFileNames, "getTagFileNames", {}),
+    safeCollect(getUserFileNames, "getUserFileNames", {}),
+    safeCollect(getNamespaceFolders, "getNamespaceFolders", {}),
+    safeCollect(getOverlayFolders, "getOverlayFolders", {}),
+    safeCollect(getSubFolderFiles, "getSubFolderFiles", {}),
   ])
 
   const fileNames: Record<string, string> = {}

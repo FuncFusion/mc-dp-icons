@@ -3,6 +3,9 @@ import { workspace } from "vscode"
 import { Utils } from 'vscode-uri'
 import path from "path"
 import { logger } from "../common/logger"
+import { getConfig } from "../configuration/configManager"
+import { warnAboutTooManyFiles } from "../prompts/tooManyFilesPrompt"
+import { subfolderIconMap } from "./constants"
 
 const fs = workspace.fs
 
@@ -141,6 +144,32 @@ export async function processList(list: string[]): Promise<string[]> {
     return await getPartialMatches(list)
   }
   return list.map(item => item.replace(/\\/g, "/") + ".mcfunction")
+}
+
+export async function getSubFolderFiles(
+  subfolderReference: () => Promise<{ subfolders: Record<string, string[]>, totalFiles: number }>
+): Promise<Record<string, string>> {
+  const subfolderIconEnabled = getConfig("subfolderIcons")
+  if (!subfolderIconEnabled) {
+    return {}
+  }
+
+  const subfolderResult = await subfolderReference()
+  const subfolders = subfolderResult.subfolders
+  const totalFiles = subfolderResult.totalFiles
+  if (totalFiles >= 10000) {
+    warnAboutTooManyFiles()
+  }
+
+  const fileNames: Record<string, string> = {}
+  for (const [key, filesArray] of Object.entries(subfolders)) {
+    const icon = subfolderIconMap[key]
+    for (const fileName of filesArray) {
+      fileNames[fileName] = icon
+    }
+  }
+
+  return fileNames
 }
 
 export async function safeCollect<T>(fn: () => Promise<T>, name: string, fallback: T): Promise<T> {

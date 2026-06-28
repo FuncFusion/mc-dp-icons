@@ -1,6 +1,6 @@
 import { getConfig } from "../../configuration/configManager"
 import { warnAboutTooManyFiles } from "../../prompts/tooManyFilesPrompt"
-import { subfolderIconMap } from "./constants"
+import { subfolderIconMap } from "../constants"
 import { subfolderReference } from "./helpers/subfolderReference"
 
 export async function getSubFolderFiles(): Promise<Record<string, string>> {

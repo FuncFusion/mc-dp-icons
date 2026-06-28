@@ -3,7 +3,7 @@ import { workspace } from "vscode"
 import { Utils } from "vscode-uri"
 import { getFilesInDirectory } from "../../utils"
 import { getRootPaths } from "./getRootPaths"
-import { subfolderIconMap } from "../constants"
+import { subfolderIconMap } from "../../constants"
 
 const fs = workspace.fs
 

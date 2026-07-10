@@ -79,7 +79,7 @@
     "onWorkspaceFolderOpened"
   ],
   "main": "./out/extension.js",
-  "browser": "./dist/webExtension.js",
+  "browser": "./out/webExtension.js",
   "contributes": {
     "iconThemes": [
       {

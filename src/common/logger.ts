@@ -1,16 +1,17 @@
+import * as vscode from "vscode"
 import { getConfig } from "../configuration/configManager"
 
-const prefix = "[mc-dp-icons]"
+const channel = vscode.window.createOutputChannel("Datapack Icons")
 
 export const logger = {
   debug(...args: unknown[]) {
     if (!getConfig("debug")) {
       return
     }
-    console.info(prefix, ...args)
+    channel.appendLine("[debug] " + args.map(String).join(" "))
   },
   error(error: unknown, context?: string) {
-    const msg = context ? `${prefix} ${context}:` : prefix
-    console.error(msg, error)
+    const msg = context ? `[error] ${context}:` : "[error]"
+    channel.appendLine(msg + " " + String(error))
   },
 }

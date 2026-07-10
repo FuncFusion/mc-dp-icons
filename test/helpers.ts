@@ -64,6 +64,9 @@ export function createMockVscode() {
       get workspaceFolders() { return mockVscodeState.workspaceFoldersResult },
     },
     window: {
+      createOutputChannel: () => ({
+        appendLine: () => {},
+      }),
       showWarningMessage: async (msg: string) => {
         mockVscodeState.showWarningMessage = msg
       },

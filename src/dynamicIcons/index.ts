@@ -13,6 +13,7 @@ const modules: ThemeModule[] = [java, bedrock]
 
 export let extensionUri: vscode.Uri
 let isUpdating = false
+let pendingUpdate = false
 
 export function setExtensionUri(uri: vscode.Uri) {
   extensionUri = uri
@@ -20,6 +21,7 @@ export function setExtensionUri(uri: vscode.Uri) {
 
 export async function update() {
   if (isUpdating) {
+    pendingUpdate = true
     return
   }
   isUpdating = true
@@ -60,5 +62,9 @@ export async function update() {
     logger.debug("Theme written to", activePath)
   } finally {
     isUpdating = false
+    if (pendingUpdate) {
+      pendingUpdate = false
+      await update()
+    }
   }
 }

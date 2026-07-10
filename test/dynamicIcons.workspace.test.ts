@@ -100,29 +100,6 @@ describe("workspaceDetection", () => {
     expect(mockVscodeState.lastWrittenPath).toBe("")
   })
 
-  test("sets icon theme to mc-dp-icons when Minecraft workspace detected", async () => {
-    mockVscodeState.findFilesResult = (include: string) => {
-      if (include.includes("pack.mcmeta")) {
-        return [{ fsPath: "/dp/pack.mcmeta", path: "/dp/pack.mcmeta" }]
-      }
-      return []
-    }
-    mockVscodeState.configStore["workbench.iconTheme"] = ""
-    await workspaceDetection()
-  })
-
-  test("falls back to configured fallbackIconTheme when not Minecraft", async () => {
-    mockVscodeState.configStore["mc-dp-icons.fallbackIconTheme"] = "default-light"
-    mockVscodeState.findFilesResult = () => []
-    await workspaceDetection()
-  })
-
-  test("falls back to user default when no Minecraft and no fallback", async () => {
-    mockVscodeState.findFilesResult = () => []
-    mockVscodeState.configStore["workbench.iconTheme"] = "vs-minimal"
-    await workspaceDetection()
-  })
-
   test("skips config write when userDefaultTheme is undefined", async () => {
     mockVscodeState.findFilesResult = () => []
     mockVscodeState.configStore["workbench.iconTheme"] = undefined

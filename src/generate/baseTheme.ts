@@ -47,8 +47,9 @@ function writeOutput(
 }
 
 export function generateBaseTheme(): void {
-  const outputFilePath = resolve(__dirname, "..", "..", "src", "data", "baseTheme.ts")
   const schema = buildBaseSchema(icons, resolveVsCodeIconPath)
-  writeOutput(schema, outputFilePath)
-  console.log(`Generated base theme with ${Object.keys(schema.iconDefinitions).length} icons → ${outputFilePath}`)
+  writeOutput(schema, resolve(__dirname, "..", "..", "src", "data", "baseTheme.ts"))
+
+  const activePath = resolve(__dirname, "..", "..", "icon_theme", "active.json")
+  writeFileSync(activePath, JSON.stringify(schema, null, 2))
 }

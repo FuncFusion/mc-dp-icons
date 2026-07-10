@@ -26,9 +26,9 @@ const desktopConfig = {
 
 const webConfig = {
   ...commonOptions,
+  platform: 'browser',
   entryPoints: ['src/webExtension.ts'],
   outfile: 'out/webExtension.js',
-  target: 'node18',
 };
 
 async function build() {

@@ -17,6 +17,7 @@ const defaults = {
   hideFolderArrows: false,
   fallbackIconTheme: '',
   debug: false,
+  tooManyFilesWarningDismissed: false,
 } as const
 
 export type ConfigKey = keyof typeof defaults

@@ -68,7 +68,7 @@ export async function getReferencesFromFunctionTags(namespace: string, functionT
     try {
       const data = await fs.readFile(functionTagFile)
       const content = new TextDecoder().decode(data)
-      const tagData: { values: string[] } = JSON.parse(content)
+      const tagData = JSON.parse(content) as { values: unknown[] }
 
       if (!tagData.values.length) {
         continue
@@ -78,7 +78,11 @@ export async function getReferencesFromFunctionTags(namespace: string, functionT
         ? "functions"
         : "function"
 
-      for (const functionID of tagData.values) {
+      for (const entry of tagData.values) {
+        const functionID = typeof entry === "string" ? entry : (entry as { id: string }).id
+        if (!functionID || !functionID.includes(":")) {
+          continue
+        }
         const functionPath: string = tagDir + "/" + functionID.split(":")[1]
         const shortenedPath = functionPath.split('/').slice(-2).join('/')
         functionReferences.push(`${shortenedPath}.mcfunction`)

@@ -30,7 +30,7 @@ beforeAll(async () => {
 })
 
 describe("getOverlayFolders", () => {
-  test("returns overlays with data XOR assets as overlay_folder icon", async () => {
+  test("returns overlays with data or assets as overlay_folder icon", async () => {
     const result = await getOverlayFolders()
     expect(result["dp/more_data"]).toBe("overlay_folder")
     expect(Object.keys(result).length).toBe(1)

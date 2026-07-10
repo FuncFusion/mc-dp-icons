@@ -57,6 +57,7 @@ export class ThemeBuilder {
     if (setting === "Always") {
       return true
     }
-    return new Date().getMonth() === 11
+    const now = new Date()
+    return now.getMonth() === 11 && now.getDate() >= 24 && now.getDate() <= 26
   }
 }

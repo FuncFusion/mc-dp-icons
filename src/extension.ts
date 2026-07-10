@@ -10,7 +10,9 @@ export function activate(context: vscode.ExtensionContext) {
   const watcher = createFileWatcher(() => DynamicIcons.update())
   context.subscriptions.push(...watcher.subscriptions)
 
-  DynamicIcons.update()
+  DynamicIcons.update().catch(function(error) {
+    console.error("mc-dp-icons: update failed", error)
+  })
   registerAll(context)
   showCompactFoldersPrompt(context)
 }

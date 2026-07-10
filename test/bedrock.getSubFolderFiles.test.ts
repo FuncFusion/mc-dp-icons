@@ -9,6 +9,11 @@ let getSubFolderFiles: () => Promise<Record<string, string>>
 beforeAll(async () => {
   mockVscodeState.configStore["mc-dp-icons.subfolderIcons"] = true
 
+  mockVscodeState.tagContents = {
+    "/bp/manifest.json": JSON.stringify({ format_version: 2 }),
+    "/bp2/manifest.json": JSON.stringify({ format_version: 2 }),
+  }
+
   mockVscodeState.workspaceFoldersResult = [
     { uri: { fsPath: "/bp" } },
     { uri: { fsPath: "/bp2" } },

@@ -12,43 +12,53 @@ import type { ThemeModule } from "./plugin"
 const modules: ThemeModule[] = [java, bedrock]
 
 export let extensionUri: vscode.Uri
+let isUpdating = false
 
 export function setExtensionUri(uri: vscode.Uri) {
   extensionUri = uri
 }
 
 export async function update() {
-  logger.debug("Starting theme update")
+  if (isUpdating) {
+    return
+  }
+  isUpdating = true
 
-  await workspaceDetection()
+  try {
+    logger.debug("Starting theme update")
 
-  const activePath = Utils.joinPath(extensionUri, "icon_theme", "active.json").fsPath
+    await workspaceDetection()
 
-  const builder = new ThemeBuilder(baseTheme)
+    const activePath = Utils.joinPath(extensionUri, "icon_theme", "active.json").fsPath
 
-  const activeModules: ThemeModule[] = []
-  for (const module of modules) {
-    if (await module.guard()) {
-      activeModules.push(module)
+    const builder = new ThemeBuilder(baseTheme)
+
+    const activeModules: ThemeModule[] = []
+    for (const module of modules) {
+      if (await module.guard()) {
+        activeModules.push(module)
+      }
     }
-  }
 
-  const results = await Promise.all(
-    activeModules.map(module => module.collect())
-  )
+    const results = await Promise.all(
+      activeModules.map(module => module.collect())
+    )
 
-  for (const result of results) {
-    builder.addFileNames(result.fileNames)
-    if (result.folderNames) {
-      builder.addFolders(result.folderNames)
+    for (const result of results) {
+      builder.addFileNames(result.fileNames)
+      if (result.folderNames) {
+        builder.addFolders(result.folderNames)
+      }
     }
-  }
 
-  const confHideFolderArrows = getConfig("hideFolderArrows")
-  if (confHideFolderArrows) {
-    builder.setHidesExplorerArrows(true)
-  }
+    const confHideFolderArrows = getConfig("hideFolderArrows")
+    if (confHideFolderArrows) {
+      builder.setHidesExplorerArrows(true)
+    }
 
-  await builder.write(activePath)
-  logger.debug("Theme written to", activePath)
+    await builder.write(activePath)
+    logger.debug("Theme written to", activePath)
+  } finally {
+    isUpdating = false
+  }
 }

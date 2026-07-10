@@ -28,7 +28,7 @@ export async function getOverlayPaths(): Promise<string[]> {
         const hasData = await pathExists(Utils.joinPath(vscode.Uri.file(subDirPath), "data").fsPath)
         const hasAssets = await pathExists(Utils.joinPath(vscode.Uri.file(subDirPath), "assets").fsPath)
 
-        if (hasData !== hasAssets) {
+        if (hasData || hasAssets) {
           const pathSegments = subDirPath.split(path.sep)
           const validPath = pathSegments.slice(-2).join('/')
           validOverlayPaths.push(validPath)

@@ -11,10 +11,6 @@ export async function getNamespacePaths(): Promise<string[]> {
   const mcmetaFiles = await findPackMcmeta()
   const packPaths = mcmetaFiles.map(p => path.dirname(p.fsPath))
 
-  if (!packPaths) {
-    return []
-  }
-
   const namespacePaths: string[] = []
 
   const getPaths = async (directory: string): Promise<string[]> => {
@@ -38,7 +34,7 @@ export async function getNamespacePaths(): Promise<string[]> {
       const dataPaths = await getPaths(dataPath)
       namespacePaths.push(...dataPaths)
     } catch (error) {
-      logger.error(error, `reading folder: ${packPath}data`)
+      logger.error(error, `reading folder: ${packPath}/data`)
     }
   }
 

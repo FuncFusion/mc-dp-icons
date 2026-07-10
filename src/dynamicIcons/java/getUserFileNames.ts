@@ -22,18 +22,20 @@ export async function getUserFileNames(): Promise<Record<string, string>> {
   })
 
   const flatNames = allRawNames.flat()
-  const seen = new Set<string>()
+  const seen = new Map<string, string>()
+  let conflictName = ""
   const hasConflict = flatNames.some(function(name) {
     if (seen.has(name)) {
+      conflictName = name
       return true
     }
-    seen.add(name)
+    seen.set(name, "")
     return false
   })
 
   if (hasConflict) {
     vscode.window.showWarningMessage(
-      "Can only assign one special icon per file"
+      'Duplicate icon assignment: "' + conflictName + '". Can only assign one special icon per file.'
     )
     return {}
   }

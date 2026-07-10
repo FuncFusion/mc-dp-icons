@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "engines": {
-    "vscode": "^1.5.1"
+    "vscode": "^1.82.0"
   },
   "keywords": [
     "minecraft",
@@ -340,11 +340,11 @@
     "generate": "bun src/generate/index.ts",
     "check": "bun run generate && tsc --noEmit -p ./ && bunx eslint src --ext ts",
     "package": "NODE_ENV=production bun esbuild.mjs",
-    "vscode:prepublish": "bun run package"
+    "vscode:prepublish": "bun run generate && bun run package"
   },
   "devDependencies": {
     "@types/node": "^18.19.130",
-    "@types/vscode": "^1.5.1",
+    "@types/vscode": "^1.82.0",
     "@typescript-eslint/eslint-plugin": "^8.59.4",
     "@typescript-eslint/parser": "^8.59.4",
     "bun-types": "^1.3.14",

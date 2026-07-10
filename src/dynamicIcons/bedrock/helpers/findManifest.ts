@@ -14,9 +14,22 @@ async function findManifestInDirectory(directory: string): Promise<string[]> {
     const entryType = entry[1]
     const filePath = Utils.joinPath(vscode.Uri.file(directory), entryName).fsPath
 
+    if (entryName === 'node_modules' || entryName.startsWith('.')) {
+      continue
+    }
+
     if (entryType === vscode.FileType.Directory) {
       manifestPaths = manifestPaths.concat(await findManifestInDirectory(filePath))
     } else if (entryName === "manifest.json") {
+      try {
+        const content = await fs.readFile(vscode.Uri.file(filePath))
+        const json = JSON.parse(new TextDecoder().decode(content))
+        if (!("format_version" in json)) {
+          continue
+        }
+      } catch {
+        continue
+      }
       manifestPaths.push(filePath)
     }
   }

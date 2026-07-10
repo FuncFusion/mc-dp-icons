@@ -4,7 +4,11 @@ import { Utils } from "vscode-uri"
 
 const fs = workspace.fs
 
-async function findManifestInDirectory(directory: string): Promise<string[]> {
+async function findManifestInDirectory(directory: string, depth = 0): Promise<string[]> {
+  if (depth >= 10) {
+    return []
+  }
+
   const dirUri = vscode.Uri.file(directory)
   const entries = await fs.readDirectory(dirUri)
   let manifestPaths: string[] = []
@@ -19,7 +23,7 @@ async function findManifestInDirectory(directory: string): Promise<string[]> {
     }
 
     if (entryType === vscode.FileType.Directory) {
-      manifestPaths = manifestPaths.concat(await findManifestInDirectory(filePath))
+      manifestPaths = manifestPaths.concat(await findManifestInDirectory(filePath, depth + 1))
     } else if (entryName === "manifest.json") {
       try {
         const content = await fs.readFile(vscode.Uri.file(filePath))

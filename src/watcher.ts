@@ -4,10 +4,17 @@ import { Utils } from "vscode-uri"
 
 function isRelevantUri(uri: vscode.Uri): boolean {
   const name = Utils.basename(uri)
-  return (
-    (name === "pack.mcmeta" || name.endsWith(".json") || name === "beet.yaml" || name === "beet.yml") &&
-    name !== "settings.json"
-  ) || uri.path.endsWith("/")
+  const path = uri.path
+
+  if (path.endsWith("/")) {
+    return true
+  }
+
+  if (name === "pack.mcmeta" || name === "manifest.json" || name === "beet.yaml" || name === "beet.yml") {
+    return true
+  }
+
+  return name.endsWith(".json") && path.includes("tags/functions/")
 }
 
 function hasRelevantFile(event: vscode.FileCreateEvent | vscode.FileDeleteEvent): boolean {

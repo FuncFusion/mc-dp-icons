@@ -17,7 +17,11 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
     "functions" + path.sep + "load.json",
     "functions" + path.sep + "tick.json",
   ]
-  const collectFiles = async (dir: string, relativePath = "") => {
+  const collectFiles = async (dir: string, relativePath = "", depth = 0) => {
+    if (depth >= 10) {
+      return
+    }
+
     const dirUri = vscode.Uri.file(dir)
     const entries = await fs.readDirectory(dirUri)
     for (const entry of entries) {
@@ -37,7 +41,7 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
         !excludedFiles.some((file) => newPath.includes(file))
 
       if (entryType === vscode.FileType.Directory) {
-        await collectFiles(fullPath, newPath)
+        await collectFiles(fullPath, newPath, depth + 1)
       } else if (validSubfolderFile) {
         files.push(newPath.split(path.sep).slice(-2).join('/'))
       }
@@ -74,7 +78,7 @@ export async function getReferencesFromFunctionTags(namespace: string, functionT
         : "function"
 
       for (const entry of tagData.values) {
-        const functionID = typeof entry === "string" ? entry : (entry as { id: string }).id
+        const functionID = typeof entry === "string" ? entry : (entry && typeof entry === "object" && "id" in entry ? (entry as { id: string }).id : undefined)
         if (!functionID || !functionID.includes(":")) {
           continue
         }

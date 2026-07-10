@@ -7,9 +7,9 @@ import { subfolderIconMap } from "../../constants"
 
 const fs = workspace.fs
 
-export async function subfolderReference(): Promise<{ subfolders: Record<string, string[]>, totalFiles: number }> {
+export async function subfolderReference(mcmetaFiles: vscode.Uri[]): Promise<{ subfolders: Record<string, string[]>, totalFiles: number }> {
   const subfolders: Record<string, string[]> = {}
-  const namespacePaths = await getNamespacePaths()
+  const namespacePaths = await getNamespacePaths(mcmetaFiles)
   let totalFiles = 0
 
   for (const namespacePath of namespacePaths) {

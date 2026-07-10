@@ -4,16 +4,12 @@ import { mockVscodeState, createMockVscode } from "./helpers"
 
 mock.module("vscode", createMockVscode)
 
-let getNamespaceFolders: () => Promise<Record<string, string>>
+let getNamespaceFolders: (mcmetaFiles: { fsPath: string }[]) => Promise<Record<string, string>>
+
+const mockMcmetaFiles = [{ fsPath: "/dp/pack.mcmeta" }]
 
 beforeAll(async () => {
   mockVscodeState.configStore["mc-dp-icons.namespaceIcons"] = true
-  mockVscodeState.findFilesResult = (include: string) => {
-    if (include.includes("pack.mcmeta")) {
-      return [{ fsPath: "/dp/pack.mcmeta", path: "/dp/pack.mcmeta" }]
-    }
-    return []
-  }
   mockVscodeState.existingPaths.add("/dp/assets")
   mockVscodeState.existingPaths.add("/dp/data")
   mockVscodeState.readDirectoryResult = (dirPath: string) => {
@@ -28,14 +24,14 @@ beforeAll(async () => {
 
 describe("getNamespaceFolders", () => {
   test("returns namespace folders as namespace_folder icon", async () => {
-    const result = await getNamespaceFolders()
+    const result = await getNamespaceFolders(mockMcmetaFiles)
     expect(result["data/minecraft"]).toBe("namespace_folder")
     expect(result["assets/minecraft"]).toBe("namespace_folder")
   })
 
   test("returns empty when config namespaceIcons is false", async () => {
     mockVscodeState.configStore["mc-dp-icons.namespaceIcons"] = false
-    const result = await getNamespaceFolders()
+    const result = await getNamespaceFolders(mockMcmetaFiles)
     expect(Object.keys(result).length).toBe(0)
   })
 })

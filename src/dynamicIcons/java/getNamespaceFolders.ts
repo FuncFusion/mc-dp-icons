@@ -1,14 +1,15 @@
 import path from "path"
+import * as vscode from "vscode"
 import { getConfig } from "../../configuration/configManager"
 import { getNamespacePaths } from "./helpers/getNamespacePaths"
 
-export async function getNamespaceFolders(): Promise<Record<string, string>> {
+export async function getNamespaceFolders(mcmetaFiles: vscode.Uri[]): Promise<Record<string, string>> {
   const namespaceIcons = getConfig("namespaceIcons")
   if (!namespaceIcons) {
     return {}
   }
 
-  const namespacePaths = await getNamespacePaths()
+  const namespacePaths = await getNamespacePaths(mcmetaFiles)
 
   const namespaceNames = namespacePaths.map((fullPath) => {
     const pathSegments = fullPath.split(path.sep)

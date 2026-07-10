@@ -7,6 +7,8 @@ import { getOverlayFolders } from "./getOverlayFolders"
 import { getSubFolderFiles } from "./getSubFolderFiles"
 
 async function collect(): Promise<ThemeContributions> {
+  const mcmetaFiles = await findPackMcmeta()
+
   const [
     tagEntries,
     userEntries,
@@ -16,9 +18,9 @@ async function collect(): Promise<ThemeContributions> {
   ] = await Promise.all([
     safeCollect(getTagFileNames, "getTagFileNames", {}),
     safeCollect(getUserFileNames, "getUserFileNames", {}),
-    safeCollect(getNamespaceFolders, "getNamespaceFolders", {}),
-    safeCollect(getOverlayFolders, "getOverlayFolders", {}),
-    safeCollect(getSubFolderFiles, "getSubFolderFiles", {}),
+    safeCollect(() => getNamespaceFolders(mcmetaFiles), "getNamespaceFolders", {}),
+    safeCollect(() => getOverlayFolders(mcmetaFiles), "getOverlayFolders", {}),
+    safeCollect(() => getSubFolderFiles(mcmetaFiles), "getSubFolderFiles", {}),
   ])
 
   const fileNames: Record<string, string> = {}

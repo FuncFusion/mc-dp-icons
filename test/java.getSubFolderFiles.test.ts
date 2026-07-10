@@ -4,18 +4,13 @@ import { mockVscodeState, createMockVscode } from "./helpers"
 
 mock.module("vscode", createMockVscode)
 
-let getSubFolderFiles: () => Promise<Record<string, string>>
+let getSubFolderFiles: (mcmetaFiles: { fsPath: string }[]) => Promise<Record<string, string>>
+
+const mockMcmetaFiles = [{ fsPath: "/dp/pack.mcmeta" }]
 
 beforeAll(async () => {
   mockVscodeState.configStore["mc-dp-icons.subfolderIcons"] = true
   mockVscodeState.configStore["mc-dp-icons.namespaceIcons"] = true
-
-  mockVscodeState.findFilesResult = (include: string) => {
-    if (include.includes("pack.mcmeta")) {
-      return [{ fsPath: "/dp/pack.mcmeta", path: "/dp/pack.mcmeta" }]
-    }
-    return []
-  }
 
   mockVscodeState.existingPaths.add("/dp/data")
   mockVscodeState.existingPaths.add("/dp/data/minecraft")
@@ -76,34 +71,34 @@ beforeEach(() => {
 describe("getSubFolderFiles (Java)", () => {
   test("returns empty when config subfolderIcons is false", async () => {
     mockVscodeState.configStore["mc-dp-icons.subfolderIcons"] = false
-    const result = await getSubFolderFiles()
+    const result = await getSubFolderFiles(mockMcmetaFiles)
     expect(Object.keys(result).length).toBe(0)
   })
 
   test("handles multiple known subfolders", async () => {
-    const result = await getSubFolderFiles()
+    const result = await getSubFolderFiles(mockMcmetaFiles)
     expect(result["chests/data.json"]).toBe("loot_table_file")
   })
 
   test("skips subfolders not in subfolderIconMap", async () => {
-    const result = await getSubFolderFiles()
+    const result = await getSubFolderFiles(mockMcmetaFiles)
     expect(result["sub/file.json"]).toBeUndefined()
   })
 
   test("handles nested files at depth 4 returning last-2 segments", async () => {
-    const result = await getSubFolderFiles()
+    const result = await getSubFolderFiles(mockMcmetaFiles)
     expect(result["quests/deep.json"]).toBe("advancement_file")
   })
 
   test("excludes function tick/load files from results", async () => {
-    const result = await getSubFolderFiles()
+    const result = await getSubFolderFiles(mockMcmetaFiles)
     expect(result["functions/tick.json"]).toBeUndefined()
     expect(result["functions/load.json"]).toBeUndefined()
     expect(result["blocks/wood.json"]).toBe("tags_file")
   })
 
   test("maps files to correct icons and merges across namespaces", async () => {
-    const result = await getSubFolderFiles()
+    const result = await getSubFolderFiles(mockMcmetaFiles)
     expect(result["story/data.json"]).toBe("advancement_file")
     expect(result["custom/data.json"]).toBe("advancement_file")
   })

@@ -2,12 +2,11 @@ import * as vscode from "vscode"
 import { workspace } from "vscode"
 import { Utils } from "vscode-uri"
 import path from "path"
-import { findPackMcmeta, pathExists } from "../../utils"
+import { pathExists } from "../../utils"
 
 const fs = workspace.fs
 
-export async function getOverlayPaths(): Promise<string[]> {
-  const mcmetaFiles = await findPackMcmeta()
+export async function getOverlayPaths(mcmetaFiles: vscode.Uri[]): Promise<string[]> {
   const packPaths = mcmetaFiles.map(p => path.dirname(p.fsPath))
   const validOverlayPaths: string[] = []
 

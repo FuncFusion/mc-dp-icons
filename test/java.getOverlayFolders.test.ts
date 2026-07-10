@@ -4,16 +4,12 @@ import { mockVscodeState, createMockVscode } from "./helpers"
 
 mock.module("vscode", createMockVscode)
 
-let getOverlayFolders: () => Promise<Record<string, string>>
+let getOverlayFolders: (mcmetaFiles: { fsPath: string }[]) => Promise<Record<string, string>>
+
+const mockMcmetaFiles = [{ fsPath: "/dp/pack.mcmeta" }]
 
 beforeAll(async () => {
   mockVscodeState.configStore["mc-dp-icons.overlayIcons"] = true
-  mockVscodeState.findFilesResult = (include: string) => {
-    if (include.includes("pack.mcmeta")) {
-      return [{ fsPath: "/dp/pack.mcmeta", path: "/dp/pack.mcmeta" }]
-    }
-    return []
-  }
   mockVscodeState.existingPaths.add("/dp")
   mockVscodeState.existingPaths.add("/dp/more_data/data")
   mockVscodeState.readDirectoryResult = (dirPath: string) => {
@@ -31,14 +27,14 @@ beforeAll(async () => {
 
 describe("getOverlayFolders", () => {
   test("returns overlays with data or assets as overlay_folder icon", async () => {
-    const result = await getOverlayFolders()
+    const result = await getOverlayFolders(mockMcmetaFiles)
     expect(result["dp/more_data"]).toBe("overlay_folder")
     expect(Object.keys(result).length).toBe(1)
   })
 
   test("returns empty when config overlayIcons is false", async () => {
     mockVscodeState.configStore["mc-dp-icons.overlayIcons"] = false
-    const result = await getOverlayFolders()
+    const result = await getOverlayFolders(mockMcmetaFiles)
     expect(Object.keys(result).length).toBe(0)
   })
 })

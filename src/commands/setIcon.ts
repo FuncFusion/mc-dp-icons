@@ -4,17 +4,25 @@ import type { ConfigKey } from "../configuration/configManager"
 
 const keyPrefix = "mc-dp-icons."
 
-function resetShortenedPath(shortenedPath: string) {
+const configSuffixes = [
+  "tickFunctionNames",
+  "loadFunctionNames",
+  "crownedFunctionsNames",
+  "crownedTickFunctionsNames",
+  "crownedLoadFunctionsNames",
+]
+
+function removeFromAllLists(shortenedPath: string): [string, string[]][] {
+  const updates: [string, string[]][] = []
   for (const suffix of configSuffixes) {
     const currentNames = getConfig(suffix as ConfigKey) as string[]
-
     if (currentNames.includes(shortenedPath)) {
-      const remainingNames = currentNames.filter(function(name) {
+      updates.push([keyPrefix + suffix, currentNames.filter(function(name) {
         return name !== shortenedPath
-      })
-      changeWorkspaceConfig(keyPrefix + suffix, remainingNames)
+      })])
     }
   }
+  return updates
 }
 
 function makeHandler(suffix: string) {
@@ -25,18 +33,19 @@ function makeHandler(suffix: string) {
     }
 
     const shortenedPath = uri.path.split("/").slice(-2).join("/").replace(".mcfunction", "")
-    resetShortenedPath(shortenedPath)
-    changeWorkspaceConfig(configKey, [shortenedPath])
+
+    const updates = removeFromAllLists(shortenedPath)
+
+    const currentTarget = getConfig(suffix as ConfigKey) as string[]
+    if (!currentTarget.includes(shortenedPath)) {
+      updates.push([configKey, [...currentTarget, shortenedPath]])
+    }
+
+    for (const [key, val] of updates) {
+      changeWorkspaceConfig(key, val)
+    }
   }
 }
-
-const configSuffixes = [
-  "tickFunctionNames",
-  "loadFunctionNames",
-  "crownedFunctionsNames",
-  "crownedTickFunctionsNames",
-  "crownedLoadFunctionsNames",
-]
 
 const resetIcon = {
   id: "mc-dp-icons.resetIcon",
@@ -47,7 +56,10 @@ const resetIcon = {
 
     const shortenedPath = uri.path.split("/").slice(-2).join("/").replace(".mcfunction", "")
 
-    resetShortenedPath(shortenedPath)
+    const updates = removeFromAllLists(shortenedPath)
+    for (const [key, val] of updates) {
+      changeWorkspaceConfig(key, val)
+    }
   }
 }
 

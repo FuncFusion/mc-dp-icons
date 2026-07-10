@@ -36,23 +36,12 @@ async function getCustomTick(): Promise<Record<string, string>> {
 }
 
 export async function getTickFileNames(): Promise<Record<string, string>> {
-  let dynamicResult: Record<string, string> = {}
-
-  if (getConfig("dynamicFunctionIcons")) {
-    dynamicResult = await getTaggedTick()
-  }
-
-  const customResult = await getCustomTick()
-
   const fileNames: Record<string, string> = {}
 
-  for (const key of Object.keys(dynamicResult)) {
-    const basename = key.includes("/") ? key.split("/").pop() || key : key
-    if (!(basename in customResult)) {
-      fileNames[key] = dynamicResult[key]
-    }
+  if (getConfig("dynamicFunctionIcons")) {
+    Object.assign(fileNames, await getTaggedTick())
   }
 
-  Object.assign(fileNames, customResult)
+  Object.assign(fileNames, await getCustomTick())
   return fileNames
 }

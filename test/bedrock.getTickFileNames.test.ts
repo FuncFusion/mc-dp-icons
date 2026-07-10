@@ -27,12 +27,12 @@ describe("getTickFileNames (Bedrock)", () => {
     expect(result["function/main.mcfunction"]).toBe("mcfunction_tick_file")
   })
 
-  test("custom overrides dynamic when basename collides", async () => {
+  test("custom overrides dynamic by exact key match", async () => {
     mockVscodeState.configStore["mc-dp-icons.tickFunctionNames"] = ["main"]
 
     const result = await getTickFileNames()
     expect(result["main.mcfunction"]).toBe("mcfunction_tick_file")
-    expect(result["function/main.mcfunction"]).toBeUndefined()
+    expect(result["function/main.mcfunction"]).toBe("mcfunction_tick_file")
   })
 
   test("custom mode: returns tick from config when dynamic disabled", async () => {

@@ -18,6 +18,10 @@ export class ThemeBuilder {
 
   addFolders(entries: FolderNamesMap): void {
     for (const [folder, iconName] of Object.entries(entries)) {
+      if (folder in this.theme.folderNamesExpanded || folder in this.theme.folderNames) {
+        continue
+      }
+
       this.theme.folderNamesExpanded[folder] = iconName
 
       const closedIcon = iconName + "_closed"
@@ -42,11 +46,10 @@ export class ThemeBuilder {
   }
 
   build(): ThemeSchema {
-    const result = structuredClone(this.theme)
     if (this.isChristmas()) {
-      return applyXmasTheme(result, xmasIcons)
+      return applyXmasTheme(this.theme, xmasIcons)
     }
-    return result
+    return structuredClone(this.theme)
   }
 
   private isChristmas(): boolean {

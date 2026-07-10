@@ -38,10 +38,12 @@ export async function workspaceDetection() {
   const userDefaultTheme = iconThemeInspection?.globalValue
 
   logger.debug("No Minecraft workspace detected, falling back to user default:", userDefaultTheme)
-  try {
-    await changeWorkspaceConfig("workbench.iconTheme", userDefaultTheme)
-  } catch (error) {
-    logger.error(error, "failed to reset icon theme")
+  if (userDefaultTheme !== undefined) {
+    try {
+      await changeWorkspaceConfig("workbench.iconTheme", userDefaultTheme)
+    } catch (error) {
+      logger.error(error, "failed to reset icon theme")
+    }
   }
 }
 
@@ -64,7 +66,7 @@ export async function isMinecraftWorkspace(): Promise<boolean> {
   for (const manifestFile of manifestFiles) {
     try {
       const manifestContent = await workspace.fs.readFile(manifestFile)
-      const manifestJson = JSON.parse(manifestContent.toString())
+      const manifestJson = JSON.parse(new TextDecoder().decode(manifestContent))
 
       if ("format_version" in manifestJson) {
         return true

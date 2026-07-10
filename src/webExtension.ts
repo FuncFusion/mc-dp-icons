@@ -7,6 +7,8 @@ export function activate(context: vscode.ExtensionContext) {
   const watcher = createFileWatcher(() => workspaceDetection())
   context.subscriptions.push(...watcher.subscriptions)
 
-  workspaceDetection()
+  workspaceDetection().catch(function(error) {
+    console.error("mc-dp-icons: workspace detection failed", error)
+  })
   registerAll(context)
 }

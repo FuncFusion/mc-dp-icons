@@ -32,7 +32,7 @@ function makeHandler(suffix: string) {
       return
     }
 
-    const shortenedPath = uri.fsPath.split("/").slice(-2).join("/").replace(".mcfunction", "")
+    const shortenedPath = uri.path.split("/").slice(-2).join("/").replace(".mcfunction", "")
 
     const updates = removeFromAllLists(shortenedPath)
 
@@ -58,7 +58,7 @@ const resetIcon = {
       return
     }
 
-    const shortenedPath = uri.fsPath.split("/").slice(-2).join("/").replace(".mcfunction", "")
+    const shortenedPath = uri.path.split("/").slice(-2).join("/").replace(".mcfunction", "")
 
     const updates = removeFromAllLists(shortenedPath)
     for (const [key, val] of updates) {

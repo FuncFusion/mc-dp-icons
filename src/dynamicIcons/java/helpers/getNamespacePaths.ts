@@ -33,7 +33,7 @@ export async function getNamespacePaths(mcmetaFiles: vscode.Uri[]): Promise<stri
       const dataPaths = await getPaths(dataPath)
       namespacePaths.push(...dataPaths)
     } catch (error) {
-      logger.error(error, `reading folder: ${packPath}/data`)
+      logger.error(error, `reading folder: ${packPath}`)
     }
   }
 

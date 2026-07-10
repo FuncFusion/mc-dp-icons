@@ -37,7 +37,11 @@ export function createFileWatcher(onChange: () => void) {
 
   const subscriptions = [
     workspace.onDidChangeWorkspaceFolders(() => debounce()),
-    workspace.onDidRenameFiles(() => debounce()),
+    workspace.onDidRenameFiles(event => {
+      if (hasRelevantFile(event as unknown as vscode.FileCreateEvent)) {
+        debounce()
+      }
+    }),
     workspace.onDidDeleteFiles(event => {
       if (hasRelevantFile(event)) {
         debounce()

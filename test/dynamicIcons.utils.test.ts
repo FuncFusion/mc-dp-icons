@@ -23,6 +23,14 @@ describe("usesPartialMatch", () => {
     expect(usesPartialMatch(["exact"])).toBe(false)
     expect(usesPartialMatch([])).toBe(false)
   })
+
+  test("processList handles empty array", async () => {
+    expect(await processList([])).toEqual([])
+  })
+
+  test("processList handles single item", async () => {
+    expect(await processList(["main"])).toEqual(["main.mcfunction"])
+  })
 })
 
 describe("filterSegmentDepth", () => {

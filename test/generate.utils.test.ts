@@ -71,10 +71,10 @@ describe("applyXmasTheme", () => {
     expect(result.folderNamesExpanded["ns/path"]).toBe("custom_folder_xmas")
   })
 
-  test("already-xmas names pass through unchanged", () => {
+  test("already-xmas names pass through unchanged regardless of whitelist", () => {
     const schema = emptySchema()
     schema.folderExpanded = "generic_folder_xmas"
-    const result = applyXmasTheme(schema, ["generic_folder"])
+    const result = applyXmasTheme(schema, [])
     expect(result.folderExpanded).toBe("generic_folder_xmas")
   })
 

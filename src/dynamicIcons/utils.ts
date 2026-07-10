@@ -127,7 +127,7 @@ export async function findPackMcmeta(): Promise<vscode.Uri[]> {
 }
 
 export function usesPartialMatch(array: string[]): boolean {
-  return array.some(item => item.includes("*"))
+  return array.some(item => /[*?[{|]/.test(item))
 }
 
 export function filterSegmentDepth(names: string[]): { valid: string[], invalid: string[] } {

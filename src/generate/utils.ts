@@ -15,10 +15,7 @@ export function isFolderClosedIcon(iconName: string): boolean {
 }
 
 export function isFolderIcon(iconName: string): boolean {
-  if (iconName.endsWith("_folder") && iconName.endsWith("_folder_closed") === false) {
-    return true
-  }
-  return false
+  return iconName.endsWith("_folder") && !iconName.endsWith("_folder_closed")
 }
 
 export function buildIconDefinitions(

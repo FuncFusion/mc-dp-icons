@@ -27,12 +27,12 @@ function removeFromAllLists(shortenedPath: string): [string, string[]][] {
 
 function makeHandler(suffix: string) {
   const configKey = keyPrefix + suffix
-  return (uri?: vscode.Uri) => {
+  return async (uri?: vscode.Uri) => {
     if (!uri) {
       return
     }
 
-    const shortenedPath = uri.path.split("/").slice(-2).join("/").replace(".mcfunction", "")
+    const shortenedPath = uri.fsPath.split("/").slice(-2).join("/").replace(".mcfunction", "")
 
     const updates = removeFromAllLists(shortenedPath)
 
@@ -42,23 +42,31 @@ function makeHandler(suffix: string) {
     }
 
     for (const [key, val] of updates) {
-      changeWorkspaceConfig(key, val)
+      try {
+        await changeWorkspaceConfig(key, val)
+      } catch (error) {
+        console.error("mc-dp-icons: failed to write config", key, error)
+      }
     }
   }
 }
 
 const resetIcon = {
   id: "mc-dp-icons.resetIcon",
-  handler: (uri?: vscode.Uri) => {
+  handler: async (uri?: vscode.Uri) => {
     if (!uri) {
       return
     }
 
-    const shortenedPath = uri.path.split("/").slice(-2).join("/").replace(".mcfunction", "")
+    const shortenedPath = uri.fsPath.split("/").slice(-2).join("/").replace(".mcfunction", "")
 
     const updates = removeFromAllLists(shortenedPath)
     for (const [key, val] of updates) {
-      changeWorkspaceConfig(key, val)
+      try {
+        await changeWorkspaceConfig(key, val)
+      } catch (error) {
+        console.error("mc-dp-icons: failed to write config", key, error)
+      }
     }
   }
 }

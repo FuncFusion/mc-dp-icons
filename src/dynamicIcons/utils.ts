@@ -39,12 +39,7 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
       if (entryType === vscode.FileType.Directory) {
         await collectFiles(fullPath, newPath)
       } else if (validSubfolderFile) {
-        const shortenedPath =
-          pathDepth > 2
-            ? newPath.split(path.sep).slice(-2).join('/')
-            : newPath
-
-        files.push(shortenedPath)
+        files.push(newPath.split(path.sep).slice(-2).join('/'))
       }
     }
   }
@@ -68,9 +63,9 @@ export async function getReferencesFromFunctionTags(namespace: string, functionT
     try {
       const data = await fs.readFile(functionTagFile)
       const content = new TextDecoder().decode(data)
-      const tagData = JSON.parse(content) as { values: unknown[] }
+      const tagData = JSON.parse(content) as { values?: unknown[] }
 
-      if (!tagData.values.length) {
+      if (!tagData.values?.length) {
         continue
       }
 
@@ -127,7 +122,7 @@ export async function findPackMcmeta(): Promise<vscode.Uri[]> {
 }
 
 export function usesPartialMatch(array: string[]): boolean {
-  return array.some(item => /[*?[{|]/.test(item))
+  return array.some(item => /[*?[{]/.test(item))
 }
 
 export function filterSegmentDepth(names: string[]): { valid: string[], invalid: string[] } {

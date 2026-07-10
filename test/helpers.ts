@@ -4,6 +4,7 @@ export const mockVscodeState = {
   configStore: {} as Record<string, unknown>,
   tagContents: {} as Record<string, string>,
   showWarningMessage: undefined as unknown,
+  showErrorMessage: undefined as unknown,
   lastWrittenPath: "" as string,
   lastWrittenContent: "" as string,
   createdDirPaths: [] as string[],
@@ -71,7 +72,7 @@ export function createMockVscode() {
         mockVscodeState.showWarningMessage = msg
       },
       showErrorMessage: async (msg: string) => {
-        mockVscodeState.showWarningMessage = msg
+        mockVscodeState.showErrorMessage = msg
       },
     },
     Uri: {

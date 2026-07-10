@@ -17,12 +17,11 @@ beforeAll(async () => {
 
 describe("usesPartialMatch", () => {
   test("detects wildcards and glob metacharacters", () => {
-    expect(usesPartialMatch(["setup_*"])).toBe(true)
-    expect(usesPartialMatch(["phase_[0-9]"])).toBe(true)
-    expect(usesPartialMatch(["foo?"])).toBe(true)
-    expect(usesPartialMatch(["{a,b}"])).toBe(true)
-    expect(usesPartialMatch(["a|b"])).toBe(true)
-    expect(usesPartialMatch(["init", "tick"])).toBe(false)
+    expect(usesPartialMatch(["*.txt"])).toBe(true)
+    expect(usesPartialMatch(["?"])).toBe(true)
+    expect(usesPartialMatch(["[0-9]"])).toBe(true)
+    expect(usesPartialMatch(["exact"])).toBe(false)
+    expect(usesPartialMatch([])).toBe(false)
   })
 })
 

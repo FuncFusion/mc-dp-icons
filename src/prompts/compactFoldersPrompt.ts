@@ -32,7 +32,7 @@ export async function showCompactFoldersPrompt(context: vscode.ExtensionContext)
     if (selection === GLOBAL) {
       explorerConfig.update("compactFolders", false, vscode.ConfigurationTarget.Global)
     } else if (selection === WORKSPACE) {
-        explorerConfig.update("compactFolders", false, vscode.ConfigurationTarget.Workspace)
+      explorerConfig.update("compactFolders", false, vscode.ConfigurationTarget.Workspace)
     } else if (selection === NEVER) {
       context.globalState.update(DISMISSED_KEY, true)
     }

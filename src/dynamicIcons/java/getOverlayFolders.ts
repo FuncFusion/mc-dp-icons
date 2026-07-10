@@ -7,11 +7,11 @@ export async function getOverlayFolders(): Promise<Record<string, string>> {
     return {}
   }
 
-  const overlayPaths = await getOverlayPaths() || []
+  const overlayPaths = await getOverlayPaths()
 
   const folderNames: Record<string, string> = {}
-  overlayPaths.forEach((path) => {
-    folderNames[path] = "overlay_folder"
+  overlayPaths.forEach(function(overlayPath) {
+    folderNames[overlayPath] = "overlay_folder"
   })
 
   return folderNames

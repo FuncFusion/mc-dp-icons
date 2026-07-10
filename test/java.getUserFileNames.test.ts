@@ -64,7 +64,7 @@ describe("getUserFileNames", () => {
     const result = await getUserFileNames()
     expect(result["a/b.mcfunction"]).toBe("mcfunction_tick_file")
     expect(result["x/y/z.mcfunction"]).toBeUndefined()
-    expect(mockVscodeState.showWarningMessage).toContain("2 path segments")
+    expect(mockVscodeState.showErrorMessage).toContain("2 path segments")
   })
 
   test("shows warning for mixed valid and invalid entries", async () => {
@@ -78,6 +78,6 @@ describe("getUserFileNames", () => {
     expect(result["good/func.mcfunction"]).toBe("mcfunction_tick_file")
     expect(result["func.mcfunction"]).toBe("mcfunction_tick_file")
     expect(result["bad/a/b/c.mcfunction"]).toBeUndefined()
-    expect(mockVscodeState.showWarningMessage).toContain("1 icon path(s)")
+    expect(mockVscodeState.showErrorMessage).toContain("1 icon path(s)")
   })
 })

@@ -141,7 +141,7 @@ export const languageIcons: IconDefinition[] = [
   },
   {
     name: "mojo_file",
-    extensions: ["mojo", "mojom", "�"],
+    extensions: ["mojo", "mojom"],
   },
   {
     name: "moonscript_file",

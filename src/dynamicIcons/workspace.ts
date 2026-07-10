@@ -14,14 +14,22 @@ export async function workspaceDetection() {
 
   if (isMinecraft) {
     logger.debug("Detected Minecraft workspace, activating theme")
-    changeWorkspaceConfig("workbench.iconTheme", "mc-dp-icons")
+    try {
+      await changeWorkspaceConfig("workbench.iconTheme", "mc-dp-icons")
+    } catch (error) {
+      logger.error(error, "failed to set icon theme")
+    }
     return
   }
 
   const fallbackIconTheme = getConfig("fallbackIconTheme")
   if (fallbackIconTheme) {
     logger.debug("Falling back to configured theme:", fallbackIconTheme)
-    changeWorkspaceConfig("workbench.iconTheme", fallbackIconTheme)
+    try {
+      await changeWorkspaceConfig("workbench.iconTheme", fallbackIconTheme)
+    } catch (error) {
+      logger.error(error, "failed to set fallback icon theme")
+    }
     return
   }
 
@@ -30,7 +38,11 @@ export async function workspaceDetection() {
   const userDefaultTheme = iconThemeInspection?.globalValue
 
   logger.debug("No Minecraft workspace detected, falling back to user default:", userDefaultTheme)
-  changeWorkspaceConfig("workbench.iconTheme", userDefaultTheme)
+  try {
+    await changeWorkspaceConfig("workbench.iconTheme", userDefaultTheme)
+  } catch (error) {
+    logger.error(error, "failed to reset icon theme")
+  }
 }
 
 export async function isMinecraftWorkspace(): Promise<boolean> {

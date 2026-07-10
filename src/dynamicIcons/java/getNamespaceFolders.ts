@@ -8,7 +8,7 @@ export async function getNamespaceFolders(): Promise<Record<string, string>> {
     return {}
   }
 
-  const namespacePaths = await getNamespacePaths() || []
+  const namespacePaths = await getNamespacePaths()
 
   const namespaceNames = namespacePaths.map((fullPath) => {
     const pathSegments = fullPath.split(path.sep)

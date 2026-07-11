@@ -5,6 +5,10 @@ export const mockVscodeState = {
   tagContents: {} as Record<string, string>,
   showWarningMessage: undefined as unknown,
   showErrorMessage: undefined as unknown,
+  showInformationMessage: undefined as unknown,
+  showWarningMessageReturn: undefined as string | undefined,
+  showErrorMessageReturn: undefined as string | undefined,
+  showInformationMessageReturn: undefined as string | undefined,
   lastWrittenPath: "" as string,
   lastWrittenContent: "" as string,
   createdDirPaths: [] as string[],
@@ -17,6 +21,7 @@ export const mockVscodeState = {
     | undefined,
   workspaceFoldersResult: undefined as Array<{ uri: { fsPath: string } }> | undefined,
   eventListeners: {} as Record<string, (arg?: unknown) => void>,
+  globalState: {} as Record<string, unknown>,
 }
 
 function makeEvent<T>(eventName: string) {
@@ -47,6 +52,11 @@ export function resetMockState(): void {
   mockVscodeState.findFilesResult = undefined
   mockVscodeState.workspaceFoldersResult = undefined
   mockVscodeState.eventListeners = {}
+  mockVscodeState.showInformationMessage = undefined
+  mockVscodeState.showWarningMessageReturn = undefined
+  mockVscodeState.showErrorMessageReturn = undefined
+  mockVscodeState.showInformationMessageReturn = undefined
+  mockVscodeState.globalState = {}
 }
 
 export function createMockVscode() {
@@ -57,7 +67,9 @@ export function createMockVscode() {
           key in mockVscodeState.configStore
             ? mockVscodeState.configStore[key]
             : defaultVal,
-        update: async () => {},
+        update: async (key: string, value: unknown) => {
+          mockVscodeState.configStore[key] = value
+        },
         inspect: <T>(key: string) => {
           const value = mockVscodeState.configStore[key] as T | undefined
           return {
@@ -121,9 +133,15 @@ export function createMockVscode() {
       }),
       showWarningMessage: async (msg: string) => {
         mockVscodeState.showWarningMessage = msg
+        return mockVscodeState.showWarningMessageReturn
       },
       showErrorMessage: async (msg: string) => {
         mockVscodeState.showErrorMessage = msg
+        return mockVscodeState.showErrorMessageReturn
+      },
+      showInformationMessage: async (msg: string) => {
+        mockVscodeState.showInformationMessage = msg
+        return mockVscodeState.showInformationMessageReturn
       },
     },
     Uri: {

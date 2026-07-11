@@ -108,6 +108,14 @@ describe("update integration", () => {
     expect(theme.hidesExplorerArrows).toBe(true)
   })
 
+  test("hideFolderArrows disabled keeps base theme hidesExplorerArrows false", async () => {
+    setupJavaMocks()
+    mockVscodeState.configStore["mc-dp-icons.hideFolderArrows"] = false
+    await update()
+    const theme = JSON.parse(mockVscodeState.lastWrittenContent)
+    expect(theme.hidesExplorerArrows).toBe(false)
+  })
+
   test("Christmas mode sets xmas icons when enabled", async () => {
     setupJavaMocks()
     mockVscodeState.configStore["mc-dp-icons.christmasIcons"] = "Always"

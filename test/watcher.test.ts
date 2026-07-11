@@ -77,12 +77,28 @@ describe("createFileWatcher", () => {
     expect(called).toBe(true)
   })
 
+  test("config change does NOT trigger for other settings", async () => {
+    let called = false
+    createFileWatcher(() => { called = true })
+    fireEvent("onDidChangeConfiguration", { affectsConfiguration: (id: string) => id === "other.extension" })
+    await new Promise(r => setTimeout(r, 60))
+    expect(called).toBe(false)
+  })
+
   test("save triggers onChange for pack.mcmeta", async () => {
     let called = false
     createFileWatcher(() => { called = true })
     fireEvent("onDidSaveTextDocument", { uri: { path: "/dp/pack.mcmeta", fsPath: "/dp/pack.mcmeta" } })
     await new Promise(r => setTimeout(r, 60))
     expect(called).toBe(true)
+  })
+
+  test("save for settings.json does NOT trigger onChange", async () => {
+    let called = false
+    createFileWatcher(() => { called = true })
+    fireEvent("onDidSaveTextDocument", { uri: { path: "/.vscode/settings.json", fsPath: "/.vscode/settings.json" } })
+    await new Promise(r => setTimeout(r, 60))
+    expect(called).toBe(false)
   })
 
   test("save ignored for non-relevant files", async () => {
@@ -102,4 +118,5 @@ describe("createFileWatcher", () => {
     await new Promise(r => setTimeout(r, 60))
     expect(count).toBe(1)
   })
+
 })

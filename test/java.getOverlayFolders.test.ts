@@ -37,4 +37,23 @@ describe("getOverlayFolders", () => {
     const result = await getOverlayFolders(mockMcmetaFiles)
     expect(Object.keys(result).length).toBe(0)
   })
+
+  test("skips directories without data or assets", async () => {
+    mockVscodeState.configStore["mc-dp-icons.overlayIcons"] = true
+    mockVscodeState.readDirectoryResult = (dirPath: string) => {
+      if (dirPath === "/dp") {
+        return [
+          ["eula", 2],
+          ["some_no_data", 2],
+        ]
+      }
+      if (dirPath === "/dp/some_no_data") {
+        return [["readme.txt", 1]]
+      }
+      return []
+    }
+    const result = await getOverlayFolders(mockMcmetaFiles)
+    expect(result["dp/some_no_data"]).toBeUndefined()
+    expect(Object.keys(result).length).toBe(0)
+  })
 })

@@ -103,11 +103,14 @@ We love seeing our icons power other creations! Here are some of the awesome pro
 
 - [Scythe](https://scythe-editor.com/) — The dedicated IDE for Minecraft Datapacks and resource packs.
 - [cord.nvim](https://github.com/vyfor/cord.nvim) — A highly extensible Discord Rich Presence plugin for Neovim (features a custom Minecraft icon set built on Datapack Icons).
-- [Snave Sutit](https://snavesutit.github.io/) — Personal developer website and portfolio.
+- [Animated Java website and docs](https://animated-java.dev/) — Effortlessly craft complex animations for Minecraft: Java Edition.
+- [Rhombus](https://github.com/annhilati/rhombus) — The Python-embedded Domain specific Language for Minecraft Terrain Generation.
 
 *If your project is not on the list, feel free to reach out or open a pull request!*
 
 **Enjoy!**
 
 ---
+<small><em><a href="LICENSE.txt">Licensed under MIT</a>, and credit is appreciated :)</em></small>
+
 <small><em>NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG.</em></small>

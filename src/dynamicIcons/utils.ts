@@ -9,6 +9,8 @@ import { subfolderIconMap } from "./constants"
 
 const fs = workspace.fs
 
+const MAX_RECURSION_DEPTH = 30
+
 export async function getFilesInDirectory(directory: string): Promise<string[]> {
   const files: string[] = []
   const excludedFiles = [
@@ -18,7 +20,7 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
     "functions" + path.sep + "tick.json",
   ]
   const collectFiles = async (dir: string, relativePath = "", depth = 0) => {
-    if (depth >= 10) {
+    if (depth >= MAX_RECURSION_DEPTH) {
       return
     }
 

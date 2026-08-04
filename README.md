@@ -56,7 +56,7 @@ Namespace folders (directories directly within <img src="assets/readme_icons/dat
 ![Icons](assets/3.0/NamespaceIcons.gif)
 
 ### <img src="assets/readme_icons/overlay_folder_closed.png" width="24"> Overlay Icons
-Overlay folders (directories at the pack root registered as overlays in <sub><img src="assets/readme_icons/pack.mcmeta_file.png" width="18"></sub> `pack.mcmeta`) receive a <sub><img src="assets/readme_icons/overlay_folder.png" width="18"></sub> glass chest icon.
+Overlay folders (directories at the pack root with <img src="assets/readme_icons/data_folder_closed.png" width="18"> `data` or <img src="assets/readme_icons/assets_folder_closed.png" width="18"> `assets` folder in them) receive a <sub><img src="assets/readme_icons/overlay_folder.png" width="18"></sub> glass chest icon. This requires a <sub><img src="assets/readme_icons/pack.mcmeta_file.png" width="18"></sub> `pack.mcmeta` file at the root of the pack.
 
 ### <img src="assets/readme_icons/generic_folder_closed_xmas.png" width="24"> Christmas Icons
 Similar to Minecraft, the extension changes all chest icons to their festive Christmas variants during December 24-26 (<sub><img src="assets/readme_icons/trading_folder.png" width="18"></sub> → <sub><img src="assets/readme_icons/trading_folder_xmas.png" width="18"></sub>). This feature can be disabled or enabled to work at any time in the settings.
@@ -73,7 +73,7 @@ Hides the default expand/collapse arrows next to folder icons in the VS Code Exp
 ---
 
 ## <sub><img src="assets/readme_icons/aseprite_file.png" width="28"></sub> Assets
-You can find all the used (and unused!) assets during the development of Datapack Icons in our [assets repo](https://github.com/FuncFusion/mc-dp-icons-assets).
+You can find all of the assets used (and unused!) during the development of Datapack Icons in our [assets repo](https://github.com/FuncFusion/mc-dp-icons-assets).
 
 ## <sub><img src="assets/readme_icons/contributing_file.png" width="28"></sub> Community & Feedback
 If you need to report a bug, request a new icon or suggest a feature, you can do that in our <sub><img src="assets/readme_icons/discord.png" width="18"></sub> [discord server](https://discord.gg/9FMRD9GvAq) or by opening a [github issue](https://github.com/FuncFusion/mc-dp-icons/issues).

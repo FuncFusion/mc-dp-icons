@@ -4,17 +4,20 @@ import { Utils } from "vscode-uri"
 
 function isRelevantUri(uri: vscode.Uri): boolean {
   const name = Utils.basename(uri)
-  const path = uri.path
 
-  if (path.endsWith("/")) {
+  if (uri.path.endsWith("/")) {
     return true
   }
 
-  if (name === "pack.mcmeta" || name === "manifest.json" || name === "beet.yaml" || name === "beet.yml") {
+  if (name === "settings.json") {
+    return false
+  }
+
+  if (name === "pack.mcmeta" || name.endsWith(".json") || name === "beet.yaml" || name === "beet.yml") {
     return true
   }
 
-  return name.endsWith(".json") && path.includes("tags/functions/")
+  return false
 }
 
 function hasRelevantFile(event: vscode.FileCreateEvent | vscode.FileDeleteEvent): boolean {
@@ -38,7 +41,14 @@ export function createFileWatcher(onChange: () => void) {
   const subscriptions = [
     workspace.onDidChangeWorkspaceFolders(() => debounce()),
     workspace.onDidRenameFiles(event => {
-      if (hasRelevantFile(event as unknown as vscode.FileCreateEvent)) {
+      let foundRelevantFile = false
+      for (const file of event.files) {
+        if (isRelevantUri(file.oldUri) || isRelevantUri(file.newUri)) {
+          foundRelevantFile = true
+          break
+        }
+      }
+      if (foundRelevantFile) {
         debounce()
       }
     }),

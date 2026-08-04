@@ -61,6 +61,14 @@ describe("createFileWatcher", () => {
     expect(called).toBe(true)
   })
 
+  test("file create triggers for any json file", async () => {
+    let called = false
+    createFileWatcher(() => { called = true })
+    fireEvent("onDidCreateFiles", { files: [{ path: "/dp/data/minecraft/advancements/foo.json", fsPath: "/dp/data/minecraft/advancements/foo.json" }] })
+    await new Promise(r => setTimeout(r, 60))
+    expect(called).toBe(true)
+  })
+
   test("file delete triggers onChange for relevant files", async () => {
     let called = false
     createFileWatcher(() => { called = true })
@@ -101,6 +109,14 @@ describe("createFileWatcher", () => {
     expect(called).toBe(false)
   })
 
+  test("save for any json file triggers onChange", async () => {
+    let called = false
+    createFileWatcher(() => { called = true })
+    fireEvent("onDidSaveTextDocument", { uri: { path: "/dp/data/minecraft/loot_tables/chests/foo.json", fsPath: "/dp/data/minecraft/loot_tables/chests/foo.json" } })
+    await new Promise(r => setTimeout(r, 60))
+    expect(called).toBe(true)
+  })
+
   test("save ignored for non-relevant files", async () => {
     let called = false
     createFileWatcher(() => { called = true })
@@ -119,4 +135,23 @@ describe("createFileWatcher", () => {
     expect(count).toBe(1)
   })
 
+  test("rename event with relevant files triggers onChange", async () => {
+    let called = false
+    createFileWatcher(() => { called = true })
+    fireEvent("onDidRenameFiles", {
+      files: [{ oldUri: { path: "/dp/old.json", fsPath: "/dp/old.json" }, newUri: { path: "/dp/new.json", fsPath: "/dp/new.json" } }],
+    })
+    await new Promise(r => setTimeout(r, 60))
+    expect(called).toBe(true)
+  })
+
+  test("rename event with irrelevant files does NOT trigger", async () => {
+    let called = false
+    createFileWatcher(() => { called = true })
+    fireEvent("onDidRenameFiles", {
+      files: [{ oldUri: { path: "/readme.txt", fsPath: "/readme.txt" }, newUri: { path: "/readme.txt", fsPath: "/readme.txt" } }],
+    })
+    await new Promise(r => setTimeout(r, 60))
+    expect(called).toBe(false)
+  })
 })

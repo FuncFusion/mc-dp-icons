@@ -39,20 +39,8 @@ export const resourcePackIcons: IconDefinition[] = [
     foldernames: ["equipment"],
   },
   {
-    name: "font_file",
-    extensions: ["font", "font/json", "ttf", "fontdata", "bmap", "eot", "fnt", "fonts", "mrf", "ntf", "odttf", "otf", "pft", "sui", "suit", "ttc", "woff", "woff2"],
-  },
-  {
-    name: "font_folder",
-    foldernames: ["font", "fonts"],
-  },
-  {
     name: "fragment_shader_file",
     extensions: ["fsh", "fp", "frag"],
-  },
-  {
-    name: "glsl_file",
-    extensions: ["glsl", "comp", "geom", "hlsl", "tesc", "tese", "wgsl"],
   },
   {
     name: "items_file",

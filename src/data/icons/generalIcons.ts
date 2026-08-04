@@ -130,6 +130,14 @@ export const generalIcons: IconDefinition[] = [
     filenames: ["fabric-mod.json"],
   },
   {
+    name: "font_file",
+    extensions: ["font", "font/json", "ttf", "fontdata", "bmap", "eot", "fnt", "fonts", "mrf", "ntf", "odttf", "otf", "pft", "sui", "suit", "ttc", "woff", "woff2"],
+  },
+  {
+    name: "font_folder",
+    foldernames: ["font", "fonts"],
+  },
+  {
     name: "forge_file",
     filenames: ["accesstransformer.cfg", "mcmod.info", "mods.toml"],
   },
@@ -224,6 +232,10 @@ export const generalIcons: IconDefinition[] = [
   {
     name: "jsconfig_file",
     filenames: ["jsconfig.json"],
+  },
+  {
+    name: "json_file",
+    extensions: ["json", "har", "json5", "jsonc", "jsonl", "jsonld", "ndjson", "pdt", "topojson", "webmanifest"],
   },
   {
     name: "julia_folder",

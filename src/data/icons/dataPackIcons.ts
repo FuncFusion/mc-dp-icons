@@ -155,10 +155,6 @@ export const dataPackIcons: IconDefinition[] = [
     extensions: ["jmc"],
   },
   {
-    name: "json_file",
-    extensions: ["json", "har", "json5", "jsonc", "jsonl", "jsonld", "ndjson", "pdt", "topojson", "webmanifest"],
-  },
-  {
     name: "jukebox_song_file",
     extensions: ["jukebox_song/json"],
   },
@@ -332,7 +328,7 @@ export const dataPackIcons: IconDefinition[] = [
   },
   {
     name: "trim_pattern_file",
-    extensions: ["trim_pattern/json"],
+    extensions: ["trim_pattern/json", "tmpl"],
   },
   {
     name: "trim_pattern_folder",

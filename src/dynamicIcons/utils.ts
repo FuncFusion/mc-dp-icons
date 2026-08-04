@@ -163,6 +163,7 @@ export async function getSubFolderFiles(
   const subfolders = subfolderResult.subfolders
   const totalFiles = subfolderResult.totalFiles
   if (totalFiles >= 10000) {
+    logger.debug("getSubFolderFiles: too many files threshold reached")
     warnAboutTooManyFiles()
   }
 

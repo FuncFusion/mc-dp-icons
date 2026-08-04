@@ -114,6 +114,11 @@ export const dataPackIcons: IconDefinition[] = [
     foldernames: ["enchantment", "enchantment_provider"],
   },
   {
+    name: "flare_file",
+    extensions: ["fl"],
+    filenames: ["flare.json"],
+  },
+  {
     name: "frog_variant_file",
     extensions: ["frog_variant/json"],
   },

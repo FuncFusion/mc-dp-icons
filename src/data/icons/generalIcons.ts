@@ -317,6 +317,10 @@ export const generalIcons: IconDefinition[] = [
     filenames: ["CODE_OF_CONDUCT", "CODE_OF_CONDUCT.md", "CODE_OF_CONDUCT.txt"],
   },
   {
+    name: "pixi_file",
+    filenames: ["pixi.toml", "pixi-global.toml"],
+  },
+  {
     name: "playdate_file",
     filenames: ["pdxinfo"],
   },

@@ -69,6 +69,22 @@ describe("createFileWatcher", () => {
     expect(called).toBe(true)
   })
 
+  test("file create triggers for .mcfunction files", async () => {
+    let called = false
+    createFileWatcher(() => { called = true })
+    fireEvent("onDidCreateFiles", { files: [{ path: "/dp/data/minecraft/functions/tick.mcfunction", fsPath: "/dp/data/minecraft/functions/tick.mcfunction" }] })
+    await new Promise(r => setTimeout(r, 60))
+    expect(called).toBe(true)
+  })
+
+  test("file create triggers for .nbt files", async () => {
+    let called = false
+    createFileWatcher(() => { called = true })
+    fireEvent("onDidCreateFiles", { files: [{ path: "/dp/data/minecraft/structures/ruin.nbt", fsPath: "/dp/data/minecraft/structures/ruin.nbt" }] })
+    await new Promise(r => setTimeout(r, 60))
+    expect(called).toBe(true)
+  })
+
   test("file delete triggers onChange for relevant files", async () => {
     let called = false
     createFileWatcher(() => { called = true })

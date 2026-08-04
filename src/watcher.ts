@@ -13,7 +13,7 @@ function isRelevantUri(uri: vscode.Uri): boolean {
     return false
   }
 
-  if (name === "pack.mcmeta" || name.endsWith(".json") || name === "beet.yaml" || name === "beet.yml") {
+  if (name.endsWith(".json") || name.endsWith(".mcfunction") || name.endsWith(".nbt") || name === "pack.mcmeta" || name === "beet.yaml" || name === "beet.yml") {
     return true
   }
 

@@ -30,7 +30,7 @@ describe("warnAboutTooManyFiles", () => {
   test("shows correct warning message", () => {
     warnAboutTooManyFiles()
     expect(mockVscodeState.showWarningMessage).toBe(
-      "Too many files in subsubfolders (Over 10000). Subfolder icons feature might not work properly. Would you like to disable this feature?"
+      "Too many files in subsubfolders (Over 1024). Subfolder icons feature might not work properly. Would you like to disable this feature?"
     )
   })
 

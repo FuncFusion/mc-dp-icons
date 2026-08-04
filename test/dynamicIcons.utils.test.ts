@@ -209,19 +209,19 @@ describe("getSubFolderFiles", () => {
     expect(Object.keys(result).length).toBe(0)
   })
 
-  test("calls warnAboutTooManyFiles when totalFiles >= 10000", async () => {
+  test("calls warnAboutTooManyFiles when totalFiles >= 1024", async () => {
     const subfolderRef = () => Promise.resolve({
       subfolders: { advancements: ["story/data.json"] },
-      totalFiles: 10000,
+      totalFiles: 1024,
     })
     await getSubFolderFiles(subfolderRef)
     expect(mockVscodeState.showWarningMessage).toContain("Too many files")
   })
 
-  test("does not warn when totalFiles < 10000", async () => {
+  test("does not warn when totalFiles < 1024", async () => {
     const subfolderRef = () => Promise.resolve({
       subfolders: { advancements: ["story/data.json"] },
-      totalFiles: 9999,
+      totalFiles: 1023,
     })
     await getSubFolderFiles(subfolderRef)
     expect(mockVscodeState.showWarningMessage).toBeUndefined()

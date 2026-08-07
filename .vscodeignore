@@ -15,3 +15,5 @@ out/*.map
 webpack.config.js
 node_modules
 .github/**
+assets/**
+!assets/logo.png

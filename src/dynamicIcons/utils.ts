@@ -39,7 +39,7 @@ export async function getFilesInDirectory(directory: string): Promise<string[]> 
 
       const validSubfolderFile =
         pathDepth > 2 &&
-        newPath.endsWith(".json") &&
+        (newPath.endsWith(".json") || newPath.endsWith(".nbt")) &&
         !excludedFiles.some((file) => newPath.includes(file))
 
       if (entryType === vscode.FileType.Directory) {

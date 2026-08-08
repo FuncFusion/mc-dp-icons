@@ -18,6 +18,8 @@ Made by SuperAnt_: https://www.youtube.com/watch?v=eYAvg19stpU
 <details>
 <summary><h2><sub><img src="assets/readme_icons/image_folder.png" width="28"></sub> Icons</h2></summary>
 
+**The images below showcase the complete set of icons for version 4.0. They will be updated to include all 5.0 icons in the next few days.**
+
 ![Icons](assets/4.0/IconsDatapacks.png)
 ![Icons](assets/4.0/IconsResourcepacks.png)
 ![Icons](assets/4.0/IconsProgramming.png)
@@ -32,8 +34,6 @@ Made by SuperAnt_: https://www.youtube.com/watch?v=eYAvg19stpU
 ### <sub><img src="assets/readme_icons/pack.mcmeta_file.png" width="24"></sub> Workspace Detection
 **Want to use Datapack Icons only for Minecraft projects?** When enabled, this feature automatically switches your active icon theme to `mc-dp-icons` whenever it detects a Minecraft project in your current workspace. It works by scanning for <sub><img src="assets/readme_icons/pack.mcmeta_file.png" width="18"></sub> `pack.mcmeta`, Bedrock <sub><img src="assets/readme_icons/pack.mcmeta_file.png" width="18"></sub> `manifest.json`, <sub><img src="assets/readme_icons/beet_file.png" width="18"></sub> Beet or <sub><img src="assets/readme_icons/jmc_file.png" width="18"></sub> JMC config files. If not found, it restores your default icon theme. You can define a specific fallback theme in the settings or let the extension default to your previously active theme.
 
-![Icons](assets/3.0/PackMcmetaCheck.gif)
-
 ### <sub><img src="assets/readme_icons/function_folder.png" width="24"></sub> Special Function Icons
 By default, `.mcfunction` files use the standard <img src="assets/readme_icons/mcfunction_file.png" width="18"> chain command block icon. Since functions usually make up the vast majority of files in a datapack, it can be difficult to tell your core logic apart from the rest. To help you visually prioritize important files, the extension offers several special command block icons!
 
@@ -43,17 +43,11 @@ You can also manually assign the <img src="assets/readme_icons/mcfunction_tick_f
 
 To assign a custom icon, right-click any function file and use the `Datapack Icons: Set Icon` menu. Alternatively, you can use the settings to assign icons by file name. For maximum precision, it is recommended to specify the direct parent folder name (e.g., `subfolder/file`) rather than using just the file name. [GlobPatterns](https://code.visualstudio.com/api/references/vscode-api#GlobPattern) are also supported (e.g., `*_setup`, `*helper*`, or `phase_[0-9]`) to easily match multiple files at once.
 
-![Icons](assets/3.0/LoadTickFunctions.gif)
-
 ### <sub><img src="assets/readme_icons/loot_table_folder.png" width="24"></sub> Subfolder Icons
 Due to VS Code API limitations, special icons can only be assigned to files directly inside a category folder (e.g.,  `data/namespace/item_modifier/`<sub><img src="assets/readme_icons/item_modifier_file.png" width="18"></sub>`file.json`). Enabling this option activates a workaround that bypasses this restriction, ensuring that nested files like `data/namespace/item_modifier/subfolder/`<sub><img src="assets/readme_icons/item_modifier_file.png" width="18"></sub>`file.json` get their specific icon rather than a generic one. Not recommended for extremely large workspaces. This requires a <sub><img src="assets/readme_icons/pack.mcmeta_file.png" width="18"></sub> `pack.mcmeta` file at the root of the pack.
 
-![Icons](assets/4.0/SubfolderIcons.gif)
-
 ### <img src="assets/readme_icons/namespace_folder_closed.png" width="24"> Namespace Icons
 Namespace folders (directories directly within <img src="assets/readme_icons/data_folder_closed.png" width="18"> `data` or <img src="assets/readme_icons/assets_folder_closed.png" width="18"> `assets`) receive an <sub><img src="assets/readme_icons/namespace_folder.png" width="18"></sub> ender chest icon. This requires a <sub><img src="assets/readme_icons/pack.mcmeta_file.png" width="18"></sub> `pack.mcmeta` file at the root of the pack.
-
-![Icons](assets/3.0/NamespaceIcons.gif)
 
 ### <img src="assets/readme_icons/overlay_folder_closed.png" width="24"> Overlay Icons
 Overlay folders (directories at the pack root with <img src="assets/readme_icons/data_folder_closed.png" width="18"> `data` or <img src="assets/readme_icons/assets_folder_closed.png" width="18"> `assets` folder in them) receive a <sub><img src="assets/readme_icons/overlay_folder.png" width="18"></sub> glass chest icon. This requires a <sub><img src="assets/readme_icons/pack.mcmeta_file.png" width="18"></sub> `pack.mcmeta` file at the root of the pack.
@@ -61,12 +55,8 @@ Overlay folders (directories at the pack root with <img src="assets/readme_icons
 ### <img src="assets/readme_icons/generic_folder_closed_xmas.png" width="24"> Christmas Icons
 Similar to Minecraft, the extension changes all chest icons to their festive Christmas variants during December 24-26 (<sub><img src="assets/readme_icons/trading_folder.png" width="18"></sub> → <sub><img src="assets/readme_icons/trading_folder_xmas.png" width="18"></sub>). This feature can be disabled or enabled to work at any time in the settings.
 
-![Icons](assets/4.0/ChristmasIcons.png)
-
 ### Hide Folder Arrows
 Hides the default expand/collapse arrows next to folder icons in the VS Code Explorer to make your workspace feel less cluttered.
-
-![Icons](assets/3.0/HideFolderArrows.gif)
 
 </details>
 

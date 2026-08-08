@@ -2,6 +2,59 @@
 
 All notable changes to the "mc-dp-icons" extension will be documented in this file.
 
+## [5.0.0] - Deep Dive Update (2026-08-08)
+### The total amount of icons now is 418, and 95 of them are christmas variants
+### Added
+- New `Overlay icons` feature! Overlay folders (folders at the root of a pack that contain a `data` or `assets` folder in them) now receive a glass chest icon, just like namespace folders receive an ender chest one. Requires a `pack.mcmeta` at the root of the pack, and can be turned off in the settings.
+
+- New `Crowned function icons`! Since functions usually make up the vast majority of files in a datapack, it can be hard to tell your core logic apart from the rest, so we added 3 crowned command block variants (chain, repeating and impulse) to highlight your most important functions.
+
+- Function icons can now be assigned manually! Right-click any function file and use the `Datapack Icons: Set Icon` menu to assign any of the 5 special command block icons, or reset it back to default. The same can be done through the settings by file name.
+
+- [GlobPatterns](https://code.visualstudio.com/api/references/vscode-api#GlobPattern) support in all function name settings (e.g. `*_setup`, `*helper*` or `phase_[0-9]`), so you can match a whole bunch of files at once. You can also specify the direct parent folder name (e.g. `subfolder/file`) for maximum precision when two or more functions share a name.
+
+- `Workspace detection` (previously `pack.mcmeta check`) is now build-system agnostic - besides `pack.mcmeta` it also looks for bedrock `manifest.json`, [Beet](https://github.com/mcbeet/beet) and [JMC](https://jmc.wingedseal.com/) config files, so the theme switches on for your project no matter how it's built.
+
+- Two new helpful prompts: one offers to disable `explorer.compactFolders` (which breaks folder icons for nested folders), and one warns you when a workspace has over 1024 subfolder files. That is where the `Subfolder icons` workaround starts hitting the limits of VS Code's renderer, so past that point the feature might not work properly.
+
+- `Subfolder icons` feature is now **enabled by default**.
+
+- A `debug` setting, which makes the extension log everything it does into its own `Datapack Icons` output channel.
+
+- 196 new icons, including:
+    - 37 new programming language icons
+    - 83 new general and tooling icons, including a whole set for the minecraft modding and plugin development (`fabric`, `forge`, `quilt`, `spigot`, `paper`, `purpur`, `bukkit`)
+    - 33 new datapack icons, including all the new folders and files (`dialog`, `test_environment`, `test_instance`, and the `cat`, `chicken`, `cow`, `frog`, `pig` and `zombie_nautilus` variants), icons for DSLs ([MCBuild](https://mcbuild.dev/), [Sandstone](https://sandstone.dev/), [Flare](https://flare.oguzhanumutlu.com/)) and more.
+    - 3 new resource pack icons (`waypoint_style` file & folder, and Blockbench icon)
+    - 42 new christmas variants, covering every single new folder icon with a chest in it
+
+- A lot of new assigns for existing icons: 782 file extensions (up from 522), 140 file names (up from 26) and 248 folder names (up from 66).
+
+- A [Zed](https://github.com/FuncFusion/mc-dp-icons-zed) port and a [Sublime Text](https://github.com/FuncFusion/mc-dp-icons-sublime) port of the theme.
+
+### Changed
+- All 418 icon svgs were replaced with new, cleaner, optimized versions, which makes the files 6x smaller on average.
+
+- The whole extension was rewritten from the ground up. The icon theme is no longer a hand-written json file - it's now generated at build time from typed icon definitions split by category (datapack, resource pack, bedrock addon, bedrock resource pack, languages, general), which makes adding and maintaining icons a lot less painful. The extension was also migrated to esbuild, `vscode-uri` and `vscode.workspace.fs`, and got a full test suite.
+
+- All icon files were renamed to a consistent `name_file` / `name_folder` / `name_folder_closed` / `name_folder_xmas` standard.
+
+- All settings were renamed to be shorter and clearer, and are now grouped into `Workspace Detection`, `Function Icons`, `Dynamic Icons` and `Other` sections:
+    - `enablePackMcmetaCheck` → `workspaceDetection`
+    - `setDefaultIconTheme` → `fallbackIconTheme`
+    - `enableLoadTickAutoChange` → `dynamicFunctionIcons`
+    - `functionNamesForTick` → `tickFunctionNames`
+    - `functionNamesForLoad` → `loadFunctionNames`
+    - `enableSubfolderIcons` → `subfolderIcons`
+    - `enableNamespaceIcons` → `namespaceIcons`
+    - `enableChristmasIcons` → `christmasIcons`
+
+- A lot of bugfixes, the most notable being [issue 29](https://github.com/FuncFusion/mc-dp-icons/issues/29), which caused extreme activation times and freezes when renaming a file/folder.
+
+- The extension is now licensed under **MIT** instead of AGPL-3.0.
+### Deleted
+- 13 old icons: the 10 leftover unused ones from previous versions, plus the `textures` folder icon and its christmas variant (that folder now uses the image icon) and the sublime package icon (`.sublime-package` now uses the archive icon).
+
 ## [4.0.2] - Minor fixes (2025-03-25)
 - Update amandin's github link in README.md.
 - [Issue 28](https://github.com/FuncFusion/mc-dp-icons/issues/28) regarding `language_name.json` not having a lang icon.

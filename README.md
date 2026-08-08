@@ -10,10 +10,10 @@
 ---
 <sub><img src="assets/logo.png" width="18"></sub> Datapack Icons is a polished, Minecraft-inspired icon suite for the modern developer's workflow. Looking through [Microsoft's behavior packs documentation](https://learn.microsoft.com/en-us/minecraft/creator/documents/behaviorpack#building-the-behavior-pack), we took inspiration from those icons and decided to implement them in VS Code. 
 
-## <sub><img src="assets/readme_icons/video_folder.png" width="28"></sub> 3.0 Trailer
-Made by SuperAnt_: https://www.youtube.com/watch?v=eYAvg19stpU
+## <sub><img src="assets/readme_icons/video_folder.png" width="28"></sub> 5.0 Trailer
+Made by SuperAnt_: https://youtu.be/fneIVWzjFOk
 
-[![Trailer](https://img.youtube.com/vi/eYAvg19stpU/0.jpg)](https://www.youtube.com/watch?v=eYAvg19stpU)
+[![Trailer](assets/yt_thumbnail.jpg)](https://youtu.be/fneIVWzjFOk)
 
 <details>
 <summary><h2><sub><img src="assets/readme_icons/image_folder.png" width="28"></sub> Icons</h2></summary>
